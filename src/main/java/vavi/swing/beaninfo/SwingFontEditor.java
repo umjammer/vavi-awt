@@ -1,0 +1,124 @@
+/*
+ * Copyright (c) 2002 by Naohide Sano, All rights reserved.
+ *
+ * Programmed by Naohide Sano
+ */
+
+package vavi.swing.beaninfo;
+
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import vavi.swing.fontchooser.SmallFontEditor;
+
+
+/**
+ * A Font property editor. Mostly designed by Chris Ryan.
+ *
+ * @depends	/vavi/swing/resource${I18N}.properties
+ *
+ * @author	Tom Santos
+ * @author	Mark Davidson
+ * @author	<a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @version	1.40	010103		original version <br>
+ *		1.41	020516	nsano	i18n <br>
+ *		2.00	020517	nsano	separate FontEditor <br>
+ */
+public class SwingFontEditor extends SwingEditorSupport {
+
+    /** リソースバンドル */
+    private static final ResourceBundle rb =
+	ResourceBundle.getBundle("vavi.swing.resource", Locale.getDefault());
+
+    private final static String sampleText =
+        rb.getString("jFontChooser.sample.text");
+
+    /** */
+    private SmallFontEditor fontEditor;
+
+    /** */
+    public SwingFontEditor() {
+        fontEditor = new SmallFontEditor();
+
+        panel = new JPanel(new BorderLayout());
+        panel.add(fontEditor.getFontEditorComponent());
+
+        plug();
+    }
+
+    /** */
+    private PropertyChangeListener pcl = new PropertyChangeListener() {
+        public void propertyChange(PropertyChangeEvent ev) {
+            if ("font".equals(ev.getPropertyName())) {
+                SwingFontEditor.super.setValue(ev.getNewValue());
+            }
+        }
+    };
+
+    // PropertyEditor interface definitions -----------------------------------
+
+    private void plug() {
+        Component editorComponent = fontEditor.getFontEditorComponent();
+        editorComponent.addPropertyChangeListener(pcl);
+    }
+
+    private void unplug() {
+        Component editorComponent = fontEditor.getFontEditorComponent();
+        editorComponent.removePropertyChangeListener(pcl);
+    }
+
+    /** TODO unplug 要るかどうか要検証 */
+    public void setValue(Object value) {
+    	super.setValue(value);
+        unplug();
+	fontEditor.setSelectedFont((Font) value);
+        plug();
+    }
+
+    public boolean isPaintable() {
+    	return true;
+    }
+
+    public void paintValue(Graphics g, Rectangle rect) {
+	// Silent noop.
+	Font oldFont = g.getFont();
+	g.setFont((Font) getValue());
+	FontMetrics fm = g.getFontMetrics();
+	int vpad = (rect.height - fm.getAscent())/2;
+	g.drawString(sampleText, 0, rect.height-vpad);
+	g.setFont(oldFont);
+    }
+
+    public String getJavaInitializationString() {
+    	Font font = (Font) getValue();
+    
+        return "new java.awt.Font(\"" +
+            font.getFamily() + "\", " +
+            font.getStyle() + ", " +
+            font.getSize() + ")";
+    }
+
+    //-------------------------------------------------------------------------
+
+    public static void main(String[] argv) {
+        JFrame f = new JFrame("SwingFontEditor T400");
+	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        SwingFontEditor editor = new SwingFontEditor();
+        f.getContentPane().add(editor.getCustomEditor());
+        f.pack();
+        f.setVisible(true);
+    }
+}
+
+/* */

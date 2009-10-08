@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+
+<head>
+<link rev="MADE" href="mailto:vavivavi@yahoo.co.jp">
+<link rel="INDEX" href="orverview.html">
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" type="text/css" href="../../../vavi.css">
+<title>vavi.awt.dnd</title>
+<!--
+ * Copyright (c) 2001 by Naohide Sano, All rights reserved.
+ *
+ * Written by Naohide Sano
+ *
+ * @author	<a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ *
+ * @version	0.00	010820	nsano	initial version
+-->
+</head>
+
+<body>
+
+<p>
+ドラッグアンドドロップを実装するための基本クラスを提供します．
+</p>
+
+<p>
+結構便利なクラスです．実装の例は，
+</p>
+
+<ul>
+<li>{@link vavi.apps.treeView.TreeViewTree}</li>
+<li>{@link vavi.apps.treeView.TreeViewTreeDTListener}</li>
+<li>{@link vavi.apps.treeView.TreeViewTreeNodeTransferable}</li>
+</ul>
+<p>
+を参照してください．
+</p>
+
+<p>
+あとは <code>Draggable</code> 中の <code>DragGestureListener</code> と <code>DragSourceListener</code> が外部から変更できるようになれば完璧ですね．
+</p>
+
+<ol>
+<li><code>BasicTransferable</code> を継承したクラスを作成し，その中にドラッグアンドドロップされるオブジェクトの判別を記述します．
+
+<pre>
+
+class FooTransferable extends BasicTransferable {
+    ...
+}
+
+</pre>
+
+</li>
+
+<li><code>BasicDTListener</code> を継承したクラスを作成し，その中にドロップされた場合のアクションを記述します．
+
+<tt>
+<pre>
+
+class FooDTListener extends BasicDTListener {
+    ...
+    protected boolean dropImpl(DropTargetDropEvent ev, Object data) {
+        ...
+        return true;
+    }
+}
+
+</pre>
+</tt>
+
+<li>ドラッグアンドドロップを行いたいコンポーネントに <code>Draggable</code> のインスタンスを作成します．
+そして以下のように記述すればOKです．あら簡単．
+
+<pre>
+
+class Foo /* want to drag and drop */ extends Component {
+
+    Foo(...) {
+        ...
+
+        // ドラッグする側
+        new Draggable(this, ...) {
+            protected Transferable getTransferable(DragGestureEvent ev) {
+                ...
+                return new FooTransferable(...);
+            }
+        }
+
+        // ドロップされる側
+        new DropTarget(this, 
+                       DnDConstants.ACTION_COPY_OR_MOVE,
+                       new FooDTListener(this),
+                       true);
+    }
+}
+
+</pre>
+ </il>
+</ol>
+
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+
+<head>
+<link rev="MADE" href="mailto:vavivavi@yahoo.co.jp">
+<link rel="INDEX" href="orverview.html">
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" type="text/css" href="../../../vavi.css">
+<title>vavi.swing.propertyeditor</title>
+<!--
+ * Copyright (c) 2002 by Naohide Sano, All rights reserved.
+ *
+ * Written by Naohide Sano
+ *
+ * @author	<a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ *
+ * @version	0.00	020513	nsano	initial version
+-->
+</head>
+
+<body>
+
+<p>
+PropertyEditor 関連のクラスを提供します．
+</p>
+
+<h2>
+使用法
+</h2>
+
+<ul>
+ <li><code>JPropertyEditorPanel</code>
+  <p>
+   完全な bean のプロパティエディタです．
+  </p>
+ </li>
+ <li>一般的使用
+  <p></p>
+  <ol>
+   <li><code>AbstractDescriptorTableModel</code> を継承した <code>TableModel</code> を作成する．
+    <p>
+    see {@link vavi.swing.propertyeditor.PropertyDescriptorTableModel}
+    </p>
+   </li>
+   <li>そのモデルを <code>JPropertyEditorTable</code> に適用する．
+    <p></p>
+   </li>
+  </ol>
+ </li>
+ <li>自作プロパティエディタを作成し使用する場合は <code>propertyEditor.properties</code> に追加してください．
+  <p></p>
+  <table>
+   <tr>
+    <td><code>clazz.<i>n</i></code></td>
+    <td>クラス</td>
+    <td>プリミティブ型はそのまま指定 (e.g. <code>int, long ...</code>)</td>
+   </tr>
+   <tr>
+    <td><code>editor.<i>n</i></code></td>
+    <td>プロパティエディタクラス</td>
+   </tr>
+  </table>
+ </li>
+
+</ul>
+
+
+<h2>
+これから実装すること
+</h2>
+
+<ul>
+<li>JPropertyEditorPanel，Down 失敗時の Up ボタン処理</li>
+<li></li>
+</ul>
+
+</body>
+
+</html>
