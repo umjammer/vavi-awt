@@ -80,7 +80,7 @@ public abstract class BasicDTListener implements DropTargetListener {
     /**
      * start "drag under" feedback on component invoke acceptDrag or rejectDrag
      * based on isDragOk
-     * ƒI[ƒo[ƒ‰ƒCƒh‚·‚é‚Æ‚«‚Í super.dragEnter(ev) ‚ğ–Y‚ê‚¸‚ÉD
+     * ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã™ã‚‹ã¨ãã¯ super.dragEnter(ev) ã‚’å¿˜ã‚Œãšã«ï¼
      */
     public void dragEnter(DropTargetDragEvent ev) {
 // Debug.println(ev);
@@ -96,7 +96,7 @@ public abstract class BasicDTListener implements DropTargetListener {
     /**
      * continue "drag under" feedback on component invoke acceptDrag or
      * rejectDrag based on isDragOk
-     * ƒI[ƒo[ƒ‰ƒCƒh‚·‚é‚Æ‚«‚Í super.dragOver(ev) ‚ğ–Y‚ê‚¸‚ÉD
+     * ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã™ã‚‹ã¨ãã¯ super.dragOver(ev) ã‚’å¿˜ã‚Œãšã«ï¼
      */
     public void dragOver(DropTargetDragEvent ev) {
 
@@ -110,7 +110,7 @@ public abstract class BasicDTListener implements DropTargetListener {
     }
 
     /**
-     * ƒI[ƒo[ƒ‰ƒCƒh‚·‚é‚Æ‚«‚Í super.dropActionChanged(ev) ‚ğ–Y‚ê‚¸‚ÉD
+     * ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã™ã‚‹ã¨ãã¯ super.dropActionChanged(ev) ã‚’å¿˜ã‚Œãšã«ï¼
      */
     public void dropActionChanged(DropTargetDragEvent ev) {
 
@@ -124,8 +124,8 @@ public abstract class BasicDTListener implements DropTargetListener {
     }
 
     /**
-     * ƒhƒ‰ƒbƒO“®ì‚ªI—¹‚µ‚½‚Æ‚«‚ÉŒÄ‚Î‚ê‚Ü‚·D
-     * ƒI[ƒo[ƒ‰ƒCƒh‚·‚é‚Æ‚«‚Í super.dragExit(ev) “Á‚É‚µ‚È‚­‚Ä‚¢‚¢‚Å‚·D
+     * ãƒ‰ãƒ©ãƒƒã‚°å‹•ä½œãŒçµ‚äº†ã—ãŸã¨ãã«å‘¼ã°ã‚Œã¾ã™ï¼
+     * ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã™ã‚‹ã¨ãã¯ super.dragExit(ev) ç‰¹ã«ã—ãªãã¦ã„ã„ã§ã™ï¼
      */
     public void dragExit(DropTargetEvent ev) {
         // Debug.println(ev);
@@ -189,8 +189,8 @@ Debug.printStackTrace(e);
      * You need to implement here dropping procedure.
      * 
      * @param ev
-     * @param data •Ö‹X“I‚Èƒhƒƒbƒv‚³‚ê‚½ƒf[ƒ^‚Å‚·
-     * @return ƒhƒƒbƒv‚ª¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+     * @param data ä¾¿å®œçš„ãªãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã§ã™
+     * @return ãƒ‰ãƒ­ãƒƒãƒ—ãŒæˆåŠŸã—ãŸã‹ã©ã†ã‹
      */
     protected abstract boolean dropImpl(DropTargetDropEvent ev, Object data);
 }

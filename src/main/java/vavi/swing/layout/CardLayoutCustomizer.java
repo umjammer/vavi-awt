@@ -25,7 +25,7 @@ import javax.swing.event.TableModelListener;
 /**
  * CardLayoutCustomizer.
  * 
- * TODO CardLayout#show ‚µ‚½ŒãC‘¼‚Ì setVisible ‚ª false ‚É‚È‚Á‚Ä‚Ü‚·D
+ * TODO CardLayout#show ã—ãŸå¾Œï¼Œä»–ã® setVisible ãŒ false ã«ãªã£ã¦ã¾ã™ï¼
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020528 nsano initial version <br>

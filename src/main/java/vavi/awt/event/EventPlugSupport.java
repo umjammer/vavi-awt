@@ -13,18 +13,18 @@ import java.util.Map;
 
 
 /**
- * EventPlug ƒNƒ‰ƒX‚Ìƒ†[ƒeƒBƒŠƒeƒB‚Å‚·D
+ * EventPlug ã‚¯ãƒ©ã‚¹ã®ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ã§ã™ï¼
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020511 nsano initial version <br>
  */
 public class EventPlugSupport {
 
-    /** EventPlug ŠÇ——p Hashtable */
+    /** EventPlug ç®¡ç†ç”¨ Hashtable */
     protected volatile Map<String, EventPlug> eventPlugs = new HashMap<String, EventPlug>();
 
     /**
-     * EventPlug ‚ğ’Ç‰Á‚µ‚Ü‚·D
+     * EventPlug ã‚’è¿½åŠ ã—ã¾ã™ï¼
      * 
      * @param eventPlug EventPlug
      */
@@ -33,7 +33,7 @@ public class EventPlugSupport {
     }
 
     /**
-     * EventPlug ‚ğíœ‚µ‚Ü‚·D
+     * EventPlug ã‚’å‰Šé™¤ã—ã¾ã™ï¼
      * 
      * @param eventPlug EventPlug
      */
@@ -42,28 +42,28 @@ public class EventPlugSupport {
     }
 
     /**
-     * w’è‚µ‚½–¼‘O‚Ì EventPlug ‚ğíœ‚µ‚Ü‚·D
+     * æŒ‡å®šã—ãŸåå‰ã® EventPlug ã‚’å‰Šé™¤ã—ã¾ã™ï¼
      * 
-     * @param name EventPlug ‚Ì–¼‘O
+     * @param name EventPlug ã®åå‰
      */
     public void removeEventPlug(String name) {
         eventPlugs.remove(name);
     }
 
     /**
-     * w’è‚µ‚½–¼‘O‚Ì EventPlug ‚ğæ“¾‚µ‚Ü‚·D
+     * æŒ‡å®šã—ãŸåå‰ã® EventPlug ã‚’å–å¾—ã—ã¾ã™ï¼
      * 
-     * @param name EventPlug ‚Ì–¼‘O
+     * @param name EventPlug ã®åå‰
      */
     private EventPlug getEventPlug(String name) {
         return eventPlugs.get(name);
     }
 
     /**
-     * w’è‚µ‚½–¼‘O‚Ì EventPlug ‚ÉƒCƒxƒ“ƒg‚ğ”­s‚·‚éƒIƒuƒWƒFƒNƒg‚ğİ’è‚µ‚Ü‚·D
+     * æŒ‡å®šã—ãŸåå‰ã® EventPlug ã«ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºè¡Œã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è¨­å®šã—ã¾ã™ï¼
      * 
-     * @param name EventPlug ‚Ì–¼‘O
-     * @param invoker ƒCƒxƒ“ƒg‚ğ”­s‚·‚éƒIƒuƒWƒFƒNƒg
+     * @param name EventPlug ã®åå‰
+     * @param invoker ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºè¡Œã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
      */
     public void setInvoker(String name, Object invoker) {
         EventPlug eventPlug = getEventPlug(name);
@@ -71,9 +71,9 @@ public class EventPlugSupport {
     }
 
     /**
-     * w’è‚µ‚½–¼‘O‚Ì EventPlug ‚ÌƒCƒxƒ“ƒg‚ğ”­s‚·‚éƒIƒuƒWƒFƒNƒg‚ğæ“¾‚µ‚Ü‚·D
+     * æŒ‡å®šã—ãŸåå‰ã® EventPlug ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºè¡Œã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã—ã¾ã™ï¼
      * 
-     * @param name EventPlug ‚Ì–¼‘O
+     * @param name EventPlug ã®åå‰
      */
     public Object getInvoker(String name) {
         EventPlug eventPlug = getEventPlug(name);
@@ -81,10 +81,10 @@ public class EventPlugSupport {
     }
 
     /**
-     * w’è‚µ‚½–¼‘O‚Ì EventPlug ‚ÉƒCƒxƒ“ƒg‚ğó‚¯æ‚éƒŠƒXƒi‚ğİ’è‚µ‚Ü‚·D
+     * æŒ‡å®šã—ãŸåå‰ã® EventPlug ã«ã‚¤ãƒ™ãƒ³ãƒˆã‚’å—ã‘å–ã‚‹ãƒªã‚¹ãƒŠã‚’è¨­å®šã—ã¾ã™ï¼
      * 
-     * @param name EventPlug ‚Ì–¼‘O
-     * @param listener ƒCƒxƒ“ƒg‚ğó‚¯æ‚éƒŠƒXƒi
+     * @param name EventPlug ã®åå‰
+     * @param listener ã‚¤ãƒ™ãƒ³ãƒˆã‚’å—ã‘å–ã‚‹ãƒªã‚¹ãƒŠ
      */
     public void setEventListener(String name, EventListener listener) {
         EventPlug eventPlug = getEventPlug(name);
@@ -92,9 +92,9 @@ public class EventPlugSupport {
     }
 
     /**
-     * w’è‚µ‚½–¼‘O‚Ì EventPlug ‚ÌƒCƒxƒ“ƒg‚ğó‚¯æ‚éƒŠƒXƒi‚ğæ“¾‚µ‚Ü‚·D
+     * æŒ‡å®šã—ãŸåå‰ã® EventPlug ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’å—ã‘å–ã‚‹ãƒªã‚¹ãƒŠã‚’å–å¾—ã—ã¾ã™ï¼
      * 
-     * @param name EventPlug ‚Ì–¼‘O
+     * @param name EventPlug ã®åå‰
      */
     public EventListener getEventListener(String name) {
         EventPlug eventPlug = getEventPlug(name);
@@ -102,11 +102,11 @@ public class EventPlugSupport {
     }
 
     /**
-     * w’è‚µ‚½–¼‘O‚Ì EventPlug ‚ğ•¡»‚µ ƒCƒxƒ“ƒg‚ğ”­s‚·‚éƒIƒuƒWƒFƒNƒg‚ğİ’è‚µ‚Ü‚·D
+     * æŒ‡å®šã—ãŸåå‰ã® EventPlug ã‚’è¤‡è£½ã— ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºè¡Œã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è¨­å®šã—ã¾ã™ï¼
      * 
-     * @param name EventPlug ‚Ì–¼‘O
-     * @param newName •¡»‚·‚é EventPlug ‚Ì–¼‘O
-     * @param invoker ƒCƒxƒ“ƒg‚ğ”­s‚·‚éƒIƒuƒWƒFƒNƒg
+     * @param name EventPlug ã®åå‰
+     * @param newName è¤‡è£½ã™ã‚‹ EventPlug ã®åå‰
+     * @param invoker ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºè¡Œã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
      */
     public void addNewEventPlug(String name, String newName, Object invoker) {
         EventListener listener = getEventListener(name);
@@ -114,11 +114,11 @@ public class EventPlugSupport {
     }
 
     /**
-     * w’è‚µ‚½–¼‘O‚Ì EventPlug ‚ğ•¡»‚µ ƒCƒxƒ“ƒg‚ğó‚¯æ‚éƒŠƒXƒi‚ğİ’è‚µ‚Ü‚·D
+     * æŒ‡å®šã—ãŸåå‰ã® EventPlug ã‚’è¤‡è£½ã— ã‚¤ãƒ™ãƒ³ãƒˆã‚’å—ã‘å–ã‚‹ãƒªã‚¹ãƒŠã‚’è¨­å®šã—ã¾ã™ï¼
      * 
-     * @param name EventPlug ‚Ì–¼‘O
-     * @param newName •¡»‚·‚é EventPlug ‚Ì–¼‘O
-     * @param l ƒCƒxƒ“ƒg‚ğó‚¯æ‚éƒŠƒXƒi
+     * @param name EventPlug ã®åå‰
+     * @param newName è¤‡è£½ã™ã‚‹ EventPlug ã®åå‰
+     * @param l ã‚¤ãƒ™ãƒ³ãƒˆã‚’å—ã‘å–ã‚‹ãƒªã‚¹ãƒŠ
      */
     public void addNewEventPlug(String name, String newName, EventListener l) {
         Object invoker = getInvoker(name);
@@ -126,10 +126,10 @@ public class EventPlugSupport {
     }
 
     /**
-     * w’è‚µ‚½–¼‘O‚Ì EventPlug ‚ğŒ‹‡C•ª—£‚µ‚Ü‚·D
+     * æŒ‡å®šã—ãŸåå‰ã® EventPlug ã‚’çµåˆï¼Œåˆ†é›¢ã—ã¾ã™ï¼
      * 
-     * @param name EventPlug ‚Ì–¼‘O
-     * @param connected Œ‹‡‚·‚é‚©‚Ç‚¤‚©
+     * @param name EventPlug ã®åå‰
+     * @param connected çµåˆã™ã‚‹ã‹ã©ã†ã‹
      */
     public void setConnected(String name, boolean connected) {
         EventPlug eventPlug = getEventPlug(name);
@@ -137,9 +137,9 @@ public class EventPlugSupport {
     }
 
     /**
-     * ‚·‚×‚Ä‚Ì EventPlug ‚ğŒ‹‡C•ª—£‚µ‚Ü‚·D
+     * ã™ã¹ã¦ã® EventPlug ã‚’çµåˆï¼Œåˆ†é›¢ã—ã¾ã™ï¼
      * 
-     * @param connected Œ‹‡‚·‚é‚©‚Ç‚¤‚©
+     * @param connected çµåˆã™ã‚‹ã‹ã©ã†ã‹
      */
     public void setConnected(boolean connected) {
         Iterator<EventPlug> e = eventPlugs.values().iterator();

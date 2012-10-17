@@ -23,7 +23,7 @@ import vavi.util.Debug;
 
 
 /**
- * ƒRƒ“ƒeƒi‚Ì JTree
+ * ã‚³ãƒ³ãƒ†ãƒŠã® JTree
  * 
  * @depends ${JDK_HOME}/lib/dt.jar
  * 
@@ -47,8 +47,8 @@ public class JContainerTree extends JTree {
     //-------------------------------------------------------------------------
 
     /**
-     * ƒcƒŠ[‚ÌƒZƒ‹ƒŒƒ“ƒ_ƒ‰‚ÌƒNƒ‰ƒX‚Å‚·D
-     * TODO ”ñ•\¦‚Ì‚Æ‚«”–‚­‚·‚é
+     * ãƒ„ãƒªãƒ¼ã®ã‚»ãƒ«ãƒ¬ãƒ³ãƒ€ãƒ©ã®ã‚¯ãƒ©ã‚¹ã§ã™ï¼
+     * TODO éè¡¨ç¤ºã®ã¨ãè–„ãã™ã‚‹
      */
     private DefaultTreeCellRenderer tcr = new DefaultTreeCellRenderer() {
     	/** */

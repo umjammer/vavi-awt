@@ -18,7 +18,7 @@ import javax.swing.border.EmptyBorder;
 
 
 /**
- * JTreeComboBox ‚ÌƒfƒtƒHƒ‹ƒg‚ÌƒZƒ‹ƒŒƒ“ƒ_ƒ‰‚Å‚·D
+ * JTreeComboBox ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚»ãƒ«ãƒ¬ãƒ³ãƒ€ãƒ©ã§ã™ï¼
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020330 nsano initial version <br>

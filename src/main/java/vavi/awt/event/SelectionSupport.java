@@ -12,18 +12,18 @@ import javax.swing.event.EventListenerList;
 
 
 /**
- * Selection ƒŠƒXƒi[‚Ìƒ†[ƒeƒBƒŠƒeƒB‚Å‚·D
+ * Selection ãƒªã‚¹ãƒŠãƒ¼ã®ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ã§ã™ï¼
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020603 nsano initial version <br>
  */
 public class SelectionSupport implements Serializable {
 
-    /** Selection ‚ÌƒŠƒXƒi[ */
+    /** Selection ã®ãƒªã‚¹ãƒŠãƒ¼ */
     private EventListenerList listenerList = new EventListenerList();
 
     /**
-     * Selection ƒŠƒXƒi[‚ğƒAƒ^ƒbƒ`‚µ‚Ü‚·D
+     * Selection ãƒªã‚¹ãƒŠãƒ¼ã‚’ã‚¢ã‚¿ãƒƒãƒã—ã¾ã™ï¼
      * 
      * @param l SelectionListener
      */
@@ -32,7 +32,7 @@ public class SelectionSupport implements Serializable {
     }
 
     /**
-     * Selection ƒŠƒXƒi[‚ğƒŠƒ€[ƒu‚µ‚Ü‚·D
+     * Selection ãƒªã‚¹ãƒŠãƒ¼ã‚’ãƒªãƒ ãƒ¼ãƒ–ã—ã¾ã™ï¼
      * 
      * @param l SelectionListener
      */
@@ -41,7 +41,7 @@ public class SelectionSupport implements Serializable {
     }
 
     /**
-     * Selection ƒCƒxƒ“ƒg‚ğ”­s‚µ‚Ü‚·D
+     * Selection ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºè¡Œã—ã¾ã™ï¼
      */
     public void fireValueChanged(SelectionEvent ev) {
         Object[] listeners = listenerList.getListenerList();

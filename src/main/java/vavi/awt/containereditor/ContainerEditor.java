@@ -36,13 +36,13 @@ import vavi.util.Debug;
 
 
 /**
- * SelectinModel ‚ğ—p‚¢‚é Container ‚ÌƒGƒfƒBƒ^‚Å‚·D
+ * SelectinModel ã‚’ç”¨ã„ã‚‹ Container ã®ã‚¨ãƒ‡ã‚£ã‚¿ã§ã™ï¼
  * 
  * @event EditorEvent("copy", Vector<Component>)
  * @event EditorEvent("lostOwnership")
  * @event EditorEvent("select", Vector<Component>)
  * 
- * TODO ComponentSelectionModel ‚ğ‚Â‚­‚é‚×‚«‚©
+ * TODO ComponentSelectionModel ã‚’ã¤ãã‚‹ã¹ãã‹
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020604 nsano initial version <br>
@@ -55,10 +55,10 @@ import vavi.util.Debug;
  */
 public abstract class ContainerEditor implements Editable {
 
-    /** ƒRƒ“ƒeƒi“à‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì‘I‘ğƒ‚ƒfƒ‹ */
+    /** ã‚³ãƒ³ãƒ†ãƒŠå†…ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®é¸æŠãƒ¢ãƒ‡ãƒ« */
     protected SelectionModel selectionModel;
 
-    /** •ÒW‘ÎÛ‚ÌƒRƒ“ƒeƒi */
+    /** ç·¨é›†å¯¾è±¡ã®ã‚³ãƒ³ãƒ†ãƒŠ */
     protected Container container;
 
     /**
@@ -80,7 +80,7 @@ public abstract class ContainerEditor implements Editable {
     // -------------------------------------------------------------------------
 
     /**
-     * «—ˆ InputMap ‚ª‘Î‰‚µ‚Ä‚­‚ê‚ñ‚¶‚á‚È‚¢‚ÌH
+     * å°†æ¥ InputMap ãŒå¯¾å¿œã—ã¦ãã‚Œã‚“ã˜ã‚ƒãªã„ã®ï¼Ÿ
      */
     public abstract void setMouseInputAction(MouseInputListener mil);
 
@@ -103,15 +103,15 @@ public abstract class ContainerEditor implements Editable {
 
     // -------------------------------------------------------------------------
 
-    /** ƒRƒ“ƒeƒi‚ª•ÒW‰Â”\‚©‚Ç‚¤‚© */
+    /** ã‚³ãƒ³ãƒ†ãƒŠãŒç·¨é›†å¯èƒ½ã‹ã©ã†ã‹ */
     private boolean isEditable = true;
 
-    /** ƒRƒ“ƒeƒi‚ª•ÒW‰Â”\‚©‚Ç‚¤‚©‚ğ•Ô‚µ‚Ü‚·D */
+    /** ã‚³ãƒ³ãƒ†ãƒŠãŒç·¨é›†å¯èƒ½ã‹ã©ã†ã‹ã‚’è¿”ã—ã¾ã™ï¼ */
     public boolean isEditable() {
         return isEditable;
     }
 
-    /** ƒRƒ“ƒeƒi‚ª•ÒW‰Â”\‚©‚Ç‚¤‚©‚ğİ’è‚µ‚Ü‚·D */
+    /** ã‚³ãƒ³ãƒ†ãƒŠãŒç·¨é›†å¯èƒ½ã‹ã©ã†ã‹ã‚’è¨­å®šã—ã¾ã™ï¼ */
     public void setEditable(boolean isEditable) {
         this.isEditable = isEditable;
 
@@ -124,7 +124,7 @@ public abstract class ContainerEditor implements Editable {
     protected abstract Controller getControllerFor(Component component);
 
     /**
-     * ‘I‘ğ‚³‚ê‚Ä‚¢‚é Component ‚ÌƒŠƒXƒg‚ğ•Ô‚µ‚Ü‚·D
+     * é¸æŠã•ã‚Œã¦ã„ã‚‹ Component ã®ãƒªã‚¹ãƒˆã‚’è¿”ã—ã¾ã™ï¼
      */
     public List<Selectable> getSelected() {
         List<Selectable> selected = selectionModel.getSelected();
@@ -137,7 +137,7 @@ public abstract class ContainerEditor implements Editable {
     }
 
     /**
-     * w’è‚µ‚½ Component ‚ÌƒxƒNƒ^‚ğ‘I‘ğó‘Ô‚É‚µ‚Ü‚·D
+     * æŒ‡å®šã—ãŸ Component ã®ãƒ™ã‚¯ã‚¿ã‚’é¸æŠçŠ¶æ…‹ã«ã—ã¾ã™ï¼
      * 
      * @param selection List<Selectable>
      */
@@ -158,7 +158,7 @@ public abstract class ContainerEditor implements Editable {
     }
 
     /**
-     * Component ‚ğ‘I‘ğó‘Ô‚É‚µ‚Ü‚·D
+     * Component ã‚’é¸æŠçŠ¶æ…‹ã«ã—ã¾ã™ï¼
      */
     public void select(Component component, boolean isMultiSelection) {
         if (component == container) {
@@ -173,7 +173,7 @@ public abstract class ContainerEditor implements Editable {
     }
 
     /**
-     * Component ‚ğ‚·‚×‚Ä‘I‘ğ‚µ‚Ü‚·D
+     * Component ã‚’ã™ã¹ã¦é¸æŠã—ã¾ã™ï¼
      */
     public void selectAll() {
         final List<Selectable> selected = new ArrayList<Selectable>();
@@ -188,7 +188,7 @@ public abstract class ContainerEditor implements Editable {
     }
 
     /**
-     * Component ‚ğ‚·‚×‚Ä”ñ‘I‘ğ‚É‚µ‚Ü‚·D
+     * Component ã‚’ã™ã¹ã¦éé¸æŠã«ã—ã¾ã™ï¼
      */
     public void deselectAll() {
         selectionModel.deselectAll();
@@ -222,11 +222,11 @@ Debug.println("???: " + clipboard.getName());
         }
     };
 
-    /** “¯‚¶•”•i‚ğƒy[ƒXƒg‚µ‚½‰ñ” */
+    /** åŒã˜éƒ¨å“ã‚’ãƒšãƒ¼ã‚¹ãƒˆã—ãŸå›æ•° */
     private int pasteCount;
 
     /**
-     * "ƒJƒbƒg"‚Ìˆ—‚ğs‚¢‚Ü‚·D
+     * "ã‚«ãƒƒãƒˆ"ã®å‡¦ç†ã‚’è¡Œã„ã¾ã™ï¼
      */
     public void cut() {
         copy();
@@ -234,7 +234,7 @@ Debug.println("???: " + clipboard.getName());
     }
 
     /**
-     * "ƒRƒs["‚Ìˆ—‚ğs‚¢‚Ü‚·D
+     * "ã‚³ãƒ”ãƒ¼"ã®å‡¦ç†ã‚’è¡Œã„ã¾ã™ï¼
      */
     public synchronized void copy() {
 
@@ -254,7 +254,7 @@ Debug.println(Level.SEVERE, e);
     }
 
     /**
-     * "“\‚è‚Â‚¯"‚Ìˆ—‚ğs‚¢‚Ü‚·D
+     * "è²¼ã‚Šã¤ã‘"ã®å‡¦ç†ã‚’è¡Œã„ã¾ã™ï¼
      */
     public synchronized void paste() {
 
@@ -284,7 +284,7 @@ Debug.printStackTrace(e);
     }
 
     /**
-     * "íœ"‚Ìˆ—‚ğs‚¢‚Ü‚·D
+     * "å‰Šé™¤"ã®å‡¦ç†ã‚’è¡Œã„ã¾ã™ï¼
      */
     public void delete() {
         List<Selectable> selected = selectionModel.getSelected();
@@ -316,7 +316,7 @@ Debug.printStackTrace(e);
     // -------------------------------------------------------------------------
 
     /**
-     * "ã‚É‚»‚ë‚¦‚é"ƒƒjƒ…[‚Ìˆ—‚ğs‚¢‚Ü‚·D
+     * "ä¸Šã«ãã‚ãˆã‚‹"ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®å‡¦ç†ã‚’è¡Œã„ã¾ã™ï¼
      */
     public void alignTop() {
 
@@ -336,7 +336,7 @@ Debug.printStackTrace(e);
     }
 
     /**
-     * "¶‚É‚»‚ë‚¦‚é"‚Ìƒƒjƒ…[ˆ—‚ğs‚¢‚Ü‚·D
+     * "å·¦ã«ãã‚ãˆã‚‹"ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‡¦ç†ã‚’è¡Œã„ã¾ã™ï¼
      */
     public void alignLeft() {
 
@@ -356,7 +356,7 @@ Debug.printStackTrace(e);
     }
 
     /**
-     * "‰E‚É‚»‚ë‚¦‚é"ƒƒjƒ…[‚Ìˆ—‚ğs‚¢‚Ü‚·D
+     * "å³ã«ãã‚ãˆã‚‹"ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®å‡¦ç†ã‚’è¡Œã„ã¾ã™ï¼
      */
     public void alignRight() {
 
@@ -376,7 +376,7 @@ Debug.printStackTrace(e);
     }
 
     /**
-     * "‰º‚É‚»‚ë‚¦‚é"ƒƒjƒ…[‚Ìˆ—‚ğs‚¢‚Ü‚·D
+     * "ä¸‹ã«ãã‚ãˆã‚‹"ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®å‡¦ç†ã‚’è¡Œã„ã¾ã™ï¼
      */
     public void alignBottom() {
 
@@ -396,7 +396,7 @@ Debug.printStackTrace(e);
     }
 
     /**
-     * "•‚ğ‚»‚ë‚¦‚é"ƒƒjƒ…[‚Ìˆ—‚ğs‚¢‚Ü‚·D
+     * "å¹…ã‚’ãã‚ãˆã‚‹"ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®å‡¦ç†ã‚’è¡Œã„ã¾ã™ï¼
      */
     public void alignWidth() {
 
@@ -416,7 +416,7 @@ Debug.printStackTrace(e);
     }
 
     /**
-     * "‚‚³‚ğ‚»‚ë‚¦‚é"ƒƒjƒ…[‚Ìˆ—‚ğs‚¢‚Ü‚·D
+     * "é«˜ã•ã‚’ãã‚ãˆã‚‹"ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®å‡¦ç†ã‚’è¡Œã„ã¾ã™ï¼
      */
     public void alignHeight() {
 
@@ -436,16 +436,16 @@ Debug.printStackTrace(e);
     }
 
     /**
-     * "…•½ŠÔŠu‚ğ‹Ï“™‚É‚·‚é"ƒƒjƒ…[‚Ìˆ—‚ğs‚¢‚Ü‚·D
+     * "æ°´å¹³é–“éš”ã‚’å‡ç­‰ã«ã™ã‚‹"ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®å‡¦ç†ã‚’è¡Œã„ã¾ã™ï¼
      */
     public void alignJustifyHorizontalGap() {
 
         List<Selectable> selected = selectionModel.getSelected();
-        // ˆê‚Â–Ú‚Ì•”•i
+        // ä¸€ã¤ç›®ã®éƒ¨å“
         LocatableController c1 = (LocatableController) selected.get(0);
         Point p1 = c1.getLocation();
         Dimension d1 = c1.getSize();
-        // “ñ‚Â–Ú‚Ì•”•i
+        // äºŒã¤ç›®ã®éƒ¨å“
         LocatableController c2 = (LocatableController) selected.get(1);
         Point p2 = c2.getLocation();
         // Dimension d2 = c2.getSize();
@@ -453,17 +453,17 @@ Debug.printStackTrace(e);
         int width = p2.x - (p1.x + d1.width);
 
         for (int i = 0; i < selected.size() - 1; i++) {
-            // ˆê‚Â–Ú‚Ì•”•i
+            // ä¸€ã¤ç›®ã®éƒ¨å“
             c1 = (LocatableController) selected.get(i);
             p1 = c1.getLocation();
             d1 = c1.getSize();
 
-            // “ñ‚Â–Ú‚Ì•”•i
+            // äºŒã¤ç›®ã®éƒ¨å“
             c2 = (LocatableController) selected.get(i + 1);
             p2 = c2.getLocation();
             // d2 = c2.getSize();
 
-            // ·‚ğŒvZ
+            // å·®ã‚’è¨ˆç®—
             int gap = width - (p2.x - (p1.x + d1.width));
 
             p2.x = p2.x + gap;
@@ -475,16 +475,16 @@ Debug.printStackTrace(e);
     }
 
     /**
-     * "‚’¼ŠÔŠu‚ğ‹Ï“™‚É‚·‚é"ƒƒjƒ…[‚Ìˆ—‚ğs‚¢‚Ü‚·D
+     * "å‚ç›´é–“éš”ã‚’å‡ç­‰ã«ã™ã‚‹"ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®å‡¦ç†ã‚’è¡Œã„ã¾ã™ï¼
      */
     public void alignJustifyVerticalGap() {
 
         List<Selectable> selected = selectionModel.getSelected();
-        // ˆê‚Â–Ú‚Ì•”•i
+        // ä¸€ã¤ç›®ã®éƒ¨å“
         LocatableController c1 = (LocatableController) selected.get(0);
         Point p1 = c1.getLocation();
         Dimension d1 = c1.getSize();
-        // “ñ‚Â–Ú‚Ì•”•i
+        // äºŒã¤ç›®ã®éƒ¨å“
         LocatableController c2 = (LocatableController) selected.get(1);
         Point p2 = c2.getLocation();
 //      Dimension d2 = c2.getSize();
@@ -492,17 +492,17 @@ Debug.printStackTrace(e);
         int height = p2.y - (p1.y + d1.height);
 
         for (int i = 0; i < selected.size() - 1; i++) {
-            // ˆê‚Â–Ú‚Ì•”•i
+            // ä¸€ã¤ç›®ã®éƒ¨å“
             c1 = (LocatableController) selected.get(i);
             p1 = c1.getLocation();
             d1 = c1.getSize();
 
-            // “ñ‚Â–Ú‚Ì•”•i
+            // äºŒã¤ç›®ã®éƒ¨å“
             c2 = (LocatableController) selected.get(i + 1);
             p2 = c2.getLocation();
             // d2 = c2.getSize();
 
-            // ·‚ğŒvZ
+            // å·®ã‚’è¨ˆç®—
             int gap = height - (p2.y - (p1.y + d1.height));
 
             p2.y = p2.y + gap;
@@ -514,7 +514,7 @@ Debug.printStackTrace(e);
     }
 
     /**
-     * "Å‘O–Ê‚É”z’u"ƒƒjƒ…[‚Ìˆ—‚ğs‚¢‚Ü‚·D
+     * "æœ€å‰é¢ã«é…ç½®"ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®å‡¦ç†ã‚’è¡Œã„ã¾ã™ï¼
      */
     public void toFront() {
 
@@ -535,7 +535,7 @@ Debug.printStackTrace(e);
     }
 
     /**
-     * "Å”w–Ê‚É”z’u"ƒƒjƒ…[‚Ìˆ—‚ğs‚¢‚Ü‚·D
+     * "æœ€èƒŒé¢ã«é…ç½®"ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®å‡¦ç†ã‚’è¡Œã„ã¾ã™ï¼
      */
     public void toBack() {
 

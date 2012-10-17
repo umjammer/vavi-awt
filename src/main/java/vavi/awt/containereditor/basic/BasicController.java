@@ -14,7 +14,7 @@ import vavi.awt.containereditor.AbstractController;
 
 
 /**
- * Basic ƒRƒ“ƒgƒ[ƒ‰‚Å‚·D
+ * Basic ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã§ã™ï¼
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 010823 nsano initial version <br>
@@ -25,7 +25,7 @@ import vavi.awt.containereditor.AbstractController;
 public class BasicController extends AbstractController {
 
     /**
-     * Basic ƒRƒ“ƒgƒ[ƒ‰‚ğ\’z‚µ‚Ü‚·D
+     * Basic ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‚’æ§‹ç¯‰ã—ã¾ã™ï¼
      */
     public BasicController(Component view) {
         super(view);

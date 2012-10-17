@@ -10,14 +10,14 @@ import java.beans.BeanInfo;
 
 
 /**
- * Border ƒNƒ‰ƒX‚Ì BeanInfo ‚Å‚·D
+ * Border ã‚¯ãƒ©ã‚¹ã® BeanInfo ã§ã™ï¼
  * <p>
- * Border ‚Í getter ƒƒ\ƒbƒh‚ª–³‚¢ƒNƒ‰ƒX‚ª‚Ù‚Æ‚ñ‚Ç‚È‚Ì‚ÅCgetter ƒƒ\ƒbƒh ‚Ì‚İ‚ğˆµ‚¤
- * PropertyDescriptor ‚Æ‚µ‚Ä BorderPropertyDescriptor ‚ğ—pˆÓ‚µ‚Ä g—p‚µ‚Ü‚·D
+ * Border ã¯ getter ãƒ¡ã‚½ãƒƒãƒ‰ãŒç„¡ã„ã‚¯ãƒ©ã‚¹ãŒã»ã¨ã‚“ã©ãªã®ã§ï¼Œgetter ãƒ¡ã‚½ãƒƒãƒ‰ ã®ã¿ã‚’æ‰±ã†
+ * PropertyDescriptor ã¨ã—ã¦ BorderPropertyDescriptor ã‚’ç”¨æ„ã—ã¦ ä½¿ç”¨ã—ã¾ã™ï¼
  * </p>
  * <p>
- * Beans ‚Ìd—l‚Æ‚Íˆá‚¤‚Ì‚ÅCIntrospector ‚Å‚Í‚È‚­ BorderInfoFactory ‚ğ —p‚¢‚Ä BorderInfo
- * ƒNƒ‰ƒX‚ğæ“¾‚µ‚Ä‚­‚¾‚³‚¢D
+ * Beans ã®ä»•æ§˜ã¨ã¯é•ã†ã®ã§ï¼ŒIntrospector ã§ã¯ãªã BorderInfoFactory ã‚’ ç”¨ã„ã¦ BorderInfo
+ * ã‚¯ãƒ©ã‚¹ã‚’å–å¾—ã—ã¦ãã ã•ã„ï¼
  * </p>
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)

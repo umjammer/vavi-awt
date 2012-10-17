@@ -17,10 +17,10 @@ import vavi.awt.event.ActionSupport;
 
 
 /**
- * CheckBoxMenuItem ‚ÌƒOƒ‹[ƒv‚Å‚·D
+ * CheckBoxMenuItem ã®ã‚°ãƒ«ãƒ¼ãƒ—ã§ã™ï¼
  * 
  * @target 1.1
- * @caution AWT ê—p
+ * @caution AWT å°‚ç”¨
  * @thanks Yuichi Nakajima
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020502 nsano initial version <br>

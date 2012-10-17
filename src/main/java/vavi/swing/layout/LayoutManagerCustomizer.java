@@ -20,22 +20,22 @@ import java.beans.PropertyChangeListener;
 public interface LayoutManagerCustomizer {
 
     /**
-     * PropertyChange ƒCƒxƒ“ƒg‚ÌƒŠƒXƒi[‚ğ“o˜^‚µ‚Ü‚·B
-     * @param listener PropertyChange ƒCƒxƒ“ƒg‚ªƒgƒŠƒK[‚³‚ê‚½‚Æ‚«‚É
-     *		       ŒÄ‚Ño‚³‚ê‚éƒIƒuƒWƒFƒNƒg
+     * PropertyChange ã‚¤ãƒ™ãƒ³ãƒˆã®ãƒªã‚¹ãƒŠãƒ¼ã‚’ç™»éŒ²ã—ã¾ã™ã€‚
+     * @param listener PropertyChange ã‚¤ãƒ™ãƒ³ãƒˆãŒãƒˆãƒªã‚¬ãƒ¼ã•ã‚ŒãŸã¨ãã«
+     *		       å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
      */
     void addPropertyChangeListener(PropertyChangeListener listener);
 
     /**
-     * PropertyChange ƒCƒxƒ“ƒg‚ÌƒŠƒXƒi[‚ğíœ‚µ‚Ü‚·B
-     * @param listener íœ‚³‚ê‚é PropertyChange ƒŠƒXƒi[
+     * PropertyChange ã‚¤ãƒ™ãƒ³ãƒˆã®ãƒªã‚¹ãƒŠãƒ¼ã‚’å‰Šé™¤ã—ã¾ã™ã€‚
+     * @param listener å‰Šé™¤ã•ã‚Œã‚‹ PropertyChange ãƒªã‚¹ãƒŠãƒ¼
      */
     void removePropertyChangeListener(PropertyChangeListener listener);
  
     /**
-     * ƒJƒXƒ^ƒ}ƒCƒY‚·‚é LayoutManager ‚ğİ’è‚µ‚Ü‚·B
-     * ‚±‚Ìƒƒ\ƒbƒh‚ÍACustomizer ‚ğe AWT ƒRƒ“ƒeƒi‚É’Ç‰Á‚·‚é‘O‚É
-     * 1 ‰ñ‚¾‚¯ŒÄ‚Ño‚¹‚Ü‚·B
+     * ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚ºã™ã‚‹ LayoutManager ã‚’è¨­å®šã—ã¾ã™ã€‚
+     * ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã¯ã€Customizer ã‚’è¦ª AWT ã‚³ãƒ³ãƒ†ãƒŠã«è¿½åŠ ã™ã‚‹å‰ã«
+     * 1 å›ã ã‘å‘¼ã³å‡ºã›ã¾ã™ã€‚
      */
     void setObject(LayoutManager layout);
 

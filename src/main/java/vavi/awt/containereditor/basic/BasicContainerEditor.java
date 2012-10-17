@@ -87,7 +87,7 @@ public class BasicContainerEditor extends ContainerEditor {
     /** */
     private Container parent;
 
-    /** ƒRƒ“ƒeƒi‚ª•ÒW‰Â”\‚©‚Ç‚¤‚©‚ğİ’è‚µ‚Ü‚·D */
+    /** ã‚³ãƒ³ãƒ†ãƒŠãŒç·¨é›†å¯èƒ½ã‹ã©ã†ã‹ã‚’è¨­å®šã—ã¾ã™ï¼ */
     public void setEditable(boolean isEditable) {
 // Debug.println(isEditable + ": " + container.hashCode());
         super.setEditable(isEditable);
@@ -114,7 +114,7 @@ public class BasicContainerEditor extends ContainerEditor {
             String name = ev.getName();
             if ("clicked".equals(name)) {
                 if (ev.getArgument() == null) { // Container
-                    // container ‚ğ‘I‘ğ‚µ‚½‚±‚Æ‚É‚·‚éD
+                    // container ã‚’é¸æŠã—ãŸã“ã¨ã«ã™ã‚‹ï¼
                     select(container, false);
                 } else { // BasicController
                     Object[] args = (Object[]) ev.getArgument();
@@ -129,14 +129,14 @@ public class BasicContainerEditor extends ContainerEditor {
 
     /** rubberband listener for rubberband gesture */
     private RubberBandListener rbl = new RubberBandAdapter() {
-        /** ‘I‘ğ */
+        /** é¸æŠ */
         public void selected(RubberBandEvent ev) {
             List<LocatableController> selected = getControllersIn(ev.getBounds());
             selectionModel.select(selected.toArray(new Selectable[selected.size()]));
             glassPane.repaint();
         }
 
-        /** ˆÚ“®’† */
+        /** ç§»å‹•ä¸­ */
         public void moving(RubberBandEvent ev) {
             List<Selectable> selected = selectionModel.getSelected();
             for (int i = 0; i < selected.size(); i++) {
@@ -145,7 +145,7 @@ public class BasicContainerEditor extends ContainerEditor {
             }
         }
 
-        /** ˆÚ“®I—¹ */
+        /** ç§»å‹•çµ‚äº† */
         public void moved(RubberBandEvent ev) {
             List<Selectable> selected = selectionModel.getSelected();
             for (int i = 0; i < selected.size(); i++) {
@@ -158,7 +158,7 @@ public class BasicContainerEditor extends ContainerEditor {
             glassPane.repaint();
         }
 
-        /** ƒŠƒTƒCƒY’† */
+        /** ãƒªã‚µã‚¤ã‚ºä¸­ */
         public void resizing(RubberBandEvent ev) {
             List<Selectable> selected = selectionModel.getSelected();
             for (int i = 0; i < selected.size(); i++) {
@@ -167,7 +167,7 @@ public class BasicContainerEditor extends ContainerEditor {
             }
         }
 
-        /** ƒŠƒTƒCƒY’† */
+        /** ãƒªã‚µã‚¤ã‚ºä¸­ */
         public void resized(RubberBandEvent ev) {
             List<Selectable> selected = selectionModel.getSelected();
             for (int i = 0; i < selected.size(); i++) {
@@ -182,7 +182,7 @@ public class BasicContainerEditor extends ContainerEditor {
     };
 
     /**
-     * —Ìˆæ“à‚Ì Controller •Ô‚µ‚Ü‚·D
+     * é ˜åŸŸå†…ã® Controller è¿”ã—ã¾ã™ï¼
      */
     private List<LocatableController> getControllersIn(Rectangle r) {
 
@@ -201,7 +201,7 @@ public class BasicContainerEditor extends ContainerEditor {
         return selected;
     }
 
-    /** ·‚ğƒRƒ“ƒ|[ƒlƒ“ƒg‚É“K—p */
+    /** å·®ã‚’ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã«é©ç”¨ */
     private Point getLocationFor(Component component, Point dp) {
         Point tp = component.getLocation();
         tp.x += dp.x;
@@ -209,7 +209,7 @@ public class BasicContainerEditor extends ContainerEditor {
         return tp;
     }
 
-    /** ·‚ğƒRƒ“ƒ|[ƒlƒ“ƒg‚É“K—p */
+    /** å·®ã‚’ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã«é©ç”¨ */
     private Rectangle getBoundsFor(Component component, Rectangle dr) {
         Rectangle tr = component.getBounds();
         tr.x += dr.x;
@@ -222,13 +222,13 @@ public class BasicContainerEditor extends ContainerEditor {
     // -------------------------------------------------------------------------
 
     /**
-     * «—ˆ InputMap ‚ª‘Î‰‚µ‚Ä‚­‚ê‚ñ‚¶‚á‚È‚¢‚ÌH
+     * å°†æ¥ InputMap ãŒå¯¾å¿œã—ã¦ãã‚Œã‚“ã˜ã‚ƒãªã„ã®ï¼Ÿ
      */
     public void setMouseInputAction(MouseInputListener mil) {
         glassPane.setMouseInputAction(mil);
     }
 
-    /** TODO ‹C‚É“ü‚ç‚ñ */
+    /** TODO æ°—ã«å…¥ã‚‰ã‚“ */
     protected LocatableController getControllerFor(Component component) {
         return glassPane.getControllerFor(component);
     }

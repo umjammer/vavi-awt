@@ -67,7 +67,7 @@ e.printStackTrace();
 
     /** */
     public Object getValue() {
-        return new Boolean(checkbox.isSelected());
+        return Boolean.valueOf(checkbox.isSelected());
     }
 }
 

@@ -36,7 +36,7 @@ public class BasicRubberBandGesture extends RubberBandGesture {
     /** */
     private Container glassPane;
 
-    /** ƒ‰ƒo[ƒoƒ“ƒhƒŒƒ“ƒ_ƒ‰ */
+    /** ãƒ©ãƒãƒ¼ãƒãƒ³ãƒ‰ãƒ¬ãƒ³ãƒ€ãƒ© */
     private RubberBandRenderer renderer;
 
     /** */
@@ -88,11 +88,11 @@ public class BasicRubberBandGesture extends RubberBandGesture {
             args = null;
         }
         else {					// Controller
-            // Shift ƒL[‚ğ‰Ÿ‚µ‚Ä‚¢‚½‚ç•¡”‘I‘ğ‚É‚·‚é
-            Boolean isMultiSelect = new Boolean(ev.isShiftDown());
+            // Shift ã‚­ãƒ¼ã‚’æŠ¼ã—ã¦ã„ãŸã‚‰è¤‡æ•°é¸æŠã«ã™ã‚‹
+            Boolean isMultiSelect = Boolean.valueOf(ev.isShiftDown());
             args = new Object[] { component, isMultiSelect };
 
-            // GlassController ‚ğÅ‘O‚É
+            // GlassController ã‚’æœ€å‰ã«
             glassPane.remove(component);
             glassPane.add(component, 0);
         }
@@ -110,12 +110,12 @@ public class BasicRubberBandGesture extends RubberBandGesture {
         setMode(ev);
     }
 
-    /** ƒ}ƒEƒX‚ªƒhƒ‰ƒbƒO‚³‚ê‚½‚Æ‚«‚ÉŒÄ‚Î‚ê‚Ü‚·D */
+    /** ãƒã‚¦ã‚¹ãŒãƒ‰ãƒ©ãƒƒã‚°ã•ã‚ŒãŸã¨ãã«å‘¼ã°ã‚Œã¾ã™ï¼ */
     public void mouseDragged(MouseEvent ev) {
         rubberBand.doing(getLocationAtContainer(ev));
     }
 
-    /** ƒ}ƒEƒX‚ªƒŠƒŠ[ƒX‚³‚ê‚½‚Æ‚«‚ÉŒÄ‚Î‚ê‚Ü‚·D */
+    /** ãƒã‚¦ã‚¹ãŒãƒªãƒªãƒ¼ã‚¹ã•ã‚ŒãŸã¨ãã«å‘¼ã°ã‚Œã¾ã™ï¼ */
     public void mouseReleased(MouseEvent ev) {
         rubberBand.done(getLocationAtContainer(ev));
     }
@@ -123,7 +123,7 @@ public class BasicRubberBandGesture extends RubberBandGesture {
     //-------------------------------------------------------------------------
 
     /**
-     * ƒ}ƒEƒX‚ÌˆÊ’u‚É‚æ‚Á‚ÄƒŠƒTƒCƒY‚©ˆÚ“®‚©‚ğİ’è‚µ‚Ü‚·D
+     * ãƒã‚¦ã‚¹ã®ä½ç½®ã«ã‚ˆã£ã¦ãƒªã‚µã‚¤ã‚ºã‹ç§»å‹•ã‹ã‚’è¨­å®šã—ã¾ã™ï¼
      */
     private void setMode(MouseEvent ev) {
 	Component component = ev.getComponent();
@@ -146,7 +146,7 @@ public class BasicRubberBandGesture extends RubberBandGesture {
     }
 
     /**
-     * ƒRƒ“ƒeƒiã‚Ìƒ|ƒCƒ“ƒg‚ğ•Ô‚µ‚Ü‚·D
+     * ã‚³ãƒ³ãƒ†ãƒŠä¸Šã®ãƒã‚¤ãƒ³ãƒˆã‚’è¿”ã—ã¾ã™ï¼
      */
     private Point getLocationAtContainer(MouseEvent ev) {
 	Component component = ev.getComponent();

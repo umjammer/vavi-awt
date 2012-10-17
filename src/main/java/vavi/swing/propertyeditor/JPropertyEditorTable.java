@@ -161,7 +161,7 @@ Debug.println("no property for: clazz." + i);
             }
     	} catch (Exception e) {
 Debug.println(Level.SEVERE, e);
-            System.exit(1);
+            throw new IllegalStateException(e);
     	}
     }
 }

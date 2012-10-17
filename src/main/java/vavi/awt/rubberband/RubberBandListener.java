@@ -10,7 +10,7 @@ import java.util.EventListener;
 
 
 /**
- * RubberBand ‚ÌƒŠƒXƒi[ƒCƒ“ƒ^[ƒtƒF[ƒX‚Å‚·D
+ * RubberBand ã®ãƒªã‚¹ãƒŠãƒ¼ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã§ã™ï¼
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 010904 nsano initial version <br>
@@ -18,32 +18,32 @@ import java.util.EventListener;
 public interface RubberBandListener extends EventListener {
 
     /**
-     * ‘I‘ğ’†‚ÉŒÄ‚Î‚ê‚Ü‚·D
+     * é¸æŠä¸­ã«å‘¼ã°ã‚Œã¾ã™ï¼
      */
     void selecting(RubberBandEvent ev);
 
     /**
-     * ‘I‘ğŠm’è‚ÉŒÄ‚Î‚ê‚Ü‚·D
+     * é¸æŠç¢ºå®šæ™‚ã«å‘¼ã°ã‚Œã¾ã™ï¼
      */
     void selected(RubberBandEvent ev);
 
     /**
-     * ‘I‘ğ‘ÎÛ‚ÌˆÚ“®’†‚ÉŒÄ‚Î‚ê‚Ü‚·D
+     * é¸æŠå¯¾è±¡ã®ç§»å‹•ä¸­ã«å‘¼ã°ã‚Œã¾ã™ï¼
      */
     void moving(RubberBandEvent ev);
 
     /**
-     * ‘I‘ğ‘ÎÛ‚ÌˆÚ“®Šm’è‚ÉŒÄ‚Î‚ê‚Ü‚·D
+     * é¸æŠå¯¾è±¡ã®ç§»å‹•ç¢ºå®šæ™‚ã«å‘¼ã°ã‚Œã¾ã™ï¼
      */
     void moved(RubberBandEvent ev);
 
     /**
-     * ‘I‘ğ‘ÎÛ‚ÌƒŠƒTƒCƒY’†‚ÉŒÄ‚Î‚ê‚Ü‚·D
+     * é¸æŠå¯¾è±¡ã®ãƒªã‚µã‚¤ã‚ºä¸­ã«å‘¼ã°ã‚Œã¾ã™ï¼
      */
     void resizing(RubberBandEvent ev);
 
     /**
-     * ‘I‘ğ‘ÎÛ‚ÌƒŠƒTƒCƒYŠm’è‚ÉŒÄ‚Î‚ê‚Ü‚·D
+     * é¸æŠå¯¾è±¡ã®ãƒªã‚µã‚¤ã‚ºç¢ºå®šæ™‚ã«å‘¼ã°ã‚Œã¾ã™ï¼
      */
     void resized(RubberBandEvent ev);
 }

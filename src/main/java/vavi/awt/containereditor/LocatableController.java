@@ -14,7 +14,7 @@ import vavi.awt.Controller;
 
 
 /**
- * ロケータブルなコントローラです。
+ * 繝ｭ繧ｱ繝ｼ繧ｿ繝悶Ν縺ｪ繧ｳ繝ｳ繝医Ο繝ｼ繝ｩ縺ｧ縺吶�
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020605 nsano initial version <br>

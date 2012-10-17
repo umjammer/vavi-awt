@@ -4,7 +4,7 @@
 <head>
 <link rev="MADE" href="mailto:vavivavi@yahoo.co.jp">
 <link rel="INDEX" href="orverview.html">
-<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <link rel="stylesheet" type="text/css" href="../../../../vavi.css">
 <title>vavi.awt.rubberband.basic</title>
@@ -22,24 +22,24 @@
 <body>
 
 <p>
-Basic �R���e�i�G�f�B�^�֘A�̃N���X��񋟂��܂��D
+Basic コンテナエディタ関連のクラスを提供します．
 </p>
 
-<h2>�ړI</h2>
+<h2>目的</h2>
 
-�R���e�i���̃R���|�[�l���g�����o�I�ɑ��삷��D����̊��o��
-Draw �n�̃A�v���P�[�V�����ɏ�����D
+コンテナ内のコンポーネントを視覚的に操作する．操作の感覚は
+Draw 系のアプリケーションに準ずる．
 
-<h2>�g�p�@</h2>
+<h2>使用法</h2>
 
-�R���e�i���w�肵�� BasicContainerEditor ����邾���łƂ肠������ OK�D
+コンテナを指定して BasicContainerEditor を作るだけでとりあえずは OK．
 
 <pre>
     ContainerEditor ce = new BasicContainerEditor(container);
 </pre>
 
 <p>
-�ҏW�\�ɂ���΃R���e�i���̃R���|�[�l���g�ɑ΂��ĕҏW���삪�\�ɂȂ�D
+編集可能にすればコンテナ内のコンポーネントに対して編集操作が可能になる．
 </p>
 
 <pre>
@@ -47,61 +47,61 @@ Draw �n�̃A�v���P�[�V�����ɏ�����D
 </pre>
 
 <p>
-�ȉ��̑��삪�\�D
+以下の操作が可能．
 </p>
 
 <ul>
-<li>�̈��I�����āC���̗̈���̃R���|�[�l���g��I����Ԃɂ���(�Ԃ����o�[�o���h)</li>
-<li>��I���̃R���|�[�l���g���N���b�N���Ă��̃R���|�[�l���g��I����Ԃɂ���(�����o�[�o���h)</li>
-<li>�V�t�g+�N���b�N�ŕ����̃R���|�[�l���g��I����Ԃɂ���(�����o�[�o���h)</li>
-<li>�����I�����C�I�����ꂽ�R���|�[�l���g���N���b�N����΂��̃R���|�[�l���g�͔�I����ԂɂȂ�</li>
-<li>�I�����ꂽ�R���|�[�l���g���h���b�O���Ĉړ�����(�����o�[�o���h)</li>
-<li>�I�����ꂽ�R���|�[�l���g���h���b�O���ăT�C�Y��ύX����(�����o�[�o���h)</li>
+<li>領域を選択して，その領域内のコンポーネントを選択状態にする(赤いラバーバンド)</li>
+<li>非選択のコンポーネントをクリックしてそのコンポーネントを選択状態にする(青いラバーバンド)</li>
+<li>シフト+クリックで複数のコンポーネントを選択状態にする(青いラバーバンド)</li>
+<li>複数選択時，選択されたコンポーネントをクリックすればそのコンポーネントは非選択状態になる</li>
+<li>選択されたコンポーネントをドラッグして移動する(青いラバーバンド)</li>
+<li>選択されたコンポーネントをドラッグしてサイズを変更する(青いラバーバンド)</li>
 </ul>
 
 <p>
-BasicContainerEditor ����́C�ȉ��̃C�x���g����������̂�
-���[�U�͂���𗘗p���Ă��������D
+BasicContainerEditor からは，以下のイベントが発生するので
+ユーザはそれを利用してください．
 </p>
 
 <table>
 <tr>
-<th>�C�x���g�^�C�v</th>
-<th>�C�x���g��������</th>
-<th>�C�x���g�̈���</th>
+<th>イベントタイプ</th>
+<th>イベント発生条件</th>
+<th>イベントの引数</th>
 </tr>
 <tr>
 <td>EditorEvent("select")</td>
-<td>�R���e�i���̃R���|�[�l���g���I�����ꂽ�Ƃ�</td>
-<td>�I�����ꂽ�R���|�[�l���g�̃x�N�^</td>
+<td>コンテナ内のコンポーネントが選択されたとき</td>
+<td>選択されたコンポーネントのベクタ</td>
 </tr>
 <tr>
 <td>EditorEvent("location")</td>
-<td>�R���e�i���̃R���|�[�l���g�̈ʒu���ς�����Ƃ�</td>
-<td>�ύX���ꂽ�R���|�[�l���g</td>
+<td>コンテナ内のコンポーネントの位置が変わったとき</td>
+<td>変更されたコンポーネント</td>
 </tr>
 <tr>
 <td>EditorEvent("bounds")</td>
-<td>�R���e�i���̃R���|�[�l���g�̃T�C�Y���ς�����Ƃ�</td>
-<td>�ύX���ꂽ�R���|�[�l���g</td>
+<td>コンテナ内のコンポーネントのサイズが変わったとき</td>
+<td>変更されたコンポーネント</td>
 </tr>
 </table>
 
-<h2>����</h2>
+<h2>制約</h2>
 
 <ul>
-<li>���݂̂Ƃ���Ώۂ̃R���e�i�̃��C�A�E�g�� null �̏ꍇ�����z�肵�Ă��܂���D</li>
-<li>�ҏW�Ώۂ̃R���e�i�͐e�ƂȂ�R���|�[�l���g�̑��݂��K�{�ł��D���[��D�D�D</li>
-<li><del datetime="020613">�R���g���[���ɃR���|�[�l���g���g�p���Ă��邽�߁C���������ł̃R���g���[���̒ǉ��C�폜���� ContainerEvent ���������Ă��܂��܂��D���[�U�͂���𖳎�����v���O������ǉ�����K�v������܂��D @see ContainerEditor#processContainerEvent,JEditablePanel#processContainerEvent</del></li>
+<li>現在のところ対象のコンテナのレイアウトは null の場合しか想定していません．</li>
+<li>編集対象のコンテナは親となるコンポーネントの存在が必須です．うーん．．．</li>
+<li><del datetime="020613">コントローラにコンポーネントを使用しているため，内部処理でのコントローラの追加，削除時に ContainerEvent が発生してしまいます．ユーザはこれを無視するプログラムを追加する必要があります． @see ContainerEditor#processContainerEvent,JEditablePanel#processContainerEvent</del></li>
 </ul>
 
-<h2>���ꂩ��������邱��</h2>
+<h2>これから実装すること</h2>
 
 <ul>
- <li>RubberBandRenderer �@�\�̊���</li>
- <li>�L�[�{�[�h�̑���</li>
- <li>����@���A�N�V�����Ƃ��ĕ�������?</li>
- <li><del datetime="020613">container ���I�΂ꂽ�Ƃ� glassPane ����</del></li>
+ <li>RubberBandRenderer 機構の完成</li>
+ <li>キーボードの操作</li>
+ <li>操作法をアクションとして分離する?</li>
+ <li><del datetime="020613">container が選ばれたとき glassPane 消去</del></li>
 </ul>
 
 </body>

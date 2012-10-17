@@ -29,7 +29,7 @@ import vavi.util.Debug;
 /**
  * GlassPane
  *
- * container ‚É setSize ‚·‚é‚±‚ÆD
+ * container ã« setSize ã™ã‚‹ã“ã¨ï¼
  *
  * @author	<a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version	0.00	020613	nsano	initial version <br>
@@ -143,7 +143,7 @@ public class GlassPane extends JComponent {
     }
 
     /**
-     * «—ˆ InputMap ‚ª‘Î‰‚µ‚Ä‚­‚ê‚ñ‚¶‚á‚È‚¢‚ÌH
+     * å°†æ¥ InputMap ãŒå¯¾å¿œã—ã¦ãã‚Œã‚“ã˜ã‚ƒãªã„ã®ï¼Ÿ
      */
     public void setMouseInputAction(MouseInputListener mil) {
         glassPane.addMouseListener(mil);
@@ -152,14 +152,14 @@ public class GlassPane extends JComponent {
 
     //-------------------------------------------------------------------------
 
-    /** ƒRƒ“ƒeƒi‚ÌƒŠƒXƒi */
+    /** ã‚³ãƒ³ãƒ†ãƒŠã®ãƒªã‚¹ãƒŠ */
     private ContainerListener cl1 = new ContainerListener() {
-        /** ‚Ì’Ç‰Á‚ÍƒRƒ“ƒgƒ[ƒ‰‚ğ”­¶ */
+        /** ã®è¿½åŠ ã¯ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‚’ç™ºç”Ÿ */
         public void componentAdded(ContainerEvent ev) {
             Component component = ev.getChild();
             addController(component);
         }
-        /** ‚Ìíœ‚ÍƒRƒ“ƒgƒ[ƒ‰‚ğíœ */
+        /** ã®å‰Šé™¤ã¯ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‚’å‰Šé™¤ */
         public void componentRemoved(ContainerEvent ev) {
             Component component = ev.getChild();
             removeController(component);
@@ -191,7 +191,7 @@ public class GlassPane extends JComponent {
 
     //-------------------------------------------------------------------------
 
-    /** ‚·‚×‚Ä‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚É Controller ‚ğì¬ */
+    /** ã™ã¹ã¦ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã« Controller ã‚’ä½œæˆ */
     private void addAllControllers() {
 //Debug.println(container.getComponentCount());
         for (int i = 0; i < container.getComponentCount(); i++) {
@@ -200,7 +200,7 @@ public class GlassPane extends JComponent {
         }
     }
 
-    /** ‚·‚×‚Ä‚Ì Controller ‚ğíœ */
+    /** ã™ã¹ã¦ã® Controller ã‚’å‰Šé™¤ */
     private void removeAllControllers() {
         for (int i = 0; i < container.getComponentCount(); i++) {
             Component component = container.getComponent(i);
@@ -213,7 +213,7 @@ Debug.println("TODO " + controllers.size() + "controller(s) still alive");
 
     //-------------------------------------------------------------------------
 
-    /** Component ‚Æ Controller ‚ÌƒyƒA */
+    /** Component ã¨ Controller ã®ãƒšã‚¢ */
     private Map<Component,Component> controllers = new HashMap<Component,Component>();
 
     /** */

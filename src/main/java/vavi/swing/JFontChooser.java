@@ -37,13 +37,13 @@ import vavi.util.Debug;
 /**
  * JFontChooser
  * <p>
- * JFontChooser.properties ‚ÉƒfƒtƒHƒ‹ƒg‚ÌƒtƒHƒ“ƒgƒGƒfƒBƒ^‚ÆƒfƒtƒHƒ‹ƒg‚Ì ƒtƒHƒ“ƒg‚ğw’è‚Å‚«‚Ü‚·D
+ * JFontChooser.properties ã«ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ•ã‚©ãƒ³ãƒˆã‚¨ãƒ‡ã‚£ã‚¿ã¨ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã® ãƒ•ã‚©ãƒ³ãƒˆã‚’æŒ‡å®šã§ãã¾ã™ï¼
  * <p>
  * 
  * <pre>
  * 
- *   editorClass	ƒtƒHƒ“ƒgƒGƒfƒBƒ^‚ÌƒNƒ‰ƒX
- *   font	ƒtƒHƒ“ƒg‚ÌƒvƒƒpƒeƒB
+ *   editorClass	ãƒ•ã‚©ãƒ³ãƒˆã‚¨ãƒ‡ã‚£ã‚¿ã®ã‚¯ãƒ©ã‚¹
+ *   font	ãƒ•ã‚©ãƒ³ãƒˆã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
  *  
  * </pre>
  * 
@@ -225,7 +225,7 @@ Debug.println(Level.SEVERE, e);
     /** */
     public static void main(String[] args) {
         JFontChooser fc = new JFontChooser();
-        fc.setDialogTitle("ƒtƒHƒ“ƒgƒ`ƒ…[ƒU");
+        fc.setDialogTitle("ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ¥ãƒ¼ã‚¶");
         int r = fc.showDialog(null);
 System.err.println(r + ": " + fc.getSelectedFont());
         System.exit(0);

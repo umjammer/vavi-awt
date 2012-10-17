@@ -25,14 +25,14 @@ import vavi.awt.dnd.BasicDTListener;
 
 
 /**
- * ƒqƒXƒgƒŠ•t‚«ƒRƒ“ƒ{ƒ{ƒbƒNƒX‚Å‚·D
- * ƒGƒNƒXƒvƒ[ƒ‰“™‚©‚ç‚Ìƒtƒ@ƒCƒ‹‚Ì
- * ƒhƒ‰ƒbƒOƒAƒ“ƒhƒhƒƒbƒv‚ğƒTƒ|[ƒg‚µ‚Ü‚·D
+ * ãƒ’ã‚¹ãƒˆãƒªä»˜ãã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹ã§ã™ï¼
+ * ã‚¨ã‚¯ã‚¹ãƒ—ãƒ­ãƒ¼ãƒ©ç­‰ã‹ã‚‰ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®
+ * ãƒ‰ãƒ©ãƒƒã‚°ã‚¢ãƒ³ãƒ‰ãƒ‰ãƒ­ãƒƒãƒ—ã‚’ã‚µãƒãƒ¼ãƒˆã—ã¾ã™ï¼
  * 
- * @todo ƒqƒXƒgƒŠ‚ÌƒNƒ‰ƒX‰»H
- *       ƒqƒXƒgƒŠ‚Ìæ‚èo‚µ
- *       ƒqƒXƒgƒŠ‚Ìíœ
- *       DnD ‚Á‚Ä UI ‚Åw’è‚·‚é‚à‚ÌH
+ * @todo ãƒ’ã‚¹ãƒˆãƒªã®ã‚¯ãƒ©ã‚¹åŒ–ï¼Ÿ
+ *       ãƒ’ã‚¹ãƒˆãƒªã®å–ã‚Šå‡ºã—
+ *       ãƒ’ã‚¹ãƒˆãƒªã®å‰Šé™¤
+ *       DnD ã£ã¦ UI ã§æŒ‡å®šã™ã‚‹ã‚‚ã®ï¼Ÿ
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020503 nsano initial version <br>
@@ -116,7 +116,7 @@ public class JHistoryComboBox extends JComboBox {
         }
 
         /**
-         * ƒhƒ‰ƒbƒO“®ì’†‚ÉŒÄ‚Î‚ê‚Ü‚·D
+         * ãƒ‰ãƒ©ãƒƒã‚°å‹•ä½œä¸­ã«å‘¼ã°ã‚Œã¾ã™ï¼
          */
 //      public void dragOver(DropTargetDragEvent ev) {
 //          super.dragOver(ev);
@@ -125,9 +125,9 @@ public class JHistoryComboBox extends JComboBox {
 
         /**
          * You need to implement here dropping procedure.
-         * data ‚ÍƒVƒŠƒAƒ‰ƒCƒY‚³‚ê‚½‚à‚Ì‚ğƒfƒVƒŠƒAƒ‰ƒCƒY‚µ‚½
-         * ‚à‚Ì‚È‚Ì‚ÅƒNƒ[ƒ“‚Å‚·D
-         * @param	data	ƒhƒƒbƒv‚³‚ê‚½ƒf[ƒ^
+         * data ã¯ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚ºã•ã‚ŒãŸã‚‚ã®ã‚’ãƒ‡ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚ºã—ãŸ
+         * ã‚‚ã®ãªã®ã§ã‚¯ãƒ­ãƒ¼ãƒ³ã§ã™ï¼
+         * @param	data	ãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿
          */
         @SuppressWarnings("unchecked")
         protected boolean dropImpl(DropTargetDropEvent ev, Object data) {

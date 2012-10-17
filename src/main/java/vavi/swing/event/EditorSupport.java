@@ -12,7 +12,7 @@ import javax.swing.event.EventListenerList;
 
 
 /**
- * Editor ‹@\‚Ì‚ÌŠî–{À‘•ƒNƒ‰ƒX‚Å‚·D
+ * Editor æ©Ÿæ§‹ã®ã®åŸºæœ¬å®Ÿè£…ã‚¯ãƒ©ã‚¹ã§ã™ï¼
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 010820 nsano initial version <br>
@@ -27,17 +27,17 @@ public class EditorSupport
     /** The editor listeners */
     private EventListenerList listenerList = new EventListenerList();
 
-    /** EditorListener ‚ğ’Ç‰Á‚µ‚Ü‚·D */
+    /** EditorListener ã‚’è¿½åŠ ã—ã¾ã™ï¼ */
     public void addEditorListener(EditorListener l) {
         listenerList.add(EditorListener.class, l);
     }
 
-    /** EditorListener ‚ğíœ‚µ‚Ü‚·D */
+    /** EditorListener ã‚’å‰Šé™¤ã—ã¾ã™ï¼ */
     public void removeEditorListener(EditorListener l) {
         listenerList.remove(EditorListener.class, l);
     }
 
-    /** ƒGƒfƒBƒ^‚ªƒI[ƒvƒ“‚³‚ê‚½ƒCƒxƒ“ƒg‚ğ”­s‚µ‚Ü‚·D */
+    /** ã‚¨ãƒ‡ã‚£ã‚¿ãŒã‚ªãƒ¼ãƒ—ãƒ³ã•ã‚ŒãŸã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºè¡Œã—ã¾ã™ï¼ */
 //      public void fireEditorOpened(EditorEvent ev) {
 //          Object[] listeners = listenerList.getListenerList();
 //          for (int i = listeners.length - 2; i >= 0; i -= 2) {
@@ -47,7 +47,7 @@ public class EditorSupport
 //          }
 //      }
 
-    /** ƒGƒfƒBƒ^‚ªƒAƒbƒvƒf[ƒg‚³‚ê‚½ƒCƒxƒ“ƒg‚ğ”­s‚µ‚Ü‚·D */
+    /** ã‚¨ãƒ‡ã‚£ã‚¿ãŒã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã•ã‚ŒãŸã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºè¡Œã—ã¾ã™ï¼ */
     public void fireEditorUpdated(EditorEvent ev) {
         Object[] listeners = listenerList.getListenerList();
         for (int i = listeners.length - 2; i >= 0; i -= 2) {
@@ -57,7 +57,7 @@ public class EditorSupport
         }
     }
 
-    /** ƒGƒfƒBƒ^‚ªƒNƒ[ƒY‚³‚ê‚½ƒCƒxƒ“ƒg‚ğ”­s‚µ‚Ü‚·D */
+    /** ã‚¨ãƒ‡ã‚£ã‚¿ãŒã‚¯ãƒ­ãƒ¼ã‚ºã•ã‚ŒãŸã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºè¡Œã—ã¾ã™ï¼ */
 //      public void fireEditorClosed(EditorEvent ev) {
 //          Object[] listeners = listenerList.getListenerList();
 //          for (int i = listeners.length - 2; i >= 0; i -= 2) {

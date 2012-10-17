@@ -25,7 +25,7 @@ import vavi.util.Debug;
  */
 public class SelectionModel {
 
-    /** ‘I‘ğ‚³‚ê‚Ä‚¢‚Ä‚éƒIƒuƒWƒFƒNƒg‚ÌƒŠƒXƒg */
+    /** é¸æŠã•ã‚Œã¦ã„ã¦ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒªã‚¹ãƒˆ */
     private List<Selectable> selected;
 
     /** */
@@ -34,14 +34,14 @@ public class SelectionModel {
     }
 
     /**
-     * ‘I‘ğó‘Ô‚Ì Selectable ‚ÌƒxƒNƒ^‚ğ•Ô‚µ‚Ü‚·D
+     * é¸æŠçŠ¶æ…‹ã® Selectable ã®ãƒ™ã‚¯ã‚¿ã‚’è¿”ã—ã¾ã™ï¼
      */
     public List<Selectable> getSelected() {
         return selected;
     }
 
     /**
-     * w’è‚µ‚½ Selectable ‚ÌƒxƒNƒ^‚ğ‘I‘ğó‘Ô‚É‚µ‚Ü‚·D
+     * æŒ‡å®šã—ãŸ Selectable ã®ãƒ™ã‚¯ã‚¿ã‚’é¸æŠçŠ¶æ…‹ã«ã—ã¾ã™ï¼
      */
     public void setSelected(List<Selectable> selected) {
 Debug.println("Warnning: be careful to use this method.");
@@ -51,7 +51,7 @@ Debug.println("Warnning: be careful to use this method.");
     }
 
     /**
-     * ‚·‚×‚Ä‚Ì Selectable ‚ğ”ñ‘I‘ğó‘Ô‚É‚µ‚Ü‚·D
+     * ã™ã¹ã¦ã® Selectable ã‚’éé¸æŠçŠ¶æ…‹ã«ã—ã¾ã™ï¼
      */
     public void deselectAll() {
         for (int i = 0; i < selected.size(); i++) {
@@ -64,7 +64,7 @@ Debug.println("Warnning: be careful to use this method.");
     }
 
     /**
-     * Selectable ‚ğ‘I‘ğó‘Ô‚É‚µ‚Ü‚·D
+     * Selectable ã‚’é¸æŠçŠ¶æ…‹ã«ã—ã¾ã™ï¼
      * 
      * @param selectables
      */
@@ -78,10 +78,10 @@ Debug.println("Warnning: be careful to use this method.");
     }
 
     /**
-     * Selectable ‚ğ‘I‘ğó‘Ô‚É‚µ‚Ü‚·D
+     * Selectable ã‚’é¸æŠçŠ¶æ…‹ã«ã—ã¾ã™ï¼
      * 
-     * @param selectable ‘ÎÛ‚Æ‚È‚é Object
-     * @param isMultiSelection •¡”‘I‘ğ‚©‚Ç‚¤‚©
+     * @param selectable å¯¾è±¡ã¨ãªã‚‹ Object
+     * @param isMultiSelection è¤‡æ•°é¸æŠã‹ã©ã†ã‹
      */
     public void select(Selectable selectable, boolean isMultiSelection) {
 
@@ -91,8 +91,8 @@ Debug.println("Warnning: be careful to use this method.");
         for (int i = 0; i < selected.size(); i++) {
             if (selectable == selected.get(i)) {
                 if (isMultiSelection) {
-                    // V‚µ‚¢‘I‘ğ‚ªC‚·‚Å‚É‘I‘ğÏ‚İ‚Ìê‡C
-                    // ‚»‚Ì‘I‘ğó‘Ô‚ğ‰ğœ‚·‚é
+                    // æ–°ã—ã„é¸æŠãŒï¼Œã™ã§ã«é¸æŠæ¸ˆã¿ã®å ´åˆï¼Œ
+                    // ãã®é¸æŠçŠ¶æ…‹ã‚’è§£é™¤ã™ã‚‹
                     selected.get(i).setSelected(false);
                     selected.remove(i);
                     isOldSelection = true;
@@ -101,9 +101,9 @@ Debug.println("Warnning: be careful to use this method.");
         }
 
         if (!isOldSelection) {
-            // V‚µ‚¢‚à‚Ì‚ª‘I‘ğ‚³‚ê‚½‚Æ‚«
+            // æ–°ã—ã„ã‚‚ã®ãŒé¸æŠã•ã‚ŒãŸã¨ã
             if (!isMultiSelection) {
-                // ‚·‚×‚Ä‚ğ”ñ‘I‘ğó‘Ô‚É
+                // ã™ã¹ã¦ã‚’éé¸æŠçŠ¶æ…‹ã«
                 for (int i = 0; i < selected.size(); i++) {
                     selected.get(i).setSelected(false);
                 }
@@ -111,7 +111,7 @@ Debug.println("Warnning: be careful to use this method.");
             }
             selected.add(selectable);
 
-            // ‘I‘ğ‚³‚ê‚Ä‚¢‚é‚·‚×‚Ä‚ğ‘I‘ğó‘Ô‚É‚·‚é
+            // é¸æŠã•ã‚Œã¦ã„ã‚‹ã™ã¹ã¦ã‚’é¸æŠçŠ¶æ…‹ã«ã™ã‚‹
             for (int i = 0; i < selected.size(); i++) {
                 selected.get(i).setSelected(true);
             }
@@ -122,15 +122,15 @@ Debug.println("Warnning: be careful to use this method.");
 
     // -------------------------------------------------------------------------
 
-    /** SelectionEvent ‹@\‚Ìƒ†[ƒeƒBƒŠƒeƒB */
+    /** SelectionEvent æ©Ÿæ§‹ã®ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ */
     private SelectionSupport ss = new SelectionSupport();
 
-    /** Selection ƒŠƒXƒi[‚ğƒAƒ^ƒbƒ`‚µ‚Ü‚·D */
+    /** Selection ãƒªã‚¹ãƒŠãƒ¼ã‚’ã‚¢ã‚¿ãƒƒãƒã—ã¾ã™ï¼ */
     public void addSelectionListener(SelectionListener l) {
         ss.addSelectionListener(l);
     }
 
-    /** Selection ƒŠƒXƒi[‚ğƒŠƒ€[ƒu‚µ‚Ü‚·D */
+    /** Selection ãƒªã‚¹ãƒŠãƒ¼ã‚’ãƒªãƒ ãƒ¼ãƒ–ã—ã¾ã™ï¼ */
     public void removeSelectionListener(SelectionListener l) {
         ss.removeSelectionListener(l);
     }

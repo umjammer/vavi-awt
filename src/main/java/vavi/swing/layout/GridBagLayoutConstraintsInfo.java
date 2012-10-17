@@ -106,8 +106,7 @@ public class GridBagLayoutConstraintsInfo extends SimpleBeanInfo {
             return pds;
         } catch (IntrospectionException e) {
 Debug.println(Level.SEVERE, e);
-System.exit(1);
-            return null;
+            throw new IllegalStateException(e);
         }
     }
 }

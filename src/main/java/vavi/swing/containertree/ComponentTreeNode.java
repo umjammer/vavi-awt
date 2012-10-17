@@ -12,7 +12,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 
 
 /**
- * ƒRƒ“ƒeƒiƒcƒŠ[ã‚Ìƒm[ƒh‚Å‚·D
+ * ã‚³ãƒ³ãƒ†ãƒŠãƒ„ãƒªãƒ¼ä¸Šã®ãƒãƒ¼ãƒ‰ã§ã™ï¼
  *
  * @author	<a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version	0.00	020510	nsano	initial version <br>
@@ -20,7 +20,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 public class ComponentTreeNode extends DefaultMutableTreeNode {
 
     /**
-     * ƒRƒ“ƒ|[ƒlƒ“ƒg‚ğ•\‚·ƒcƒŠ[ƒm[ƒh‚ğ\’z‚µ‚Ü‚·D
+     * ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’è¡¨ã™ãƒ„ãƒªãƒ¼ãƒãƒ¼ãƒ‰ã‚’æ§‹ç¯‰ã—ã¾ã™ï¼
      * @param component Component
      */
     public ComponentTreeNode(Component component) {
@@ -28,21 +28,21 @@ public class ComponentTreeNode extends DefaultMutableTreeNode {
     }
 
     /**
-     * ‚±‚Ìƒm[ƒh‚ğ•\‚·•¶š—ñ‚ğ•Ô‚µ‚Ü‚·D
+     * ã“ã®ãƒãƒ¼ãƒ‰ã‚’è¡¨ã™æ–‡å­—åˆ—ã‚’è¿”ã—ã¾ã™ï¼
      */
     public String getName() {
         return toString();
     }
 
     /**
-     * ‚±‚Ìƒm[ƒh‚ğ•\‚·•¶š—ñ‚ğ•Ô‚µ‚Ü‚·D
+     * ã“ã®ãƒãƒ¼ãƒ‰ã‚’è¡¨ã™æ–‡å­—åˆ—ã‚’è¿”ã—ã¾ã™ï¼
      */
     public String getDescription() {
         return toString();
     }
 
     /**
-     * ‚±‚Ìƒm[ƒh‚ğ•\‚·•¶š—ñ‚ğ•Ô‚µ‚Ü‚·D
+     * ã“ã®ãƒãƒ¼ãƒ‰ã‚’è¡¨ã™æ–‡å­—åˆ—ã‚’è¿”ã—ã¾ã™ï¼
      */
     public String toString() {
         return ((Component) userObject).getName();

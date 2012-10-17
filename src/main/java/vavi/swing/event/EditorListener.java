@@ -10,7 +10,7 @@ import java.util.EventListener;
 
 
 /**
- * ƒGƒfƒBƒ^‚ÌƒŠƒXƒiƒCƒ“ƒ^[ƒtƒF[ƒX‚Å‚·D
+ * ã‚¨ãƒ‡ã‚£ã‚¿ã®ãƒªã‚¹ãƒŠã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã§ã™ï¼
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 010820 nsano initial version <br>
@@ -22,20 +22,20 @@ import java.util.EventListener;
 public interface EditorListener extends EventListener {
 
     /**
-     * ƒGƒfƒBƒ^‚ªƒI[ƒvƒ“‚µ‚½‚Æ‚«ŒÄ‚Î‚ê‚Ü‚·D
-     * @param	ev	ƒGƒfƒBƒ^ƒCƒxƒ“ƒg
+     * ã‚¨ãƒ‡ã‚£ã‚¿ãŒã‚ªãƒ¼ãƒ—ãƒ³ã—ãŸã¨ãå‘¼ã°ã‚Œã¾ã™ï¼
+     * @param	ev	ã‚¨ãƒ‡ã‚£ã‚¿ã‚¤ãƒ™ãƒ³ãƒˆ
      */
 //    void editorOpened(EditorEvent ev);
 
     /**
-     * ƒGƒfƒBƒ^‚ªƒAƒbƒvƒf[ƒg‚³‚ê‚½‚Æ‚«ŒÄ‚Î‚ê‚Ü‚·D
-     * @param	ev	ƒGƒfƒBƒ^ƒCƒxƒ“ƒg
+     * ã‚¨ãƒ‡ã‚£ã‚¿ãŒã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã•ã‚ŒãŸã¨ãå‘¼ã°ã‚Œã¾ã™ï¼
+     * @param	ev	ã‚¨ãƒ‡ã‚£ã‚¿ã‚¤ãƒ™ãƒ³ãƒˆ
      */
     void editorUpdated(EditorEvent ev);
 
     /**
-     * ƒGƒfƒBƒ^‚ªI—¹‚µ‚½‚Æ‚«ŒÄ‚Î‚ê‚Ü‚·D
-     * @param	ev	ƒGƒfƒBƒ^ƒCƒxƒ“ƒg
+     * ã‚¨ãƒ‡ã‚£ã‚¿ãŒçµ‚äº†ã—ãŸã¨ãå‘¼ã°ã‚Œã¾ã™ï¼
+     * @param	ev	ã‚¨ãƒ‡ã‚£ã‚¿ã‚¤ãƒ™ãƒ³ãƒˆ
      */
 //    void editorClosed(EditorEvent ev);
 }

@@ -12,7 +12,7 @@ import java.util.EventObject;
 
 
 /**
- * RubberBand ‚ª•ÏX‚³‚ê‚é”­s‚·‚éƒCƒxƒ“ƒg‚ÌƒNƒ‰ƒX‚Å‚·D
+ * RubberBand ãŒå¤‰æ›´ã•ã‚Œã‚‹æ™‚ç™ºè¡Œã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆã®ã‚¯ãƒ©ã‚¹ã§ã™ï¼
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 010904 nsano initial version <br>
@@ -22,15 +22,15 @@ import java.util.EventObject;
  */
 public class RubberBandEvent extends EventObject {
 
-    /** ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì‘Š‘Î location */
+    /** ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®ç›¸å¯¾ location */
     private Point location;
-    /** ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì‘Š‘Î size */
+    /** ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®ç›¸å¯¾ size */
 //  private Dimension size;
-    /** ‘I‘ğ‚³‚ê‚½—Ìˆæ */
+    /** é¸æŠã•ã‚ŒãŸé ˜åŸŸ */
     private Rectangle bounds;
 
     /**
-     * RubberBand ƒCƒxƒ“ƒg‚ğ\’z‚µ‚Ü‚·D
+     * RubberBand ã‚¤ãƒ™ãƒ³ãƒˆã‚’æ§‹ç¯‰ã—ã¾ã™ï¼
      * @see	RubberBandListener#selecting
      * @see	RubberBandListener#selected
      */
@@ -40,10 +40,10 @@ public class RubberBandEvent extends EventObject {
     }
 
     /**
-     * RubberBand ƒCƒxƒ“ƒg‚ğ\’z‚µ‚Ü‚·D
+     * RubberBand ã‚¤ãƒ™ãƒ³ãƒˆã‚’æ§‹ç¯‰ã—ã¾ã™ï¼
      * @see	RubberBandListener#moving
      * @see	RubberBandListener#moved
-     * @param	location ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì‘Š‘Î location
+     * @param	location ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®ç›¸å¯¾ location
      */
     public RubberBandEvent(Object source, Point location) {
         super(source);
@@ -51,27 +51,27 @@ public class RubberBandEvent extends EventObject {
     }
 
     /**
-     * RubberBand ƒCƒxƒ“ƒg‚ğ\’z‚µ‚Ü‚·D
+     * RubberBand ã‚¤ãƒ™ãƒ³ãƒˆã‚’æ§‹ç¯‰ã—ã¾ã™ï¼
      * @see	RubberBandListener#resizing
      * @see	RubberBandListener#resized
-     * @param	size ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì‘Š‘Î size
+     * @param	size ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®ç›¸å¯¾ size
      */
 //  public RubberBandEvent(Object source, Dimension size) {
 //      super(source);
 //      this.size = size;
 //  }
 
-    /** ‘I‘ğ‚³‚ê‚½—Ìˆæ‚ğæ“¾‚µ‚Ü‚·D */
+    /** é¸æŠã•ã‚ŒãŸé ˜åŸŸã‚’å–å¾—ã—ã¾ã™ï¼ */
     public Rectangle getBounds() {
         return bounds;
     }
 
-    /** ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì‘Š‘Î location ‚ğæ“¾‚µ‚Ü‚·D */
+    /** ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®ç›¸å¯¾ location ã‚’å–å¾—ã—ã¾ã™ï¼ */
     public Point getLocation() {
         return location;
     }
 
-    /** ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì‘Š‘Î size ‚ğæ“¾‚µ‚Ü‚·D */
+    /** ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®ç›¸å¯¾ size ã‚’å–å¾—ã—ã¾ã™ï¼ */
 //  public Dimension getDimension() {
 //      return size;
 //  }

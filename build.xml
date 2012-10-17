@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Shift_JIS"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <!-- ////////////////////////////////////////////////////////////////////// -->
 <!-- Copyright (c) 2002 by Naohide Sano, All rights reserved.               -->
@@ -12,7 +12,7 @@
 <!--                                                                        -->
 <!-- ////////////////////////////////////////////////////////////////////// -->
 
-<project name="vavi-awt" default="packaging" basedir="."
+<project name="vavi-awt" default="compile" basedir="."
          xmlns:ivy="antlib:org.apache.ivy.ant">
 
   <property file="local.properties" />
@@ -20,17 +20,17 @@
   <property name="dir.lib" value="lib" />
   <property name="dir.build" value="target/classes" />
 
-  <!-- ƒNƒ‰ƒXƒpƒX‚Ì’è‹` -->
+  <!-- ã‚¯ãƒ©ã‚¹ãƒ‘ã‚¹ã®å®šç¾© -->
   <path id="project.class.path">
     <fileset dir="${dir.lib}">
       <include name="*.jar" />
     </fileset>
   </path>
 
-  <!-- ƒ^[ƒQƒbƒg‚Ì’è‹` -->
+  <!-- ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®å®šç¾© -->
 
   <!-- clean -->
-  <target name="clean" description="ƒrƒ‹ƒhŠÂ‹«‚ÌƒNƒŠƒA">
+  <target name="clean" description="ãƒ“ãƒ«ãƒ‰ç’°å¢ƒã®ã‚¯ãƒªã‚¢">
     <delete>
       <fileset dir="${dir.build}">
         <include name="**/*" />
@@ -49,7 +49,7 @@
   </target>
 
   <!-- javac 1.3 -->
-  <target name="compile.1.3" description="ƒRƒ“ƒpƒCƒ‹ 1.4">
+  <target name="compile.1.3" description="ã‚³ãƒ³ãƒ‘ã‚¤ãƒ« 1.4">
     <javac debug="on" source="1.3" target="1.3" destdir="${dir.build}" encoding="MS932">
       <classpath refid="project.class.path" />
       <include name="vavi/swing/JAppletFrame.java" />
@@ -58,7 +58,7 @@
   </target>
 
   <!-- javac 1.5 -->
-  <target name="compile.1.5" description="ƒRƒ“ƒpƒCƒ‹ 1.5">
+  <target name="compile.1.5" description="ã‚³ãƒ³ãƒ‘ã‚¤ãƒ« 1.5">
     <javac debug="on" source="1.5" target="1.5" destdir="${dir.build}" encoding="MS932">
       <classpath refid="project.class.path" />
       <include name="**/*.java" />
@@ -68,7 +68,7 @@
   </target>
 
   <!-- javac -->
-  <target name="compile" depends="prepare,compile.1.3,compile.1.5" description="ƒRƒ“ƒpƒCƒ‹">
+  <target name="compile" depends="prepare,compile.1.3,compile.1.5" description="ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«">
     <copy todir="${dir.build}">
       <fileset dir="src/main/resources">
         <include name="**/*" />
@@ -90,15 +90,6 @@
         <include name="**/*" />
       </fileset>
     </copy>
-  </target>
-
-  <!-- jar -->
-  <target name="packaging" depends="compile" description="ƒpƒbƒP[ƒWƒ“ƒO">
-    <jar jarfile="target/vavi-awt.jar">
-      <fileset dir="${dir.build}">
-        <include name="**/*" />
-      </fileset>
-    </jar>
   </target>
 
   <path id="run.class.path">

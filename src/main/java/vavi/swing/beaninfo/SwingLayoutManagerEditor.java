@@ -91,7 +91,7 @@ public class SwingLayoutManagerEditor extends SwingEditorSupport {
         plug();
     }
 
-    /** super.setValue ‚µ‚È‚¢‚Æ‘½•ª firePropertyChange ‚³‚ê‚È‚¢ */
+    /** super.setValue ã—ãªã„ã¨å¤šåˆ† firePropertyChange ã•ã‚Œãªã„ */
     public void setValue(Object value) {
 //Debug.println(value == null ? "" + null : "" + value.hashCode());
         super.setValue(value);

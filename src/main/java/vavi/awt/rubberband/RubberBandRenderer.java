@@ -13,7 +13,7 @@ import java.awt.Rectangle;
 
 
 /**
- * ƒ‰ƒo[ƒoƒ“ƒhƒŒƒ“ƒ_ƒ‰‚ÌƒCƒ“ƒ^[ƒtƒF[ƒX‚Å‚·D
+ * ãƒ©ãƒãƒ¼ãƒãƒ³ãƒ‰ãƒ¬ãƒ³ãƒ€ãƒ©ã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã§ã™ï¼
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 010829 nsano initial version <br>
@@ -26,32 +26,32 @@ import java.awt.Rectangle;
 public interface RubberBandRenderer {
 
     /**
-     * ‘I‘ğ‚Ìƒ‰ƒo[ƒoƒ“ƒh‚ğ•`‚«‚Ü‚·D
+     * é¸æŠæ™‚ã®ãƒ©ãƒãƒ¼ãƒãƒ³ãƒ‰ã‚’æãã¾ã™ï¼
      */
     void drawSelecting(Rectangle bounds);
 
     /**
-     * ‘I‘ğŒã‚Ìƒ‰ƒo[ƒoƒ“ƒh‚ğ•`‰æ‚µ‚Ü‚·D
+     * é¸æŠå¾Œã®ãƒ©ãƒãƒ¼ãƒãƒ³ãƒ‰ã‚’æç”»ã—ã¾ã™ï¼
      */
     void drawSelected(Rectangle bounds);
 
     /**
-     * ˆÚ“®‚Ìƒ‰ƒo[ƒoƒ“ƒh‚ğ•`‰æ‚µ‚Ü‚·D
+     * ç§»å‹•æ™‚ã®ãƒ©ãƒãƒ¼ãƒãƒ³ãƒ‰ã‚’æç”»ã—ã¾ã™ï¼
      */
     void drawMoving(Rectangle bounds);
 
     /**
-     * ˆÚ“®Œã‚Ìƒ‰ƒo[ƒoƒ“ƒh‚ğ•`‰æ‚µ‚Ü‚·D
+     * ç§»å‹•å¾Œã®ãƒ©ãƒãƒ¼ãƒãƒ³ãƒ‰ã‚’æç”»ã—ã¾ã™ï¼
      */
     void drawMoved(Rectangle bounds);
 
     /**
-     * ƒŠƒTƒCƒY‚Ìƒ‰ƒo[ƒoƒ“ƒh‚ğ•`‰æ‚µ‚Ü‚·D
+     * ãƒªã‚µã‚¤ã‚ºæ™‚ã®ãƒ©ãƒãƒ¼ãƒãƒ³ãƒ‰ã‚’æç”»ã—ã¾ã™ï¼
      */
     void drawResizing(Rectangle bounds);
 
     /**
-     * ƒŠƒTƒCƒYŒã‚Ìƒ‰ƒo[ƒoƒ“ƒh‚ğ•`‰æ‚µ‚Ü‚·D
+     * ãƒªã‚µã‚¤ã‚ºå¾Œã®ãƒ©ãƒãƒ¼ãƒãƒ³ãƒ‰ã‚’æç”»ã—ã¾ã™ï¼
      */
     void drawResized(Rectangle bounds);
 

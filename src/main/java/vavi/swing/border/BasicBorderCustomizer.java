@@ -22,11 +22,11 @@ import vavi.swing.propertyeditor.JPropertyEditorTable;
 
 
 /**
- * Border ƒNƒ‰ƒX‚Ì Customizer ‚ÌŠî’êƒNƒ‰ƒX‚Å‚·D
- * ¶‘¤‚Éƒ{[ƒ_[‚ÌƒTƒ“ƒvƒ‹C‰E‘¤‚Éƒ{[ƒ_[‚ÌƒvƒƒpƒeƒBƒGƒfƒBƒ^ƒe[ƒuƒ‹ ‚Ì UI
- * ‚Å•ÒW‚µ‚Ü‚·D
+ * Border ã‚¯ãƒ©ã‚¹ã® Customizer ã®åŸºåº•ã‚¯ãƒ©ã‚¹ã§ã™ï¼
+ * å·¦å´ã«ãƒœãƒ¼ãƒ€ãƒ¼ã®ã‚µãƒ³ãƒ—ãƒ«ï¼Œå³å´ã«ãƒœãƒ¼ãƒ€ãƒ¼ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚¨ãƒ‡ã‚£ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ« ã® UI
+ * ã§ç·¨é›†ã—ã¾ã™ï¼
  * 
- * @done Customizer ‚Æ‚µ‚Ä‚ÍC’l‚ª•Ï‚í‚é‚½‚Ñ‚É firePropertyChange ‚·‚é
+ * @done Customizer ã¨ã—ã¦ã¯ï¼Œå€¤ãŒå¤‰ã‚ã‚‹ãŸã³ã« firePropertyChange ã™ã‚‹
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020523 nsano initial version <br>
@@ -79,7 +79,7 @@ public class BasicBorderCustomizer extends JComponent
 //Debug.println(this.border);
     }
 
-    /** TODO TabbedPane ‚Ì ChangeEvent ‚Ì‚½‚ß‚¾‚¯ */
+    /** TODO TabbedPane ã® ChangeEvent ã®ãŸã‚ã ã‘ */
     public Border getObject() {
 //Debug.println(border);
         return border;

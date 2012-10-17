@@ -28,7 +28,7 @@ import javax.swing.event.MouseInputListener;
 
 
 /**
- * ƒ{ƒŠƒ…[ƒ€
+ * ãƒœãƒªãƒ¥ãƒ¼ãƒ 
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 010919 nsano initial version <br>
@@ -54,21 +54,21 @@ public class JVolume extends JComponent {
     protected transient ChangeEvent changeEvent = null;
 
     /**
-     * ”ÍˆÍ‚ª 0 ` 100A‰Šú’l‚ª 50 ‚Ìƒ{ƒŠƒ…[ƒ€‚ğì¬‚µ‚Ü‚·B
+     * ç¯„å›²ãŒ 0 ã€œ 100ã€åˆæœŸå€¤ãŒ 50 ã®ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’ä½œæˆã—ã¾ã™ã€‚
      */
     public JVolume() {
         this(0, 100, 50);
     }
 
     /**
-     * Å¬’l‚ÆÅ‘å’l‚ğw’è‚µ‚ÄA‰Šú’l‚ª 50 ‚Ìƒ{ƒŠƒ…[ƒ€‚ğì¬‚µ‚Ü‚·B
+     * æœ€å°å€¤ã¨æœ€å¤§å€¤ã‚’æŒ‡å®šã—ã¦ã€åˆæœŸå€¤ãŒ 50 ã®ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’ä½œæˆã—ã¾ã™ã€‚
      */
     public JVolume(int min, int max) {
         this(min, max, (min + max) / 2);
     }
 
     /**
-     * Å¬’lAÅ‘å’lA‚¨‚æ‚Ñ‰Šú’l‚ğw’è‚µ‚ÄAƒ{ƒŠƒ…[ƒ€‚ğì¬‚µ‚Ü‚·B
+     * æœ€å°å€¤ã€æœ€å¤§å€¤ã€ãŠã‚ˆã³åˆæœŸå€¤ã‚’æŒ‡å®šã—ã¦ã€ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’ä½œæˆã—ã¾ã™ã€‚
      * @see #setMinimum
      * @see #setMaximum
      * @see #setValue
@@ -205,12 +205,12 @@ public class JVolume extends JComponent {
         firePropertyChange("model", oldModel, volumeModel);
     }
 
-    /** ’l‚ğæ“¾‚µ‚Ü‚·D */
+    /** å€¤ã‚’å–å¾—ã—ã¾ã™ï¼ */
     public int getValue() {
 	return getModel().getValue();
     }
 
-    /** ’l‚ğİ’è‚µ‚Ü‚·D */
+    /** å€¤ã‚’è¨­å®šã—ã¾ã™ï¼ */
     public void setValue(int value) {
         BoundedRangeModel m = getModel();
         int oldValue = m.getValue();
@@ -220,24 +220,24 @@ public class JVolume extends JComponent {
         m.setValue(value);
     }
 
-    /** Å¬’l‚ğæ“¾‚µ‚Ü‚·D */
+    /** æœ€å°å€¤ã‚’å–å¾—ã—ã¾ã™ï¼ */
     public int getMinimum() {
 	return getModel().getMinimum();
     }
 
-    /** Å¬’l‚ğİ’è‚µ‚Ü‚·D */
+    /** æœ€å°å€¤ã‚’è¨­å®šã—ã¾ã™ï¼ */
     public void setMinimum(int min) {
         int oldMin = getModel().getMinimum();
         getModel().setMinimum(min);
         firePropertyChange("minimum", new Integer(oldMin), new Integer(min));
     }
 
-    /** Å‘å’l‚ğæ“¾‚µ‚Ü‚·D */
+    /** æœ€å¤§å€¤ã‚’å–å¾—ã—ã¾ã™ï¼ */
     public int getMaximum() {
 	return getModel().getMaximum();
     }
 
-    /** Å‘å’l‚ğİ’è‚µ‚Ü‚·D */
+    /** æœ€å¤§å€¤ã‚’è¨­å®šã—ã¾ã™ï¼ */
     public void setMaximum(int max) {
         int oldMax = getModel().getMaximum();
         getModel().setMaximum(max);
@@ -300,19 +300,19 @@ public class JVolume extends JComponent {
 
     //---- UI -----------------------------------------------------------------
 
-    /** ƒ}ƒEƒX‚Ì x À•W */
+    /** ãƒã‚¦ã‚¹ã® x åº§æ¨™ */
     private transient int x;
-    /** ƒ}ƒEƒX‚Ì y À•W */
+    /** ãƒã‚¦ã‚¹ã® y åº§æ¨™ */
     private transient int y;
 
-    /** ƒ}ƒEƒXƒŠƒXƒi */
+    /** ãƒã‚¦ã‚¹ãƒªã‚¹ãƒŠ */
     private MouseInputListener mouseListener = new MouseInputAdapter() {
-        /** ƒ}ƒEƒX‚ª‰Ÿ‚³‚ê‚½‚Æ‚«‚ÉŒÄ‚Î‚ê‚Ü‚·D*/
+        /** ãƒã‚¦ã‚¹ãŒæŠ¼ã•ã‚ŒãŸã¨ãã«å‘¼ã°ã‚Œã¾ã™ï¼*/
         public void mousePressed(MouseEvent ev) {
             setValueIsAdjusting(true);
 //Debug.println(ev.getX() + ", " + ev.getY());
         }
-        /** ƒ}ƒEƒX‚ªƒhƒ‰ƒbƒO‚µ‚½‚Æ‚«‚ÉŒÄ‚Î‚ê‚Ü‚·D */
+        /** ãƒã‚¦ã‚¹ãŒãƒ‰ãƒ©ãƒƒã‚°ã—ãŸã¨ãã«å‘¼ã°ã‚Œã¾ã™ï¼ */
         public void mouseDragged(MouseEvent ev) {
             if (getValueIsAdjusting()) {
                 x = ev.getX() - getWidth() / 2;
@@ -321,7 +321,7 @@ public class JVolume extends JComponent {
 //Debug.println(x + ", " + y);
             }
         }
-        /** ƒ}ƒEƒX‚ª•ú‚³‚ê‚½‚Æ‚«‚ÉŒÄ‚Î‚ê‚Ü‚·D */
+        /** ãƒã‚¦ã‚¹ãŒæ”¾ã•ã‚ŒãŸã¨ãã«å‘¼ã°ã‚Œã¾ã™ï¼ */
         public void mouseReleased(MouseEvent ev) {
             if (getValueIsAdjusting()) {
                 x = ev.getX() - getWidth() / 2;
@@ -339,10 +339,10 @@ public class JVolume extends JComponent {
         }
     };
 
-    /** ƒ{ƒŠƒ…[ƒ€ƒmƒu‚Ì• */
+    /** ãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒãƒ–ã®å¹… */
     private double r = 0.4;
 
-    /** ƒ{ƒŠƒ…[ƒ€‚ğ•`‰æ‚µ‚Ü‚·D */
+    /** ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’æç”»ã—ã¾ã™ï¼ */
     public void paintComponent(Graphics g) {
 
         super.paintComponent(g);
@@ -383,13 +383,13 @@ public class JVolume extends JComponent {
         
         double W = w / 2d;
         double H = h / 2d;
-        // ƒ{ƒŠƒ…[ƒ€ƒmƒu‚ÌˆÊ’u
+        // ãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒãƒ–ã®ä½ç½®
         double a = W * (1 - r / 2 * 1.2);
         double b = H * (1 - r / 2 * 1.2);
 
         if (getValueIsAdjusting()) {
 //Debug.println("(x, y) = (" + x + ", " + y + ")");
-            // X, Y ‚Í³‹KÀ•W
+            // X, Y ã¯æ­£è¦åº§æ¨™
             X = Math.sqrt((a * a * b * b * x * x) / (b * b * x * x + a * a * y * y));
             Y = Math.sqrt((a * a * b * b * y * y) / (b * b * x * x + a * a * y * y));
             
@@ -397,29 +397,29 @@ public class JVolume extends JComponent {
             if (y < 0) Y *= -1;
 
 //Debug.println("(X, Y) = (" + X + ", " + Y + ")");
-            // Java À•W‚Ö‚Ì•ÏŠ·
+            // Java åº§æ¨™ã¸ã®å¤‰æ›
             X = W + X;
             Y = H - Y;
         } else {
-            // TODO theta ‚ÌÀ•W‚Í³‚µ‚­‚È‚¢
+            // TODO theta ã®åº§æ¨™ã¯æ­£ã—ããªã„
             double theta = (double) (getValue() - getMinimum()) / (double) (getMaximum() - getMinimum()) * (Math.PI * 2) - Math.PI / 2;
 // Debug.println(getValue());
 //Debug.println(theta);
-            // X, Y ‚Í³‹KÀ•W
+            // X, Y ã¯æ­£è¦åº§æ¨™
             X = Math.sqrt((a * a * b * b) / (b * b + a * a * Math.pow(Math.tan(theta), 2)));
             Y = Math.sqrt((a * a * b * b) / (b * b / Math.pow(Math.tan(theta), 2) + a * a));
             
-            // TODO ³‚µ‚­‚È‚¢ theta ‚ÌÀ•W‚É‘Î‚µ‚Ä‚Ì•â³
+            // TODO æ­£ã—ããªã„ theta ã®åº§æ¨™ã«å¯¾ã—ã¦ã®è£œæ­£
             if (theta > Math.PI / 2 && theta < Math.PI * 1.5) X *= -1;
             if (theta < Math.PI     && theta > 0)             Y *= -1;
 
 //Debug.println("(X, Y) = (" + X + ", " + Y + ")");
-            // Java À•W‚Ö‚Ì•ÏŠ·
+            // Java åº§æ¨™ã¸ã®å¤‰æ›
             X = W + X;
             Y = H - Y;
         }
         
-        // ƒmƒu‚Ì”¼Œa
+        // ãƒãƒ–ã®åŠå¾„
         double R = Math.min(W, H) * r / 2;
         
         int nx = (int) (X - R);
@@ -440,7 +440,7 @@ public class JVolume extends JComponent {
 
     //-------------------------------------------------------------------------
 
-    /** ‚±‚ÌƒNƒ‰ƒX‚ğƒeƒXƒg‚µ‚Ü‚·D */
+    /** ã“ã®ã‚¯ãƒ©ã‚¹ã‚’ãƒ†ã‚¹ãƒˆã—ã¾ã™ï¼ */
     public static void main(String[] args) {
         JFrame frame = new JFrame("JVolume Demo");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

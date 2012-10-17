@@ -34,7 +34,7 @@ public class BorderInfoFactory {
     private BorderInfoFactory() {}
 
     /**
-     * TODO vavi.swing.border Ç…Ç†ÇÈÇ∆åàÇﬂë≈Çø
+     * TODO vavi.swing.border „Å´„ÅÇ„Çã„Å®Ê±∫„ÇÅÊâì„Å°
      */
     public static BorderInfo getBorderInfo(Class<?> borderClass) {
         try {
@@ -101,12 +101,12 @@ Debug.printStackTrace(e);
 
                 key = "argTypes";
                 String argTypes = props.getProperty(i + "." + key);
-                if (argTypes != null) {	// à¯êîÇ»Çµ
+                if (argTypes != null) {	// ÂºïÊï∞„Å™„Åó
                     key = "args";
                     String args = props.getProperty(i + "." + key);
 
                     bi.border = (Border) ClassUtil.newInstance(className, argTypes, args);
-                } else {			// à¯êîÇ†ÇË
+                } else {			// ÂºïÊï∞„ÅÇ„Çä
                     @SuppressWarnings("unchecked")
                     Class<Border> clazz = (Class<Border>) Class.forName(className);
                     bi.border = clazz.newInstance();
@@ -138,7 +138,7 @@ Debug.printStackTrace(e);
         } catch (Exception e) {
 Debug.println(Level.SEVERE, e);
 Debug.printStackTrace(e);
-            System.exit(1);
+            throw new IllegalStateException(e);
         }
 
         return bis;

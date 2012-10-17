@@ -12,7 +12,7 @@ import javax.swing.event.EventListenerList;
 
 
 /**
- * RubberBand ƒCƒxƒ“ƒg‹@\‚Ìƒ†[ƒeƒBƒŠƒeƒB‚Å‚·D
+ * RubberBand ã‚¤ãƒ™ãƒ³ãƒˆæ©Ÿæ§‹ã®ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ã§ã™ï¼
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 010904 nsano initial version <br>
@@ -22,11 +22,11 @@ import javax.swing.event.EventListenerList;
 public class RubberBandSupport
     implements Serializable {
 
-    /** RubberBand ‚ÌƒŠƒXƒi[ */
+    /** RubberBand ã®ãƒªã‚¹ãƒŠãƒ¼ */
     private EventListenerList listenerList = new EventListenerList();
 
     /**
-     * RubberBand ƒŠƒXƒi[‚ğ’Ç‰Á‚µ‚Ü‚·D
+     * RubberBand ãƒªã‚¹ãƒŠãƒ¼ã‚’è¿½åŠ ã—ã¾ã™ï¼
      * @param l RubberBandListener
      */
     public void addRubberBandListener(RubberBandListener l) {
@@ -34,7 +34,7 @@ public class RubberBandSupport
     }
 
     /**
-     * RubberBand ƒŠƒXƒi[‚ğíœ‚µ‚Ü‚·D
+     * RubberBand ãƒªã‚¹ãƒŠãƒ¼ã‚’å‰Šé™¤ã—ã¾ã™ï¼
      * @param l RubberBandListener
      */
     public void removeRubberBandListener(RubberBandListener l) {
@@ -42,7 +42,7 @@ public class RubberBandSupport
     }
 
     /**
-     * ‘I‘ğ’†‚ÌƒCƒxƒ“ƒg‚ğ”­s‚µ‚Ü‚·D
+     * é¸æŠä¸­ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºè¡Œã—ã¾ã™ï¼
      */
     public void fireSelecting(RubberBandEvent ev) {
         Object[] listeners = listenerList.getListenerList();
@@ -54,7 +54,7 @@ public class RubberBandSupport
     }
 
     /**
-     * ‘I‘ğŠm’è‚ÌƒCƒxƒ“ƒg‚ğ”­s‚µ‚Ü‚·D
+     * é¸æŠç¢ºå®šã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºè¡Œã—ã¾ã™ï¼
      */
     public void fireSelected(RubberBandEvent ev) {
         Object[] listeners = listenerList.getListenerList();
@@ -66,7 +66,7 @@ public class RubberBandSupport
     }
 
     /**
-     * ‘I‘ğ‘ÎÛ‚ªˆÚ“®’†‚ÌƒCƒxƒ“ƒg‚ğ”­s‚µ‚Ü‚·D
+     * é¸æŠå¯¾è±¡ãŒç§»å‹•ä¸­ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºè¡Œã—ã¾ã™ï¼
      */
     public void fireMoving(RubberBandEvent ev) {
         Object[] listeners = listenerList.getListenerList();
@@ -78,7 +78,7 @@ public class RubberBandSupport
     }
 
     /**
-     * ‘I‘ğ‘ÎÛ‚ªˆÚ“®Šm’è‚ÌƒCƒxƒ“ƒg‚ğ”­s‚µ‚Ü‚·D
+     * é¸æŠå¯¾è±¡ãŒç§»å‹•ç¢ºå®šã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºè¡Œã—ã¾ã™ï¼
      */
     public void fireMoved(RubberBandEvent ev) {
         Object[] listeners = listenerList.getListenerList();
@@ -90,7 +90,7 @@ public class RubberBandSupport
     }
 
     /**
-     * ‘I‘ğ‘ÎÛ‚ªƒŠƒTƒCƒY’†‚ÌƒCƒxƒ“ƒg‚ğ”­s‚µ‚Ü‚·D
+     * é¸æŠå¯¾è±¡ãŒãƒªã‚µã‚¤ã‚ºä¸­ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºè¡Œã—ã¾ã™ï¼
      */
     public void fireResizing(RubberBandEvent ev) {
         Object[] listeners = listenerList.getListenerList();
@@ -102,7 +102,7 @@ public class RubberBandSupport
     }
 
     /**
-     * ‘I‘ğ‘ÎÛ‚ªƒŠƒTƒCƒYŠm’è‚ÌƒCƒxƒ“ƒg‚ğ”­s‚µ‚Ü‚·D
+     * é¸æŠå¯¾è±¡ãŒãƒªã‚µã‚¤ã‚ºç¢ºå®šã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºè¡Œã—ã¾ã™ï¼
      */
     public void fireResized(RubberBandEvent ev) {
         Object[] listeners = listenerList.getListenerList();

@@ -15,7 +15,7 @@ import javax.swing.JComponent;
 
 
 /**
- * ƒRƒ“ƒgƒ[ƒ‰‚Å‚·D
+ * ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã§ã™ï¼
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020529 nsano initial version <br>
@@ -23,14 +23,14 @@ import javax.swing.JComponent;
  */
 public abstract class AbstractController extends JComponent implements LocatableController {
 
-    /** ‘I‘ğó‘Ô‚©‚Ç‚¤‚© */
+    /** é¸æŠçŠ¶æ…‹ã‹ã©ã†ã‹ */
     private boolean isSelected = false;
 
     /** */
     protected Component view;
 
     /**
-     * ƒRƒ“ƒgƒ[ƒ‰‚ğ\’z‚µ‚Ü‚·D
+     * ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‚’æ§‹ç¯‰ã—ã¾ã™ï¼
      */
     public AbstractController(Component view) {
         this.view = view;
@@ -38,7 +38,7 @@ public abstract class AbstractController extends JComponent implements Locatable
     }
 
     /**
-     * view ‚ğİ’è‚µ‚Ü‚·D
+     * view ã‚’è¨­å®šã—ã¾ã™ï¼
      * 
      * @param view a view component
      */
@@ -47,14 +47,14 @@ public abstract class AbstractController extends JComponent implements Locatable
     }
 
     /**
-     * view ‚ğæ“¾‚µ‚Ü‚·D
+     * view ã‚’å–å¾—ã—ã¾ã™ï¼
      */
     public Component getView() {
         return view;
     }
 
     /**
-     * ‘I‘ğó‘Ô‚ğİ’è‚µ‚Ü‚·D
+     * é¸æŠçŠ¶æ…‹ã‚’è¨­å®šã—ã¾ã™ï¼
      */
     public void setSelected(boolean isSelected) {
         this.isSelected = isSelected;
@@ -62,7 +62,7 @@ public abstract class AbstractController extends JComponent implements Locatable
     }
 
     /**
-     * ‘I‘ğó‘Ô‚ğ•Ô‚µ‚Ü‚·D
+     * é¸æŠçŠ¶æ…‹ã‚’è¿”ã—ã¾ã™ï¼
      */
     public boolean isSelected() {
         return isSelected;

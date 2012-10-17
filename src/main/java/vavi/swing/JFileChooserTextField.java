@@ -12,7 +12,7 @@ import javax.swing.JTextField;
 
 
 /**
- * ƒtƒ@ƒCƒ‹–¼‚ğ“ü—Í‚·‚é‚½‚ß‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚Å‚·D ƒeƒLƒXƒgƒtƒB[ƒ‹ƒh‚É"QÆ"ƒ{ƒ^ƒ“‚ª‚Â‚¢‚Ä‚¢‚Ü‚·D
+ * ãƒ•ã‚¡ã‚¤ãƒ«åã‚’å…¥åŠ›ã™ã‚‹ãŸã‚ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã§ã™ï¼ ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã«"å‚ç…§"ãƒœã‚¿ãƒ³ãŒã¤ã„ã¦ã„ã¾ã™ï¼
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 010823 nsano initial version <br>
@@ -27,60 +27,60 @@ import javax.swing.JTextField;
 public class JFileChooserTextField extends JFileChooserField {
 
     /**
-     * ƒeƒLƒXƒgƒtƒB[ƒ‹ƒh•t‚«ƒtƒ@ƒCƒ‹ƒ`ƒ…[ƒU‚ğ\’z‚µ‚Ü‚·D
+     * ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ä»˜ããƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ¥ãƒ¼ã‚¶ã‚’æ§‹ç¯‰ã—ã¾ã™ï¼
      */
     public JFileChooserTextField() {
         super();
     }
 
     /**
-     * ƒeƒLƒXƒgƒtƒB[ƒ‹ƒh•t‚«ƒtƒ@ƒCƒ‹ƒ`ƒ…[ƒU‚ğ\’z‚µ‚Ü‚·D
+     * ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ä»˜ããƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ¥ãƒ¼ã‚¶ã‚’æ§‹ç¯‰ã—ã¾ã™ï¼
      */
     public JFileChooserTextField(File file) {
         super(file);
     }
 
-    /** ƒeƒLƒXƒgƒtƒB[ƒ‹ƒh */
+    /** ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ */
     protected void setPathFieldImpl() {
         pathField = new JTextField(20);
     }
 
-    /** ƒeƒLƒXƒgƒtƒB[ƒ‹ƒh‚ÌƒAƒNƒVƒ‡ƒ“ƒŠƒXƒi */
+    /** ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒªã‚¹ãƒŠ */
     protected void addActionListenerImpl() {
         ((JTextField) pathField).addActionListener(pathFieldActionListener);
     }
 
     /**
-     * •¶š—ñ‚ğƒeƒLƒXƒgƒtƒB[ƒ‹ƒh‚Éİ’è‚µ‚Ü‚·D
+     * æ–‡å­—åˆ—ã‚’ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã«è¨­å®šã—ã¾ã™ï¼
      * 
-     * @param text •¶š—ñ
+     * @param text æ–‡å­—åˆ—
      */
     protected void setTextImpl(String text) {
         ((JTextField) pathField).setText(text);
     }
 
     /**
-     * ƒeƒLƒXƒgƒtƒB[ƒ‹ƒh‚É•\¦‚³‚ê‚Ä‚¢‚é•¶š—ñ‚ğ•Ô‚µ‚Ü‚·D
+     * ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã«è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹æ–‡å­—åˆ—ã‚’è¿”ã—ã¾ã™ï¼
      * 
-     * @return •\¦‚³‚ê‚Ä‚¢‚é•¶š—ñ
+     * @return è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹æ–‡å­—åˆ—
      */
     protected String getTextImpl() {
         return ((JTextField) pathField).getText();
     }
 
     /**
-     * ƒtƒ@ƒCƒ‹‚ğƒeƒLƒXƒgƒtƒB[ƒ‹ƒh‚Éİ’è‚µ‚Ü‚·D
+     * ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã«è¨­å®šã—ã¾ã™ï¼
      * 
-     * @param file ƒtƒ@ƒCƒ‹
+     * @param file ãƒ•ã‚¡ã‚¤ãƒ«
      */
     protected void setSelectedFileImpl(File file) {
         setTextImpl(file.toString());
     }
 
     /**
-     * ƒeƒLƒXƒgƒtƒB[ƒ‹ƒh‚É•\¦‚³‚ê‚Ä‚¢‚éƒtƒ@ƒCƒ‹‚ğ•Ô‚µ‚Ü‚·D
+     * ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã«è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’è¿”ã—ã¾ã™ï¼
      * 
-     * @return •\¦‚³‚ê‚Ä‚¢‚éƒtƒ@ƒCƒ‹
+     * @return è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«
      */
     protected File getSelectedFileImpl() {
         String path = getTextImpl();

@@ -15,27 +15,27 @@ package vavi.awt.rubberband;
  */
 public abstract class RubberBandAdapter implements RubberBandListener {
 
-    /** �I�𒆂ɌĂ΂�܂��D */
+    /** 選択中に呼ばれます． */
     public void selecting(RubberBandEvent ev) {
     }
 
-    /** �I���m�莞�ɌĂ΂�܂��D */
+    /** 選択確定時に呼ばれます． */
     public void selected(RubberBandEvent ev) {
     }
 
-    /** �I��Ώۂ̈ړ����ɌĂ΂�܂��D */
+    /** 選択対象の移動中に呼ばれます． */
     public void moving(RubberBandEvent ev) {
     }
 
-    /** �I��Ώۂ̈ړ��m�莞�ɌĂ΂�܂��D */
+    /** 選択対象の移動確定時に呼ばれます． */
     public void moved(RubberBandEvent ev) {
     }
 
-    /** �I��Ώۂ̃��T�C�Y���ɌĂ΂�܂��D */
+    /** 選択対象のリサイズ中に呼ばれます． */
     public void resizing(RubberBandEvent ev) {
     }
 
-    /** �I��Ώۂ̃��T�C�Y�m�莞�ɌĂ΂�܂��D */
+    /** 選択対象のリサイズ確定時に呼ばれます． */
     public void resized(RubberBandEvent ev) {
     }
 }

@@ -42,7 +42,7 @@ import javax.swing.JToggleButton;
  */
 public class SmallFontEditor extends JComponent implements FontEditor {
 
-    /** リソースバンドル */
+    /** 繝ｪ繧ｽ繝ｼ繧ｹ繝舌Φ繝峨Ν */
     private static final ResourceBundle rb =
         ResourceBundle.getBundle("vavi.swing.resource", Locale.getDefault());
 

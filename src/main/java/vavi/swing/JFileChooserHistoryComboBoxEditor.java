@@ -11,7 +11,7 @@ import java.beans.PropertyEditorSupport;
 
 
 /**
- * {@link vavi.swing.JFileChooserHistoryComboBox} ‚ÌƒvƒƒpƒeƒBƒGƒfƒBƒ^‚Å‚·D
+ * {@link vavi.swing.JFileChooserHistoryComboBox} ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚¨ãƒ‡ã‚£ã‚¿ã§ã™ï¼
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 010823 nsano initial version <br>
@@ -21,7 +21,7 @@ import java.beans.PropertyEditorSupport;
 public class JFileChooserHistoryComboBoxEditor extends PropertyEditorSupport implements PropertyEditor {
 
     /**
-     * ƒJƒXƒ^ƒ€ƒGƒfƒBƒ^‚ğƒTƒ|[ƒg‚µ‚Ü‚·D
+     * ã‚«ã‚¹ã‚¿ãƒ ã‚¨ãƒ‡ã‚£ã‚¿ã‚’ã‚µãƒãƒ¼ãƒˆã—ã¾ã™ï¼
      */
     public boolean supportsCustomEditor() {
         return false;

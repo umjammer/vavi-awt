@@ -35,7 +35,7 @@ import vavi.util.Debug;
 
 
 /**
- * bean ‚ğ‘I‘ğ‚·‚é TabbedPane ‚Å‚·D
+ * bean ã‚’é¸æŠã™ã‚‹ TabbedPane ã§ã™ï¼
  * 
  * TODO button management
  * DONE load beans
@@ -69,7 +69,7 @@ public class JBeansTabbedPane extends JTabbedPane {
     };
 
     /**
-     * bean ‚ğ‘I‘ğ‚·‚é TabbedPane ‚ğ\’z‚µ‚Ü‚·D
+     * bean ã‚’é¸æŠã™ã‚‹ TabbedPane ã‚’æ§‹ç¯‰ã—ã¾ã™ï¼
      */
     public JBeansTabbedPane() {
 
@@ -113,7 +113,7 @@ Debug.println("no property for: " + key);
                         button.setIcon(new ImageIcon(image));
                     }
                     button.setToolTipText(value);
-                    button.setActionCommand(value);	// d—l
+                    button.setActionCommand(value);	// ä»•æ§˜
                     button.setPreferredSize(preferredSizes[iconKind-1]);
                     button.addActionListener(selectAction);
 
@@ -152,7 +152,7 @@ Debug.printStackTrace(e);
         }
     }
 
-    /** ‘I‘ğ‚ğ‰ğœ‚µ‚Ü‚·D TODO Œø‚¢‚Ä‚È‚¢C‚È‚ñ‚ÅHHH */
+    /** é¸æŠã‚’è§£é™¤ã—ã¾ã™ï¼ TODO åŠ¹ã„ã¦ãªã„ï¼Œãªã‚“ã§ï¼Ÿï¼Ÿï¼Ÿ */
     public void deselectAll() {
         for (int i = 0; i < this.getTabCount(); i++) {
             Container container = (Container) this.getComponentAt(i); // tab
@@ -163,7 +163,7 @@ Debug.printStackTrace(e);
         }
     }
 
-    /** ƒ{ƒ^ƒ“‚ª‘I‘ğ‚³‚ê‚½‚Æ‚«D */
+    /** ãƒœã‚¿ãƒ³ãŒé¸æŠã•ã‚ŒãŸã¨ãï¼ */
     private ActionListener selectAction = new ActionListener() {
         public void actionPerformed(ActionEvent ev) {
             fireValueChanged(
@@ -173,15 +173,15 @@ Debug.printStackTrace(e);
 
     //-------------------------------------------------------------------------
 
-    /** ComponentSelectionEvent ‹@\‚Ìƒ†[ƒeƒBƒŠƒeƒB */
+    /** ComponentSelectionEvent æ©Ÿæ§‹ã®ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ */
     private ComponentSelectionSupport css = new ComponentSelectionSupport();
 
-    /** ComponentSelection ƒŠƒXƒi[‚ğƒAƒ^ƒbƒ`‚µ‚Ü‚·D */
+    /** ComponentSelection ãƒªã‚¹ãƒŠãƒ¼ã‚’ã‚¢ã‚¿ãƒƒãƒã—ã¾ã™ï¼ */
     public void addComponentSelectionListener(ComponentSelectionListener l) {
         css.addComponentSelectionListener(l);
     }
 
-    /** ComponentSelection ƒŠƒXƒi[‚ğƒŠƒ€[ƒu‚µ‚Ü‚·D */
+    /** ComponentSelection ãƒªã‚¹ãƒŠãƒ¼ã‚’ãƒªãƒ ãƒ¼ãƒ–ã—ã¾ã™ï¼ */
     public void removeComponentSelectionListener(ComponentSelectionListener l){
         css.removeComponentSelectionListener(l);
     }
@@ -193,11 +193,11 @@ Debug.printStackTrace(e);
 
     //-------------------------------------------------------------------------
 
-    /** ƒvƒƒpƒeƒB */
+    /** ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ */
     private static Properties props = new Properties();
 
     /**
-     * ‰Šú‰»‚µ‚Ü‚·D
+     * åˆæœŸåŒ–ã—ã¾ã™ï¼
      */
     static {
         Toolkit t = Toolkit.getDefaultToolkit();
@@ -213,13 +213,13 @@ Debug.printStackTrace(e);
             props.load(clazz.getResourceAsStream(path));
         } catch (Exception e) {
 Debug.println(Level.SEVERE, "no properties file");
-	        System.exit(1);
+	        throw new IllegalStateException(e);
         }
     }
 
     //-------------------------------------------------------------------------
 
-    /** ‚±‚ÌƒNƒ‰ƒX‚ğƒeƒXƒg‚µ‚Ü‚·D */
+    /** ã“ã®ã‚¯ãƒ©ã‚¹ã‚’ãƒ†ã‚¹ãƒˆã—ã¾ã™ï¼ */
     public static void main(String[] args) {
         JFrame frame = new JFrame("JBeansTabbedPane Demo");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

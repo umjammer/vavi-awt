@@ -14,7 +14,7 @@ import vavi.swing.event.EditorSupport;
 
 
 /**
- * RubberBand (Model) ‚ğ‘€ì‚·‚éƒRƒ“ƒgƒ[ƒ‰‚Å‚·D
+ * RubberBand (Model) ã‚’æ“ä½œã™ã‚‹ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã§ã™ï¼
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020603 nsano initial version <br>

@@ -14,7 +14,7 @@ import vavi.util.Debug;
 
 
 /**
- * ƒ‰ƒo[ƒoƒ“ƒh‚Ìƒ‚ƒfƒ‹‚Å‚·D
+ * ãƒ©ãƒãƒ¼ãƒãƒ³ãƒ‰ã®ãƒ¢ãƒ‡ãƒ«ã§ã™ï¼
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 010829 nsano initial version <br>
@@ -26,49 +26,49 @@ import vavi.util.Debug;
  */
 public class RubberBand {
 
-    /** ã‚ÉƒŠƒTƒCƒY‚·‚é‚±‚Æ‚ğ‚ ‚ç‚í‚·’è” */
+    /** ä¸Šã«ãƒªã‚µã‚¤ã‚ºã™ã‚‹ã“ã¨ã‚’ã‚ã‚‰ã‚ã™å®šæ•° */
     public static final int RESIZE_N  = 1;
-    /** ‰º‚ÉƒŠƒTƒCƒY‚·‚é‚±‚Æ‚ğ‚ ‚ç‚í‚·’è” */
+    /** ä¸‹ã«ãƒªã‚µã‚¤ã‚ºã™ã‚‹ã“ã¨ã‚’ã‚ã‚‰ã‚ã™å®šæ•° */
     public static final int RESIZE_S  = 2;
-    /** ‰E‚ÉƒŠƒTƒCƒY‚·‚é‚±‚Æ‚ğ‚ ‚ç‚í‚·’è” */
+    /** å³ã«ãƒªã‚µã‚¤ã‚ºã™ã‚‹ã“ã¨ã‚’ã‚ã‚‰ã‚ã™å®šæ•° */
     public static final int RESIZE_E  = 4;
-    /** ¶‚ÉƒŠƒTƒCƒY‚·‚é‚±‚Æ‚ğ‚ ‚ç‚í‚·’è” */
+    /** å·¦ã«ãƒªã‚µã‚¤ã‚ºã™ã‚‹ã“ã¨ã‚’ã‚ã‚‰ã‚ã™å®šæ•° */
     public static final int RESIZE_W  = 8;
-    /** ‰Eã‚ÉƒŠƒTƒCƒY‚·‚é‚±‚Æ‚ğ‚ ‚ç‚í‚·’è” */
+    /** å³ä¸Šã«ãƒªã‚µã‚¤ã‚ºã™ã‚‹ã“ã¨ã‚’ã‚ã‚‰ã‚ã™å®šæ•° */
     public static final int RESIZE_NE = 5;
-    /** ¶ã‚ÉƒŠƒTƒCƒY‚·‚é‚±‚Æ‚ğ‚ ‚ç‚í‚·’è” */
+    /** å·¦ä¸Šã«ãƒªã‚µã‚¤ã‚ºã™ã‚‹ã“ã¨ã‚’ã‚ã‚‰ã‚ã™å®šæ•° */
     public static final int RESIZE_NW = 9;
-    /** ‰E‰º‚ÉƒŠƒTƒCƒY‚·‚é‚±‚Æ‚ğ‚ ‚ç‚í‚·’è” */
+    /** å³ä¸‹ã«ãƒªã‚µã‚¤ã‚ºã™ã‚‹ã“ã¨ã‚’ã‚ã‚‰ã‚ã™å®šæ•° */
     public static final int RESIZE_SE = 6;
-    /** ¶‰º‚ÉƒŠƒTƒCƒY‚·‚é‚±‚Æ‚ğ‚ ‚ç‚í‚·’è” */
+    /** å·¦ä¸‹ã«ãƒªã‚µã‚¤ã‚ºã™ã‚‹ã“ã¨ã‚’ã‚ã‚‰ã‚ã™å®šæ•° */
     public static final int RESIZE_SW = 10;
-    /** ’Êí‚ğ•\‚·‚Ì’è” */
+    /** é€šå¸¸ã‚’è¡¨ã™ã®å®šæ•° */
     public static final int NORMAL_MODE = 0;
-    /** ˆÚ“®‚ğ•\‚·’è” */
+    /** ç§»å‹•ã‚’è¡¨ã™å®šæ•° */
     public static final int MOVE_MODE = 3;
 
-    /** RubberBnad ‚Ìƒ‚[ƒh */
+    /** RubberBnad ã®ãƒ¢ãƒ¼ãƒ‰ */
     protected int mode;
 
-    /** ƒŠƒTƒCƒY‚·‚éƒRƒ“ƒ|[ƒlƒ“ƒgã‚É‚¨‚¯‚éƒ}ƒEƒX‚ª‰Ÿ‚³‚ê‚½‚Æ‚«‚ÌÀ•W */
+    /** ãƒªã‚µã‚¤ã‚ºã™ã‚‹ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆä¸Šã«ãŠã‘ã‚‹ãƒã‚¦ã‚¹ãŒæŠ¼ã•ã‚ŒãŸã¨ãã®åº§æ¨™ */
     protected Point resize;
-    /** ˆÚ“®‚·‚éƒRƒ“ƒ|[ƒlƒ“ƒgã‚É‚¨‚¯‚éƒ}ƒEƒX‚ª‰Ÿ‚³‚ê‚½‚Æ‚«‚ÌÀ•W */
+    /** ç§»å‹•ã™ã‚‹ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆä¸Šã«ãŠã‘ã‚‹ãƒã‚¦ã‚¹ãŒæŠ¼ã•ã‚ŒãŸã¨ãã®åº§æ¨™ */
     protected Point move;
-    /** ‘I‘ğ‚ÅƒvƒŒƒX‚³‚ê‚½‚Æ‚«‚ÌÀ•W */
+    /** é¸æŠã§ãƒ—ãƒ¬ã‚¹ã•ã‚ŒãŸã¨ãã®åº§æ¨™ */
     protected Point pressed;
-    /** —Ìˆæ‘I‘ğ‚Åƒhƒ‰ƒbƒO‚µ‚Ä‚¢‚éÀ•W */
+    /** é ˜åŸŸé¸æŠã§ãƒ‰ãƒ©ãƒƒã‚°ã—ã¦ã„ã‚‹åº§æ¨™ */
     protected Point dragged;
-    /** —Ìˆæ‘I‘ğ‚ÅƒŠƒŠ[ƒX‚³‚ê‚½‚Æ‚«‚ÌÀ•W */
+    /** é ˜åŸŸé¸æŠã§ãƒªãƒªãƒ¼ã‚¹ã•ã‚ŒãŸã¨ãã®åº§æ¨™ */
     protected Point released;
 
-    /** —Ìˆæ‘I‘ğ‚ğ‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚© (ƒhƒ‰ƒbƒO true, —£‚µ‚½ false) */
+    /** é ˜åŸŸé¸æŠã‚’ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ (ãƒ‰ãƒ©ãƒƒã‚°æ™‚ true, é›¢ã—ãŸæ™‚ false) */
     private boolean isSelecting;
 
-    /** RubberBand ‚ğˆµ‚¤ƒRƒ“ƒeƒi */
+    /** RubberBand ã‚’æ‰±ã†ã‚³ãƒ³ãƒ†ãƒŠ */
 //  private Container container;
 
     /**
-     * ƒ‰ƒo[ƒoƒ“ƒh‚ğ\’z‚µ‚Ü‚·D
+     * ãƒ©ãƒãƒ¼ãƒãƒ³ãƒ‰ã‚’æ§‹ç¯‰ã—ã¾ã™ï¼
      */
     public RubberBand() {
         mode = NORMAL_MODE;
@@ -76,13 +76,13 @@ public class RubberBand {
     }
 
     /**
-     * ƒ‰ƒo[ƒoƒ“ƒh‚Ìƒ‚[ƒh‚ğİ’è‚µ‚Ü‚·D
+     * ãƒ©ãƒãƒ¼ãƒãƒ³ãƒ‰ã®ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã—ã¾ã™ï¼
      */
     public void setMode(int mode) {
         this.mode = mode;
     }
 
-    /** ƒ‰ƒo[ƒoƒ“ƒh‚Ìƒ‚[ƒh‚ğæ“¾‚µ‚Ü‚·D */
+    /** ãƒ©ãƒãƒ¼ãƒãƒ³ãƒ‰ã®ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—ã—ã¾ã™ï¼ */
     public int getMode() {
         return mode;
     }
@@ -90,7 +90,7 @@ public class RubberBand {
     //-------------------------------------------------------------------------
 
     /**
-     * ‘I‘ğ’†‚Ì Bounds ‚ğ•Ô‚µ‚Ü‚·D
+     * é¸æŠä¸­ã® Bounds ã‚’è¿”ã—ã¾ã™ï¼
      */
     protected Rectangle getSelectionBounds(Point point) {
         isSelecting = true;
@@ -106,7 +106,7 @@ public class RubberBand {
     }
 
     /**
-     * ‘I‘ğŠm’è‚Ì Bounds ‚ğ•Ô‚µ‚Ü‚·D
+     * é¸æŠç¢ºå®šæ™‚ã® Bounds ã‚’è¿”ã—ã¾ã™ï¼
      */
     protected Rectangle getSelectedBounds(Point point) {
 
@@ -121,8 +121,8 @@ public class RubberBand {
     }
 
     /**
-     * ƒŠƒTƒCƒY’†‚Ì‘Š‘Î Bounds ‚ğ•Ô‚µ‚Ü‚·D
-     * TODO ‘å‚«‚³‚Ì§ŒÀ
+     * ãƒªã‚µã‚¤ã‚ºä¸­ã®ç›¸å¯¾ Bounds ã‚’è¿”ã—ã¾ã™ï¼
+     * TODO å¤§ãã•ã®åˆ¶é™
      */
     protected Rectangle getResizedBounds(Point point) {
 
@@ -178,7 +178,7 @@ Debug.println(Level.SEVERE, "wrong resize mode: " + mode);
     }
 
     /**
-     * ˆÚ“®’†‚Ì‘Š‘Î Point ‚ğ•Ô‚µ‚Ü‚·D
+     * ç§»å‹•ä¸­ã®ç›¸å¯¾ Point ã‚’è¿”ã—ã¾ã™ï¼
      */
     protected Point getMovedPoint(Point point) {
 
@@ -191,7 +191,7 @@ Debug.println(Level.SEVERE, "wrong resize mode: " + mode);
     //-------------------------------------------------------------------------
 
     /**
-     * ƒ‰ƒo[ƒoƒ“ƒh‚ÌŠJn‚ğÀs‚µ‚Ü‚·D
+     * ãƒ©ãƒãƒ¼ãƒãƒ³ãƒ‰ã®é–‹å§‹ã‚’å®Ÿè¡Œã—ã¾ã™ï¼
      */
     public void start(Point point) {
 
@@ -210,16 +210,16 @@ Debug.println(Level.SEVERE, "wrong resize mode: " + mode);
     }
 
     /**
-     * ƒ‰ƒo[ƒoƒ“ƒh‚Ì“r’†Œo‰ß‚ğÀs‚µ‚Ü‚·D
+     * ãƒ©ãƒãƒ¼ãƒãƒ³ãƒ‰ã®é€”ä¸­çµŒéã‚’å®Ÿè¡Œã—ã¾ã™ï¼
      */
     public void doing(Point point) {
         switch (mode) {
-        case NORMAL_MODE: { // —Ìˆæ‘I‘ğ
+        case NORMAL_MODE: { // é ˜åŸŸé¸æŠ
             Rectangle r = getSelectionBounds(point);
             fireSelecting(new RubberBandEvent(this, r));
             break;
         }
-        case MOVE_MODE: { // ˆÚ“®ƒ‚[ƒh
+        case MOVE_MODE: { // ç§»å‹•ãƒ¢ãƒ¼ãƒ‰
             isSelecting = false;
             Point p = getMovedPoint(point);
 // Debug.println(p.x + ", " + p.y);
@@ -227,7 +227,7 @@ Debug.println(Level.SEVERE, "wrong resize mode: " + mode);
             move = point;
             break;
         }
-        default: { // ƒŠƒTƒCƒY
+        default: { // ãƒªã‚µã‚¤ã‚º
             isSelecting = false;
             Rectangle r = getResizedBounds(point);
             fireResizing(new RubberBandEvent(this, r));
@@ -237,11 +237,11 @@ Debug.println(Level.SEVERE, "wrong resize mode: " + mode);
     }
 
     /**
-     * ƒ‰ƒo[ƒoƒ“ƒh‚ÌI—¹‚ğÀs‚µ‚Ü‚·D
+     * ãƒ©ãƒãƒ¼ãƒãƒ³ãƒ‰ã®çµ‚äº†ã‚’å®Ÿè¡Œã—ã¾ã™ï¼
      */
     public void done(Point point) {
         switch (mode) {
-        case NORMAL_MODE: { // —Ìˆæ‘I‘ğ
+        case NORMAL_MODE: { // é ˜åŸŸé¸æŠ
             if (isSelecting) {
                 Rectangle r = getSelectedBounds(point);
                 fireSelected(new RubberBandEvent(this, r));
@@ -249,12 +249,12 @@ Debug.println(Level.SEVERE, "wrong resize mode: " + mode);
             isSelecting = false;
             break;
         }
-        case MOVE_MODE: { // ˆÚ“®ƒ‚[ƒh‚Ìˆ—
+        case MOVE_MODE: { // ç§»å‹•ãƒ¢ãƒ¼ãƒ‰ã®å‡¦ç†
             Point p = getMovedPoint(point);
             fireMoved(new RubberBandEvent(this, p));
             break;
         }
-        default: { // ƒŠƒTƒCƒYˆ—
+        default: { // ãƒªã‚µã‚¤ã‚ºå‡¦ç†
             Rectangle r = getResizedBounds(point);
             fireResized(new RubberBandEvent(this, r));
             break;
@@ -263,45 +263,45 @@ Debug.println(Level.SEVERE, "wrong resize mode: " + mode);
 
     //-------------------------------------------------------------------------
 
-    /** RubberBand ƒCƒxƒ“ƒg‹@\‚ÌƒTƒ|[ƒg */
+    /** RubberBand ã‚¤ãƒ™ãƒ³ãƒˆæ©Ÿæ§‹ã®ã‚µãƒãƒ¼ãƒˆ */
     private RubberBandSupport rbs = new RubberBandSupport();
 
-    /** RubberBand ƒŠƒXƒi[‚ğ’Ç‰Á‚µ‚Ü‚·D */
+    /** RubberBand ãƒªã‚¹ãƒŠãƒ¼ã‚’è¿½åŠ ã—ã¾ã™ï¼ */
     public void addRubberBandListener(RubberBandListener l) {
         rbs.addRubberBandListener(l);
     }
 
-    /** RubberBand ƒŠƒXƒi[‚ğíœ‚µ‚Ü‚·D */
+    /** RubberBand ãƒªã‚¹ãƒŠãƒ¼ã‚’å‰Šé™¤ã—ã¾ã™ï¼ */
     public void removeRubberBandListener(RubberBandListener l) {
         rbs.removeRubberBandListener(l);
     }
 
-    /** ‘I‘ğ’†‚ÌƒCƒxƒ“ƒg‚ğ”­s‚µ‚Ü‚·D */
+    /** é¸æŠä¸­ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºè¡Œã—ã¾ã™ï¼ */
     public void fireSelecting(RubberBandEvent ev) {
         rbs.fireSelecting(ev);
     }
 
-    /** ‘I‘ğŠm’è‚ÌƒCƒxƒ“ƒg‚ğ”­s‚µ‚Ü‚·D */
+    /** é¸æŠç¢ºå®šã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºè¡Œã—ã¾ã™ï¼ */
     public void fireSelected(RubberBandEvent ev) {
         rbs.fireSelected(ev);
     }
 
-    /** ‘I‘ğ‘ÎÛ‚ªˆÚ“®’†‚ÌƒCƒxƒ“ƒg‚ğ”­s‚µ‚Ü‚·D */
+    /** é¸æŠå¯¾è±¡ãŒç§»å‹•ä¸­ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºè¡Œã—ã¾ã™ï¼ */
     public void fireMoving(RubberBandEvent ev) {
         rbs.fireMoving(ev);
     }
 
-    /** ‘I‘ğ‘ÎÛ‚ªˆÚ“®Šm’è‚ÌƒCƒxƒ“ƒg‚ğ”­s‚µ‚Ü‚·D */
+    /** é¸æŠå¯¾è±¡ãŒç§»å‹•ç¢ºå®šã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºè¡Œã—ã¾ã™ï¼ */
     public void fireMoved(RubberBandEvent ev) {
         rbs.fireMoved(ev);
     }
 
-    /** ‘I‘ğ‘ÎÛ‚ªƒŠƒTƒCƒY’†‚ÌƒCƒxƒ“ƒg‚ğ”­s‚µ‚Ü‚·D */
+    /** é¸æŠå¯¾è±¡ãŒãƒªã‚µã‚¤ã‚ºä¸­ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºè¡Œã—ã¾ã™ï¼ */
     public void fireResizing(RubberBandEvent ev) {
         rbs.fireResizing(ev);
     }
 
-    /** ‘I‘ğ‘ÎÛ‚ªƒŠƒTƒCƒYŠm’è‚ÌƒCƒxƒ“ƒg‚ğ”­s‚µ‚Ü‚·D */
+    /** é¸æŠå¯¾è±¡ãŒãƒªã‚µã‚¤ã‚ºç¢ºå®šã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºè¡Œã—ã¾ã™ï¼ */
     public void fireResized(RubberBandEvent ev) {
         rbs.fireResized(ev);
     }

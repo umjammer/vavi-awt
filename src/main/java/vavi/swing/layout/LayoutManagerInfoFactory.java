@@ -21,8 +21,8 @@ import vavi.util.Debug;
 
 
 /**
- * LayoutManager ƒNƒ‰ƒX‚Í Bean ‚Ìd—l‚Å‚Íˆµ‚¦‚Ü‚¹‚ñ‚Ì‚Å Introspector ‚Ì
- * ‘Ö‚í‚è‚É‚±‚ÌƒNƒ‰ƒX‚ğ—p‚¢‚Ä *LayoutManager ‚Ì BeanInfo ‚ğæ“¾‚µ‚Ü‚·D
+ * LayoutManager ã‚¯ãƒ©ã‚¹ã¯ Bean ã®ä»•æ§˜ã§ã¯æ‰±ãˆã¾ã›ã‚“ã®ã§ Introspector ã®
+ * æ›¿ã‚ã‚Šã«ã“ã®ã‚¯ãƒ©ã‚¹ã‚’ç”¨ã„ã¦ *LayoutManager ã® BeanInfo ã‚’å–å¾—ã—ã¾ã™ï¼
  * 
  * @depends layoutManager.properties
  * 
@@ -36,7 +36,7 @@ public class LayoutManagerInfoFactory {
     private LayoutManagerInfoFactory() {}
 
     /**
-     * TODO vavi.swing.layout ‚É‚ ‚é‚ÆŒˆ‚ß‘Å‚¿
+     * TODO vavi.swing.layout ã«ã‚ã‚‹ã¨æ±ºã‚æ‰“ã¡
      */
     public static BeanInfo getBeanInfo(Class<?> lmClass) {
         try {
@@ -99,13 +99,13 @@ Debug.printStackTrace(e);
 
                 key = "argTypes";
                 String argTypes = props.getProperty(i + "." + key);
-                if (argTypes != null) {	// ˆø”‚È‚µ
+                if (argTypes != null) {	// å¼•æ•°ãªã—
                     key = "args";
                     String args = props.getProperty(i + "." + key);
 
                     lmi.layout = (LayoutManager)
                         ClassUtil.newInstance(className, argTypes, args);
-                } else {			// ˆø”‚ ‚è
+                } else {			// å¼•æ•°ã‚ã‚Š
                     @SuppressWarnings("unchecked")
                     Class<LayoutManager> clazz = (Class<LayoutManager>) Class.forName(className);
                     lmi.layout = clazz.newInstance();
@@ -136,8 +136,7 @@ Debug.printStackTrace(e);
             lmis.add(lmi);
         } catch (Exception e) {
 Debug.println(Level.SEVERE, e);
-Debug.printStackTrace(e);
-            System.exit(1);
+            throw new IllegalStateException(e);
         }
 
         return lmis;

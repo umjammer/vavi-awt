@@ -22,9 +22,9 @@ import javax.swing.text.JTextComponent;
 
 
 /**
- * ƒtƒB[ƒ‹ƒh•ÒW—pƒ|ƒbƒvƒAƒbƒvƒƒjƒ…[‚Å‚·D
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ç·¨é›†ç”¨ãƒãƒƒãƒ—ã‚¢ãƒƒãƒ—ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã§ã™ï¼
  * 
- * @todo ƒA[ƒLƒeƒNƒ`ƒƒ‚¿‚á‚ñ‚Æl‚¦‚é
+ * @todo ã‚¢ãƒ¼ã‚­ãƒ†ã‚¯ãƒãƒ£ã¡ã‚ƒã‚“ã¨è€ƒãˆã‚‹
  * 
  * @depends /vavi/swing/resource${I18N}.properties
  * 
@@ -55,7 +55,7 @@ public class JEditorPopupMenu extends JPopupMenu {
     /** */
     private Editable editor;
 
-    /** TODO ‚±‚±‚à‚¢‚Ü‚¢‚¿ */
+    /** TODO ã“ã“ã‚‚ã„ã¾ã„ã¡ */
     class JEditorComponent implements Editable {
         JTextComponent tc;
         JEditorComponent(JTextComponent tc) {
@@ -93,7 +93,7 @@ public class JEditorPopupMenu extends JPopupMenu {
         this.add(selectAllAction);
     }
 
-    /** ‚¤[‚ñC‚¢‚Ü‚¢‚¿DDD */
+    /** ã†ãƒ¼ã‚“ï¼Œã„ã¾ã„ã¡ï¼ï¼ï¼ */
     private MouseInputListener mouseListener = new MouseInputAdapter() {
         public void mouseClicked(MouseEvent ev) {
             if (editor instanceof JEditorComponent) {

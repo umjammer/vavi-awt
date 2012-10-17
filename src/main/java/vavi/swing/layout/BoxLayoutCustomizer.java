@@ -137,7 +137,7 @@ public class BoxLayoutCustomizer extends BasicLayoutManagerCustomizer {
         layoutPanel.setLayout(box);
     }
 
-    /** TODO list ‚©‚ç BoxLayout ì¬ */
+    /** TODO list ã‹ã‚‰ BoxLayout ä½œæˆ */
 //  public LayoutManager getObject() {
 //      return new BoxLayout(container, BoxLayout.Y_AXIS);
 //  }

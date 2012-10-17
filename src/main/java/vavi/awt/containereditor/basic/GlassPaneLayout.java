@@ -24,13 +24,13 @@ import vavi.util.Debug;
 public class GlassPaneLayout implements LayoutManager {
 
     /**
-     * ‚±‚ÌƒNƒ‰ƒX‚Å‚Íg—p‚µ‚Ü‚¹‚ñB
+     * ã“ã®ã‚¯ãƒ©ã‚¹ã§ã¯ä½¿ç”¨ã—ã¾ã›ã‚“ã€‚
      */
     public void addLayoutComponent(String name, Component comp) {
     }
 
     /**
-     * w’è‚³‚ê‚½ƒpƒlƒ‹‚ÉƒRƒ“ƒeƒi‚ğ”z’u‚µ‚Ü‚·B
+     * æŒ‡å®šã•ã‚ŒãŸãƒ‘ãƒãƒ«ã«ã‚³ãƒ³ãƒ†ãƒŠã‚’é…ç½®ã—ã¾ã™ã€‚
      */
     public void layoutContainer(Container parent) {
 //Debug.println(Debug.getCallerMethod());
@@ -45,8 +45,8 @@ public class GlassPaneLayout implements LayoutManager {
     }
 
     /**
-     * w’è‚³‚ê‚½eƒRƒ“ƒeƒi‚ÉƒRƒ“ƒ|[ƒlƒ“ƒg‚ğ”z’u‚µ‚½‚Ì
-     * ƒpƒlƒ‹‚ÌÅ¬ƒTƒCƒY‚ğŒvZ‚µ‚Ü‚·B
+     * æŒ‡å®šã•ã‚ŒãŸè¦ªã‚³ãƒ³ãƒ†ãƒŠã«ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’é…ç½®ã—ãŸæ™‚ã®
+     * ãƒ‘ãƒãƒ«ã®æœ€å°ã‚µã‚¤ã‚ºã‚’è¨ˆç®—ã—ã¾ã™ã€‚
      */
     public Dimension minimumLayoutSize(Container parent) {
 Debug.println(parent.getSize().width + ", " + parent.getSize().height);
@@ -54,8 +54,8 @@ Debug.println(parent.getSize().width + ", " + parent.getSize().height);
     }
 
     /**
-     * w’è‚³‚ê‚½eƒRƒ“ƒeƒi‚ÉƒRƒ“ƒ|[ƒlƒ“ƒg‚ğ”z’u‚µ‚½‚Ì
-     * ƒpƒlƒ‹‚Ì„§ƒTƒCƒY‚ğŒvZ‚µ‚Ü‚·B
+     * æŒ‡å®šã•ã‚ŒãŸè¦ªã‚³ãƒ³ãƒ†ãƒŠã«ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’é…ç½®ã—ãŸæ™‚ã®
+     * ãƒ‘ãƒãƒ«ã®æ¨å¥¨ã‚µã‚¤ã‚ºã‚’è¨ˆç®—ã—ã¾ã™ã€‚
      */
     public Dimension preferredLayoutSize(Container parent) {
 Debug.println(parent.getSize().width + ", " + parent.getSize().height);
@@ -63,7 +63,7 @@ Debug.println(parent.getSize().width + ", " + parent.getSize().height);
     }
 
     /**
-     * ‚±‚ÌƒNƒ‰ƒX‚Å‚Íg—p‚µ‚Ü‚¹‚ñB
+     * ã“ã®ã‚¯ãƒ©ã‚¹ã§ã¯ä½¿ç”¨ã—ã¾ã›ã‚“ã€‚
      */
     public void removeLayoutComponent(Component comp) {
     }

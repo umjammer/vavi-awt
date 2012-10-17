@@ -26,16 +26,16 @@ import vavi.util.Debug;
 
 
 /**
- * ƒtƒ@ƒCƒ‹–¼‚ğ“ü—Í‚·‚é‚½‚ß‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚ÌŠî–{ƒNƒ‰ƒX‚Å‚·D
- * “ü—ÍƒtƒB[ƒ‹ƒh‚É"QÆ"ƒ{ƒ^ƒ“‚ª‚Â‚¢‚Ä‚¢‚Ü‚·D
- * Œ»İ‚Ì‚Æ‚±‚ëƒtƒ@ƒCƒ‹ƒ`ƒ…[ƒU‚ÆƒeƒLƒXƒgƒtƒB[ƒ‹ƒh‚ÌŠg’£‚Æ‚İ‚È‚µ‚Ä‚¢‚Ü‚·D
+ * ãƒ•ã‚¡ã‚¤ãƒ«åã‚’å…¥åŠ›ã™ã‚‹ãŸã‚ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®åŸºæœ¬ã‚¯ãƒ©ã‚¹ã§ã™ï¼
+ * å…¥åŠ›ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã«"å‚ç…§"ãƒœã‚¿ãƒ³ãŒã¤ã„ã¦ã„ã¾ã™ï¼
+ * ç¾åœ¨ã®ã¨ã“ã‚ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ¥ãƒ¼ã‚¶ã¨ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®æ‹¡å¼µã¨ã¿ãªã—ã¦ã„ã¾ã™ï¼
  * 
  * @event PropetyChangeEvent("text",,String)
  * @event PropetyChangeEvent("selectedFile",,File)
  * 
  * @depends /vavi/swing/resource${I18N}.properties
  * 
- * @done Listener ‚ÌŒ©’¼‚µ
+ * @done Listener ã®è¦‹ç›´ã—
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020503 nsano initial version <br>
@@ -49,20 +49,20 @@ public abstract class JFileChooserField extends JComponent {
     /** */
     private static final ResourceBundle rb = ResourceBundle.getBundle("vavi.swing.resource", Locale.getDefault());
 
-    /** ƒtƒ@ƒCƒ‹ƒ`ƒ…[ƒU */
+    /** ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ¥ãƒ¼ã‚¶ */
     private JFileChooser chooser;
 
     /** filechooser's approve button title */
     private String title;
 
-    /** ƒtƒ@ƒCƒ‹ƒ`ƒ…[ƒU‹N“®ƒ{ƒ^ƒ“ */
+    /** ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ¥ãƒ¼ã‚¶èµ·å‹•ãƒœã‚¿ãƒ³ */
     private JButton selectButton;
 
-    /** “ü—ÍƒtƒB[ƒ‹ƒh */
+    /** å…¥åŠ›ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ */
     protected JComponent pathField;
 
     /**
-     * “ü—ÍƒtƒB[ƒ‹ƒh•t‚«ƒtƒ@ƒCƒ‹ƒ`ƒ…[ƒU‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚ğ\’z‚µ‚Ü‚·D
+     * å…¥åŠ›ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ä»˜ããƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ¥ãƒ¼ã‚¶ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’æ§‹ç¯‰ã—ã¾ã™ï¼
      */
     public JFileChooserField(File file) {
         this();
@@ -70,7 +70,7 @@ public abstract class JFileChooserField extends JComponent {
     }
 
     /**
-     * “ü—ÍƒtƒB[ƒ‹ƒh•t‚«ƒtƒ@ƒCƒ‹ƒ`ƒ…[ƒU‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚ğ\’z‚µ‚Ü‚·D
+     * å…¥åŠ›ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ä»˜ããƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ¥ãƒ¼ã‚¶ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’æ§‹ç¯‰ã—ã¾ã™ï¼
      */
     public JFileChooserField() {
 
@@ -94,17 +94,17 @@ public abstract class JFileChooserField extends JComponent {
     }
 
     /**
-     * #pathField ‚ÉƒRƒ“ƒ|[ƒlƒ“ƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğİ’è‚µ‚Ä‰º‚³‚¢D
+     * #pathField ã«ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’è¨­å®šã—ã¦ä¸‹ã•ã„ï¼
      */
     protected abstract void setPathFieldImpl();
 
     /**
-     * #pathField ‚É #pathFieldActionListener ‚ğ add ‚µ‚Ä‚­‚¾‚³‚¢D JComponent ‚É‚Í
-     * addActionListener ‚Í–³‚¢D
+     * #pathField ã« #pathFieldActionListener ã‚’ add ã—ã¦ãã ã•ã„ï¼ JComponent ã«ã¯
+     * addActionListener ã¯ç„¡ã„ï¼
      */
     protected abstract void addActionListenerImpl();
 
-    /** ƒtƒB[ƒ‹ƒh‚Ìˆ— TODO text only ‚Å‚¢‚¢‚Ì‚©H */
+    /** ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®å‡¦ç† TODO text only ã§ã„ã„ã®ã‹ï¼Ÿ */
     protected ActionListener pathFieldActionListener = new ActionListener() {
         public void actionPerformed(ActionEvent ev) {
             // Debug.println(ev.getSource().getClass().getName());
@@ -112,7 +112,7 @@ public abstract class JFileChooserField extends JComponent {
         }
     };
 
-    /** ‘I‘ğƒ{ƒ^ƒ“‚Ìˆ— */
+    /** é¸æŠãƒœã‚¿ãƒ³ã®å‡¦ç† */
     private ActionListener selectButtonActionListener = new ActionListener() {
         public void actionPerformed(ActionEvent ev) {
             // Debug.println(ev.getSource().getClass().getName());
@@ -124,37 +124,37 @@ public abstract class JFileChooserField extends JComponent {
     };
 
     /**
-     * #pathField ‚É•¶š—ñ‚ğİ’è‚µ‚Ä‰º‚³‚¢D
+     * #pathField ã«æ–‡å­—åˆ—ã‚’è¨­å®šã—ã¦ä¸‹ã•ã„ï¼
      * 
-     * @param text •¶š—ñ
+     * @param text æ–‡å­—åˆ—
      */
     protected abstract void setTextImpl(String text);
 
     /**
-     * #pathField ‚©‚çæ“¾‚µ‚½•¶š—ñ‚ğ•Ô‚µ‚Ä‰º‚³‚¢D
+     * #pathField ã‹ã‚‰å–å¾—ã—ãŸæ–‡å­—åˆ—ã‚’è¿”ã—ã¦ä¸‹ã•ã„ï¼
      * 
-     * @return •\¦‚³‚ê‚Ä‚¢‚é•¶š—ñ
+     * @return è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹æ–‡å­—åˆ—
      */
     protected abstract String getTextImpl();
 
     /**
-     * #pathField ‚Éƒtƒ@ƒCƒ‹‚ğİ’è‚µ‚Ä‰º‚³‚¢D
+     * #pathField ã«ãƒ•ã‚¡ã‚¤ãƒ«ã‚’è¨­å®šã—ã¦ä¸‹ã•ã„ï¼
      * 
-     * @param file ƒtƒ@ƒCƒ‹
+     * @param file ãƒ•ã‚¡ã‚¤ãƒ«
      */
     protected abstract void setSelectedFileImpl(File file);
 
     /**
-     * #pathField ‚©‚çæ“¾‚µ‚½ƒtƒ@ƒCƒ‹‚ğ•Ô‚µ‚Ä‰º‚³‚¢D
+     * #pathField ã‹ã‚‰å–å¾—ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’è¿”ã—ã¦ä¸‹ã•ã„ï¼
      * 
-     * @return •\¦‚³‚ê‚Ä‚¢‚éƒtƒ@ƒCƒ‹
+     * @return è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«
      */
     protected abstract File getSelectedFileImpl();
 
-    // Field ‚Æ‚µ‚Ä‚Ì‹@”\ -----------------------------------------------------
+    // Field ã¨ã—ã¦ã®æ©Ÿèƒ½ -----------------------------------------------------
 
     /**
-     * •¶š—ñ‚ğİ’è‚µ‚Ü‚·D
+     * æ–‡å­—åˆ—ã‚’è¨­å®šã—ã¾ã™ï¼
      */
     public void setText(String text) {
         String oldString = getTextImpl();
@@ -163,18 +163,18 @@ public abstract class JFileChooserField extends JComponent {
     }
 
     /**
-     * •¶š—ñ‚ğæ“¾‚µ‚Ü‚·D
+     * æ–‡å­—åˆ—ã‚’å–å¾—ã—ã¾ã™ï¼
      */
     public String getText() {
         return getTextImpl();
     }
 
-    // FileChooser ‚Æ‚µ‚Ä‚Ì‹@”\ -----------------------------------------------
+    // FileChooser ã¨ã—ã¦ã®æ©Ÿèƒ½ -----------------------------------------------
 
     /**
-     * ‘I‘ğ‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ğİ’è‚µ‚Ü‚·D ƒtƒ@ƒCƒ‹ƒ`ƒ…[ƒU‚ÌƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ‚Íw’è‚µ‚½ƒtƒ@ƒCƒ‹‚Ì ƒfƒBƒŒƒNƒgƒŠ‚É‚È‚è‚Ü‚·D
+     * é¸æŠã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’è¨­å®šã—ã¾ã™ï¼ ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ¥ãƒ¼ã‚¶ã®ã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã¯æŒ‡å®šã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã® ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã«ãªã‚Šã¾ã™ï¼
      * 
-     * @param file ƒtƒ@ƒCƒ‹
+     * @param file ãƒ•ã‚¡ã‚¤ãƒ«
      */
     public void setSelectedFile(File file) {
         File oldFile = getSelectedFileImpl();
@@ -183,15 +183,15 @@ public abstract class JFileChooserField extends JComponent {
     }
 
     /**
-     * ‘I‘ğ‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ğ•Ô‚µ‚Ü‚·D
+     * é¸æŠã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’è¿”ã—ã¾ã™ï¼
      * 
-     * @return •\¦‚³‚ê‚Ä‚¢‚éƒtƒ@ƒCƒ‹
+     * @return è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«
      */
     public File getSelectedFile() {
         return getSelectedFileImpl();
     }
 
-    /** ƒtƒ@ƒCƒ‹ƒ`ƒ…[ƒU‚ÌƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ‚ğİ’è‚µ‚Ü‚·D */
+    /** ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ¥ãƒ¼ã‚¶ã®ã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’è¨­å®šã—ã¾ã™ï¼ */
     public void setCurrentDirectory(File file) {
         File defaultPath = null;
         if (file.exists()) {
@@ -206,14 +206,14 @@ public abstract class JFileChooserField extends JComponent {
         chooser.setCurrentDirectory(defaultPath);
     }
 
-    /** ƒtƒ@ƒCƒ‹ƒ`ƒ…[ƒU‚ÌƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ‚ğæ“¾‚µ‚Ü‚·D */
+    /** ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ¥ãƒ¼ã‚¶ã®ã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’å–å¾—ã—ã¾ã™ï¼ */
     // private File getCurrentDirectory() {
     // return chooser.getCurrentDirectory();
     // }
     /**
-     * ƒtƒ@ƒCƒ‹ƒ`ƒ…[ƒU‚Ìƒtƒ@ƒCƒ‹‘I‘ğƒ‚[ƒh‚ğİ’è‚µ‚Ü‚·D
+     * ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ¥ãƒ¼ã‚¶ã®ãƒ•ã‚¡ã‚¤ãƒ«é¸æŠãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã—ã¾ã™ï¼
      * 
-     * @param selectionMode ƒtƒ@ƒCƒ‹‘I‘ğƒ^ƒCƒv
+     * @param selectionMode ãƒ•ã‚¡ã‚¤ãƒ«é¸æŠã‚¿ã‚¤ãƒ—
      */
     public void setFileSelectionMode(int selectionMode) {
         chooser.setFileSelectionMode(selectionMode);
@@ -232,7 +232,7 @@ public abstract class JFileChooserField extends JComponent {
     // -------------------------------------------------------------------------
 
     /**
-     * ‚·‚×‚Ä‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚É setEnabled ‚·‚é‚æ‚¤‚ÉƒI[ƒo[ƒ‰ƒCƒh‚µ‚Ü‚·D
+     * ã™ã¹ã¦ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã« setEnabled ã™ã‚‹ã‚ˆã†ã«ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã—ã¾ã™ï¼
      */
     public void setBackground(Color background) {
         super.setBackground(background);
@@ -241,7 +241,7 @@ public abstract class JFileChooserField extends JComponent {
     }
 
     /**
-     * ‚·‚×‚Ä‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚É setEnabled ‚·‚é‚æ‚¤‚ÉƒI[ƒo[ƒ‰ƒCƒh‚µ‚Ü‚·D
+     * ã™ã¹ã¦ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã« setEnabled ã™ã‚‹ã‚ˆã†ã«ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã—ã¾ã™ï¼
      */
     public void setForeground(Color foreground) {
         super.setForeground(foreground);
@@ -250,7 +250,7 @@ public abstract class JFileChooserField extends JComponent {
     }
 
     /**
-     * ‚·‚×‚Ä‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚É setEnabled ‚·‚é‚æ‚¤‚ÉƒI[ƒo[ƒ‰ƒCƒh‚µ‚Ü‚·D
+     * ã™ã¹ã¦ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã« setEnabled ã™ã‚‹ã‚ˆã†ã«ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã—ã¾ã™ï¼
      */
     public void setFont(Font font) {
         super.setFont(font);
@@ -259,7 +259,7 @@ public abstract class JFileChooserField extends JComponent {
     }
 
     /**
-     * ‚·‚×‚Ä‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚É setEnabled ‚·‚é‚æ‚¤‚ÉƒI[ƒo[ƒ‰ƒCƒh‚µ‚Ü‚·D
+     * ã™ã¹ã¦ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã« setEnabled ã™ã‚‹ã‚ˆã†ã«ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã—ã¾ã™ï¼
      */
     public void setEnabled(boolean isEnabled) {
         super.setEnabled(isEnabled);
@@ -268,9 +268,9 @@ public abstract class JFileChooserField extends JComponent {
     }
 
     /**
-     * ‚·‚×‚Ä‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚É add ‚·‚é‚æ‚¤‚ÉƒI[ƒo[ƒ‰ƒCƒh‚µ‚Ü‚·D
+     * ã™ã¹ã¦ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã« add ã™ã‚‹ã‚ˆã†ã«ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã—ã¾ã™ï¼
      * 
-     * @param l ƒ}ƒEƒXƒŠƒXƒi
+     * @param l ãƒã‚¦ã‚¹ãƒªã‚¹ãƒŠ
      */
     public synchronized void addMouseListener(MouseListener l) {
         super.addMouseListener(l);
@@ -279,9 +279,9 @@ public abstract class JFileChooserField extends JComponent {
     }
 
     /**
-     * ‚·‚×‚Ä‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚É add ‚·‚é‚æ‚¤‚ÉƒI[ƒo[ƒ‰ƒCƒh‚µ‚Ü‚·D
+     * ã™ã¹ã¦ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã« add ã™ã‚‹ã‚ˆã†ã«ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã—ã¾ã™ï¼
      * 
-     * @param l ƒ}ƒEƒXƒ‚[ƒVƒ‡ƒ“ƒŠƒXƒi
+     * @param l ãƒã‚¦ã‚¹ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒªã‚¹ãƒŠ
      */
     public synchronized void addMouseMotionListener(MouseMotionListener l) {
         super.addMouseMotionListener(l);
@@ -290,9 +290,9 @@ public abstract class JFileChooserField extends JComponent {
     }
 
     /**
-     * ‚·‚×‚Ä‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚É remove ‚·‚é‚æ‚¤‚ÉƒI[ƒo[ƒ‰ƒCƒh‚µ‚Ü‚·D
+     * ã™ã¹ã¦ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã« remove ã™ã‚‹ã‚ˆã†ã«ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã—ã¾ã™ï¼
      * 
-     * @param l ƒ}ƒEƒXƒŠƒXƒi
+     * @param l ãƒã‚¦ã‚¹ãƒªã‚¹ãƒŠ
      */
     public synchronized void removeMouseListener(MouseListener l) {
         super.removeMouseListener(l);
@@ -301,9 +301,9 @@ public abstract class JFileChooserField extends JComponent {
     }
 
     /**
-     * ‚·‚×‚Ä‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚É remove ‚·‚é‚æ‚¤‚ÉƒI[ƒo[ƒ‰ƒCƒh‚µ‚Ü‚·D
+     * ã™ã¹ã¦ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã« remove ã™ã‚‹ã‚ˆã†ã«ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã—ã¾ã™ï¼
      * 
-     * @param l ƒ}ƒEƒXƒ‚[ƒVƒ‡ƒ“ƒŠƒXƒi
+     * @param l ãƒã‚¦ã‚¹ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒªã‚¹ãƒŠ
      */
     public synchronized void removeMouseMotionListener(MouseMotionListener l) {
         super.removeMouseMotionListener(l);

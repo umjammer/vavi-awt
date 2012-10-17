@@ -13,21 +13,21 @@ import java.util.Vector;
 
 
 /**
- * Action ƒŠƒXƒi[‚Ìƒ†[ƒeƒBƒŠƒeƒB‚Å‚·D
+ * Action ãƒªã‚¹ãƒŠãƒ¼ã®ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ã§ã™ï¼
  * 
  * @target 1.1
- * @caution JDK 1.1 —p‚É‘‚©‚ê‚Ä‚¢‚é‚Ì‚Å swing ‚Íg‚Á‚¿‚á‚¢‚©‚ñI
+ * @caution JDK 1.1 ç”¨ã«æ›¸ã‹ã‚Œã¦ã„ã‚‹ã®ã§ swing ã¯ä½¿ã£ã¡ã‚ƒã„ã‹ã‚“ï¼
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020503 nsano initial version <br>
  *          0.01 020914 nsano TODO sychronized <br>
  */
 public class ActionSupport implements Serializable {
 
-    /** Action ‚ÌƒŠƒXƒi[ */
+    /** Action ã®ãƒªã‚¹ãƒŠãƒ¼ */
     private Vector listeners = new Vector();
 
     /**
-     * Action ƒŠƒXƒi[‚ğƒAƒ^ƒbƒ`‚µ‚Ü‚·D
+     * Action ãƒªã‚¹ãƒŠãƒ¼ã‚’ã‚¢ã‚¿ãƒƒãƒã—ã¾ã™ï¼
      * 
      * @param l ActionListener
      */
@@ -36,7 +36,7 @@ public class ActionSupport implements Serializable {
     }
 
     /**
-     * Action ƒŠƒXƒi[‚ğƒŠƒ€[ƒu‚µ‚Ü‚·D
+     * Action ãƒªã‚¹ãƒŠãƒ¼ã‚’ãƒªãƒ ãƒ¼ãƒ–ã—ã¾ã™ï¼
      * 
      * @param l ActionListener
      */
@@ -45,7 +45,7 @@ public class ActionSupport implements Serializable {
     }
 
     /**
-     * ƒCƒxƒ“ƒg‚ğ”­s‚µ‚Ü‚·D
+     * ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºè¡Œã—ã¾ã™ï¼
      */
     public synchronized void fireActionPerformed(ActionEvent ev) {
         for (int i = 0; i < listeners.size(); i++) {

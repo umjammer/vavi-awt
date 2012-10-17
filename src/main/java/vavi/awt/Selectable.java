@@ -8,7 +8,7 @@ package vavi.awt;
 
 
 /**
- * ‘I‘ğ‰Â”\‚Å‚ ‚éƒCƒ“ƒ^[ƒtƒF[ƒXD
+ * é¸æŠå¯èƒ½ã§ã‚ã‚‹ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ï¼
  *
  * @author	<a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version	0.00	020510	nsano	initial version <br>
@@ -16,12 +16,12 @@ package vavi.awt;
 public interface Selectable {
 
     /**
-     * ‘I‘ğó‘Ô‚ğİ’è‚µ‚Ü‚·D
+     * é¸æŠçŠ¶æ…‹ã‚’è¨­å®šã—ã¾ã™ï¼
      */
     void setSelected(boolean isSelected);
 
     /**
-     * ‘I‘ğó‘Ô‚ğ•Ô‚µ‚Ü‚·D
+     * é¸æŠçŠ¶æ…‹ã‚’è¿”ã—ã¾ã™ï¼
      */
     boolean isSelected();
 }

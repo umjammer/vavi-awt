@@ -28,7 +28,7 @@ import vavi.util.Debug;
 
 
 /**
- * ƒhƒ‰ƒbƒOƒAƒ“ƒhƒhƒƒbƒv‚ª‚Å‚«‚éƒNƒ‰ƒXD
+ * ãƒ‰ãƒ©ãƒƒã‚°ã‚¢ãƒ³ãƒ‰ãƒ‰ãƒ­ãƒƒãƒ—ãŒã§ãã‚‹ã‚¯ãƒ©ã‚¹ï¼
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 010820 nsano initial version <br>
@@ -55,21 +55,21 @@ public abstract class Draggable {
     private static final Point point0 = new Point(0, 0);
 
     /**
-     * ƒhƒ‰ƒbƒO‚³‚ê‚é Transferable ‚ğ•Ô‚·ˆ—‚ğƒI[ƒoƒ‰ƒCƒh‚µ‚Ä‘‚¢‚Ä‚­‚¾‚³‚¢D
-     * ƒhƒ‰ƒbƒO‚µ‚È‚¢ê‡‚Í null ‚ğ•Ô‚·‚æ‚¤‚É‚µ‚Ä‚­‚¾‚³‚¢D
-     * ‚±‚Ìƒƒ\ƒbƒh‚Íƒhƒ‰ƒbƒOŠJn‚Ì‰Šúˆ—‚Æ‚µ‚Äg—p‚Å‚«‚Ü‚·D
-     * TODO ƒhƒ‰ƒbƒOŠJn‚Ì‰Šúˆ—‚Æ‚µ‚Ä‚Íƒl[ƒ~ƒ“ƒO‚ªˆ«‚¢
+     * ãƒ‰ãƒ©ãƒƒã‚°ã•ã‚Œã‚‹ Transferable ã‚’è¿”ã™å‡¦ç†ã‚’ã‚ªãƒ¼ãƒãƒ©ã‚¤ãƒ‰ã—ã¦æ›¸ã„ã¦ãã ã•ã„ï¼
+     * ãƒ‰ãƒ©ãƒƒã‚°ã—ãªã„å ´åˆã¯ null ã‚’è¿”ã™ã‚ˆã†ã«ã—ã¦ãã ã•ã„ï¼
+     * ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã¯ãƒ‰ãƒ©ãƒƒã‚°é–‹å§‹ã®åˆæœŸå‡¦ç†ã¨ã—ã¦ä½¿ç”¨ã§ãã¾ã™ï¼
+     * TODO ãƒ‰ãƒ©ãƒƒã‚°é–‹å§‹ã®åˆæœŸå‡¦ç†ã¨ã—ã¦ã¯ãƒãƒ¼ãƒŸãƒ³ã‚°ãŒæ‚ªã„
      * @see #dragDropEnd
      */
     protected abstract Transferable getTransferable(DragGestureEvent ev);
 
     /**
-     * ƒhƒ‰ƒbƒOƒAƒ“ƒhƒhƒƒbƒv‚ÌI—¹ˆ—‚ğƒI[ƒoƒ‰ƒCƒh‚µ‚Ä‘‚¢‚Ä‚­‚¾‚³‚¢D
+     * ãƒ‰ãƒ©ãƒƒã‚°ã‚¢ãƒ³ãƒ‰ãƒ‰ãƒ­ãƒƒãƒ—ã®çµ‚äº†å‡¦ç†ã‚’ã‚ªãƒ¼ãƒãƒ©ã‚¤ãƒ‰ã—ã¦æ›¸ã„ã¦ãã ã•ã„ï¼
      */
     protected abstract void dragDropEnd(DragSourceEvent ev);
 
     /**
-     * ó‚¯•t‚¯‚éƒhƒ‰ƒbƒOƒAƒNƒVƒ‡ƒ“‚ğƒZƒbƒg‚µ‚Ü‚·D
+     * å—ã‘ä»˜ã‘ã‚‹ãƒ‰ãƒ©ãƒƒã‚°ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚’ã‚»ãƒƒãƒˆã—ã¾ã™ï¼
      */
     public void setDragAction(int dragAction) {
 //      this.dragAction = dragAction;
@@ -77,18 +77,18 @@ public abstract class Draggable {
     }
 
     /**
-     * ƒhƒ‰ƒbƒO‚ÌƒCƒ[ƒW‚ğƒZƒbƒg‚µ‚Ü‚·D
+     * ãƒ‰ãƒ©ãƒƒã‚°æ™‚ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ã‚»ãƒƒãƒˆã—ã¾ã™ï¼
      */
     public void setImage(Image image) {
         this.image = image;
     }
 
     /**
-     * ƒhƒ‰ƒbƒO‚³‚ê‚éˆ—‚ğ‰Šú‰»‚µ‚Ü‚·D
-     * ˆê‚Âˆê‚Â‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚É Draggable ‚ğİ’è‚·‚éÛ‚Í
-     * data ‚ÉƒRƒ“ƒ|[ƒlƒ“ƒg‚Ìƒf[ƒ^‚ğw’è‚µ‚½‚Ù‚¤‚ªŠy‚Å‚·D
-     * ‚»‚êˆÈŠO (JTree “™) ‚Í data ‚Í null ‚É‚µ‚Ä‚¨‚«‚Ü‚·D
-     * @param	source	ƒhƒ‰ƒbƒO‚³‚ê‚éƒRƒ“ƒ|[ƒlƒ“ƒg
+     * ãƒ‰ãƒ©ãƒƒã‚°ã•ã‚Œã‚‹å‡¦ç†ã‚’åˆæœŸåŒ–ã—ã¾ã™ï¼
+     * ä¸€ã¤ä¸€ã¤ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã« Draggable ã‚’è¨­å®šã™ã‚‹éš›ã¯
+     * data ã«ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®ãƒ‡ãƒ¼ã‚¿ã‚’æŒ‡å®šã—ãŸã»ã†ãŒæ¥½ã§ã™ï¼
+     * ãã‚Œä»¥å¤– (JTree ç­‰) ã¯ data ã¯ null ã«ã—ã¦ãŠãã¾ã™ï¼
+     * @param	source	ãƒ‰ãƒ©ãƒƒã‚°ã•ã‚Œã‚‹ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ
      * @param	data	the real data
      */
     public Draggable(Component source, Object data) {
@@ -207,7 +207,7 @@ Debug.printStackTrace(e);
     	}
 	    
     	/**
-    	 * ƒhƒ‰ƒbƒOó‘Ô‚É‚È‚Á‚½‚Æ‚«‚ÉŒÄ‚Î‚ê‚Ü‚·D
+    	 * ãƒ‰ãƒ©ãƒƒã‚°çŠ¶æ…‹ã«ãªã£ãŸã¨ãã«å‘¼ã°ã‚Œã¾ã™ï¼
     	 * @param	ev	the event
     	 */
     	public void dragEnter(DragSourceDragEvent ev) {
@@ -221,7 +221,7 @@ Debug.println("my action: " + ev.getDropAction() + ": " +
 ((ev.getDropAction() & DnDConstants.ACTION_LINK) != 0 ? "link" : ""));
 //	        if ((myaction & Draggable.this.dragAction) != 0) {    
 //		        context.setCursor(DragSource.DefaultCopyDrop);
-		        // ƒJ[ƒ\ƒ‹‚ğ•ÏX‚µ‚Ü‚·D
+		        // ã‚«ãƒ¼ã‚½ãƒ«ã‚’å¤‰æ›´ã—ã¾ã™ï¼
 		        context.setCursor(getCursor(ev.getDropAction()));
 //	        } else {
 //		        context.setCursor(DragSource.DefaultCopyNoDrop);
@@ -252,7 +252,7 @@ Debug.println("my action: " + ev.getDropAction() + ": " +
     	}
 
     	/**
-    	 * ƒhƒƒbƒvƒAƒNƒVƒ‡ƒ“‚ª•ÏX‚³‚ê‚½‚Æ‚«‚ÉŒÄ‚Î‚ê‚Ü‚·D
+    	 * ãƒ‰ãƒ­ãƒƒãƒ—ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãŒå¤‰æ›´ã•ã‚ŒãŸã¨ãã«å‘¼ã°ã‚Œã¾ã™ï¼
     	 * @param	ev	the event     
     	 */
     	public void dropActionChanged(DragSourceDragEvent ev) {
@@ -261,8 +261,8 @@ Debug.println("my action: " + ev.getUserAction() + ": " +
 ((ev.getUserAction() & DnDConstants.ACTION_COPY) != 0 ? "copy" : "") +
 ((ev.getUserAction() & DnDConstants.ACTION_MOVE) != 0 ? "move" : "") +
 ((ev.getUserAction() & DnDConstants.ACTION_LINK) != 0 ? "link" : ""));
-    	    // ƒJ[ƒ\ƒ‹‚ğ•ÏX‚µ‚Ü‚·D
-    	    // TODO ‚È‚ñ‚© action = 0 ‚É‚È‚é‚¼H
+    	    // ã‚«ãƒ¼ã‚½ãƒ«ã‚’å¤‰æ›´ã—ã¾ã™ï¼
+    	    // TODO ãªã‚“ã‹ action = 0 ã«ãªã‚‹ãï¼Ÿ
     	    context.setCursor(getCursor(ev.getUserAction()));
     	}
     }

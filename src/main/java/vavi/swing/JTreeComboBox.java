@@ -27,21 +27,21 @@ import javax.swing.tree.TreeModel;
 
 
 /**
- * ƒhƒƒbƒvƒ_ƒEƒ“ƒŠƒXƒg‚ªƒcƒŠ[•\¦‚ÌƒRƒ“ƒ{ƒ{ƒbƒNƒX‚Å‚·D
+ * ãƒ‰ãƒ­ãƒƒãƒ—ãƒ€ã‚¦ãƒ³ãƒªã‚¹ãƒˆãŒãƒ„ãƒªãƒ¼è¡¨ç¤ºã®ã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹ã§ã™ï¼
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020330 nsano rename, repackage <br>
  */
 public class JTreeComboBox extends JComboBox {
 
-    /** ƒhƒƒbƒvƒ_ƒEƒ“ƒŠƒXƒg‚ªƒcƒŠ[•\¦‚ÌƒRƒ“ƒ{ƒ{ƒbƒNƒX‚ğ\’z‚µ‚Ü‚·D */
+    /** ãƒ‰ãƒ­ãƒƒãƒ—ãƒ€ã‚¦ãƒ³ãƒªã‚¹ãƒˆãŒãƒ„ãƒªãƒ¼è¡¨ç¤ºã®ã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹ã‚’æ§‹ç¯‰ã—ã¾ã™ï¼ */
     public JTreeComboBox(TreeModel aTreeModel) {
         super();
         setModel(new TreeToListModel(aTreeModel));
         setRenderer(new DefaultTreeComboBoxCellRenderer());
     }
 
-    /** ƒcƒŠ[ƒ‚ƒfƒ‹‚ğƒŠƒXƒgƒ‚ƒfƒ‹‚É•ÏŠ·‚µ‚Äˆµ‚¤ƒNƒ‰ƒX‚Å‚·D */
+    /** ãƒ„ãƒªãƒ¼ãƒ¢ãƒ‡ãƒ«ã‚’ãƒªã‚¹ãƒˆãƒ¢ãƒ‡ãƒ«ã«å¤‰æ›ã—ã¦æ‰±ã†ã‚¯ãƒ©ã‚¹ã§ã™ï¼ */
     class TreeToListModel extends AbstractListModel implements ComboBoxModel, TreeModelListener {
 
         TreeModel source;
@@ -143,37 +143,37 @@ public class JTreeComboBox extends JComboBox {
 }
 
 /**
- * JTreeComboBox ‚ÌˆêƒGƒ“ƒgƒŠ‚ğ•\‚·ƒNƒ‰ƒX‚Å‚·D
+ * JTreeComboBox ã®ä¸€ã‚¨ãƒ³ãƒˆãƒªã‚’è¡¨ã™ã‚¯ãƒ©ã‚¹ã§ã™ï¼
  */
 class ListEntry {
 
-    /** ƒGƒ“ƒgƒŠ‚ÌƒIƒuƒWƒFƒNƒg */
+    /** ã‚¨ãƒ³ãƒˆãƒªã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ */
     Object object;
 
-    /** ƒcƒŠ[‚ÌŠK‘w */
+    /** ãƒ„ãƒªãƒ¼ã®éšå±¤ */
     int level;
 
-    /** ––—t‚©‚Ç‚¤‚© */
+    /** æœ«è‘‰ã‹ã©ã†ã‹ */
     boolean isNode;
 
-    /** JTreeComboBox ‚ÌˆêƒGƒ“ƒgƒŠ‚ğ\’z‚µ‚Ü‚·D */
+    /** JTreeComboBox ã®ä¸€ã‚¨ãƒ³ãƒˆãƒªã‚’æ§‹ç¯‰ã—ã¾ã™ï¼ */
     public ListEntry(Object anObject, int aLevel, boolean isNode) {
         object = anObject;
         level = aLevel;
         this.isNode = isNode;
     }
 
-    /** ƒGƒ“ƒgƒŠ‚ÌƒIƒuƒWƒFƒNƒg‚ğ•Ô‚µ‚Ü‚·D */
+    /** ã‚¨ãƒ³ãƒˆãƒªã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è¿”ã—ã¾ã™ï¼ */
     public Object object() {
         return object;
     }
 
-    /** ƒGƒ“ƒgƒŠ‚ÌƒcƒŠ[‚ÌŠK‘w‚ğ•Ô‚µ‚Ü‚·D */
+    /** ã‚¨ãƒ³ãƒˆãƒªã®ãƒ„ãƒªãƒ¼ã®éšå±¤ã‚’è¿”ã—ã¾ã™ï¼ */
     public int level() {
         return level;
     }
 
-    /** ––—t‚©‚Ç‚¤‚©‚ğ•Ô‚µ‚Ü‚·D */
+    /** æœ«è‘‰ã‹ã©ã†ã‹ã‚’è¿”ã—ã¾ã™ï¼ */
     public boolean isNode() {
         return isNode;
     }

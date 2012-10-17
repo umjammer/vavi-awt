@@ -23,7 +23,7 @@ import javax.swing.border.*;
  * @beaninfo Font "titleFont"
  * @beaninfo Color "titleColor"
  * 
- * TODO ‚½‚Ô‚ñ bean ‚Æ‚µ‚Ä‹@”\‚·‚éD
+ * TODO ãŸã¶ã‚“ bean ã¨ã—ã¦æ©Ÿèƒ½ã™ã‚‹ï¼
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020524 nsano initial version <br>

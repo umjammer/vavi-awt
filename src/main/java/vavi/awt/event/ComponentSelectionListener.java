@@ -10,7 +10,7 @@ import java.util.EventListener;
 
 
 /**
- * ComponentSelection ƒŠƒXƒi[ƒCƒ“ƒ^[ƒtƒF[ƒX‚Å‚·D
+ * ComponentSelection ãƒªã‚¹ãƒŠãƒ¼ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã§ã™ï¼
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020509 nsano initial version <br>
@@ -18,7 +18,7 @@ import java.util.EventListener;
 public interface ComponentSelectionListener extends EventListener {
 
     /**
-     * ‘®«‚ğ•ÏX‚µ‚Ü‚·D
+     * å±æ€§ã‚’å¤‰æ›´ã—ã¾ã™ï¼
      */
     void valueChanged(ComponentSelectionEvent ev);
 }

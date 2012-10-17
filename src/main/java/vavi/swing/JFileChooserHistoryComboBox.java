@@ -10,8 +10,8 @@ import java.io.File;
 
 
 /**
- * ƒtƒ@ƒCƒ‹–¼‚ğ“ü—Í‚·‚é‚½‚ß‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚Å‚·D
- * ƒqƒXƒgƒŠ•t‚«ƒRƒ“ƒ{ƒ{ƒbƒNƒX‚É"QÆ"ƒ{ƒ^ƒ“‚ª‚Â‚¢‚Ä‚¢‚Ü‚·D
+ * ãƒ•ã‚¡ã‚¤ãƒ«åã‚’å…¥åŠ›ã™ã‚‹ãŸã‚ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã§ã™ï¼
+ * ãƒ’ã‚¹ãƒˆãƒªä»˜ãã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹ã«"å‚ç…§"ãƒœã‚¿ãƒ³ãŒã¤ã„ã¦ã„ã¾ã™ï¼
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020503 nsano initial version <br>
@@ -22,60 +22,60 @@ import java.io.File;
 public class JFileChooserHistoryComboBox extends JFileChooserField {
 
     /**
-     * ƒqƒXƒgƒŠ•t‚«ƒRƒ“ƒ{ƒ{ƒbƒNƒX•t‚«ƒtƒ@ƒCƒ‹ƒ`ƒ…[ƒU‚ğ\’z‚µ‚Ü‚·D
+     * ãƒ’ã‚¹ãƒˆãƒªä»˜ãã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹ä»˜ããƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ¥ãƒ¼ã‚¶ã‚’æ§‹ç¯‰ã—ã¾ã™ï¼
      */
     public JFileChooserHistoryComboBox() {
         super();
     }
 
     /**
-     * ƒqƒXƒgƒŠ•t‚«ƒRƒ“ƒ{ƒ{ƒbƒNƒX•t‚«ƒtƒ@ƒCƒ‹ƒ`ƒ…[ƒU‚ğ\’z‚µ‚Ü‚·D
+     * ãƒ’ã‚¹ãƒˆãƒªä»˜ãã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹ä»˜ããƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ¥ãƒ¼ã‚¶ã‚’æ§‹ç¯‰ã—ã¾ã™ï¼
      */
     public JFileChooserHistoryComboBox(File file) {
         super(file);
     }
 
-    /** ƒqƒXƒgƒŠ•t‚«ƒRƒ“ƒ{ƒ{ƒbƒNƒX */
+    /** ãƒ’ã‚¹ãƒˆãƒªä»˜ãã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹ */
     protected void setPathFieldImpl() {
         pathField = new JHistoryComboBox();
     }
 
-    /** ƒRƒ“ƒ{ƒ{ƒbƒNƒX‚ÌƒAƒNƒVƒ‡ƒ“ƒŠƒXƒi */
+    /** ã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹ã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒªã‚¹ãƒŠ */
     protected void addActionListenerImpl() {
         ((JHistoryComboBox) pathField).addActionListener(pathFieldActionListener);
     }
 
     /**
-     * •¶š—ñ‚ğƒRƒ“ƒ{ƒ{ƒbƒNƒX‚Éİ’è‚µ‚Ü‚·D
+     * æ–‡å­—åˆ—ã‚’ã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹ã«è¨­å®šã—ã¾ã™ï¼
      * 
-     * @param text •¶š—ñ
+     * @param text æ–‡å­—åˆ—
      */
     protected void setTextImpl(String text) {
         ((JHistoryComboBox) pathField).setSelectedItem(text);
     }
 
     /**
-     * ƒRƒ“ƒ{ƒ{ƒbƒNƒX‚Å‘I‘ğ‚³‚ê‚Ä‚¢‚é•¶š—ñ‚ğ•Ô‚µ‚Ü‚·D
+     * ã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹ã§é¸æŠã•ã‚Œã¦ã„ã‚‹æ–‡å­—åˆ—ã‚’è¿”ã—ã¾ã™ï¼
      * 
-     * @return ‘I‘ğ‚³‚ê‚Ä‚¢‚é•¶š—ñ
+     * @return é¸æŠã•ã‚Œã¦ã„ã‚‹æ–‡å­—åˆ—
      */
     protected String getTextImpl() {
         return (String) ((JHistoryComboBox) pathField).getSelectedItem();
     }
 
     /**
-     * ƒtƒ@ƒCƒ‹‚ğƒRƒ“ƒ{ƒ{ƒbƒNƒX‚Éİ’è‚µ‚Ü‚·D
+     * ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹ã«è¨­å®šã—ã¾ã™ï¼
      * 
-     * @param file ƒtƒ@ƒCƒ‹
+     * @param file ãƒ•ã‚¡ã‚¤ãƒ«
      */
     protected void setSelectedFileImpl(File file) {
         setTextImpl(file.toString());
     }
 
     /**
-     * ƒRƒ“ƒ{ƒ{ƒbƒNƒX‚Å‘I‘ğ‚³‚ê‚Ä‚¢‚éƒtƒ@ƒCƒ‹‚ğ•Ô‚µ‚Ü‚·D
+     * ã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹ã§é¸æŠã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’è¿”ã—ã¾ã™ï¼
      * 
-     * @return ‘I‘ğ‚³‚ê‚Ä‚¢‚éƒtƒ@ƒCƒ‹
+     * @return é¸æŠã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«
      */
     protected File getSelectedFileImpl() {
         String path = getTextImpl();

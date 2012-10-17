@@ -37,7 +37,7 @@ import vavi.swing.fontchooser.SmallFontEditor;
  */
 public class SwingFontEditor extends SwingEditorSupport {
 
-    /** リソースバンドル */
+    /** 繝ｪ繧ｽ繝ｼ繧ｹ繝舌Φ繝峨Ν */
     private static final ResourceBundle rb =
 	ResourceBundle.getBundle("vavi.swing.resource", Locale.getDefault());
 
@@ -78,7 +78,7 @@ public class SwingFontEditor extends SwingEditorSupport {
         editorComponent.removePropertyChangeListener(pcl);
     }
 
-    /** TODO unplug 要るかどうか要検証 */
+    /** TODO unplug 隕√ｋ縺九←縺�縺玖ｦ∵､懆ｨｼ */
     public void setValue(Object value) {
     	super.setValue(value);
         unplug();

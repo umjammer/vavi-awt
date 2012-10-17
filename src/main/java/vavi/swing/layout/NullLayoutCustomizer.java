@@ -29,7 +29,7 @@ import vavi.swing.event.EditorListener;
  * NullLayoutCustomizer.
  * <p>
  * TODO overlaid
- * DONE GridBagLayout •ÏŠ·ƒ{ƒ^ƒ“
+ * DONE GridBagLayout å¤‰æ›ãƒœã‚¿ãƒ³
  * </p>
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020527 nsano initial version <br>

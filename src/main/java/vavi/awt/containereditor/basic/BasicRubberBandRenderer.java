@@ -22,7 +22,7 @@ import vavi.awt.rubberband.RubberBandRenderer;
 
 
 /**
- * Basic ƒ‰ƒo[ƒoƒ“ƒhƒŒƒ“ƒ_ƒ‰‚Å‚·D
+ * Basic ãƒ©ãƒãƒ¼ãƒãƒ³ãƒ‰ãƒ¬ãƒ³ãƒ€ãƒ©ã§ã™ï¼
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 010829 nsano initial version <br>
@@ -39,10 +39,10 @@ public class BasicRubberBandRenderer implements RubberBandRenderer {
         this.container = container;
     }
 
-    /** ƒŠƒTƒCƒY‚Ì• */
+    /** ãƒªã‚µã‚¤ã‚ºã®å¹… */
     private Insets resizingInsets = new Insets(5, 5, 5, 5);
 
-    /** ƒJ[ƒ\ƒ‹‚Ìƒe[ƒuƒ‹ TODO */
+    /** ã‚«ãƒ¼ã‚½ãƒ«ã®ãƒ†ãƒ¼ãƒ–ãƒ« TODO */
     private Cursor[] cursors = {
         Cursor.getDefaultCursor(),
         Cursor.getPredefinedCursor(Cursor.N_RESIZE_CURSOR),  // 1
@@ -57,16 +57,16 @@ public class BasicRubberBandRenderer implements RubberBandRenderer {
         Cursor.getPredefinedCursor(Cursor.SW_RESIZE_CURSOR)  // 10
     };
 
-    /** ƒ‰ƒo[ƒoƒ“ƒhƒZƒŒƒNƒ^ */
+    /** ãƒ©ãƒãƒ¼ãƒãƒ³ãƒ‰ã‚»ãƒ¬ã‚¯ã‚¿ */
     private JComponent selector = new JComponent() {
-        /** Ô‚¢‘I‘ğ—pƒ‰ƒo[ƒoƒ“ƒh•`‰æ */
+        /** èµ¤ã„é¸æŠç”¨ãƒ©ãƒãƒ¼ãƒãƒ³ãƒ‰æç”» */
         public void paintComponent(Graphics g) {
             g.setColor(Color.red);
             g.drawRect(0, 0, getSize().width - 1, getSize().height - 1);
         }
     };
 
-    /** ƒ‰ƒo[ƒoƒ“ƒhƒZƒŒƒNƒ^•\¦C’Ç‰ÁCƒTƒCƒY•ÏXD */
+    /** ãƒ©ãƒãƒ¼ãƒãƒ³ãƒ‰ã‚»ãƒ¬ã‚¯ã‚¿è¡¨ç¤ºï¼Œè¿½åŠ ï¼Œã‚µã‚¤ã‚ºå¤‰æ›´ï¼ */
     public void drawSelecting(Rectangle bounds) {
         if (selector.getParent() == null) {
             container.add(selector, 0);
@@ -75,30 +75,30 @@ public class BasicRubberBandRenderer implements RubberBandRenderer {
         selector.setBounds(bounds);
     }
 
-    /** ƒ‰ƒo[ƒoƒ“ƒhƒZƒŒƒNƒ^”ñ•\¦CíœD */
+    /** ãƒ©ãƒãƒ¼ãƒãƒ³ãƒ‰ã‚»ãƒ¬ã‚¯ã‚¿éè¡¨ç¤ºï¼Œå‰Šé™¤ï¼ */
     public void drawSelected(Rectangle bounds) {
         selector.setVisible(false);
         container.remove(selector);
     }
 
-    /** ˆÚ“®‚Ìƒ‰ƒo[ƒoƒ“ƒh‚ğ•`‰æ‚µ‚Ü‚·D */
+    /** ç§»å‹•æ™‚ã®ãƒ©ãƒãƒ¼ãƒãƒ³ãƒ‰ã‚’æç”»ã—ã¾ã™ï¼ */
     public void drawMoving(Rectangle r) {
     }
 
-    /** ˆÚ“®Œã‚Ìƒ‰ƒo[ƒoƒ“ƒh‚ğ•`‰æ‚µ‚Ü‚·D */
+    /** ç§»å‹•å¾Œã®ãƒ©ãƒãƒ¼ãƒãƒ³ãƒ‰ã‚’æç”»ã—ã¾ã™ï¼ */
     public void drawMoved(Rectangle r) {
     }
 
-    /** ƒŠƒTƒCƒY‚Ìƒ‰ƒo[ƒoƒ“ƒh‚ğ•`‰æ‚µ‚Ü‚·D */
+    /** ãƒªã‚µã‚¤ã‚ºæ™‚ã®ãƒ©ãƒãƒ¼ãƒãƒ³ãƒ‰ã‚’æç”»ã—ã¾ã™ï¼ */
     public void drawResizing(Rectangle r) {
     }
 
-    /** ƒŠƒTƒCƒYŒã‚Ìƒ‰ƒo[ƒoƒ“ƒh‚ğ•`‰æ‚µ‚Ü‚·D */
+    /** ãƒªã‚µã‚¤ã‚ºå¾Œã®ãƒ©ãƒãƒ¼ãƒãƒ³ãƒ‰ã‚’æç”»ã—ã¾ã™ï¼ */
     public void drawResized(Rectangle r) {
     }
 
     /**
-     * ƒ}ƒEƒX‚ÌˆÊ’u‚É‚æ‚Á‚ÄƒŠƒTƒCƒY‚©ˆÚ“®‚©‚ğæ“¾‚µ‚Ü‚·D
+     * ãƒã‚¦ã‚¹ã®ä½ç½®ã«ã‚ˆã£ã¦ãƒªã‚µã‚¤ã‚ºã‹ç§»å‹•ã‹ã‚’å–å¾—ã—ã¾ã™ï¼
      */
     public int getMode(Component component, Point point) {
         int mode;
@@ -113,23 +113,23 @@ public class BasicRubberBandRenderer implements RubberBandRenderer {
         int minY = ri.top;
         int maxY = -ri.bottom + component.getSize().height;
 
-        if (x < minX && y < minY) { // ¶ã‚ÉƒŠƒTƒCƒY
+        if (x < minX && y < minY) { // å·¦ä¸Šã«ãƒªã‚µã‚¤ã‚º
             mode = RubberBand.RESIZE_NW;
-        } else if (x < minX && y > maxY) { // ¶‰º‚ÉƒŠƒTƒCƒY
+        } else if (x < minX && y > maxY) { // å·¦ä¸‹ã«ãƒªã‚µã‚¤ã‚º
             mode = RubberBand.RESIZE_SW;
-        } else if (x > maxX && y < minY) { // ‰Eã‚ÉƒŠƒTƒCƒY
+        } else if (x > maxX && y < minY) { // å³ä¸Šã«ãƒªã‚µã‚¤ã‚º
             mode = RubberBand.RESIZE_NE;
-        } else if (x > maxX && y > maxY) { // ‰E‰º‚ÉƒŠƒTƒCƒY
+        } else if (x > maxX && y > maxY) { // å³ä¸‹ã«ãƒªã‚µã‚¤ã‚º
             mode = RubberBand.RESIZE_SE;
-        } else if ((x > minX && x < maxX) && y < minY) { // ã‚ÉƒŠƒTƒCƒY
+        } else if ((x > minX && x < maxX) && y < minY) { // ä¸Šã«ãƒªã‚µã‚¤ã‚º
             mode = RubberBand.RESIZE_N;
-        } else if ((x > minX && x < maxX) && y > maxY) { // ‰º‚ÉƒŠƒTƒCƒY
+        } else if ((x > minX && x < maxX) && y > maxY) { // ä¸‹ã«ãƒªã‚µã‚¤ã‚º
             mode = RubberBand.RESIZE_S;
-        } else if (x < minX && (y > minY && y < maxY)) { // ¶‚ÉƒŠƒTƒCƒY
+        } else if (x < minX && (y > minY && y < maxY)) { // å·¦ã«ãƒªã‚µã‚¤ã‚º
             mode = RubberBand.RESIZE_W;
-        } else if (x > maxX && (y > minY && y < maxY)) { // ‰E‚ÉƒŠƒTƒCƒY
+        } else if (x > maxX && (y > minY && y < maxY)) { // å³ã«ãƒªã‚µã‚¤ã‚º
             mode = RubberBand.RESIZE_E;
-        } else { // ˆÚ“®ƒ‚[ƒh
+        } else { // ç§»å‹•ãƒ¢ãƒ¼ãƒ‰
             mode = RubberBand.MOVE_MODE;
         }
 

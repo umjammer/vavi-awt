@@ -10,10 +10,10 @@ import java.beans.*;
 
 
 /**
- * LayoutManager ‚Ì Constraints ƒNƒ‰ƒX‚ğ Beans ‚Æ‚µ‚Äˆµ‚¤
- * ƒ‰ƒbƒp[ƒNƒ‰ƒX‚ğì¬‚·‚é‚½‚ß‚ÌŠî’êƒNƒ‰ƒX‚Å‚·D
+ * LayoutManager ã® Constraints ã‚¯ãƒ©ã‚¹ã‚’ Beans ã¨ã—ã¦æ‰±ã†
+ * ãƒ©ãƒƒãƒ‘ãƒ¼ã‚¯ãƒ©ã‚¹ã‚’ä½œæˆã™ã‚‹ãŸã‚ã®åŸºåº•ã‚¯ãƒ©ã‚¹ã§ã™ï¼
  * <p>
- * setter ƒƒ\ƒbƒh‚Å‚Í PropertyChangeEvent ‚ğ”­s‚µ‚Ä‚­‚¾‚³‚¢D // TODO
+ * setter ãƒ¡ã‚½ãƒƒãƒ‰ã§ã¯ PropertyChangeEvent ã‚’ç™ºè¡Œã—ã¦ãã ã•ã„ï¼ // TODO
  * </p>
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
@@ -33,26 +33,26 @@ public abstract class LayoutConstraints {
 
     //-------------------------------------------------------------------------
 
-    /** PropertyChange ƒCƒxƒ“ƒg‹@\‚Ìƒ†[ƒeƒBƒŠƒeƒB */
+    /** PropertyChange ã‚¤ãƒ™ãƒ³ãƒˆæ©Ÿæ§‹ã®ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ */
     private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
-    /** PropertyChangeListener ‚ğ’Ç‰Á‚µ‚Ü‚·D */
+    /** PropertyChangeListener ã‚’è¿½åŠ ã—ã¾ã™ï¼ */
     public void addPropertyChangeListener(PropertyChangeListener l) {
         pcs.addPropertyChangeListener(l);
     }
 
-    /** PropertyChangeListener ‚ğíœ‚µ‚Ü‚·D */
+    /** PropertyChangeListener ã‚’å‰Šé™¤ã—ã¾ã™ï¼ */
     public void removePropertyChangeListener(PropertyChangeListener l) {
         pcs.removePropertyChangeListener(l);
     }
 
-    /** PropertyChangeEvent ‚ğ”­s‚µ‚Ü‚·D */
+    /** PropertyChangeEvent ã‚’ç™ºè¡Œã—ã¾ã™ï¼ */
     protected void firePropertyChange(String name,
                                       int oldValue, int newValue) {
         pcs.firePropertyChange(name, oldValue, newValue);
     }
 
-    /** PropertyChangeEvent ‚ğ”­s‚µ‚Ü‚·D */
+    /** PropertyChangeEvent ã‚’ç™ºè¡Œã—ã¾ã™ï¼ */
     protected void firePropertyChange(String name,
                                       Object oldValue, Object newValue) {
         pcs.firePropertyChange(name, oldValue, newValue);

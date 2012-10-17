@@ -15,8 +15,8 @@ import vavi.util.Debug;
 /**
  * BorderPropertyDescriptor.
  * <p>
- * Border ‚Í getter ƒƒ\ƒbƒh‚ª–³‚¢ƒNƒ‰ƒX‚ª‚Ù‚Æ‚ñ‚Ç‚È‚Ì‚ÅC
- * getter ƒƒ\ƒbƒh ‚Ì‚İ‚ğˆµ‚¤ PropertyDescriptor ‚Æ‚µ‚Ä‚±‚ÌƒNƒ‰ƒX‚ª‚ ‚è‚Ü‚·D
+ * Border ã¯ getter ãƒ¡ã‚½ãƒƒãƒ‰ãŒç„¡ã„ã‚¯ãƒ©ã‚¹ãŒã»ã¨ã‚“ã©ãªã®ã§ï¼Œ
+ * getter ãƒ¡ã‚½ãƒƒãƒ‰ ã®ã¿ã‚’æ‰±ã† PropertyDescriptor ã¨ã—ã¦ã“ã®ã‚¯ãƒ©ã‚¹ãŒã‚ã‚Šã¾ã™ï¼
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020525 nsano initial version <br>

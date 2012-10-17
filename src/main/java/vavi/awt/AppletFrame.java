@@ -69,7 +69,7 @@ import java.util.Vector;
  * vavi.awt.AppletFrame.parameter.barebones=true   Leave off the menu bar and status area.
  * </pre>
  *
- * @caution	JDK 1.1 —p
+ * @caution	JDK 1.1 ç”¨
  *
  * @author	<a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version	0.00	010901	nsano	port from Acme.MainFrame <br>
@@ -80,19 +80,19 @@ import java.util.Vector;
 public class AppletFrame extends Frame
     implements Runnable, AppletStub, AppletContext {
 
-    // ƒRƒ“ƒeƒLƒXƒg‚Ìƒpƒ‰ƒ[ƒ^
+    // ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
     private static final String VERSION = "0.01";
     private static final String VENDOR = "Vavisoft";
     private static final String VENDOR_URL = "http://www.vavisoft.com/";
 
-    /** ƒƒjƒ…[ƒo[‚ÆƒXƒe[ƒ^ƒXƒo[‚ğ•\¦‚µ‚È‚¢‚©‚Ç‚¤‚© */
+    /** ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒãƒ¼ã¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒãƒ¼ã‚’è¡¨ç¤ºã—ãªã„ã‹ã©ã†ã‹ */
     private boolean barebones = false;
-    /** ƒXƒe[ƒ^ƒXƒo[ */
+    /** ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒãƒ¼ */
     private Label label = null;
-    /** ƒAƒvƒŒƒbƒg‚Ìƒpƒ‰ƒ[ƒ^ */
+    /** ã‚¢ãƒ—ãƒ¬ãƒƒãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ */
     private String[] args = null;
     private static int instances = 0;
-    /** ƒAƒvƒŒƒbƒg‚ÌƒNƒ‰ƒX–¼ */
+    /** ã‚¢ãƒ—ãƒ¬ãƒƒãƒˆã®ã‚¯ãƒ©ã‚¹å */
     private String name;
     private Applet applet;
     private Dimension appletSize;

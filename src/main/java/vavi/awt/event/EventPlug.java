@@ -13,27 +13,27 @@ import vavi.util.Debug;
 
 
 /**
- * ƒCƒxƒ“ƒg‚ğŒ‹‡C•ª—£‚·‚é‚½‚ß‚ÌƒNƒ‰ƒX‚Å‚·D
+ * ã‚¤ãƒ™ãƒ³ãƒˆã‚’çµåˆï¼Œåˆ†é›¢ã™ã‚‹ãŸã‚ã®ã‚¯ãƒ©ã‚¹ã§ã™ï¼
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020512 nsano initial version <br>
  */
 public class EventPlug {
-    /** ƒvƒ‰ƒO‚Ì–¼‘O */
+    /** ãƒ—ãƒ©ã‚°ã®åå‰ */
     private String name;
-    /** ƒCƒxƒ“ƒg‚ğ”­s‚·‚éƒIƒuƒWƒFƒNƒg */
+    /** ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºè¡Œã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ */
     private Object invoker;
-    /** ƒCƒxƒ“ƒg‚ğó‚¯æ‚éƒŠƒXƒi */
+    /** ã‚¤ãƒ™ãƒ³ãƒˆã‚’å—ã‘å–ã‚‹ãƒªã‚¹ãƒŠ */
     private EventListener listener;
-    /** Ú‘±‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚© */
+    /** æ¥ç¶šã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ */
     private boolean connected = false;
 
     /**
-     * ƒCƒxƒ“ƒg‚ğŒ‹‡C•ª—£‚·‚éƒvƒ‰ƒO‚ğ\’z‚µ‚Ü‚·D
+     * ã‚¤ãƒ™ãƒ³ãƒˆã‚’çµåˆï¼Œåˆ†é›¢ã™ã‚‹ãƒ—ãƒ©ã‚°ã‚’æ§‹ç¯‰ã—ã¾ã™ï¼
      * 
-     * @param name ƒvƒ‰ƒO‚Ì–¼‘O
-     * @param invoker ƒCƒxƒ“ƒg‚ğ”­s‚·‚éƒIƒuƒWƒFƒNƒg
-     * @param listener ƒCƒxƒ“ƒg‚ğó‚¯æ‚éƒŠƒXƒi
+     * @param name ãƒ—ãƒ©ã‚°ã®åå‰
+     * @param invoker ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºè¡Œã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+     * @param listener ã‚¤ãƒ™ãƒ³ãƒˆã‚’å—ã‘å–ã‚‹ãƒªã‚¹ãƒŠ
      */
     public EventPlug(String name, Object invoker, EventListener listener) {
         this.name = name;
@@ -41,37 +41,37 @@ public class EventPlug {
         this.listener = listener;
     }
 
-    /** ƒvƒ‰ƒO‚Ì–¼‘O‚ğæ“¾‚µ‚Ü‚·D */
+    /** ãƒ—ãƒ©ã‚°ã®åå‰ã‚’å–å¾—ã—ã¾ã™ï¼ */
     public String getName() {
         return name;
     }
 
-    /** ƒCƒxƒ“ƒg‚ğ”­s‚·‚éƒIƒuƒWƒFƒNƒg‚ğİ’è‚µ‚Ü‚·D */
+    /** ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºè¡Œã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è¨­å®šã—ã¾ã™ï¼ */
     public void setInvoker(Object invoker) {
         this.invoker = invoker;
     }
 
-    /** ƒCƒxƒ“ƒg‚ğ”­s‚·‚éƒIƒuƒWƒFƒNƒg‚ğæ“¾‚µ‚Ü‚·D */
+    /** ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºè¡Œã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã—ã¾ã™ï¼ */
     public Object getInvoker() {
         return invoker;
     }
 
-    /** ƒCƒxƒ“ƒg‚ğó‚¯æ‚éƒŠƒXƒi‚ğİ’è‚µ‚Ü‚·D */
+    /** ã‚¤ãƒ™ãƒ³ãƒˆã‚’å—ã‘å–ã‚‹ãƒªã‚¹ãƒŠã‚’è¨­å®šã—ã¾ã™ï¼ */
     public void setEventListener(EventListener listener) {
         this.listener = listener;
     }
 
-    /** ƒCƒxƒ“ƒg‚ğó‚¯æ‚éƒŠƒXƒi‚ğæ“¾‚µ‚Ü‚·D */
+    /** ã‚¤ãƒ™ãƒ³ãƒˆã‚’å—ã‘å–ã‚‹ãƒªã‚¹ãƒŠã‚’å–å¾—ã—ã¾ã™ï¼ */
     public EventListener getEventListener() {
         return listener;
     }
 
-    /** ƒvƒ‰ƒO‚ªÚ‘±‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ•Ô‚µ‚Ü‚·D */
+    /** ãƒ—ãƒ©ã‚°ãŒæ¥ç¶šã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’è¿”ã—ã¾ã™ï¼ */
     public boolean isConnected() {
         return connected;
     }
 
-    /** ƒvƒ‰ƒO‚ğÚ‘±C•ª—£‚µ‚Ü‚·D */
+    /** ãƒ—ãƒ©ã‚°ã‚’æ¥ç¶šï¼Œåˆ†é›¢ã—ã¾ã™ï¼ */
     public void setConnected(boolean connected) {
         if (connected) {
             plugImpl("add");
@@ -82,10 +82,10 @@ public class EventPlug {
     }
 
     /**
-     * ƒŠƒXƒi‚ÌƒNƒ‰ƒX‚ğæ“¾‚µ‚Ü‚·D
-     * ƒŠƒXƒi‚Í FooListener Œ`®‚Ì–½–¼‚Å‚È‚¯‚ê‚Î‚¢‚¯‚Ü‚¹‚ñD
-     * TODO interface ‚ª 2 ‚ÂˆÈã‚Ìê‡‚Ìˆ—D
-     * TODO FooListener ‚ğ’T‚µ‚Äƒ‹[ƒv‚·‚×‚«H
+     * ãƒªã‚¹ãƒŠã®ã‚¯ãƒ©ã‚¹ã‚’å–å¾—ã—ã¾ã™ï¼
+     * ãƒªã‚¹ãƒŠã¯ FooListener å½¢å¼ã®å‘½åã§ãªã‘ã‚Œã°ã„ã‘ã¾ã›ã‚“ï¼
+     * TODO interface ãŒ 2 ã¤ä»¥ä¸Šã®å ´åˆã®å‡¦ç†ï¼
+     * TODO FooListener ã‚’æ¢ã—ã¦ãƒ«ãƒ¼ãƒ—ã™ã¹ãï¼Ÿ
      */
     private Class<?> getEventListenerClass() {
         Class<?> clazz = listener.getClass();
@@ -102,7 +102,7 @@ public class EventPlug {
     }
 
     /**
-     * ƒŠƒXƒi‚Ì–¼‘O‚ğæ“¾‚µ‚Ü‚·D
+     * ãƒªã‚¹ãƒŠã®åå‰ã‚’å–å¾—ã—ã¾ã™ï¼
      */
     private String getEventListenerName() {
         return getClassName(getEventListenerClass().getName());
@@ -114,7 +114,7 @@ public class EventPlug {
     }
 
     /**
-     * ƒvƒ‰ƒO‚ğÚ‘±C•ª—£‚·‚éˆ—‚Å‚·D
+     * ãƒ—ãƒ©ã‚°ã‚’æ¥ç¶šï¼Œåˆ†é›¢ã™ã‚‹å‡¦ç†ã§ã™ï¼
      * 
      * @param type "add" or "remove"
      */

@@ -86,25 +86,25 @@ import javax.swing.JPanel;
  */
 public class JAppletFrame extends JFrame implements Runnable, AppletStub, AppletContext {
 
-    // ƒRƒ“ƒeƒLƒXƒg‚Ìƒpƒ‰ƒ[ƒ^
+    // ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
     private static final String VERSION = "19-Apr-02";
 
     private static final String VENDOR = "Vavisoft";
 
     private static final String VENDOR_URL = "http://www.vavisoft.com/";
 
-    /** ƒƒjƒ…[ƒo[‚ÆƒXƒe[ƒ^ƒXƒo[‚ğ•\¦‚µ‚È‚¢‚©‚Ç‚¤‚© */
+    /** ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒãƒ¼ã¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒãƒ¼ã‚’è¡¨ç¤ºã—ãªã„ã‹ã©ã†ã‹ */
     private boolean barebones = false;
 
-    /** ƒXƒe[ƒ^ƒXƒo[ */
+    /** ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒãƒ¼ */
     private JLabel label = null;
 
-    /** ƒAƒvƒŒƒbƒg‚Ìƒpƒ‰ƒ[ƒ^ */
+    /** ã‚¢ãƒ—ãƒ¬ãƒƒãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ */
     private String[] args = null;
 
     private static int instances = 0;
 
-    /** ƒAƒvƒŒƒbƒg‚ÌƒNƒ‰ƒX–¼ */
+    /** ã‚¢ãƒ—ãƒ¬ãƒƒãƒˆã®ã‚¯ãƒ©ã‚¹å */
     private String name;
 
     private Applet applet;
@@ -179,7 +179,7 @@ public class JAppletFrame extends JFrame implements Runnable, AppletStub, Applet
             // Make menu bar.
             JMenuBar mb = new JMenuBar();
             JMenu m = new JMenu("Applet");
-            // heavy (Applet) ã‚É light ƒƒjƒ…[ (JMenu) ‚ğ•\¦‚·‚é•û–@D
+            // heavy (Applet) ä¸Šã« light ãƒ¡ãƒ‹ãƒ¥ãƒ¼ (JMenu) ã‚’è¡¨ç¤ºã™ã‚‹æ–¹æ³•ï¼
             m.getPopupMenu().setLightWeightPopupEnabled(false);
             m.add(new AbstractAction("Restart") {
                 public void actionPerformed(ActionEvent ev) {

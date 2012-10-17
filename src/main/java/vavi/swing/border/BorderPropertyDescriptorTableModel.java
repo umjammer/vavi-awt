@@ -19,11 +19,11 @@ import vavi.util.Debug;
 
 
 /**
- * Border ƒNƒ‰ƒX‚ÌƒvƒƒpƒeƒB‚ğˆµ‚¤ TableModel ‚Å‚·D
- * getter ‚Í BorderPropertyDescriptor ‚©‚çæ“¾‚µ‚Ü‚·D
- * setter ‚Í–³‚¢‚Ì‚Å’l‚ğ PropertyChangeEvent ‚Åƒ†[ƒU‚É“n‚µ‚Ü‚·D
- * ƒ†[ƒU‚Í PropertyChangeEvent ‚Ìˆø”‚ğ—p‚¢‚Ä Border ‚ÌV‹KƒCƒ“ƒXƒ^ƒ“ƒX‚ğ
- * ì¬‚µ‚Ü‚·D
+ * Border ã‚¯ãƒ©ã‚¹ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’æ‰±ã† TableModel ã§ã™ï¼
+ * getter ã¯ BorderPropertyDescriptor ã‹ã‚‰å–å¾—ã—ã¾ã™ï¼
+ * setter ã¯ç„¡ã„ã®ã§å€¤ã‚’ PropertyChangeEvent ã§ãƒ¦ãƒ¼ã‚¶ã«æ¸¡ã—ã¾ã™ï¼
+ * ãƒ¦ãƒ¼ã‚¶ã¯ PropertyChangeEvent ã®å¼•æ•°ã‚’ç”¨ã„ã¦ Border ã®æ–°è¦ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’
+ * ä½œæˆã—ã¾ã™ï¼
  *
  * @event PropertyChangeEvent("propertyName", newValue)
  * 

@@ -10,7 +10,7 @@ import java.util.EventObject;
 
 
 /**
- * Component ‚ª‘I‘ğ‚³‚ê‚é”­s‚·‚éƒCƒxƒ“ƒg‚ÌƒNƒ‰ƒX‚Å‚·D
+ * Component ãŒé¸æŠã•ã‚Œã‚‹æ™‚ç™ºè¡Œã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆã®ã‚¯ãƒ©ã‚¹ã§ã™ï¼
  * 
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020509 nsano initial version <br>
@@ -21,7 +21,7 @@ public class ComponentSelectionEvent extends EventObject {
     private Object selected;
 
     /**
-     * ComponentSelection ƒCƒxƒ“ƒg‚ğ\’z‚µ‚Ü‚·D
+     * ComponentSelection ã‚¤ãƒ™ãƒ³ãƒˆã‚’æ§‹ç¯‰ã—ã¾ã™ï¼
      */
     public ComponentSelectionEvent(Object source, Object selected) {
         super(source);

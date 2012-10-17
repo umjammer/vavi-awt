@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * The basic transferable object.
  * 
- * @done ClipboardOwner Ç¢ÇÈÇÃÅH
+ * @done ClipboardOwner „ÅÑ„Çã„ÅÆÔºü
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 010820 nsano initial version <br>
  *          0.01 020507 nsano delete lostOwnership <br>
