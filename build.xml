@@ -50,7 +50,7 @@
 
   <!-- javac 1.3 -->
   <target name="compile.1.3" description="コンパイル 1.4">
-    <javac debug="on" source="1.3" target="1.3" destdir="${dir.build}" encoding="MS932">
+    <javac debug="on" source="1.3" target="1.3" destdir="${dir.build}" encoding="${encoding}">
       <classpath refid="project.class.path" />
       <include name="vavi/swing/JAppletFrame.java" />
       <src path="src/main/java" />
@@ -59,7 +59,7 @@
 
   <!-- javac 1.5 -->
   <target name="compile.1.5" description="コンパイル 1.5">
-    <javac debug="on" source="1.5" target="1.5" destdir="${dir.build}" encoding="MS932">
+    <javac debug="on" source="1.5" target="1.5" destdir="${dir.build}" encoding="${encoding}">
       <classpath refid="project.class.path" />
       <include name="**/*.java" />
       <exclude name="vavi/swing/JAppletFrame.java" />
@@ -75,7 +75,7 @@
       </fileset>
     </copy>
 
-    <javac debug="on" deprecation="on" target="1.5" encoding="MS932"
+    <javac debug="on" deprecation="on" target="1.5" encoding="${encoding}"
            destdir="target/test-classes">
       <classpath>
         <path refid="project.class.path" />
