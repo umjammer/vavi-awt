@@ -43,7 +43,7 @@ public class DefaultTreeComboBoxCellRenderer<E> extends JLabel implements ListCe
     }
 
     /** */
-    public Component getListCellRendererComponent(JList listbox, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+    public Component getListCellRendererComponent(JList<? extends E> listbox, E value, int index, boolean isSelected, boolean cellHasFocus) {
 
         ListEntry listEntry = (ListEntry) value;
         if (listEntry != null) {

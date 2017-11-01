@@ -11,9 +11,11 @@
   <organization>
     <name></name>
   </organization>
-  <version>1.0.0</version>
-  <url>http://www.vavisoft.com/</url>
-  <description></description>
+  <version>1.0.1</version>
+  <url>https://github.com/umjammer/vavi-awt</url>
+  <description>1.0.1
+
+    add editor support</description>
   <distributionManagement>
     <repository>
       <id>internal.repo</id>
@@ -24,44 +26,12 @@
   <build>
     <plugins>
       <plugin>
-        <artifactId>maven-deploy-plugin</artifactId>
-        <version>2.8.1</version>
-        <configuration>
-          <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>com.github.github</groupId>
-        <artifactId>site-maven-plugin</artifactId>
-        <version>0.11</version>
-        <configuration>
-          <message>Maven artifacts for ${project.version}</message>  <!-- git commit message -->
-          <noJekyll>true</noJekyll>                                  <!-- disable webpage processing -->
-          <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory> <!-- matches distribution management repository url above -->
-          <branch>refs/heads/mvn-repo</branch>                       <!-- remote branch name -->
-          <includes><include>**/*</include></includes>
-          <repositoryName>vavi-awt</repositoryName>      <!-- github repo name -->
-          <repositoryOwner>umjammer</repositoryOwner>    <!-- github username  -->
-          <merge>true</merge>
-        </configuration>
-        <executions>
-          <!-- run site-maven-plugin's 'site' target as part of the build's normal 'deploy' phase -->
-          <execution>
-            <goals>
-              <goal>site</goal>
-            </goals>
-            <phase>deploy</phase>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
           <encoding>UTF-8</encoding>
         </configuration>
-        <version>3.3</version>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -110,32 +80,22 @@
   </build>
   <repositories>
     <repository>
-      <id>vavi-commons-mvn-repo</id>
-      <url>https://raw.github.com/umjammer/vavi-commons/mvn-repo/</url>
-      <snapshots>
-        <enabled>true</enabled>
-        <updatePolicy>always</updatePolicy>
-      </snapshots>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
     </repository>
   </repositories>
   <dependencies>
-  	<dependency>
-  		<groupId>vavi</groupId>
-  		<artifactId>vavi-commons</artifactId>
-  		<version>1.0.4</version>
-  		<optional>false</optional>
-  	</dependency>
+    <dependency>
+      <groupId>com.github.umjammer</groupId>
+      <artifactId>vavi-commons-sandbox</artifactId>
+      <version>0.3.3</version>
+    </dependency>
     <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>4.5</version>
         <type>jar</type>
         <scope>test</scope>
-        <optional>false</optional>
     </dependency>
   </dependencies>
-  <properties>
-    <!-- github server corresponds to entry in ~/.m2/settings.xml -->
-    <github.global.server>github</github.global.server>
-  </properties>
 </project>

@@ -30,7 +30,7 @@ import javax.swing.plaf.FontUIResource;
 
 import vavi.swing.fontchooser.DefaultFontEditor;
 import vavi.swing.fontchooser.FontEditor;
-import vavi.util.ClassUtil;
+import vavix.util.ClassUtil;
 import vavi.util.Debug;
 
 

@@ -149,6 +149,7 @@ public class SwingBorderEditor extends SwingEditorSupport {
     /** */
     private ActionListener borderComboListener = new ActionListener() {
         public void actionPerformed(ActionEvent ev) {
+            @SuppressWarnings("unchecked")
             JComboBox<SampleBorderInfo> cb = (JComboBox<SampleBorderInfo>) ev.getSource();
             SampleBorderInfo bi = (SampleBorderInfo) cb.getSelectedItem();
             Border border = bi.border;

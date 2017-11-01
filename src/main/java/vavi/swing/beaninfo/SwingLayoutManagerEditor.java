@@ -170,6 +170,7 @@ Debug.println("bean is not Container: " + bean);
     /** */
     private ActionListener layoutComboListener = new ActionListener() {
         public void actionPerformed(ActionEvent ev) {
+            @SuppressWarnings("unchecked")
             JComboBox<SampleLayoutManagerInfo> cb = (JComboBox<SampleLayoutManagerInfo>) ev.getSource();
             SampleLayoutManagerInfo lmi =
                 (SampleLayoutManagerInfo) cb.getSelectedItem();

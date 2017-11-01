@@ -15,7 +15,7 @@ import java.util.logging.Level;
 import javax.swing.ImageIcon;
 import javax.swing.border.Border;
 
-import vavi.util.ClassUtil;
+import vavix.util.ClassUtil;
 import vavi.util.Debug;
 
 

@@ -76,11 +76,11 @@ public class BorderPropertyDescriptorTableModel
         } else {
             // COL_VALUE is handled
             Method getter = getPropertyDescriptor(row).getReadMethod();
-            
+
             if (getter != null) {
                 Class<?>[] paramTypes = getter.getParameterTypes();
                 Object[] args = new Object[paramTypes.length];
-                
+
                 try {
                     for (int i = 0; i < paramTypes.length; i++) {
                         // XXX - debug
@@ -90,7 +90,7 @@ public class BorderPropertyDescriptorTableModel
                 } catch (Exception e) {
                     throw new NoSuchElementException(col + ", " + row + ": " + e);
                 }
-                
+
                 try {
                     value = getter.invoke(bean, args);
                 } catch (NoSuchMethodError e) {
