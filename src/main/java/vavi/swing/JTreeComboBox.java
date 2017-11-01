@@ -1,5 +1,5 @@
 /*
- * @(#)TreeCombo.java	1.6 98/08/26
+ * @(#)TreeCombo.java    1.6 98/08/26
  *
  * Copyright 1997, 1998 by Sun Microsystems, Inc.,
  * 901 San Antonio Road, Palo Alto, California, 94303, U.S.A.
@@ -50,7 +50,7 @@ public class JTreeComboBox extends JComboBox {
 
         Object currentValue;
 
-        List<ListEntry> cache = new ArrayList<ListEntry>();
+        List<ListEntry> cache = new ArrayList<>();
 
         /** */
         public TreeToListModel(TreeModel aTreeModel) {
@@ -78,7 +78,7 @@ public class JTreeComboBox extends JComboBox {
 
         /** */
         public Object getElementAt(int index) {
-            return cache.get(index);
+            return cache.get(index).object;
         }
 
         /** */
@@ -104,7 +104,7 @@ public class JTreeComboBox extends JComboBox {
         /** */
         void validate() {
             if (invalid) {
-                cache = new Vector<ListEntry>();
+                cache = new Vector<>();
                 cacheTree(source.getRoot(), 0);
                 if (cache.size() > 0) {
                     currentValue = cache.get(0);

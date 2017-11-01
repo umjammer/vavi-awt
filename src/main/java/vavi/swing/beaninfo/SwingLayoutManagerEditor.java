@@ -45,12 +45,12 @@ import vavi.util.Debug;
 /**
  * Swing version of a Layout property editor.
  *
- * @author	<a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
- * @version	0.00	020516	nsano	initial version <br>
+ * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @version 0.00 020516 nsano initial version <br>
  */
 public class SwingLayoutManagerEditor extends SwingEditorSupport {
 
-    private JComboBox layoutCombo;
+    private JComboBox<?> layoutCombo;
     private JButton layoutButton;
 //      private JLabel layoutLabel;
     private LayoutDialog layoutDialog;
@@ -62,25 +62,25 @@ public class SwingLayoutManagerEditor extends SwingEditorSupport {
 
     /** */
     public SwingLayoutManagerEditor() {
-        
+
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
         panel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        
+
         layoutCombo = createComboBox();
-        
+
         // need rigid area match up
         Icon buttonIcon = UIManager.getIcon("beaninfo.LayoutIcon");
         layoutButton = new JButton(buttonIcon);
 //      Dimension d = new Dimension(buttonIcon.getIconWidth(), buttonIcon.getIconHeight());
         layoutButton.setMargin(SwingEditorSupport.BUTTON_MARGIN);
-        
+
 //      layoutLabel = new JLabel();
-        
+
         setAlignment(layoutCombo);
         setAlignment(layoutButton);
 //      setAlignment(layoutLabel);
-        
+
         panel.add(layoutCombo);
         panel.add(Box.createRigidArea(new Dimension(5,0)));
         panel.add(layoutButton);
@@ -145,7 +145,7 @@ Debug.println("bean is not Container: " + bean);
         layoutButton.addActionListener(layoutButtonListener);
         layoutCombo.addActionListener(layoutComboListener);
     }
-    
+
     /** */
     private void unplug() {
         layoutButton.removeActionListener(layoutButtonListener);
@@ -170,7 +170,7 @@ Debug.println("bean is not Container: " + bean);
     /** */
     private ActionListener layoutComboListener = new ActionListener() {
         public void actionPerformed(ActionEvent ev) {
-            JComboBox cb = (JComboBox) ev.getSource();
+            JComboBox<SampleLayoutManagerInfo> cb = (JComboBox<SampleLayoutManagerInfo>) ev.getSource();
             SampleLayoutManagerInfo lmi =
                 (SampleLayoutManagerInfo) cb.getSelectedItem();
             LayoutManager layout = lmi.layout;
@@ -179,8 +179,8 @@ Debug.println("bean is not Container: " + bean);
     };
 
     /** */
-    private JComboBox createComboBox() {
-        JComboBox c = new JComboBox(lmis.toArray());
+    private JComboBox<?> createComboBox() {
+        JComboBox<?> c = new JComboBox<>(lmis.toArray());
         c.setRenderer(lcr);
         c.setPreferredSize(SwingEditorSupport.MEDIUM_DIMENSION);
         c.setMinimumSize(SwingEditorSupport.MEDIUM_DIMENSION);
@@ -190,22 +190,22 @@ Debug.println("bean is not Container: " + bean);
     }
 
     /** */
-    private ListCellRenderer lcr = new DefaultListCellRenderer() {
+    private ListCellRenderer<Object> lcr = new DefaultListCellRenderer() {
         {
             setOpaque(true);
         }
-        
+
         Color selectedFG = UIManager.getColor("ComboBox.selectionBackground");
         Color selectedBG = UIManager.getColor("ComboBox.selectionForeground");
         Color FG = UIManager.getColor("ComboBox.background");
         Color BG = UIManager.getColor("ComboBox.foreground");
-        
-        public Component getListCellRendererComponent(JList list,
+
+        public Component getListCellRendererComponent(JList<?> list,
                                                       Object value,
                                                       int modelIndex,
                                                       boolean isSelected,
                                                       boolean cellHasFocus) {
-            
+
             if (!(value instanceof SampleLayoutManagerInfo)) {
                 setText("");
                 setIcon(null);
@@ -231,17 +231,17 @@ Debug.println("bean is not Container: " + bean);
     private class LayoutDialog extends JDialog {
         public static final int APPROVE_OPTION = 0;
         public static final int CANCEL_OPTION = 1;
-        
+
         private int returnValue = CANCEL_OPTION;
-        
+
         private LayoutManagerChooser layoutChooser;
-        
+
         public LayoutDialog(Component c, String title) {
             super(JOptionPane.getFrameForComponent(c), title, true);
-            
+
             Container contentPane = getContentPane();
             contentPane.setLayout(new BorderLayout());
-            
+
             JPanel panel = new JPanel();
             JButton okButton = new JButton("OK");
             okButton.addActionListener(okListener);
@@ -251,16 +251,16 @@ Debug.println("bean is not Container: " + bean);
             panel.add(okButton);
             panel.add(cancelButton);
             contentPane.add(panel, BorderLayout.SOUTH);
-            
+
             // layoutlayout
             layoutChooser = new LayoutManagerChooser();
             contentPane.add(layoutChooser);
-            
+
             pack();
-            
+
             setLocationRelativeTo(SwingUtilities.getRoot(c));
         }
-        
+
         /** */
         private ActionListener okListener = new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
@@ -279,20 +279,20 @@ Debug.println("bean is not Container: " + bean);
 //              dispose();
             }
         };
-        
+
         /** @param container nullable */
         public void setSelectedContainer(Container container) {
             layoutChooser.setSelectedContainer(container);
         }
-        
+
         public void setSelectedLayoutManager(LayoutManager layout) {
             layoutChooser.setSelectedLayoutManager(layout);
         }
-        
+
         public LayoutManager getSelectedLayoutManager() {
             return layoutChooser.getSelectedLayoutManager();
         }
-        
+
         public int showDialog() {
             returnValue = CANCEL_OPTION;
             this.setVisible(true);
@@ -342,7 +342,7 @@ Debug.println("bean is not Container: " + bean);
                 panel.setLayout((LayoutManager) editor.getValue());
             }
         });
-        
+
         f.pack();
         f.setVisible(true);
     }

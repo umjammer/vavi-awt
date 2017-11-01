@@ -17,11 +17,11 @@ import vavi.text.NumberDocument;
 /**
  * An editor for editing Rectangle.
  *
- * @author	Mark Davidson
- * @version			original version <br>
+ * @author Mark Davidson
+ * @version original version <br>
  */
 public class SwingRectangleEditor extends SwingEditorSupport {
-    
+
     private JTextField xTF;
     private JTextField yTF;
     private JTextField widthTF;
@@ -36,7 +36,7 @@ public class SwingRectangleEditor extends SwingEditorSupport {
         widthTF.setDocument(new NumberDocument());
         heightTF = new JTextField();
         heightTF.setDocument(new NumberDocument());
-        
+
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
         panel.add(new JLabel("X: "));
@@ -48,25 +48,24 @@ public class SwingRectangleEditor extends SwingEditorSupport {
         panel.add(new JLabel("Height: "));
         panel.add(heightTF);
     }
-    
+
     public void setValue(Object value)  {
         super.setValue(value);
-        
+
         Rectangle rect = (Rectangle) value;
-        
+
         xTF.setText(Integer.toString(rect.x));
         yTF.setText(Integer.toString(rect.y));
         widthTF.setText(Integer.toString(rect.width));
         heightTF.setText(Integer.toString(rect.height));
     }
-    
+
     public Object getValue()  {
         int x = Integer.parseInt(xTF.getText());
         int y = Integer.parseInt(yTF.getText());
         int width = Integer.parseInt(widthTF.getText());
         int height = Integer.parseInt(heightTF.getText());
-        
+
         return new Rectangle(x, y, width, height);
     }
-
 }

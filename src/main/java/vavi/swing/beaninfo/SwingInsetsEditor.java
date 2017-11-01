@@ -17,8 +17,8 @@ import vavi.text.NumberDocument;
 /**
  * An editor for editing Insets.
  *
- * @author	Mark Davidson
- * @version			original version <br>
+ * @author Mark Davidson
+ * @version original version <br>
  */
 public class SwingInsetsEditor extends SwingEditorSupport {
     
@@ -36,7 +36,7 @@ public class SwingInsetsEditor extends SwingEditorSupport {
         bottomTF.setDocument(new NumberDocument());
         rightTF = new JTextField();
         rightTF.setDocument(new NumberDocument());
-        
+
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
         panel.add(new JLabel("Top: "));
@@ -48,25 +48,24 @@ public class SwingInsetsEditor extends SwingEditorSupport {
         panel.add(new JLabel("Right: "));
         panel.add(rightTF);
     }
-    
+
     public void setValue(Object value)  {
         super.setValue(value);
-        
+
         Insets insets = (Insets) value;
-        
+
         topTF.setText(Integer.toString(insets.top));
         leftTF.setText(Integer.toString(insets.left));
         bottomTF.setText(Integer.toString(insets.bottom));
         rightTF.setText(Integer.toString(insets.right));
     }
-    
+
     public Object getValue()  {
         int top = Integer.parseInt(topTF.getText());
         int left = Integer.parseInt(leftTF.getText());
         int bottom = Integer.parseInt(bottomTF.getText());
         int right = Integer.parseInt(rightTF.getText());
-        
+
         return new Insets(top, left, bottom, right);
     }
-
 }

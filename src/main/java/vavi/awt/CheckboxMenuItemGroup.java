@@ -29,7 +29,7 @@ import vavi.awt.event.ActionSupport;
 public class CheckboxMenuItemGroup {
 
     /** */
-    private Vector group = new Vector();
+    private Vector<CheckboxMenuItem> group = new Vector<>();
 
     /** */
     public CheckboxMenuItemGroup() {
@@ -52,10 +52,10 @@ public class CheckboxMenuItemGroup {
         this.selectedIndex = index;
 
         for (int i = 0; i < group.size(); i++) {
-            ((CheckboxMenuItem) group.elementAt(i)).setState(i == index);
+            group.elementAt(i).setState(i == index);
         }
 
-        CheckboxMenuItem source = (CheckboxMenuItem) group.elementAt(index);
+        CheckboxMenuItem source = group.elementAt(index);
         int id = ActionEvent.ACTION_PERFORMED;
         String command = source.getActionCommand();
         fireActionPerformed(new ActionEvent(source, id, command));
@@ -76,14 +76,14 @@ public class CheckboxMenuItemGroup {
         public void actionPerformed(ActionEvent ev) {
             int index = group.indexOf(ev.getSource());
             for (int i = 0; i < group.size(); i++) {
-                ((CheckboxMenuItem) group.elementAt(i)).setState(i == index);
+                group.elementAt(i).setState(i == index);
             }
         }
     };
 
     /** */
     public CheckboxMenuItem getSelected() {
-        return (CheckboxMenuItem) group.elementAt(selectedIndex);
+        return group.elementAt(selectedIndex);
     }
 
     /** */

@@ -45,7 +45,7 @@ public class PropertyValueEditor extends AbstractCellEditor
     private Map<Class<?>, PropertyEditor> editors;
 
     public PropertyValueEditor() {
-        editors = new HashMap<Class<?> ,PropertyEditor>();
+        editors = new HashMap<>();
         cellEditor = new DefaultCellEditor(new JTextField());
     }
 
@@ -134,7 +134,7 @@ Debug.println("Couldn't instantiate type editor: " + editorClass.getName());
 Debug.println("Type mismatch: " + obj.getClass() + " type = " + type);
 
             try {
-            	obj = type.newInstance();
+                obj = type.newInstance();
             } catch (Exception e) {
 Debug.println(Level.SEVERE, e);
 //e.printStackTrace();

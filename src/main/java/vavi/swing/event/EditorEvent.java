@@ -27,10 +27,10 @@ public class EditorEvent extends EventObject {
 
     /**
      * Creates an editor event.
-     * @param	source	the event source
+     * @param    source    the event source
      */
 //  public EditorEvent(Object source) {
-//  	this(source, "", null);
+//      this(source, "", null);
 //  }
 
     /**
@@ -62,7 +62,7 @@ public class EditorEvent extends EventObject {
         return name;
     }
 
-    /** @return	nullable */
+    /** @return nullable */
     public Object getArgument() {
         return argument;
     }

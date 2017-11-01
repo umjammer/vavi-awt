@@ -22,7 +22,7 @@ public interface LayoutManagerCustomizer {
     /**
      * PropertyChange イベントのリスナーを登録します。
      * @param listener PropertyChange イベントがトリガーされたときに
-     *		       呼び出されるオブジェクト
+     *               呼び出されるオブジェクト
      */
     void addPropertyChangeListener(PropertyChangeListener listener);
 

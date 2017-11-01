@@ -76,7 +76,7 @@ public class JVolume extends JComponent {
     public JVolume(int min, int max, int value) {
         volumeModel = new DefaultBoundedRangeModel(value, 0, min, max);
         volumeModel.addChangeListener(changeListener);
-        
+
         addMouseListener(mouseListener);
         addMouseMotionListener(mouseListener);
     }
@@ -88,7 +88,7 @@ public class JVolume extends JComponent {
     public JVolume(BoundedRangeModel brm) {
         setModel(brm);
         volumeModel.addChangeListener(changeListener);
-        
+
         addMouseListener(mouseListener);
         addMouseMotionListener(mouseListener);
     }
@@ -146,8 +146,7 @@ public class JVolume extends JComponent {
      * @since 1.4
      */
     public ChangeListener[] getChangeListeners() {
-	return listenerList.getListeners(
-	    ChangeListener.class);
+        return listenerList.getListeners(ChangeListener.class);
     }
 
     /**
@@ -207,7 +206,7 @@ public class JVolume extends JComponent {
 
     /** 値を取得します． */
     public int getValue() {
-	return getModel().getValue();
+        return getModel().getValue();
     }
 
     /** 値を設定します． */
@@ -222,7 +221,7 @@ public class JVolume extends JComponent {
 
     /** 最小値を取得します． */
     public int getMinimum() {
-	return getModel().getMinimum();
+        return getModel().getMinimum();
     }
 
     /** 最小値を設定します． */
@@ -234,7 +233,7 @@ public class JVolume extends JComponent {
 
     /** 最大値を取得します． */
     public int getMaximum() {
-	return getModel().getMaximum();
+        return getModel().getMaximum();
     }
 
     /** 最大値を設定します． */
@@ -346,20 +345,17 @@ public class JVolume extends JComponent {
     public void paintComponent(Graphics g) {
 
         super.paintComponent(g);
-        
+
         Graphics2D g2 = (Graphics2D) g;
-        
+
         g2.setStroke(new BasicStroke(2.0f));
-        
-        RenderingHints qualityHints =
-            new RenderingHints(RenderingHints.KEY_ANTIALIASING,
-                               RenderingHints.VALUE_ANTIALIAS_ON);
-        
-        qualityHints.put(RenderingHints.KEY_RENDERING,
-                         RenderingHints.VALUE_RENDER_QUALITY);
-        
+
+        RenderingHints qualityHints = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        qualityHints.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+
         g2.setRenderingHints(qualityHints);
-        
+
         int w = getWidth();
         int h = getHeight();
 
@@ -370,17 +366,17 @@ public class JVolume extends JComponent {
 
         g.setColor(Color.white);
         g2.draw(new Arc2D.Double(0, 0, w, h, 90, 90, Arc2D.OPEN));
-        
+
         g.setColor(Color.black);
         g2.draw(new Arc2D.Double(0, 0, w, h, 270, 90, Arc2D.OPEN));
-        
+
 //      g.setColor(UIManager.getColor("control"));
         g.setColor(new Color(0xcc, 0xcc, 0xff));
         g.fillOval(0, 0, w, h);
-        
+
         double X;
         double Y;
-        
+
         double W = w / 2d;
         double H = h / 2d;
         // ボリュームノブの位置
@@ -392,7 +388,7 @@ public class JVolume extends JComponent {
             // X, Y は正規座標
             X = Math.sqrt((a * a * b * b * x * x) / (b * b * x * x + a * a * y * y));
             Y = Math.sqrt((a * a * b * b * y * y) / (b * b * x * x + a * a * y * y));
-            
+
             if (x < 0) X *= -1;
             if (y < 0) Y *= -1;
 
@@ -408,7 +404,7 @@ public class JVolume extends JComponent {
             // X, Y は正規座標
             X = Math.sqrt((a * a * b * b) / (b * b + a * a * Math.pow(Math.tan(theta), 2)));
             Y = Math.sqrt((a * a * b * b) / (b * b / Math.pow(Math.tan(theta), 2) + a * a));
-            
+
             // TODO 正しくない theta の座標に対しての補正
             if (theta > Math.PI / 2 && theta < Math.PI * 1.5) X *= -1;
             if (theta < Math.PI     && theta > 0)             Y *= -1;
@@ -418,20 +414,20 @@ public class JVolume extends JComponent {
             X = W + X;
             Y = H - Y;
         }
-        
+
         // ノブの半径
         double R = Math.min(W, H) * r / 2;
-        
+
         int nx = (int) (X - R);
         int ny = (int) (Y - R);
         int nr = (int) (2 * R);
-        
+
         g.setColor(Color.black);
         g2.draw(new Arc2D.Double(nx, ny, nr, nr, 90, 90, Arc2D.OPEN));
-        
+
         g.setColor(Color.white);
         g2.draw(new Arc2D.Double(nx, ny, nr, nr, 270, 90, Arc2D.OPEN));
-        
+
         g.setColor(new Color(0x99, 0x99, 0xcc));
 //      g.setColor(Color.pink);
         g.fillOval(nx, ny, nr, nr);

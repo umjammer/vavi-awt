@@ -28,10 +28,10 @@ import javax.swing.event.ListSelectionListener;
 /**
  * DefaultFontEditor
  *
- * @depends	/vavi/swing/resource.properties
+ * @depends /vavi/swing/resource.properties
  *
- * @author	<a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
- * @version	0.00	020517	nsano	initial version <br>
+ * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @version 0.00 020517 nsano initial version <br>
  */
 public class DefaultFontEditor extends JComponent implements FontEditor {
 
@@ -52,9 +52,9 @@ public class DefaultFontEditor extends JComponent implements FontEditor {
 
     private String[] sizes = new String[MAX_SIZE];
 
-    private JList nameList;
-    private JList styleList;
-    private JList sizeList;
+    private JList<String> nameList;
+    private JList<String> styleList;
+    private JList<String> sizeList;
 
     /** */
     private Font font;
@@ -76,7 +76,7 @@ public class DefaultFontEditor extends JComponent implements FontEditor {
         p.setBorder(BorderFactory.createTitledBorder(
             BorderFactory.createEtchedBorder(),
             rb.getString("jFontChooser.style.title.font")));
-        nameList = new JList(ge.getAvailableFontFamilyNames());
+        nameList = new JList<>(ge.getAvailableFontFamilyNames());
         nameList.addListSelectionListener(nameListener);
         p.add(new JScrollPane(nameList));
         panel.add(p);
@@ -86,7 +86,7 @@ public class DefaultFontEditor extends JComponent implements FontEditor {
         p.setBorder(BorderFactory.createTitledBorder(
             BorderFactory.createEtchedBorder(),
             rb.getString("jFontChooser.style.title.style")));
-        styleList  = new JList(styles);
+        styleList  = new JList<>(styles);
         styleList.addListSelectionListener(styleListener);
         p.add(new JScrollPane(styleList));
         panel.add(p);
@@ -98,7 +98,7 @@ public class DefaultFontEditor extends JComponent implements FontEditor {
         p.setBorder(BorderFactory.createTitledBorder(
             BorderFactory.createEtchedBorder(),
             rb.getString("jFontChooser.style.title.size")));
-        sizeList = new JList(sizes);
+        sizeList = new JList<>(sizes);
         sizeList.addListSelectionListener(sizeListener);
         p.add(new JScrollPane(sizeList));
         panel.add(p);
@@ -123,7 +123,7 @@ public class DefaultFontEditor extends JComponent implements FontEditor {
     /** */
     private ListSelectionListener nameListener = new ListSelectionListener() {
         public void valueChanged(ListSelectionEvent e) {
-            String name = (String) nameList.getSelectedValue();
+            String name = nameList.getSelectedValue();
             font = new Font(name, font.getStyle(), font.getSize());
             sample.setFont(font);
         }
@@ -134,7 +134,7 @@ public class DefaultFontEditor extends JComponent implements FontEditor {
         final String I = rb.getString("jFontChooser.style.italic");
         final String B = rb.getString("jFontChooser.style.bold");
         public void valueChanged(ListSelectionEvent e) {
-            String style = (String) styleList.getSelectedValue();
+            String style = styleList.getSelectedValue();
             int s = I.equalsIgnoreCase(style) ? Font.ITALIC :
                     B.equalsIgnoreCase(style) ? Font.BOLD   :
                                                 Font.PLAIN  ;
@@ -146,7 +146,7 @@ public class DefaultFontEditor extends JComponent implements FontEditor {
     /** */
     private ListSelectionListener sizeListener = new ListSelectionListener() {
         public void valueChanged(ListSelectionEvent e) {
-            String size = (String) sizeList.getSelectedValue();
+            String size = sizeList.getSelectedValue();
             int i = Integer.parseInt(size);
             font = new Font(font.getName(), font.getStyle(), i);
             sample.setFont(font);

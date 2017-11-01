@@ -32,11 +32,11 @@ import vavi.util.RegexFileFilter;
 /**
  * A property editor for editing Icon.
  *
- * @author	<a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
- * @version	0.00	020527	nsano	initial version <br>
+ * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @version 0.00 020527 nsano initial version <br>
  */
 public class SwingIconEditor extends SwingEditorSupport {
-    
+
     /** */
     private JFileChooserTextField chooser;
 
@@ -66,8 +66,7 @@ public class SwingIconEditor extends SwingEditorSupport {
             String path = null;
             if ("text".equals(name)) {
                 path = chooser.getText();
-            }
-            else if ("selectedFile".equals(name)) {
+            } else if ("selectedFile".equals(name)) {
                 path = chooser.getSelectedFile().getAbsolutePath();
             }
 
@@ -82,8 +81,7 @@ public class SwingIconEditor extends SwingEditorSupport {
                 tracker.addImage(image, 0);
                 tracker.waitForAll();
                 setValue(new ImageIcon(image));
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
 //Debug.printStackTrace(e);
 Debug.println(Level.SEVERE, e);
                 return;
@@ -94,25 +92,25 @@ Debug.println(Level.SEVERE, e);
     //-------------------------------------------------------------------------
 
     public static void main(String[] args) {
-	JFrame f = new JFrame("SwingIconEditor T400");
-	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	final SwingIconEditor editor = new SwingIconEditor();
-	f.getContentPane().setLayout(new BorderLayout());
-	f.getContentPane().add(editor.getCustomEditor(), BorderLayout.NORTH);
+        JFrame f = new JFrame("SwingIconEditor T400");
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        final SwingIconEditor editor = new SwingIconEditor();
+        f.getContentPane().setLayout(new BorderLayout());
+        f.getContentPane().add(editor.getCustomEditor(), BorderLayout.NORTH);
         final JLabel label = new JLabel();
         label.setPreferredSize(new Dimension(320, 240));
         label.setOpaque(true);
         label.setBackground(Color.pink);
         label.setHorizontalAlignment(JLabel.CENTER);
-	f.getContentPane().add(label);
+        f.getContentPane().add(label);
         editor.addPropertyChangeListener(new PropertyChangeListener() {
             public void propertyChange(PropertyChangeEvent ev) {
                 label.setIcon((Icon) editor.getValue());
             }
         });
 
-	f.pack();
-	f.setVisible(true);
+        f.pack();
+        f.setVisible(true);
     }
 }
 

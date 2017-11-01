@@ -10,8 +10,8 @@ package vavi.awt;
 /**
  * 選択可能であるインターフェース．
  *
- * @author	<a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
- * @version	0.00	020510	nsano	initial version <br>
+ * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @version 0.00 020510 nsano initial version <br>
  */
 public interface Selectable {
 

@@ -69,14 +69,14 @@ Debug.printStackTrace(e);
         final String path = "border.properties";
         final Toolkit t = Toolkit.getDefaultToolkit();
         final Class<?> c = BorderInfoFactory.class;
-        
+
         Properties props = new Properties();
-        
-        bis = new ArrayList<SampleBorderInfo>();
-        
+
+        bis = new ArrayList<>();
+
         try {
             props.load(c.getResourceAsStream(path));
-            
+
             // none
             SampleBorderInfo bi = new SampleBorderInfo();
             bi.border = null;
@@ -101,12 +101,12 @@ Debug.printStackTrace(e);
 
                 key = "argTypes";
                 String argTypes = props.getProperty(i + "." + key);
-                if (argTypes != null) {	// 引数なし
+                if (argTypes != null) { // 引数なし
                     key = "args";
                     String args = props.getProperty(i + "." + key);
 
                     bi.border = (Border) ClassUtil.newInstance(className, argTypes, args);
-                } else {			// 引数あり
+                } else { // 引数あり
                     @SuppressWarnings("unchecked")
                     Class<Border> clazz = (Class<Border>) Class.forName(className);
                     bi.border = clazz.newInstance();

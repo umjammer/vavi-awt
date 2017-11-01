@@ -60,7 +60,7 @@ public class LineBorderCustomizer extends BasicBorderCustomizer {
         int     t  = ((LineBorder) border).getThickness();
         boolean rc = ((LineBorder) border).getRoundedCorners();
 
-	line = new LineBorder(c, t, rc);
+        line = new LineBorder(c, t, rc);
         borderSample.setBorder(line);
 
         super.setObject(border);

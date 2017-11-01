@@ -24,7 +24,7 @@ import java.util.Vector;
 public class ActionSupport implements Serializable {
 
     /** Action のリスナー */
-    private Vector listeners = new Vector();
+    private Vector<ActionListener> listeners = new Vector<>();
 
     /**
      * Action リスナーをアタッチします．
@@ -49,7 +49,7 @@ public class ActionSupport implements Serializable {
      */
     public synchronized void fireActionPerformed(ActionEvent ev) {
         for (int i = 0; i < listeners.size(); i++) {
-            ((ActionListener) listeners.elementAt(i)).actionPerformed(ev);
+            listeners.elementAt(i).actionPerformed(ev);
         }
     }
 }

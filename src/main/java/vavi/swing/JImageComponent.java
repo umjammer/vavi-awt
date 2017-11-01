@@ -67,7 +67,7 @@ public class JImageComponent extends JComponent {
     /** */
     static {
         Toolkit t = Toolkit.getDefaultToolkit();
-        noimage = t.getImage(JImageComponent.class.getResource("noimage.png"));
+        noimage = t.getImage(JImageComponent.class.getResource("/noimage.png"));
     }
 }
 

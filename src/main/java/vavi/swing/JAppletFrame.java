@@ -418,7 +418,7 @@ System.err.println("unhandled content type: " + content);
 
     /** Just yields this applet. */
     public Enumeration<Applet> getApplets() {
-        Vector<Applet> v = new Vector<Applet>();
+        Vector<Applet> v = new Vector<>();
         v.addElement(applet);
         return v.elements();
     }

@@ -70,7 +70,7 @@ Debug.printStackTrace(e);
         
         Properties props = new Properties();
         
-        lmis = new ArrayList<SampleLayoutManagerInfo>();
+        lmis = new ArrayList<>();
         
         try {
             props.load(c.getResourceAsStream(path));
@@ -99,13 +99,13 @@ Debug.printStackTrace(e);
 
                 key = "argTypes";
                 String argTypes = props.getProperty(i + "." + key);
-                if (argTypes != null) {	// 引数なし
+                if (argTypes != null) { // 引数なし
                     key = "args";
                     String args = props.getProperty(i + "." + key);
 
                     lmi.layout = (LayoutManager)
                         ClassUtil.newInstance(className, argTypes, args);
-                } else {			// 引数あり
+                } else { // 引数あり
                     @SuppressWarnings("unchecked")
                     Class<LayoutManager> clazz = (Class<LayoutManager>) Class.forName(className);
                     lmi.layout = clazz.newInstance();

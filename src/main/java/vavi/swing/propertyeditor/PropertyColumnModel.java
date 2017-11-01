@@ -36,7 +36,7 @@ public class PropertyColumnModel extends DefaultTableColumnModel  {
 
     /** リソースバンドル */
     private static final ResourceBundle rb =
-	ResourceBundle.getBundle("vavi.swing.resource", Locale.getDefault());
+        ResourceBundle.getBundle("vavi.swing.resource", Locale.getDefault());
 
     private final static String COL_LABEL_PROP = rb.getString("common.label.property.text");
 
@@ -110,7 +110,7 @@ public class PropertyColumnModel extends DefaultTableColumnModel  {
      */
     private TableCellRenderer valueRenderer = new DefaultTableCellRenderer() {
 
-        private Map<Class<?>, PropertyEditor> editors = new HashMap<Class<?>, PropertyEditor>();
+        private Map<Class<?>, PropertyEditor> editors = new HashMap<>();
 
         private PropertyEditor editor;
 

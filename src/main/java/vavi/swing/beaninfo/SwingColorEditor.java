@@ -46,9 +46,9 @@ import vavi.swing.colorchooser.SmallColorChooserPopupMenu;
  * [TextField ComboBox Button]
  * </p>
  * <pre>
- * TextField			[r, g, b]
- * SmallColorChooserButton	SmallColorChooserPopupMenu
- * Button			ColorChooser
+ * TextField               [r, g, b]
+ * SmallColorChooserButton SmallColorChooserPopupMenu
+ * Button                  ColorChooser
  * </pre>
  *
  * @author Tom Santos
@@ -161,12 +161,12 @@ public class SwingColorEditor extends SwingEditorSupport {
      * Paints a representation of the value into a given area of screen.
      */
     public void paintValue(Graphics g, Rectangle rect) {
-	Color oldColor = g.getColor();
-	g.setColor(Color.black);
-	g.drawRect(rect.x, rect.y, rect.width-3, rect.height-3);
-	g.setColor((Color) getValue());
-	g.fillRect(rect.x+1, rect.y+1, rect.width-4, rect.height-4);
-	g.setColor(oldColor);
+        Color oldColor = g.getColor();
+        g.setColor(Color.black);
+        g.drawRect(rect.x, rect.y, rect.width - 3, rect.height - 3);
+        g.setColor((Color) getValue());
+        g.fillRect(rect.x + 1, rect.y + 1, rect.width - 4, rect.height - 4);
+        g.setColor(oldColor);
     }
 
     /** */
@@ -199,7 +199,7 @@ public class SwingColorEditor extends SwingEditorSupport {
 
     /** */
     public void setValue(Object value) {
-	super.setValue(value);
+        super.setValue(value);
 //Debug.println(value);
 //Debug.printStackTrace(new Exception());
         Color color = (Color) value;

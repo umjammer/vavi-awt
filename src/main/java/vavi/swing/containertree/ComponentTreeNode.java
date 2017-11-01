@@ -14,8 +14,8 @@ import javax.swing.tree.DefaultMutableTreeNode;
 /**
  * コンテナツリー上のノードです．
  *
- * @author	<a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
- * @version	0.00	020510	nsano	initial version <br>
+ * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @version 0.00 020510 nsano initial version <br>
  */
 public class ComponentTreeNode extends DefaultMutableTreeNode {
 

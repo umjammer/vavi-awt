@@ -53,7 +53,7 @@ import vavi.swing.border.SampleBorderInfo;
  */
 public class SwingBorderEditor extends SwingEditorSupport {
 
-    private JComboBox borderCombo;
+    private JComboBox<?> borderCombo;
     private JButton borderButton;
 //  private JLabel borderLabel;
     private BorderDialog borderDialog;
@@ -62,13 +62,13 @@ public class SwingBorderEditor extends SwingEditorSupport {
 
     /** */
     public SwingBorderEditor() {
-        
+
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
         panel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        
+
         borderCombo = createComboBox();
-        
+
         // need rigid area match up
         Icon buttonIcon = UIManager.getIcon("beaninfo.BorderIcon");
         borderButton = new JButton(buttonIcon);
@@ -149,7 +149,7 @@ public class SwingBorderEditor extends SwingEditorSupport {
     /** */
     private ActionListener borderComboListener = new ActionListener() {
         public void actionPerformed(ActionEvent ev) {
-            JComboBox cb = (JComboBox) ev.getSource();
+            JComboBox<SampleBorderInfo> cb = (JComboBox<SampleBorderInfo>) ev.getSource();
             SampleBorderInfo bi = (SampleBorderInfo) cb.getSelectedItem();
             Border border = bi.border;
             setValue(border);
@@ -157,8 +157,8 @@ public class SwingBorderEditor extends SwingEditorSupport {
     };
 
     /** */
-    private JComboBox createComboBox() {
-        JComboBox c = new JComboBox(bis.toArray());
+    private JComboBox<?> createComboBox() {
+        JComboBox<?> c = new JComboBox<>(bis.toArray());
         c.setRenderer(lcr);
         c.setPreferredSize(SwingEditorSupport.MEDIUM_DIMENSION);
         c.setMinimumSize(SwingEditorSupport.MEDIUM_DIMENSION);
@@ -168,17 +168,17 @@ public class SwingBorderEditor extends SwingEditorSupport {
     }
 
     /** */
-    private ListCellRenderer lcr = new DefaultListCellRenderer() {
+    private ListCellRenderer<Object> lcr = new DefaultListCellRenderer() {
         {
             setOpaque(true);
         }
-        
+
         Color selectedFG = UIManager.getColor("ComboBox.selectionBackground");
         Color selectedBG = UIManager.getColor("ComboBox.selectionForeground");
         Color FG = UIManager.getColor("ComboBox.background");
         Color BG = UIManager.getColor("ComboBox.foreground");
-        
-        public Component getListCellRendererComponent(JList list,
+
+        public Component getListCellRendererComponent(JList<?> list,
                                                       Object value,
                                                       int modelIndex,
                                                       boolean isSelected,
@@ -188,9 +188,9 @@ public class SwingBorderEditor extends SwingEditorSupport {
                 setIcon(null);
                 return this;
             }
-            
+
             SampleBorderInfo bi = (SampleBorderInfo) value;
-            
+
             setText(bi.desc);
             setIcon(bi.icon);
             if (isSelected){
@@ -209,17 +209,17 @@ public class SwingBorderEditor extends SwingEditorSupport {
     private class BorderDialog extends JDialog {
         public static final int APPROVE_OPTION = 0;
         public static final int CANCEL_OPTION = 1;
-        
+
         private int returnValue = CANCEL_OPTION;
-        
+
         private BorderChooser borderChooser;
-        
+
         public BorderDialog(Component c, String title) {
             super(JOptionPane.getFrameForComponent(c), title, true);
-            
+
             Container contentPane = getContentPane();
             contentPane.setLayout(new BorderLayout());
-            
+
             JPanel pane = new JPanel();
             JButton okButton = new JButton("OK");
             okButton.addActionListener(okListener);
@@ -229,16 +229,16 @@ public class SwingBorderEditor extends SwingEditorSupport {
             pane.add(okButton);
             pane.add(cancelButton);
             contentPane.add(pane, BorderLayout.SOUTH);
-            
+
             // borderlayout
             borderChooser = new BorderChooser();
             contentPane.add(borderChooser);
-            
+
             pack();
-            
+
             setLocationRelativeTo(SwingUtilities.getRoot(panel));
         }
-        
+
         private ActionListener okListener = new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
                 returnValue = APPROVE_OPTION;
@@ -255,19 +255,19 @@ public class SwingBorderEditor extends SwingEditorSupport {
             }
         };
 
-	public void setSelectedBorder(Border border) {
-  	    borderChooser.setSelectedBorder(border);
-	}
+        public void setSelectedBorder(Border border) {
+            borderChooser.setSelectedBorder(border);
+        }
 
-	public Border getSelectedBorder() {
-	    return borderChooser.getSelectedBorder();
-	}
-	
-	public int showDialog() {
-	    returnValue = CANCEL_OPTION;
-	    this.setVisible(true);
-	    return returnValue;
-	}
+        public Border getSelectedBorder() {
+            return borderChooser.getSelectedBorder();
+        }
+
+        public int showDialog() {
+            returnValue = CANCEL_OPTION;
+            this.setVisible(true);
+            return returnValue;
+        }
     }
 
     //-------------------------------------------------------------------------
@@ -301,7 +301,7 @@ public class SwingBorderEditor extends SwingEditorSupport {
                 panel.setBorder((Border) editor.getValue());
             }
         });
-        
+
         f.pack();
         f.setVisible(true);
     }

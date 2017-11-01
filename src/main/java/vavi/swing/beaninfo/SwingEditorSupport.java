@@ -17,26 +17,26 @@ import javax.swing.JPanel;
 /**
  * Base class of all Swing based property editors.
  *
- * @author	Tom Santos
- * @author	Mark Davidson
- * @author	<a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
- * @version	1.30	000620		original version <br>
- *		1.31	020524	nsano	refine <br>
+ * @author Tom Santos
+ * @author Mark Davidson
+ * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @version 1.30 000620       original version <br>
+ *          1.31 020524 nsano refine <br>
  */
 public class SwingEditorSupport extends PropertyEditorSupport {
 
-    /** 
+    /**
      * Component which holds the editor. Subclasses are responsible for
      * instantiating this panel.
      */
     protected JPanel panel;
-    
+
     protected static final Dimension LARGE_DIMENSION = new Dimension(150, 20);
     protected static final Dimension MEDIUM_DIMENSION = new Dimension(120, 20);
     protected static final Dimension SMALL_DIMENSION = new Dimension(50, 20);
     protected static final Insets BUTTON_MARGIN = new Insets(0, 0, 0, 0);
 
-    /** 
+    /**
      * Returns the panel responsible for rendering the PropertyEditor.
      */
     public Component getCustomEditor() {
@@ -46,14 +46,14 @@ public class SwingEditorSupport extends PropertyEditorSupport {
     public boolean supportsCustomEditor() {
         return true;
     }
-    
+
     // layout stuff
     protected final void setAlignment(JComponent c){
         c.setAlignmentX(Component.CENTER_ALIGNMENT);
         c.setAlignmentY(Component.CENTER_ALIGNMENT);
     }
-    
-    /** 
+
+    /**
      * For property editors that must be initialized with values from
      * the property descriptor.
      */

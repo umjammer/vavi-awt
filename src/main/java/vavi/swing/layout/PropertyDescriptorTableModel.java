@@ -85,19 +85,17 @@ public class PropertyDescriptorTableModel
                         // XXX - debug
                         args[i] = paramTypes[i].newInstance();
                         throw new IllegalStateException(
-			    "getValueAt getter = " + getter +
-			    " parameter = " + paramTypes[i]);
+                            "getValueAt getter = " + getter +
+                            " parameter = " + paramTypes[i]);
                     }
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     throw new NoSuchElementException(
                         col + ", " + row + ": " + e);
                 }
 
                 try {
                     value = getter.invoke(bean, args);
-                }
-                catch (NoSuchMethodError e) {
+                } catch (NoSuchMethodError e) {
                     // XXX - handle better
 Debug.println(e);
 Debug.println(descriptors[row].getShortDescription());
@@ -107,8 +105,7 @@ Debug.println("Getter args: ");
 for (int i = 0; i < args.length; i++) {
   Debug.println("\t" + "type: " + paramTypes[i] + " value: " + args[i]);
 }
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
 Debug.println(e);
 Debug.println(descriptors[row].getShortDescription());
 Debug.println("LayoutManager: " + bean.toString());
@@ -133,8 +130,7 @@ Debug.println("LayoutManager: " + bean.toString());
         if (setter != null) {
             try {
                 setter.invoke(bean, new Object[] { value });
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
 Debug.println(e);
 Debug.println(descriptors[row].getShortDescription());
 Debug.println("Setter: " + setter);

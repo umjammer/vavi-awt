@@ -46,207 +46,217 @@ import java.util.Vector;
  * images, not sound.
  * <p>
  * Sample main program:
+ * 
  * <pre>
  * public static void main(String[] args) {
  *     new vavi.awt.AppletFrame(new ThisApplet(), args, 400, 400);
  * }
  * </pre>
+ * 
  * The only methods you need to know about are the constructors.
  * <p>
  * You can specify Applet parameters on the command line, as name=value.
  * For instance, the equivalent of:
+ * 
  * <pre>
  * &lt;PARAM NAME="vavi.awt.AppletFrame.parameter.pause" VALUE="200"&gt;
  * </pre>
+ * 
  * would just be:
+ * 
  * <pre>
- * pause=200
+ * pause = 200
  * </pre>
+ * 
  * You can also specify three special parameters:
+ * 
  * <pre>
  * vavi.awt.AppletFrame.parameter.width=N          Width of the Applet.
  * vavi.awt.AppletFrame.parameter.height=N         Height of the Applet.
  * vavi.awt.AppletFrame.parameter.barebones=true   Leave off the menu bar and status area.
  * </pre>
  *
- * @caution	JDK 1.1 用
+ * @caution JDK 1.1 用
  *
- * @author	<a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
- * @version	0.00	010901	nsano	port from Acme.MainFrame <br>
- *		0.01	020415	nsano	un swinging <br>
- *		0.02	020613	nsano	fix size around <br>
- *		0.03	020620	nsano	refine parameter around <br>
+ * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @version 0.00 010901 nsano port from Acme.MainFrame <br>
+ *          0.01 020415 nsano un swinging <br>
+ *          0.02 020613 nsano fix size around <br>
+ *          0.03 020620 nsano refine parameter around <br>
  */
-public class AppletFrame extends Frame
-    implements Runnable, AppletStub, AppletContext {
+public class AppletFrame extends Frame implements Runnable, AppletStub, AppletContext {
 
     // コンテキストのパラメータ
     private static final String VERSION = "0.01";
+
     private static final String VENDOR = "Vavisoft";
+
     private static final String VENDOR_URL = "http://www.vavisoft.com/";
 
     /** メニューバーとステータスバーを表示しないかどうか */
     private boolean barebones = false;
+
     /** ステータスバー */
     private Label label = null;
+
     /** アプレットのパラメータ */
     private String[] args = null;
+
     private static int instances = 0;
+
     /** アプレットのクラス名 */
     private String name;
+
     private Applet applet;
+
     private Dimension appletSize;
 
     private boolean active = false;
 
-    private static final String PARAM_PROP_PREFIX =
-	"vavi.awt.AppletFrame.parameter.";
+    private static final String PARAM_PROP_PREFIX = "vavi.awt.AppletFrame.parameter.";
 
     /** Constructor with everything specified. */
     public AppletFrame(Applet applet, String[] args, int width, int height) {
-	build(applet, args, width, height);
+        build(applet, args, width, height);
     }
 
     /** Constructor with no default width/height. */
     public AppletFrame(Applet applet, String[] args) {
-	build(applet, args, -1, -1);
+        build(applet, args, -1, -1);
     }
 
     /** Constructor with no arg parsing. */
     public AppletFrame(Applet applet, int width, int height) {
-	build(applet, null, width, height);
+        build(applet, null, width, height);
     }
 
     // Internal constructor routine.
     private void build(Applet applet, String[] args, int width, int height) {
 
-	++instances;
-	this.applet = applet;
-	this.args = args;
-	applet.setStub(this);
-	name = applet.getClass().getName();
-	setTitle(name);
+        ++instances;
+        this.applet = applet;
+        this.args = args;
+        applet.setStub(this);
+        name = applet.getClass().getName();
+        setTitle(name);
 
-	// Set up properties.
-	Properties props = System.getProperties();
-	props.put("browser", getClass().getName());
-	props.put("browser.version", VERSION);
-	props.put("browser.vendor", VENDOR);
-	props.put("browser.vendor.url", VENDOR_URL);
+        // Set up properties.
+        Properties props = System.getProperties();
+        props.put("browser", getClass().getName());
+        props.put("browser.version", VERSION);
+        props.put("browser.vendor", VENDOR);
+        props.put("browser.vendor.url", VENDOR_URL);
 
-	// Turn args into parameters by way of the properties list.
-	if (args != null)
-	    parseArgs(args, props);
+        // Turn args into parameters by way of the properties list.
+        if (args != null)
+            parseArgs(args, props);
 
-	// If width and height are specified in the parameters, override
-	// the compiled-in values.
-	String widthStr = getParameter(PARAM_PROP_PREFIX + "width");
-	if (widthStr != null)
-	    width = Integer.parseInt(widthStr);
-	String heightStr = getParameter(PARAM_PROP_PREFIX + "height");
-	if (heightStr != null)
-	    height = Integer.parseInt(heightStr);
+        // If width and height are specified in the parameters, override
+        // the compiled-in values.
+        String widthStr = getParameter(PARAM_PROP_PREFIX + "width");
+        if (widthStr != null)
+            width = Integer.parseInt(widthStr);
+        String heightStr = getParameter(PARAM_PROP_PREFIX + "height");
+        if (heightStr != null)
+            height = Integer.parseInt(heightStr);
 
-	// Were width and height specified somewhere?
-	if (width == -1 || height == -1) {
-	    System.err.println("Width and height must be specified.");
-	    return;
-	}
+        // Were width and height specified somewhere?
+        if (width == -1 || height == -1) {
+            System.err.println("Width and height must be specified.");
+            return;
+        }
 
-	// Do we want to run bare-bones?
-	String bonesStr = getParameter(PARAM_PROP_PREFIX + "barebones");
-	if (bonesStr != null && bonesStr.equals("true"))
-	    barebones = true;
+        // Do we want to run bare-bones?
+        String bonesStr = getParameter(PARAM_PROP_PREFIX + "barebones");
+        if (bonesStr != null && bonesStr.equals("true"))
+            barebones = true;
 
-	if (! barebones) {
-	    // Make menu bar.
-	    MenuBar mb = new MenuBar();
-	    Menu m = new Menu("Applet");
+        if (!barebones) {
+            // Make menu bar.
+            MenuBar mb = new MenuBar();
+            Menu m = new Menu("Applet");
 
             MenuItem mi = new MenuItem("Restart");
             mi.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent ev) {
-		    AppletFrame.this.applet.stop();
-		    AppletFrame.this.applet.destroy();
-		    Thread thread = new Thread(AppletFrame.this);
-		    thread.start();
-		}
-	    });
-	    m.add(mi);
+                public void actionPerformed(ActionEvent ev) {
+                    AppletFrame.this.applet.stop();
+                    AppletFrame.this.applet.destroy();
+                    Thread thread = new Thread(AppletFrame.this);
+                    thread.start();
+                }
+            });
+            m.add(mi);
 
             mi = new MenuItem("Clone");
             mi.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent ev) {
-		    try {
-			new AppletFrame(
-			    (Applet) AppletFrame.this.applet.getClass()
-			    .newInstance(), AppletFrame.this.args,
-			    appletSize.width, appletSize.height);
-		    }
-		    catch (IllegalAccessException e) {
-			showStatus(e.getMessage());
-		    }
-		    catch (InstantiationException e) {
-			showStatus(e.getMessage());
-		    }
-		}
-	    });
-	    m.add(mi);
+                public void actionPerformed(ActionEvent ev) {
+                    try {
+                        new AppletFrame(AppletFrame.this.applet.getClass().newInstance(),
+                                        AppletFrame.this.args,
+                                        appletSize.width,
+                                        appletSize.height);
+                    } catch (IllegalAccessException e) {
+                        showStatus(e.getMessage());
+                    } catch (InstantiationException e) {
+                        showStatus(e.getMessage());
+                    }
+                }
+            });
+            m.add(mi);
 
             mi = new MenuItem("Close");
             mi.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent ev) {
-		    setVisible(false);
-		    remove(AppletFrame.this.applet);
-		    AppletFrame.this.applet.stop();
-		    AppletFrame.this.applet.destroy();
-		    if (label != null)
-			remove(label);
-		    dispose();
-		    --instances;
-		    if (instances == 0)
-			System.exit(0);
-		}
-	    });
-	    m.add(mi);
+                public void actionPerformed(ActionEvent ev) {
+                    setVisible(false);
+                    remove(AppletFrame.this.applet);
+                    AppletFrame.this.applet.stop();
+                    AppletFrame.this.applet.destroy();
+                    if (label != null)
+                        remove(label);
+                    dispose();
+                    --instances;
+                    if (instances == 0)
+                        System.exit(0);
+                }
+            });
+            m.add(mi);
 
             mi = new MenuItem("Quit");
             mi.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent ev) {
-		    AppletFrame.this.dispatchEvent(new WindowEvent(
-			AppletFrame.this, WindowEvent.WINDOW_CLOSING));
-		}
-	    });
-	    m.add(mi);
-	    mb.add(m);
-	    setMenuBar(mb);
-	}
+                public void actionPerformed(ActionEvent ev) {
+                    AppletFrame.this.dispatchEvent(new WindowEvent(AppletFrame.this, WindowEvent.WINDOW_CLOSING));
+                }
+            });
+            m.add(mi);
+            mb.add(m);
+            setMenuBar(mb);
+        }
 
-	addWindowListener(windowAdapter);
+        addWindowListener(windowAdapter);
 
-	// Layout components.
+        // Layout components.
 
-	setLayout(new BorderLayout());
-	add(applet);
+        setLayout(new BorderLayout());
+        add(applet);
 
-	if (! barebones) {
-	    Panel borderPanel = new Panel();
-	    borderPanel.setLayout(new BorderLayout());
-	    label = new Label(name);
-	    borderPanel.add(BorderLayout.CENTER, label);
-	    add(BorderLayout.SOUTH, borderPanel);
-	}
+        if (!barebones) {
+            Panel borderPanel = new Panel();
+            borderPanel.setLayout(new BorderLayout());
+            label = new Label(name);
+            borderPanel.add(BorderLayout.CENTER, label);
+            add(BorderLayout.SOUTH, borderPanel);
+        }
 
         pack();
         validate();
         appletSize = applet.getSize();
-	applet.setSize(width, height);
+        applet.setSize(width, height);
 
-	show();
+        show();
 
-	// Start a separate thread to call the applet's init() and start()
-	// methods, in case they take a long time.
-	(new Thread(this)).start();
+        // Start a separate thread to call the applet's init() and start()
+        // methods, in case they take a long time.
+        (new Thread(this)).start();
     }
 
     /**
@@ -254,81 +264,77 @@ public class AppletFrame extends Frame
      * properties list.
      */
     private static void parseArgs(String[] args, Properties props) {
-	for (int i = 0; i < args.length; ++i) {
-	    String arg = args[i];
-	    int ind = arg.indexOf('=');
-	    if (ind == -1)
-		props.put(PARAM_PROP_PREFIX + arg.toLowerCase(), "");
-	    else
-		props.put(
-		    PARAM_PROP_PREFIX + arg.substring(0, ind).toLowerCase(),
-		    arg.substring(ind + 1));
-	}
+        for (int i = 0; i < args.length; ++i) {
+            String arg = args[i];
+            int ind = arg.indexOf('=');
+            if (ind == -1)
+                props.put(PARAM_PROP_PREFIX + arg.toLowerCase(), "");
+            else
+                props.put(PARAM_PROP_PREFIX + arg.substring(0, ind).toLowerCase(), arg.substring(ind + 1));
+        }
     }
 
     public void showStatus(String status) {
-	if (label != null)
-	    label.setText(status);
+        if (label != null)
+            label.setText(status);
     }
 
     // Methods from Runnable.
 
     /** Separate thread to call the applet's init() and start() methods. */
     public void run() {
-	showStatus(name + " initializing...");
-	applet.init();
-	validate();
-	showStatus(name + " starting...");
-	applet.start();
-	validate();
-	showStatus(name + " running...");
+        showStatus(name + " initializing...");
+        applet.init();
+        validate();
+        showStatus(name + " starting...");
+        applet.start();
+        validate();
+        showStatus(name + " running...");
     }
 
     // Methods from AppletStub.
     public boolean isActive() {
-	return active;
+        return active;
     }
 
     /** Returns the current directory. */
     public URL getDocumentBase() {
-	String dir = System.getProperty("user.dir");
-	String urlDir = dir.replace(File.separatorChar, '/');
-	try {
-	    return new URL("file:" + urlDir + "/");
-	}
-	catch (MalformedURLException e) {
-	    return null;
-	}
+        String dir = System.getProperty("user.dir");
+        String urlDir = dir.replace(File.separatorChar, '/');
+        try {
+            return new URL("file:" + urlDir + "/");
+        } catch (MalformedURLException e) {
+            return null;
+        }
     }
 
     /**
      * Hack: loop through each item in CLASSPATH, checking if
-     * the appropriately named .class file exists there.  But
+     * the appropriately named .class file exists there. But
      * this doesn't account for .zip files.
      */
     public URL getCodeBase() {
-	String path = System.getProperty("java.class.path");
-	Enumeration st = new StringTokenizer(path, ":");
-	while (st.hasMoreElements()) {
-	    String dir = (String) st.nextElement();
-	    String filename = dir + File.separatorChar + name + ".class";
-	    File file = new File(filename);
-	    if (file.exists()) {
-		String urlDir = dir.replace(File.separatorChar, '/');
-		try {
-		    return new URL("file:" + urlDir + "/");
-		}
-		catch (MalformedURLException e) {
-		    return null;
-		}
-	    }
-	}
-	return null;
+        String path = System.getProperty("java.class.path");
+        Enumeration<?> st = new StringTokenizer(path, ":");
+        while (st.hasMoreElements()) {
+            String dir = (String) st.nextElement();
+            String filename = dir + File.separatorChar + name + ".class";
+            File file = new File(filename);
+            if (file.exists()) {
+                String urlDir = dir.replace(File.separatorChar, '/');
+                try {
+                    return new URL("file:" + urlDir + "/");
+                } catch (MalformedURLException e) {
+                    return null;
+                }
+            }
+        }
+        return null;
     }
 
     /** Return a parameter via the munged names in the properties list. */
     public String getParameter(String name) {
-	return System.getProperty(PARAM_PROP_PREFIX + name.toLowerCase());
+        return System.getProperty(PARAM_PROP_PREFIX + name.toLowerCase());
     }
 
     /**
@@ -344,13 +350,13 @@ public class AppletFrame extends Frame
     }
 
     public AppletContext getAppletContext() {
-	return this;
+        return this;
     }
 
     // Methods from AppletContext.
 
     /**
-     * This is an internal undocumented routine.  However, it
+     * This is an internal undocumented routine. However, it
      * also provides needed functionality not otherwise available.
      * I suspect that in a future release, JavaSoft will add an
      * audio content handler which encapsulates this, and then
@@ -361,35 +367,36 @@ public class AppletFrame extends Frame
     }
 
     public Image getImage(URL url) {
-	Toolkit tk = Toolkit.getDefaultToolkit();
-	try {
-	    ImageProducer prod = (ImageProducer) url.getContent();
-	    return tk.createImage(prod);
-	}
-	catch (IOException e) {
-	    return null;
-	}
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        try {
+            ImageProducer prod = (ImageProducer) url.getContent();
+            return tk.createImage(prod);
+        } catch (IOException e) {
+            return null;
+        }
     }
 
     /** Returns this Applet or nothing. */
     public Applet getApplet(String name) {
-	if (name.equals(this.name))
-	    return applet;
-	return null;
+        if (name.equals(this.name))
+            return applet;
+        return null;
     }
 
     /** Just yields this applet. */
-    public Enumeration getApplets() {
-	Vector v = new Vector();
-	v.addElement(applet);
-	return v.elements();
+    public Enumeration<Applet> getApplets() {
+        Vector<Applet> v = new Vector<>();
+        v.addElement(applet);
+        return v.elements();
     }
 
     /** Ignore. */
-    public void showDocument(URL url) {}
+    public void showDocument(URL url) {
+    }
 
     /** Ignore. */
-    public void showDocument(URL url, String target) {}
+    public void showDocument(URL url, String target) {
+    }
 
     /** */
     private WindowAdapter windowAdapter = new WindowAdapter() {
@@ -440,7 +447,7 @@ public class AppletFrame extends Frame
     }
 
     /** @retroweave 1.1 */
-    public Iterator getStreamKeys() {
+    public Iterator<String> getStreamKeys() {
         return null;
     }
 }

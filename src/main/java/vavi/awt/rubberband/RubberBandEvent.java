@@ -31,8 +31,8 @@ public class RubberBandEvent extends EventObject {
 
     /**
      * RubberBand イベントを構築します．
-     * @see	RubberBandListener#selecting
-     * @see	RubberBandListener#selected
+     * @see RubberBandListener#selecting
+     * @see RubberBandListener#selected
      */
     public RubberBandEvent(Object source, Rectangle bounds) {
         super(source);
@@ -41,9 +41,9 @@ public class RubberBandEvent extends EventObject {
 
     /**
      * RubberBand イベントを構築します．
-     * @see	RubberBandListener#moving
-     * @see	RubberBandListener#moved
-     * @param	location コンポーネントの相対 location
+     * @see RubberBandListener#moving
+     * @see RubberBandListener#moved
+     * @param location コンポーネントの相対 location
      */
     public RubberBandEvent(Object source, Point location) {
         super(source);
@@ -52,9 +52,9 @@ public class RubberBandEvent extends EventObject {
 
     /**
      * RubberBand イベントを構築します．
-     * @see	RubberBandListener#resizing
-     * @see	RubberBandListener#resized
-     * @param	size コンポーネントの相対 size
+     * @see RubberBandListener#resizing
+     * @see RubberBandListener#resized
+     * @param size コンポーネントの相対 size
      */
 //  public RubberBandEvent(Object source, Dimension size) {
 //      super(source);

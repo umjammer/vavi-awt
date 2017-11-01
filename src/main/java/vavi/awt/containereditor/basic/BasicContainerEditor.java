@@ -186,7 +186,7 @@ public class BasicContainerEditor extends ContainerEditor {
      */
     private List<LocatableController> getControllersIn(Rectangle r) {
 
-        List<LocatableController> selected = new ArrayList<LocatableController>();
+        List<LocatableController> selected = new ArrayList<>();
 
         for (int i = 0; i < container.getComponentCount(); i++) {
             Component c = container.getComponent(i);

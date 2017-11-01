@@ -105,25 +105,25 @@ public class BasicVolumeUI extends VolumeUI {
 
         volume.setEnabled(volume.isEnabled());
         volume.setOpaque(true);
-        
+
         isDragging = false;
         changeListener = createChangeListener(volume);
         componentListener = createComponentListener(volume);
         focusListener = createFocusListener(volume);
         scrollListener = createRollListener(volume);
         propertyChangeListener = createPropertyChangeListener(volume);
-        
+
         installDefaults(volume);
         installListeners(volume);
         installKeyboardActions(volume);
-        
+
         scrollTimer = new Timer(100, scrollListener);
         scrollTimer.setInitialDelay(300);
-        
+
         insetCache = volume.getInsets();
         focusRect = new Rectangle();
         contentRect = new Rectangle();
-        
+
         calculateGeometry(); // This figures out where the labels, ticks, track, and thumb are.
     }
 
@@ -159,10 +159,10 @@ public class BasicVolumeUI extends VolumeUI {
         LookAndFeel.installBorder(volume, "Volume.border");
         LookAndFeel.installColors(volume, "Volume.background", "Volume.foreground");
         highlightColor = UIManager.getColor("Volume.highlight");
-        
+
         shadowColor = UIManager.getColor("Volume.shadow");
         focusColor = UIManager.getColor("Volume.focus");
-        
+
         focusInsets = (Insets) UIManager.get("Volume.focusInsets");
     }
 
@@ -202,13 +202,13 @@ public class BasicVolumeUI extends VolumeUI {
 
     protected void installKeyboardActions(JVolume volume) {
         InputMap km = getInputMap(JComponent.WHEN_FOCUSED);
-        
+
         SwingUtilities.replaceUIInputMap(volume, JComponent.WHEN_FOCUSED, km);
         ActionMap am = getActionMap();
-        
+
         SwingUtilities.replaceUIActionMap(volume, am);
     }
-    
+
     InputMap getInputMap(int condition) {
         if (condition == JComponent.WHEN_FOCUSED) {
             InputMap keyMap = (InputMap) UIManager.get("Volume.focusInputMap");
@@ -295,12 +295,12 @@ public class BasicVolumeUI extends VolumeUI {
     public void paint(Graphics g, JComponent c) {
         recalculateIfInsetsChanged();
         Rectangle clip = g.getClipBounds();
-        
+
         if (volume.hasFocus() && clip.intersects(focusRect)) {
             paintFocus(g);
         }
     }
-    
+
     protected void recalculateIfInsetsChanged() {
         Insets newInsets = volume.getInsets();
         if (!newInsets.equals(insetCache)) {
@@ -311,7 +311,7 @@ public class BasicVolumeUI extends VolumeUI {
 
     public void paintFocus(Graphics g) {
         g.setColor(getFocusColor());
-        
+
         BasicGraphicsUtils.drawDashedRect(g, focusRect.x, focusRect.y,
                                           focusRect.width, focusRect.height);
     }
@@ -323,8 +323,8 @@ public class BasicVolumeUI extends VolumeUI {
         int value = 0;
 //      final int minValue = volume.getMinimum();
 //      final int maxValue = volume.getMaximum();
-    
-    	return value;
+
+        return value;
     }
 
     /**
@@ -334,8 +334,8 @@ public class BasicVolumeUI extends VolumeUI {
         int value = 0;
 //      final int minValue = volume.getMinimum();
 //      final int maxValue = volume.getMaximum();
-        
-        
+
+
         return value;
     }
 
@@ -388,7 +388,7 @@ public class BasicVolumeUI extends VolumeUI {
             // to the ticks).
             volume.setValueIsAdjusting(false);
             isDragging = false;
-            
+
             volume.repaint();
         }
 

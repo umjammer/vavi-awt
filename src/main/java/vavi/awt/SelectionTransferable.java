@@ -23,8 +23,8 @@ import vavi.awt.dnd.BasicTransferable;
 /**
  * The selection transferable object.
  *
- * @author	<a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
- * @version	0.00	020609	nsano	initial version <br>
+ * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @version 0.00 020609 nsano initial version <br>
  */
 public class SelectionTransferable extends BasicTransferable {
 
@@ -58,8 +58,7 @@ public class SelectionTransferable extends BasicTransferable {
 
     /** */
     public synchronized Object getTransferData(DataFlavor flavor)
-        throws	UnsupportedFlavorException,
-		        IOException {
+            throws UnsupportedFlavorException, IOException {
 
         if (flavor == DataFlavor.stringFlavor) {
             return model;
@@ -68,6 +67,7 @@ public class SelectionTransferable extends BasicTransferable {
             ByteArrayInputStream is = new ByteArrayInputStream(bytes);
 
             XMLDecoder xd = new XMLDecoder(is);
+            @SuppressWarnings("unchecked")
             List<? extends Component> selection = (List<? extends Component>) xd.readObject();
             xd.close();
 

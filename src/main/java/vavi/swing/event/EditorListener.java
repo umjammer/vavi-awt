@@ -23,19 +23,19 @@ public interface EditorListener extends EventListener {
 
     /**
      * エディタがオープンしたとき呼ばれます．
-     * @param	ev	エディタイベント
+     * @param ev エディタイベント
      */
 //    void editorOpened(EditorEvent ev);
 
     /**
      * エディタがアップデートされたとき呼ばれます．
-     * @param	ev	エディタイベント
+     * @param ev エディタイベント
      */
     void editorUpdated(EditorEvent ev);
 
     /**
      * エディタが終了したとき呼ばれます．
-     * @param	ev	エディタイベント
+     * @param ev エディタイベント
      */
 //    void editorClosed(EditorEvent ev);
 }

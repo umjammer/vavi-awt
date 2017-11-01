@@ -19,8 +19,8 @@ import javax.swing.JPanel;
  * as a checkbox with the text of the check box reflecting the state of the
  * checkbox.
  *
- * @author	Mark Davidson
- * @version	1.10	990923		original version <br>
+ * @author Mark Davidson
+ * @version 1.10 990923 original version <br>
  */
 public class SwingBooleanEditor extends SwingEditorSupport {
 

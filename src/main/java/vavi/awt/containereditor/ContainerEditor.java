@@ -89,7 +89,7 @@ public abstract class ContainerEditor implements Editable {
     /** listener for selection model */
     private SelectionListener sl = new SelectionListener() {
         public void valueChanged(SelectionEvent ev) {
-            final List<Component> cs = new ArrayList<Component>();
+            final List<Component> cs = new ArrayList<>();
             cs.clear();
             @SuppressWarnings("unchecked")
             List<Selectable> selected = (List<Selectable>) ev.getSelected();
@@ -128,7 +128,7 @@ public abstract class ContainerEditor implements Editable {
      */
     public List<Selectable> getSelected() {
         List<Selectable> selected = selectionModel.getSelected();
-        List<Selectable> selection = new ArrayList<Selectable>();
+        List<Selectable> selection = new ArrayList<>();
         for (int i = 0; i < selected.size(); i++) {
             Controller controller = (Controller) selected.get(i);
             selection.add((Selectable) controller.getView());
@@ -142,7 +142,7 @@ public abstract class ContainerEditor implements Editable {
      * @param selection List<Selectable>
      */
     public void select(List<Selectable> selection) {
-        List<Selectable> selected = new ArrayList<Selectable>();
+        List<Selectable> selected = new ArrayList<>();
         if (selection.size() == 1 && selection.get(0) == container) {
             selectionModel.deselectAll();
             selected.add((Selectable) container);
@@ -163,7 +163,7 @@ public abstract class ContainerEditor implements Editable {
     public void select(Component component, boolean isMultiSelection) {
         if (component == container) {
             selectionModel.deselectAll();
-            List<Component> selected = new ArrayList<Component>();
+            List<Component> selected = new ArrayList<>();
             selected.add(container);
             fireEditorUpdated(new EditorEvent(ContainerEditor.this, "select", selected));
         } else {
@@ -176,7 +176,7 @@ public abstract class ContainerEditor implements Editable {
      * Component をすべて選択します．
      */
     public void selectAll() {
-        final List<Selectable> selected = new ArrayList<Selectable>();
+        final List<Selectable> selected = new ArrayList<>();
         selected.clear();
         for (int i = 0; i < container.getComponentCount(); i++) {
             Component component = container.getComponent(i);

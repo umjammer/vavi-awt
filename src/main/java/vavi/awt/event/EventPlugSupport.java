@@ -21,7 +21,7 @@ import java.util.Map;
 public class EventPlugSupport {
 
     /** EventPlug 管理用 Hashtable */
-    protected volatile Map<String, EventPlug> eventPlugs = new HashMap<String, EventPlug>();
+    protected volatile Map<String, EventPlug> eventPlugs = new HashMap<>();
 
     /**
      * EventPlug を追加します．

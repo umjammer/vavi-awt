@@ -18,10 +18,10 @@ import vavi.util.Debug;
 /**
  * An PropertyEdtitor for editing numbers.
  *
- * @author	Mark Davidson
- * @author	<a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
- * @version				original version <br>
- *		0.01	020529	nsano	rename <br>
+ * @author Mark Davidson
+ * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @version                   original version <br>
+ *          0.01 020529 nsano rename <br>
  */
 public class SwingFloatEditor extends SwingEditorSupport {
 

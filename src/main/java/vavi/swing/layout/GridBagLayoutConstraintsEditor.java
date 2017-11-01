@@ -60,7 +60,7 @@ public class GridBagLayoutConstraintsEditor
         int MIN_VALUE = -99999;
 
         Component[] components = container.getComponents();
-	if (components.length == 0) {
+        if (components.length == 0) {
 Debug.println(components.length);
             return;
         }

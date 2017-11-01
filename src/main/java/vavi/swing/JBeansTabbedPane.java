@@ -52,7 +52,7 @@ import vavi.util.Debug;
  */
 public class JBeansTabbedPane extends JTabbedPane {
 
-    /** @see	BeanInfo#getIcon param iconKind */
+    /** @see    BeanInfo#getIcon param iconKind */
     private int iconKind = BeanInfo.ICON_COLOR_16x16;
 
     /** Preferred size for 16 x 16 icon */
@@ -62,10 +62,10 @@ public class JBeansTabbedPane extends JTabbedPane {
 
     /** TODO depend on BeanInfo.ICON_X_NxN constants */
     private static final Dimension[] preferredSizes = {
-        dimension16x16,	// ICON_COLOR_16x16
-        dimension32x32,	// ICON_COLOR_32x32
-        dimension16x16,	// ICON_MONO_16x16
-        dimension32x32	// ICON_MONO_32x32
+        dimension16x16, // ICON_COLOR_16x16
+        dimension32x32, // ICON_COLOR_32x32
+        dimension16x16, // ICON_MONO_16x16
+        dimension32x32  // ICON_MONO_32x32
     };
 
     /**
@@ -74,7 +74,7 @@ public class JBeansTabbedPane extends JTabbedPane {
     public JBeansTabbedPane() {
 
         int i = 0;
-	while (true) {
+    while (true) {
 
             // one tab
             JPanel tab = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -113,7 +113,7 @@ Debug.println("no property for: " + key);
                         button.setIcon(new ImageIcon(image));
                     }
                     button.setToolTipText(value);
-                    button.setActionCommand(value);	// 仕様
+                    button.setActionCommand(value);    // 仕様
                     button.setPreferredSize(preferredSizes[iconKind-1]);
                     button.addActionListener(selectAction);
 
@@ -213,7 +213,7 @@ Debug.printStackTrace(e);
             props.load(clazz.getResourceAsStream(path));
         } catch (Exception e) {
 Debug.println(Level.SEVERE, "no properties file");
-	        throw new IllegalStateException(e);
+            throw new IllegalStateException(e);
         }
     }
 

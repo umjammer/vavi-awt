@@ -51,31 +51,31 @@ public class JContainerTree extends JTree {
      * TODO 非表示のとき薄くする
      */
     private DefaultTreeCellRenderer tcr = new DefaultTreeCellRenderer() {
-    	/** */
-    	public Component getTreeCellRendererComponent(JTree tree,
-    						      Object value,
-    						      boolean selected,
-    						      boolean expanded,
-    						      boolean leaf,
-    						      int row,
-    						      boolean hasFocus) {
-    
-//      	    String stringValue = tree.convertValueToText(
+        /** */
+        public Component getTreeCellRendererComponent(JTree tree,
+                                  Object value,
+                                  boolean selected,
+                                  boolean expanded,
+                                  boolean leaf,
+                                  int row,
+                                  boolean hasFocus) {
+
+//              String stringValue = tree.convertValueToText(
 //                  value, selected, expanded, leaf, row, hasFocus);
-    
+
                 if (! (value instanceof ComponentTreeNode))
                     return this;
-    
+
                 this.hasFocus = hasFocus;
-    
+
                 ComponentTreeNode node = (ComponentTreeNode) value;
                 Component component = (Component) node.getUserObject();
-    
+
                 /* Set the text. */
                 setText(node.getName());
                 /* Tooltips used by the tree. */
                 setToolTipText(node.getDescription());
-    
+
                 try {
                     Class<?> beanClass = component.getClass();
 //Debug.println(beanClass);
@@ -90,26 +90,26 @@ public class JContainerTree extends JTree {
                 } catch (Exception e) {
 Debug.println(Level.SEVERE, e);
                 }
-    
-    	    if (selected)
-    		setForeground(getTextSelectionColor());
-    	    else
-    		setForeground(getTextNonSelectionColor());
-    
-    	    setComponentOrientation(tree.getComponentOrientation());
-    
-    	    /* Update the selected flag for the next paint. */
-    	    this.selected = selected;
-    
-    	    return this;
-    	}
+
+            if (selected)
+            setForeground(getTextSelectionColor());
+            else
+            setForeground(getTextNonSelectionColor());
+
+            setComponentOrientation(tree.getComponentOrientation());
+
+            /* Update the selected flag for the next paint. */
+            this.selected = selected;
+
+            return this;
+        }
     };
 
     static {
-    	Class<?> clazz = JContainerTree.class;
-    	UIDefaults table = UIManager.getDefaults();
-    	table.put("jContainerTree.defaultIcon", LookAndFeel.makeIcon(
-                clazz, "/toolbarButtonGraphics/development/Bean16.gif"));
+        Class<?> clazz = JContainerTree.class;
+        UIDefaults table = UIManager.getDefaults();
+        table.put("jContainerTree.defaultIcon", LookAndFeel.makeIcon(
+            clazz, "/toolbarButtonGraphics/development/Bean16.gif"));
     }
 }
 

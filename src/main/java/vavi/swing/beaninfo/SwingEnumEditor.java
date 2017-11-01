@@ -22,19 +22,19 @@ import javax.swing.JPanel;
  * Note: the init() method must be called before the set/get methods can be
  * called.
  *
- * @author	Mark Davidson
- * @author	<a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
- * @version				original version <br>
- *		0.01	020524	nsano	be genaric #init <br>
- *		0.01	020527	nsano	be genaric EnumeratedItem <br>
+ * @author Mark Davidson
+ * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @version                   original version <br>
+ *          0.01 020524 nsano be genaric #init <br>
+ *          0.01 020527 nsano be genaric EnumeratedItem <br>
  */
 public class SwingEnumEditor extends SwingEditorSupport {
 
     /** */
-    private JComboBox combobox;
+    private JComboBox<EnumeratedItem> combobox;
 
     public SwingEnumEditor() {
-        combobox = new JComboBox();
+        combobox = new JComboBox<>();
 
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
@@ -46,8 +46,7 @@ public class SwingEnumEditor extends SwingEditorSupport {
         if (editor != null) {
             combobox.setEditable(true);
             combobox.setEditor(editor);
-        }
-        else {
+        } else {
             combobox.setEditable(false);
         }
     }
@@ -73,7 +72,7 @@ public class SwingEnumEditor extends SwingEditorSupport {
             EnumeratedItem item = (EnumeratedItem) selected;
             if (value != null && !value.equals(item.getValue()))  {
                 for (int i = 0; i < combobox.getItemCount(); ++i) {
-                    item = (EnumeratedItem) combobox.getItemAt(i);
+                    item = combobox.getItemAt(i);
                     if (item.getValue().equals(value)) {
                         // XXX - hack! Combo box shouldn't call action event
                         // for setSelectedItem!!

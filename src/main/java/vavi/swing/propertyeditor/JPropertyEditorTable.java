@@ -24,9 +24,9 @@ import vavi.util.Debug;
 /**
  * The UI for listing, sorting, and setting component properties.
  *
- * @author	<a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
- * @version	0.00	020524	nsano	initial version <br>
- *		0.10	020603	nsano	use properties file <br>
+ * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @version 0.00 020524 nsano initial version <br>
+ *          0.10 020603 nsano use properties file <br>
  */
 public class JPropertyEditorTable extends JTable {
 
@@ -113,8 +113,8 @@ public class JPropertyEditorTable extends JTable {
         final String path = "propertyEditor.properties";
         final Class<?> c = JPropertyEditorTable.class;
 
-    	try {
-    	    props.load(c.getResourceAsStream(path));
+        try {
+            props.load(c.getResourceAsStream(path));
 
             int i = 0;
             while (true) {
@@ -159,10 +159,10 @@ Debug.println("no property for: clazz." + i);
 
                 i++;
             }
-    	} catch (Exception e) {
+        } catch (Exception e) {
 Debug.println(Level.SEVERE, e);
             throw new IllegalStateException(e);
-    	}
+        }
     }
 }
 

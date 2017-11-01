@@ -39,7 +39,7 @@ import vavi.awt.dnd.BasicDTListener;
  *          0.01 021222 nsano try native DnD <br>
  *          0.02 021223 nsano fix native DnD <br>
  */
-public class JHistoryComboBox extends JComboBox {
+public class JHistoryComboBox extends JComboBox<Object> {
 
     /** */
     public JHistoryComboBox() {
@@ -89,8 +89,8 @@ public class JHistoryComboBox extends JComboBox {
         /**
          * Called by isDragOk
          * Checks to see if the flavor drag flavor is acceptable
-         * @param	ev	the DropTargetDragEvent object
-         * @return	whether the flavor is acceptable
+         * @param    ev    the DropTargetDragEvent object
+         * @return    whether the flavor is acceptable
          */
         protected boolean isDragFlavorSupported(DropTargetDragEvent ev) {
             return ev.isDataFlavorSupported(DataFlavor.javaFileListFlavor);
@@ -99,8 +99,8 @@ public class JHistoryComboBox extends JComboBox {
         /**
          * Called by drop
          * Checks the flavors and operations
-         * @param	ev	the DropTargetDropEvent object
-         * @return	the chosen DataFlavor or null if none match
+         * @param    ev    the DropTargetDropEvent object
+         * @return    the chosen DataFlavor or null if none match
          */
         protected DataFlavor chooseDropFlavor(DropTargetDropEvent ev) {
 //Debug.println(ev.getCurrentDataFlavorsAsList());
@@ -108,7 +108,7 @@ public class JHistoryComboBox extends JComboBox {
                 ev.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
                 return DataFlavor.javaFileListFlavor;
             }
-            DataFlavor chosen = null;	    
+            DataFlavor chosen = null;        
             if (ev.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
                 chosen = DataFlavor.javaFileListFlavor;
             }
@@ -127,7 +127,7 @@ public class JHistoryComboBox extends JComboBox {
          * You need to implement here dropping procedure.
          * data はシリアライズされたものをデシリアライズした
          * ものなのでクローンです．
-         * @param	data	ドロップされたデータ
+         * @param data ドロップされたデータ
          */
         @SuppressWarnings("unchecked")
         protected boolean dropImpl(DropTargetDropEvent ev, Object data) {

@@ -59,7 +59,7 @@ public class EtchedBorderCustomizer extends BasicBorderCustomizer {
         Color h  = ((EtchedBorder) border).getHighlightColor();
         Color s  = ((EtchedBorder) border).getShadowColor();
 
-	etched = BorderFactory.createEtchedBorder(type, h, s);
+        etched = BorderFactory.createEtchedBorder(type, h, s);
         borderSample.setBorder(etched);
 
         super.setObject(border);

@@ -45,9 +45,9 @@ public class GridBagLayoutCustomizer extends BasicLayoutManagerCustomizer {
     /** Creates customizer for GridBagLayout */
     public GridBagLayoutCustomizer() {
         // UI
-        Container c1 = (Container) getComponent(1);	// right base panel
+        Container c1 = (Container) getComponent(1); // right base panel
 //Debug.println(c1.getName());
-        Component c2 = c1.getComponent(0);	// upper titled border panel
+        Component c2 = c1.getComponent(0); // upper titled border panel
 //Debug.println(c2.getName());
         c1.remove(c2);
         ((GridLayout) c1.getLayout()).setRows(1);

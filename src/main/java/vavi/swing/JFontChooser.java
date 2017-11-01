@@ -39,12 +39,12 @@ import vavi.util.Debug;
  * <p>
  * JFontChooser.properties にデフォルトのフォントエディタとデフォルトの フォントを指定できます．
  * <p>
- * 
+ *
  * <pre>
- * 
- *   editorClass	フォントエディタのクラス
- *   font	フォントのプロパティ
- *  
+ *
+ *   editorClass フォントエディタのクラス
+ *   font        フォントのプロパティ
+ *
  * </pre>
  * 
  * @depends /vavi/swing/resource${I18N}.properties

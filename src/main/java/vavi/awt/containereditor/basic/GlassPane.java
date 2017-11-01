@@ -31,9 +31,9 @@ import vavi.util.Debug;
  *
  * container に setSize すること．
  *
- * @author	<a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
- * @version	0.00	020613	nsano	initial version <br>
- *		0.01	020617	nsano	add grid function <br>
+ * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @version 0.00 020613 nsano initial version <br>
+ *          0.01 020617 nsano add grid function <br>
  */
 public class GlassPane extends JComponent {
 
@@ -214,7 +214,7 @@ Debug.println("TODO " + controllers.size() + "controller(s) still alive");
     //-------------------------------------------------------------------------
 
     /** Component と Controller のペア */
-    private Map<Component,Component> controllers = new HashMap<Component,Component>();
+    private Map<Component,Component> controllers = new HashMap<>();
 
     /** */
     public LocatableController getControllerFor(Component component) {

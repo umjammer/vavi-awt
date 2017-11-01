@@ -30,7 +30,7 @@ public class SelectionModel {
 
     /** */
     public SelectionModel() {
-        selected = new Vector<Selectable>();
+        selected = new Vector<>();
     }
 
     /**

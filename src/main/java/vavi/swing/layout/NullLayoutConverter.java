@@ -38,7 +38,7 @@ public class NullLayoutConverter {
     }
 
 //  public boolean isSavingAsGridBagLayout() {
-//  	return savingAsGridBagLayout;
+//      return savingAsGridBagLayout;
 //  }
 
     public boolean isOverlaid() {
@@ -55,7 +55,7 @@ public class NullLayoutConverter {
 
 //  public void setSavingAsGridBagLayout(boolean savingAsGridBagLayout) {
 //      boolean oldValue = this.savingAsGridBagLayout;
-//  	this.savingAsGridBagLayout = savingAsGridBagLayout;
+//      this.savingAsGridBagLayout = savingAsGridBagLayout;
 //      firePropertyChange("savingAsGridBagLayout",
 //                         oldValue,
 //                         savingAsGridBagLayout);

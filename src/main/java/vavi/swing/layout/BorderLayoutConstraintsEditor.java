@@ -58,7 +58,7 @@ Debug.println(index);
 
     /**
      * Associates constraints.
-     * @param	index	component no. in container
+     * @param index component no. in container
      */
     public Object associateConstraints(int index) {
 
@@ -134,7 +134,7 @@ Debug.println(index);
 
     /** */
     private String[] findFreePositions() {
-        List<String> positions = new ArrayList<String>(6);
+        List<String> positions = new ArrayList<>(6);
 
         if (getComponentOnPosition(BorderLayout.CENTER) == -1) {
             positions.add(BorderLayout.CENTER);

@@ -49,7 +49,7 @@ public class BoxLayoutCustomizer extends BasicLayoutManagerCustomizer {
     private JPanel buttons;
 
     /** */
-    private DefaultListModel history;
+    private DefaultListModel<String> history;
 
     private JCheckBox xAxis;
     private JCheckBox yAxis;
@@ -63,12 +63,12 @@ public class BoxLayoutCustomizer extends BasicLayoutManagerCustomizer {
     /** */
     public BoxLayoutCustomizer() {
         // UI
-        Container c1 = (Container) getComponent(1);	// right base panel
-        Component c2 = c1.getComponent(0);	// upper titled border panel
+        Container c1 = (Container) getComponent(1);    // right base panel
+        Component c2 = c1.getComponent(0);    // upper titled border panel
         c1.remove(c2);
         c1.remove(lcPanel);
 
-        history = new DefaultListModel();
+        history = new DefaultListModel<>();
 
         xAxis = new JCheckBox("X_AXIS");
         yAxis = new JCheckBox("Y_AXIS");
@@ -125,7 +125,7 @@ public class BoxLayoutCustomizer extends BasicLayoutManagerCustomizer {
         p.add(p1);
 
         // history
-        JList list = new JList(history);
+        JList<?> list = new JList<>(history);
         sp = new JScrollPane(list);
         p.add(sp);
 
@@ -175,7 +175,7 @@ public class BoxLayoutCustomizer extends BasicLayoutManagerCustomizer {
 //Debug.println(c.getPreferredSize().width+", "+c.getPreferredSize().height);
 //Debug.println(c.getMaximumSize().width+", "+c.getMaximumSize().height);
 
-	    components.put(String.valueOf(i), controller);
+            components.put(String.valueOf(i), controller);
 
             // operation
             JToggleButton button = new JToggleButton("" + i);

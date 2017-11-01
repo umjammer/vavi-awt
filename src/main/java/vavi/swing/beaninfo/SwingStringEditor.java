@@ -20,13 +20,13 @@ import javax.swing.JTextField;
 /**
  * A property editor for editing strings.
  *
- * @author	Mark Davidson
- * @author	<a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
- * @version	1.20	991105		orginal version <br>
- *		1.21	020527	nsano	enum'able <br>
+ * @author Mark Davidson
+ * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @version 1.20 991105       orginal version <br>
+ *          1.21 020527 nsano enum'able <br>
  */
 public class SwingStringEditor extends SwingEditorSupport {
-    
+
     // Property editor to use if the Integer represents an Enumerated type.
     private SwingEnumEditor enumEditor = new SwingEnumEditor();
 
@@ -60,8 +60,7 @@ public class SwingStringEditor extends SwingEditorSupport {
             super.setValue(value);
             if (value != null)  {
                 textfield.setText(value.toString());
-            }
-            else {
+            } else {
                 textfield.setText("");
             }
         }
@@ -70,12 +69,11 @@ public class SwingStringEditor extends SwingEditorSupport {
     public Object getValue() {
         if (isEnumeration)  {
             return enumEditor.getValue();
-        }
-        else {
+        } else {
             return super.getValue();
         }
     }
-   
+
     /** 
      * Must overload the PropertyChangeListener registration because
      * this class is the only interface to the SwingEnumEditor.
@@ -100,8 +98,7 @@ public class SwingStringEditor extends SwingEditorSupport {
             isEnumeration = true;
 
             enumEditor.init(descriptor);
-        }
-        else {
+        } else {
             // This is a string item
             isEnumeration = false;
         }

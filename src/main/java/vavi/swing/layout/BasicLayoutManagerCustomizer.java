@@ -58,7 +58,7 @@ public class BasicLayoutManagerCustomizer extends JComponent
     protected JPanel lcPanel;
 
     /** component/controller pair */
-    protected Map<Object, Component> components = new HashMap<Object, Component>();
+    protected Map<Object, Component> components = new HashMap<>();
 
     /** */
     public BasicLayoutManagerCustomizer() {

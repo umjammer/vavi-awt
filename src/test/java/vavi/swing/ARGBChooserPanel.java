@@ -55,20 +55,20 @@ public class ARGBChooserPanel extends AbstractColorChooserPanel implements Chang
         }
 
 
-        if (((Integer)redSpinner.getValue()).intValue() != red) {
-            redSpinner.setValue(new Integer(red));
-	}
-        if (((Integer)greenSpinner.getValue()).intValue() != green) {
-            greenSpinner.setValue(new Integer(green));
-	}
-        if (((Integer)blueSpinner.getValue()).intValue() != blue) {
-            blueSpinner.setValue(new Integer(blue));
-	}
-        if (((Integer)alphaSpinner.getValue()).intValue() != alpha) {
-            alphaSpinner.setValue(new Integer(alpha));
-	}
+        if ((int) redSpinner.getValue() != red) {
+            redSpinner.setValue(red);
+        }
+        if ((int) greenSpinner.getValue() != green) {
+            greenSpinner.setValue(green);
+        }
+        if ((int) blueSpinner.getValue() != blue) {
+            blueSpinner.setValue(blue);
+        }
+        if ((int) alphaSpinner.getValue() != alpha) {
+            alphaSpinner.setValue(alpha);
+        }
     }
-    
+
     public String getDisplayName() {
         return "ARGB";
     }
@@ -80,9 +80,9 @@ public class ARGBChooserPanel extends AbstractColorChooserPanel implements Chang
     public Icon getLargeDisplayIcon() {
         return null;
     }
-       
+
     protected void buildChooser() {
-      
+
         setLayout(new BorderLayout());
         Color color = getColorFromModel();
 
@@ -179,8 +179,8 @@ public class ARGBChooserPanel extends AbstractColorChooserPanel implements Chang
 
         redSlider.addChangeListener(this);
         greenSlider.addChangeListener(this);
-        blueSlider.addChangeListener(this);  
-        alphaSlider.addChangeListener(this);  
+        blueSlider.addChangeListener(this);
+        alphaSlider.addChangeListener(this);
     }
 
     public void updateChooser() {
@@ -201,16 +201,16 @@ public class ARGBChooserPanel extends AbstractColorChooserPanel implements Chang
             int blue = blueSlider.getValue() ;
             int alpha = alphaSlider.getValue() ;
             Color color = new Color (red, green, blue, alpha);
-    
+
             getColorSelectionModel().setSelectedColor(color);
         } else if (e.getSource() instanceof JSpinner && !isAdjusting) {
 
-            int red = ((Integer)redSpinner.getValue()).intValue();
-            int green = ((Integer)greenSpinner.getValue()).intValue();
-            int blue = ((Integer)blueSpinner.getValue()).intValue();
-            int alpha = ((Integer)alphaSpinner.getValue()).intValue();
+            int red = (int) redSpinner.getValue();
+            int green = (int) greenSpinner.getValue();
+            int blue = (int) blueSpinner.getValue();
+            int alpha = (int) alphaSpinner.getValue();
             Color color = new Color (red, green, blue, alpha);
-            
+
             getColorSelectionModel().setSelectedColor(color);
         }
     }

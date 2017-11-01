@@ -41,7 +41,7 @@ class ScreenCapture {
     public void setShow(boolean showFlag) {
         this.showFlag = showFlag;
     }
-    
+
     public boolean isCapturing() {
         return captureFlag;
     }

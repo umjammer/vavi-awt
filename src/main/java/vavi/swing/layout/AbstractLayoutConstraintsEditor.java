@@ -28,7 +28,7 @@ public abstract class AbstractLayoutConstraintsEditor {
     protected Container container;
 
     /** key: no. of component, value: LayoutConstraints */
-    protected Map<String,LayoutConstraints> cache = new HashMap<String,LayoutConstraints>();
+    protected Map<String,LayoutConstraints> cache = new HashMap<>();
 
     /** target layout manager */
     protected LayoutManager2 layout;

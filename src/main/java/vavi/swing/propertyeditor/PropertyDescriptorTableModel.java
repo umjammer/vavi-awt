@@ -39,7 +39,7 @@ public class PropertyDescriptorTableModel
     private BeanInfo info;
 
     // Shared instance of a comparator
-    private static DescriptorComparator<FeatureDescriptor> comparator = new DescriptorComparator<FeatureDescriptor>();
+    private static DescriptorComparator<FeatureDescriptor> comparator = new DescriptorComparator<>();
 
     // View options
     public static final int VIEW_ALL         = 0;
@@ -246,7 +246,7 @@ Debug.println("Row: " + row + " Column: " + column);
 
         // Use collections to filter out unwanted properties
 
-        List<FeatureDescriptor> list = new ArrayList<FeatureDescriptor>();
+        List<FeatureDescriptor> list = new ArrayList<>();
 
         for (int i = 0; i < descriptors.length; i++) {
             PropertyDescriptor desc = (PropertyDescriptor) descriptors[i];

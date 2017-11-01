@@ -87,7 +87,7 @@ public class BasicRubberBandGesture extends RubberBandGesture {
         if (component == glassPane) {
             args = null;
         }
-        else {					// Controller
+        else {                    // Controller
             // Shift キーを押していたら複数選択にする
             Boolean isMultiSelect = Boolean.valueOf(ev.isShiftDown());
             args = new Object[] { component, isMultiSelect };
@@ -126,21 +126,21 @@ public class BasicRubberBandGesture extends RubberBandGesture {
      * マウスの位置によってリサイズか移動かを設定します．
      */
     private void setMode(MouseEvent ev) {
-	Component component = ev.getComponent();
+    Component component = ev.getComponent();
 
-	if (component instanceof Selectable &&
+    if (component instanceof Selectable &&
             !((Selectable) component).isSelected()) {
-	    rubberBand.setMode(RubberBand.NORMAL_MODE);
-	}
-	else if (ev.getSource() == glassPane) {
-	    rubberBand.setMode(RubberBand.NORMAL_MODE);
-	}
+        rubberBand.setMode(RubberBand.NORMAL_MODE);
+    }
+    else if (ev.getSource() == glassPane) {
+        rubberBand.setMode(RubberBand.NORMAL_MODE);
+    }
         else if (ev.getSource() == component) {
             rubberBand.setMode(renderer.getMode(component,ev.getPoint()));
         }
         else {
-	    rubberBand.setMode(RubberBand.MOVE_MODE);
-	}
+        rubberBand.setMode(RubberBand.MOVE_MODE);
+    }
 
         component.setCursor(renderer.getCursor(rubberBand.getMode()));
     }
@@ -149,16 +149,16 @@ public class BasicRubberBandGesture extends RubberBandGesture {
      * コンテナ上のポイントを返します．
      */
     private Point getLocationAtContainer(MouseEvent ev) {
-	Component component = ev.getComponent();
-	Point point = ev.getPoint();
+        Component component = ev.getComponent();
+        Point point = ev.getPoint();
 
-	while (component != glassPane) {
-	    point.x += component.getLocation().x;
-	    point.y += component.getLocation().y;
-	    component = component.getParent();
-	}
+        while (component != glassPane) {
+            point.x += component.getLocation().x;
+            point.y += component.getLocation().y;
+            component = component.getParent();
+        }
 
-	return point;
+        return point;
     }
 }
 

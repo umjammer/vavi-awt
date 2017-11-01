@@ -37,7 +37,7 @@ public abstract class AbstractDescriptorTableModel extends AbstractTableModel {
     private static final int NUM_COLUMNS = 2;
 
     public AbstractDescriptorTableModel() {
-        propEditors = new HashMap<Class<?>, PropertyEditor>();
+        propEditors = new HashMap<>();
     }
 
     /**

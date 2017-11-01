@@ -59,15 +59,15 @@ public class SmallFontEditor extends JComponent implements FontEditor {
     private int selectedStyle = Font.PLAIN;
 
     // Controls
-    private JComboBox familyNameCombo;
-    private JComboBox fontSizeCombo;
+    private JComboBox<String> familyNameCombo;
+    private JComboBox<String> fontSizeCombo;
 
     private JToggleButton pButton, iButton, bButton;
     private FontDisplay iDisplay, pDisplay, bDisplay;
 
     /** */
     private JLabel labelDisplay;
-	
+    
     /** */
     private Font font;
 
@@ -144,8 +144,8 @@ public class SmallFontEditor extends JComponent implements FontEditor {
         final Dimension MEDIUM_DIMENSION = new Dimension(120, 20);
         final Dimension SMALL_DIMENSION = new Dimension(50, 20);
         // ComboBoxes
-        familyNameCombo = new JComboBox(fonts);
-        fontSizeCombo = new JComboBox();
+        familyNameCombo = new JComboBox<>(fonts);
+        fontSizeCombo = new JComboBox<>();
 
         familyNameCombo.setPreferredSize(MEDIUM_DIMENSION);
         familyNameCombo.setMinimumSize(MEDIUM_DIMENSION);
@@ -236,6 +236,7 @@ public class SmallFontEditor extends JComponent implements FontEditor {
             this.font = new Font("Dialog", this.style, this.size);
         }
 
+        @SuppressWarnings("unused")
         public FontDisplay() {
             this.font = new Font("Dialog", this.style, this.size);
         }
@@ -243,7 +244,7 @@ public class SmallFontEditor extends JComponent implements FontEditor {
         public void setFamily(String family) {
             this.font = new Font(family, this.style, this.size);
         }
-		
+
         public void paintIcon(Component c, Graphics g, int x, int y) {
             JComponent component = (JComponent) c;
 

@@ -45,8 +45,8 @@ public class NullLayoutCustomizer extends BasicLayoutManagerCustomizer {
     /** */
     public NullLayoutCustomizer() {
         // UI
-        Container c1 = (Container) getComponent(1);	// right base panel
-        Component c2 = c1.getComponent(0);	// upper titled border panel
+        Container c1 = (Container) getComponent(1); // right base panel
+        Component c2 = c1.getComponent(0); // upper titled border panel
         c1.remove(c2);
         ((GridLayout) c1.getLayout()).setRows(1);
         c1.doLayout();
