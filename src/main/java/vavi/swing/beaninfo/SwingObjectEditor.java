@@ -30,14 +30,14 @@ import javax.swing.JOptionPane;
 /**
  * A property editor which allows for the display and instantiation of
  * arbitrary objects. To instantiate the object, type the package and the
- * class in the text field and press Enter. The Class should be in the 
+ * class in the text field and press Enter. The Class should be in the
  * classpath.
  *
  * @version %I% %G%
  * @author  Mark Davidson
  */
 public class SwingObjectEditor extends SwingEditorSupport {
-    
+
     private JTextField textfield;
 
     public SwingObjectEditor() {
@@ -62,24 +62,24 @@ public class SwingObjectEditor extends SwingEditorSupport {
                 }
             }
         });
-        
+
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
         panel.add(textfield);
     }
-    
+
     public void setValue(Object value)  {
         super.setValue(value);
 
         if (value != null)  {
             // Truncate the address from the object reference.
             String text = value.toString();
-            
+
             // XXX javax.swing.AccessibleRelationSet.toString() has a bug in which
             // null is returned. Intercept this and other cases so that the tool
             // doens't get hosed.
             if (text == null) text = "";
-            
+
             int index = text.indexOf('@');
             if (index != -1)  {
                 text = text.substring(0, index);
@@ -90,7 +90,7 @@ public class SwingObjectEditor extends SwingEditorSupport {
         }
     }
 
-    /** 
+    /**
      * Callback method which gets handled for actionPerformed.
      */
     private void handleAction()  {

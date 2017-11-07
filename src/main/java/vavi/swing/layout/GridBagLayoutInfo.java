@@ -14,7 +14,7 @@ import java.beans.SimpleBeanInfo;
 
 /**
  * GridBagLayoutInfo.
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020527 nsano initial version <br>
  */

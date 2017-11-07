@@ -28,12 +28,12 @@ import vavi.awt.dnd.BasicDTListener;
  * ヒストリ付きコンボボックスです．
  * エクスプローラ等からのファイルの
  * ドラッグアンドドロップをサポートします．
- * 
+ *
  * @todo ヒストリのクラス化？
  *       ヒストリの取り出し
  *       ヒストリの削除
  *       DnD って UI で指定するもの？
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020503 nsano initial version <br>
  *          0.01 021222 nsano try native DnD <br>
@@ -59,7 +59,7 @@ public class JHistoryComboBox extends JComboBox<Object> {
     }
 
     //
-    
+
     /** */
     private ActionListener actionListener = new ActionListener() {
         public void actionPerformed(ActionEvent ev) {
@@ -67,7 +67,7 @@ public class JHistoryComboBox extends JComboBox<Object> {
             if (item == null || item.length() == 0) {
                 return;
             }
-            
+
             for (int i = 0; i < getItemCount(); i++) {
                 if (item.equals(getItemAt(i)))
                     return;
@@ -85,7 +85,7 @@ public class JHistoryComboBox extends JComboBox<Object> {
         public DTListener() {
             this.dragAction = DnDConstants.ACTION_COPY_OR_MOVE;
         }
-    
+
         /**
          * Called by isDragOk
          * Checks to see if the flavor drag flavor is acceptable
@@ -108,7 +108,7 @@ public class JHistoryComboBox extends JComboBox<Object> {
                 ev.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
                 return DataFlavor.javaFileListFlavor;
             }
-            DataFlavor chosen = null;        
+            DataFlavor chosen = null;
             if (ev.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
                 chosen = DataFlavor.javaFileListFlavor;
             }

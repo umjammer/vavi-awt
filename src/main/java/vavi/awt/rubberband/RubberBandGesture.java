@@ -15,7 +15,7 @@ import vavi.swing.event.EditorSupport;
 
 /**
  * RubberBand (Model) を操作するコントローラです．
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020603 nsano initial version <br>
  */

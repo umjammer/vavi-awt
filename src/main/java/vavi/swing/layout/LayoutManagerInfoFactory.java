@@ -23,9 +23,9 @@ import vavi.util.Debug;
 /**
  * LayoutManager クラスは Bean の仕様では扱えませんので Introspector の
  * 替わりにこのクラスを用いて *LayoutManager の BeanInfo を取得します．
- * 
+ *
  * @depends layoutManager.properties
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020518 nsano initial version <br>
  *          1.00 020527 nsano refine <br>
@@ -67,11 +67,11 @@ Debug.printStackTrace(e);
         final String path = "layoutManager.properties";
         final Toolkit t = Toolkit.getDefaultToolkit();
         final Class<?> c = LayoutManagerInfoFactory.class;
-        
+
         Properties props = new Properties();
-        
+
         lmis = new ArrayList<>();
-        
+
         try {
             props.load(c.getResourceAsStream(path));
 

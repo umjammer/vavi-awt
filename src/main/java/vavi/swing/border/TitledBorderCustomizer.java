@@ -19,7 +19,7 @@ import javax.swing.border.TitledBorder;
 
 /**
  * TitledBorderCustomizer.
- * 
+ *
  * @beaninfo Border "border"
  * @beaninfo String "title"
  * @beaninfo int "titleJustification" true
@@ -28,9 +28,9 @@ import javax.swing.border.TitledBorder;
  *  { DEFAULT_POSITION, BOTTOM, CENTER, LEADING, LEFT, RIGHT, TOP, TRAILING }
  * @beaninfo Font "titleFont"
  * @beaninfo Color "titleColor"
- * 
+ *
  * TODO たぶん bean として機能する．
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020524 nsano initial version <br>
  */

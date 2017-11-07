@@ -13,7 +13,7 @@ import java.util.Comparator;
 /**
  * Comparator used to compare java.beans.FeatureDescriptor objects.
  * The Strings returned from getDisplayName are used in the comparison.
- * 
+ *
  * @author Mark Davidson
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 1.1 990923 mark original version <br>

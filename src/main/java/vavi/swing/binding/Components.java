@@ -58,7 +58,7 @@ public @interface Components {
 
         /**
          * TODO メソッドにアノテーションされた場合
-         * @return only {@link Component} annotated fields 
+         * @return only {@link Component} annotated fields
          * @throws IllegalArgumentException bean is not annotated with {@link Components}
          */
         public static List<Field> getComponentFields(Class<?> beanClass) {

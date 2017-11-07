@@ -36,14 +36,14 @@ import vavi.util.Debug;
 
 /**
  * bean を選択する TabbedPane です．
- * 
+ *
  * TODO button management
  * DONE load beans
- * 
+ *
  * @event ComponentSelectionEvent("select", JToggleButton)
- * 
+ *
  * @depends ${JDK_HOME}/lib/dt.jar
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 010823 nsano initial version <br>
  *          0.10 020509 nsano be independent <br>

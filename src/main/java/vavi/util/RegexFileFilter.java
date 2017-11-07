@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 
 /**
  * Regex でフィルタをかけるファイルフィルタです．
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 010910 nsano initial version <br>
  *          0.01 010912 nsano ignors InterruptedException <br>
@@ -38,7 +38,7 @@ public class RegexFileFilter extends javax.swing.filechooser.FileFilter implemen
 
     /**
      * 指定したパターンのファイルフィルタを作成します．
-     * 
+     *
      * @param regex パターン
      */
     public RegexFileFilter(String regex) {
@@ -47,7 +47,7 @@ public class RegexFileFilter extends javax.swing.filechooser.FileFilter implemen
 
     /**
      * 指定したパターンのファイルフィルタを作成します．
-     * 
+     *
      * @param regex パターン
      */
     public RegexFileFilter(String regex, String description) {

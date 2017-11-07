@@ -37,7 +37,7 @@ import static vavi.swing.colorchooser.MainSwatchPanel.colors;
  * appropriate for short term storage or RMI between applications running the
  * same version of Swing. A future release of Swing will provide support for
  * long term persistence.
- * 
+ *
  * @author Steve Wilson
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 1.14 980828 original version <br>

@@ -19,7 +19,7 @@ import javax.swing.border.EmptyBorder;
 
 /**
  * JTreeComboBox のデフォルトのセルレンダラです．
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020330 nsano initial version <br>
  */

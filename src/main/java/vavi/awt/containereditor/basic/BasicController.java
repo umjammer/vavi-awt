@@ -15,7 +15,7 @@ import vavi.awt.containereditor.AbstractController;
 
 /**
  * Basic コントローラです．
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 010823 nsano initial version <br>
  *          0.10 020508 nsano deprecate basePanel <br>

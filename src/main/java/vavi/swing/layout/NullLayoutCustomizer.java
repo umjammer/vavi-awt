@@ -130,7 +130,7 @@ public class NullLayoutCustomizer extends BasicLayoutManagerCustomizer {
         int y1 = r.y;
         int x2 = r.x + r.width;
         int y2 = r.y + r.height;
- 
+
         int dx = x1 % W;
         int tx1 = dx < (W - dx) ? x1 - dx : x1 + (W - dx);
         int dy = y1 % H;

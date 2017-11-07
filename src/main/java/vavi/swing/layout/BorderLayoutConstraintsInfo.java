@@ -18,7 +18,7 @@ import vavi.util.Debug;
 
 /**
  * BorderLayoutConstraintsInfo.
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020528 nsano initial version <br>
  */
@@ -45,7 +45,7 @@ public class BorderLayoutConstraintsInfo extends SimpleBeanInfo {
                 "EAST", BorderLayout.EAST, null,
                 "NORTH", BorderLayout.NORTH, null,
                 "SOUTH", BorderLayout.SOUTH, null,
-                "WEST", BorderLayout.WEST, null,   
+                "WEST", BorderLayout.WEST, null,
             };
             pds[0].setValue("enumerationValues", value);
             return pds;

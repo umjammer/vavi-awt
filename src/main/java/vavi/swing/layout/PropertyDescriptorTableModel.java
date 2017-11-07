@@ -109,7 +109,7 @@ for (int i = 0; i < args.length; i++) {
 Debug.println(e);
 Debug.println(descriptors[row].getShortDescription());
 Debug.println("LayoutManager: " + bean.toString());
-                } 
+                }
             }
         }
         return value;

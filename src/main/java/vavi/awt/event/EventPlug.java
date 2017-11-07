@@ -14,7 +14,7 @@ import vavi.util.Debug;
 
 /**
  * イベントを結合，分離するためのクラスです．
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020512 nsano initial version <br>
  */
@@ -30,7 +30,7 @@ public class EventPlug {
 
     /**
      * イベントを結合，分離するプラグを構築します．
-     * 
+     *
      * @param name プラグの名前
      * @param invoker イベントを発行するオブジェクト
      * @param listener イベントを受け取るリスナ
@@ -115,7 +115,7 @@ public class EventPlug {
 
     /**
      * プラグを接続，分離する処理です．
-     * 
+     *
      * @param type "add" or "remove"
      */
     private void plugImpl(String type) {

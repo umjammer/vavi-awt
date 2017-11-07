@@ -9,7 +9,7 @@ package vavix.swing.editormanager;
 
 /**
  * 複数のエディタを管理するクラスのデフォルトの実装クラスです．
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 010820 nsano initial version <br>
  *          0.10 010906 nsano fix specification??? <br>

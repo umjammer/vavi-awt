@@ -23,7 +23,7 @@ import vavi.awt.rubberband.RubberBandRenderer;
 
 /**
  * Basic ラバーバンドレンダラです．
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 010829 nsano initial version <br>
  *          0.10 020611 nsano fix <br>

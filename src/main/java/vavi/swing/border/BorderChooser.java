@@ -31,9 +31,9 @@ import vavi.util.Debug;
 
 /**
  * BorderChooser.
- * 
+ *
  * @depends border.properties
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 original version <br>
  *          1.00 020527 nsano complete <br>

@@ -46,30 +46,30 @@ import java.util.Vector;
  * images, not sound.
  * <p>
  * Sample main program:
- * 
+ *
  * <pre>
  * public static void main(String[] args) {
  *     new vavi.awt.AppletFrame(new ThisApplet(), args, 400, 400);
  * }
  * </pre>
- * 
+ *
  * The only methods you need to know about are the constructors.
  * <p>
  * You can specify Applet parameters on the command line, as name=value.
  * For instance, the equivalent of:
- * 
+ *
  * <pre>
  * &lt;PARAM NAME="vavi.awt.AppletFrame.parameter.pause" VALUE="200"&gt;
  * </pre>
- * 
+ *
  * would just be:
- * 
+ *
  * <pre>
  * pause = 200
  * </pre>
- * 
+ *
  * You can also specify three special parameters:
- * 
+ *
  * <pre>
  * vavi.awt.AppletFrame.parameter.width=N          Width of the Applet.
  * vavi.awt.AppletFrame.parameter.height=N         Height of the Applet.

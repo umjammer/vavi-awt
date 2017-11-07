@@ -45,40 +45,40 @@ import javax.swing.JPanel;
  * versions of this concept, MainFrame implements both images and sound.
  * <p>
  * Sample main program:
- * 
+ *
  * <pre>
  * public static void main(String[] args) {
  *     new vavi.swing.JAppletFrame(new ThisApplet(), args, 400, 400);
  * }
  * </pre>
- * 
+ *
  * The only methods you need to know about are the constructors.
  * <p>
  * You can specify Applet parameters on the command line, as name=value. For
  * instance, the equivalent of:
- * 
+ *
  * <pre>
- * 
+ *
  *  &lt;PARAM NAME=&quot;vavi.swing.JAppletFrame.parameter.pause&quot; VALUE=&quot;200&quot;&gt;
- *  
+ *
  * </pre>
- * 
+ *
  * would just be:
- * 
+ *
  * <pre>
  * pause = 200
  * </pre>
- * 
+ *
  * You can also specify three special parameters:
- * 
+ *
  * <pre>
- * 
+ *
  *  vavi.swing.JAppletFrame.parameter.width=N          Width of the Applet.
  *  vavi.swing.JAppletFrame.parameter.height=N         Height of the Applet.
  *  vavi.swing.JAppletFrame.parameter.barebones=true   Leave off the menu bar and status area.
- *  
+ *
  * </pre>
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 010901 nsano port from Acme.MainFrame <br>
  *          0.01 020415 nsano change class name <br>
@@ -348,16 +348,16 @@ public class JAppletFrame extends JFrame implements Runnable, AppletStub, Applet
         appletPanel.setPreferredSize(new Dimension(width, height));
 //Debug.println(Debug.DEBUG, "resize: " + width + ", " + height); Dimension frameSize = getSize();
 //Debug.println(Debug.DEBUG, "frame: "+frameSize.width+", "+frameSize.height); Insets insets = getInsets();
-          
+
 //        if (!barebones) {
 //            insets.bottom += label.getHeight();
 //        }
-          
+
 //Debug.println(Debug.DEBUG, "insets: " + insets.top + ", " + insets.bottom);
 //Debug.println(Debug.DEBUG, "insets: " + insets.left + ", " + insets.right);
-          
+
 //        frameSize.width = width + insets.left + insets.right; frameSize.height = height + insets.top + insets.bottom;
-          
+
 //Debug.println(Debug.DEBUG, "frame: " + frameSize.width + ", " + frameSize.height);
 //        setSize(frameSize);
 

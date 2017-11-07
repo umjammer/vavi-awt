@@ -18,7 +18,7 @@ import vavi.util.Debug;
 
 /**
  * GridLayoutConstraintEditor.
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020528 nsano initial version <br>
  */
@@ -292,7 +292,7 @@ Debug.println(components.length);
             for (int j = 1; j < axisYnumber+1; j++) {
                 if (y < axisY[j] && y >= axisY[j-1]) {
                     gridY = j-1;
-                    top = y - axisY[j-1];      
+                    top = y - axisY[j-1];
                 }
                 if (y1 <= axisY[j] && y1 > axisY[j-1]) {
                     gridHeight = j-gridY;

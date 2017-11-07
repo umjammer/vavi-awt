@@ -57,7 +57,7 @@ public class SwingEditorSupport extends PropertyEditorSupport {
      * For property editors that must be initialized with values from
      * the property descriptor.
      */
-    public void init(FeatureDescriptor descriptor)  {  
+    public void init(FeatureDescriptor descriptor)  {
     }
 }
 

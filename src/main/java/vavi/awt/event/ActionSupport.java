@@ -14,7 +14,7 @@ import java.util.Vector;
 
 /**
  * Action リスナーのユーティリティです．
- * 
+ *
  * @target 1.1
  * @caution JDK 1.1 用に書かれているので swing は使っちゃいかん！
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
@@ -28,7 +28,7 @@ public class ActionSupport implements Serializable {
 
     /**
      * Action リスナーをアタッチします．
-     * 
+     *
      * @param l ActionListener
      */
     public void addActionListener(ActionListener l) {
@@ -37,7 +37,7 @@ public class ActionSupport implements Serializable {
 
     /**
      * Action リスナーをリムーブします．
-     * 
+     *
      * @param l ActionListener
      */
     public void removeActionListener(ActionListener l) {

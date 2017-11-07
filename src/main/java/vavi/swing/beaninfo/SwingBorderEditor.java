@@ -43,7 +43,7 @@ import vavi.swing.border.SampleBorderInfo;
 
 /**
  * Swing version of a Border property editor.
- * 
+ *
  * @author Tom Santos
  * @author Mark Davidson
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)

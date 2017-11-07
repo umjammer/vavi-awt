@@ -37,13 +37,13 @@ import vavi.util.Debug;
 
 /**
  * SelectinModel を用いる Container のエディタです．
- * 
+ *
  * @event EditorEvent("copy", Vector<Component>)
  * @event EditorEvent("lostOwnership")
  * @event EditorEvent("select", Vector<Component>)
- * 
+ *
  * TODO ComponentSelectionModel をつくるべきか
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020604 nsano initial version <br>
  *          0.10 020609 nsnao be editable <br>
@@ -138,7 +138,7 @@ public abstract class ContainerEditor implements Editable {
 
     /**
      * 指定した Component のベクタを選択状態にします．
-     * 
+     *
      * @param selection List<Selectable>
      */
     public void select(List<Selectable> selection) {

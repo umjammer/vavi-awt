@@ -26,7 +26,7 @@ import vavi.util.Debug;
  * 作成します．
  *
  * @event PropertyChangeEvent("propertyName", newValue)
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020524 nsano initial version <br>
  */
@@ -107,7 +107,7 @@ for (int i = 0; i < args.length; i++) {
 Debug.println(e);
 Debug.println(descriptors[row].getShortDescription());
 Debug.println("Border: " + bean.toString());
-                } 
+                }
             }
         }
         return value;

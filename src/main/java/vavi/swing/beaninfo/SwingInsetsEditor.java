@@ -21,7 +21,7 @@ import vavi.text.NumberDocument;
  * @version original version <br>
  */
 public class SwingInsetsEditor extends SwingEditorSupport {
-    
+
     private JTextField topTF;
     private JTextField leftTF;
     private JTextField bottomTF;

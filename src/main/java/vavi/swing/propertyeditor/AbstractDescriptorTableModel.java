@@ -21,7 +21,7 @@ import vavi.util.Debug;
 /**
  * Table model used to obtain property names and values. This model encapsulates
  * an array of PropertyDescriptors.
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020525 nsano initial version <br>
  */
@@ -121,7 +121,7 @@ Debug.println(Level.SEVERE, "creating PropertyEditor: " + e);
                         propEditors.put(type, editor);
                     }
                 }
-                
+
                 if (editor == null) {
                     // Use the editor for Object.class
                     editor = propEditors.get(Object.class);

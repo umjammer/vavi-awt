@@ -15,7 +15,7 @@ import vavi.util.Debug;
 
 /**
  * ラバーバンドのモデルです．
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 010829 nsano initial version <br>
  *          0.10 010903 nsano repackage <br>
@@ -173,7 +173,7 @@ public class RubberBand {
 Debug.println(Level.SEVERE, "wrong resize mode: " + mode);
             break;
         }
-        
+
         return new Rectangle(x, y, w, h);
     }
 

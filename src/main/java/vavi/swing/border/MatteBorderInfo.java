@@ -14,7 +14,7 @@ import javax.swing.border.MatteBorder;
 
 /**
  * MatteBorderInfo.
- * 
+ *
  * @beaninfo Insets "borderInsets"
  *           Integer.TYPE "top"
  *           Integer.TYPE "left"
@@ -22,7 +22,7 @@ import javax.swing.border.MatteBorder;
  *           Integer.TYPE "right"
  * @beaninfo Color "matteColor" false
  * @beaninfo Icon "tileIcon" false
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020524 nsano initial version <br>
  */

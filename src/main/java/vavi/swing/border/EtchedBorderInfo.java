@@ -14,11 +14,11 @@ import javax.swing.border.EtchedBorder;
 
 /**
  * EtchedBorderInfo.
- * 
+ *
  * @beaninfo int "etchType" { LOWERED, RAISED }
  * @beaninfo Color "highlightColor"
  * @beaninfo Color "shadowColor"
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020524 nsano initial version <br>
  */

@@ -13,7 +13,7 @@ import javax.swing.event.EventListenerList;
 
 /**
  * Selection リスナーのユーティリティです．
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020603 nsano initial version <br>
  */
@@ -24,7 +24,7 @@ public class SelectionSupport implements Serializable {
 
     /**
      * Selection リスナーをアタッチします．
-     * 
+     *
      * @param l SelectionListener
      */
     public void addSelectionListener(SelectionListener l) {
@@ -33,7 +33,7 @@ public class SelectionSupport implements Serializable {
 
     /**
      * Selection リスナーをリムーブします．
-     * 
+     *
      * @param l SelectionListener
      */
     public void removeSelectionListener(SelectionListener l) {

@@ -13,11 +13,11 @@ import javax.swing.JFileChooser;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals; 
+import static org.junit.Assert.assertEquals;
 
 
 /**
- * RegexFileFilterTest. 
+ * RegexFileFilterTest.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (umjammer)
  * @version 0.00 2012/10/16 umjammer initial version <br>

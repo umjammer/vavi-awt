@@ -29,7 +29,7 @@ import vavi.swing.propertyeditor.JPropertyEditorTable;
 
 /**
  * BasicLayoutManagerCustomizer.
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020527 nsano initial version <br>
  */
@@ -75,9 +75,9 @@ public class BasicLayoutManagerCustomizer extends JComponent
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         panel.add(screenPanel);
-        
+
         this.add(panel);
-        
+
         panel = new JPanel(new GridLayout(2, 1));
 //      panel.setName("right base");
         tableModel = new PropertyDescriptorTableModel();
@@ -96,10 +96,10 @@ public class BasicLayoutManagerCustomizer extends JComponent
         lcPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Component Constraints"));
         lcPanel.add(sp);
         panel.add(lcPanel);
-        
+
         this.add(panel);
     }
-    
+
     /** */
     public void setObject(LayoutManager layout) {
         LayoutManager oldLayout = this.layout;

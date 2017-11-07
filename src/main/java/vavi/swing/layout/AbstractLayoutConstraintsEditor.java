@@ -14,7 +14,7 @@ import java.util.Map;
 
 /**
  * AbstractConstraintEditor.
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020528 nsano initial version <br>
  *          0.01 020617 nsano refine <br>

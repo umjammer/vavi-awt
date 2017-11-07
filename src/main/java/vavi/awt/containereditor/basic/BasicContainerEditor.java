@@ -34,10 +34,10 @@ import vavi.swing.event.EditorListener;
 
 /**
  * BasicContainerEditor
- * 
+ *
  * @event EditorEvent("location", Component)
  * @event EditorEvent("bounds", Component)
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020604 nsano initial version <br>
  *          0.01 020609 nsano delete cse -> editor event <br>

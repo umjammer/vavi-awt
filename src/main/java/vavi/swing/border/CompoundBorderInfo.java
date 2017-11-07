@@ -14,10 +14,10 @@ import javax.swing.border.CompoundBorder;
 
 /**
  * CompoundBorderInfo.
- * 
+ *
  * @beaninfo Border "insideBorder"
  * @beaninfo Border "outsideBorder"
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020524 nsano initial version <br>
  */

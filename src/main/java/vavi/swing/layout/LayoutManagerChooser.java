@@ -32,9 +32,9 @@ import vavi.util.Debug;
 
 /**
  * LayoutManagerChooser.
- * 
+ *
  * @event PropertyChangeEvent("layout", null, LayoutManager)
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020516 nsano initial version <br>
  *          0.01 020618 nsano fix null pcl <br>

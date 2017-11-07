@@ -24,9 +24,9 @@ import javax.swing.event.TableModelListener;
 
 /**
  * CardLayoutCustomizer.
- * 
+ *
  * TODO CardLayout#show した後，他の setVisible が false になってます．
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020528 nsano initial version <br>
  *          0.01 020618 nsano refine <br>

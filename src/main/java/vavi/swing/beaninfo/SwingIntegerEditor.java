@@ -20,7 +20,7 @@ import javax.swing.JSpinner;
  * type properties which are identified if the "enumerationValues" key returns a
  * non-null value. Note: the init() method must be called before the set/get
  * methods can be called.
- * 
+ *
  * @author Mark Davidson
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 1.90 991111 original version <br>

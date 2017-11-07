@@ -74,7 +74,7 @@ public class SwingStringEditor extends SwingEditorSupport {
         }
     }
 
-    /** 
+    /**
      * Must overload the PropertyChangeListener registration because
      * this class is the only interface to the SwingEnumEditor.
      */

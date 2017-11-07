@@ -13,7 +13,7 @@ import javax.swing.event.EventListenerList;
 
 /**
  * RubberBand イベント機構のユーティリティです．
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 010904 nsano initial version <br>
  *          0.10 010904 nsano fix specifications??? <br>

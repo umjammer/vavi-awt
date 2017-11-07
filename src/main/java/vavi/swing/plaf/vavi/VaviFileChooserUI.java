@@ -13,7 +13,7 @@ import javax.swing.plaf.metal.MetalFileChooserUI;
  * @author        <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  */
 public class VaviFileChooserUI extends MetalFileChooserUI {
-    
+
     /** */
     public VaviFileChooserUI(JFileChooser filechooser) {
         super(filechooser);

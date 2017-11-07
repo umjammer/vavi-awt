@@ -23,9 +23,9 @@ import vavi.swing.event.EditorEvent;
 
 /**
  * BasicRubberBandGesture
- * 
+ *
  * @event EditorEvent("clicked", Object[] { Selectable, Boolean } | null)
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020603 nsano initial version <br>
  *          0.10 020611 nsano fix <br>

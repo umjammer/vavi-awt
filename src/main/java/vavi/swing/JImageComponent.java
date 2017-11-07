@@ -17,7 +17,7 @@ import javax.swing.border.Border;
 
 /**
  * JImageComponent.
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 021109 nsano initial version <br>
  */

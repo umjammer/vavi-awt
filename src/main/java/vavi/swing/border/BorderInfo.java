@@ -19,7 +19,7 @@ import java.beans.BeanInfo;
  * Beans の仕様とは違うので，Introspector ではなく BorderInfoFactory を 用いて BorderInfo
  * クラスを取得してください．
  * </p>
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020518 nsano initial version <br>
  */

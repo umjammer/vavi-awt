@@ -50,7 +50,7 @@ public class TransClock {
 
         frame = new JTransFrame("Translucent Clock");
         frame.setUndecorated(true);
-        
+
         frame.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent event) {
                 if (event.isPopupTrigger()) {
@@ -131,7 +131,7 @@ public class TransClock {
                 }
             });
         menu.add(item);
-        
+
         item = new JMenuItem("フォントの変更...");
         item.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent event) {
@@ -153,7 +153,7 @@ public class TransClock {
 
     private void initTimer() {
         Timer timer = new Timer();
-        
+
         // 2 秒後からスタート
         Date start = new Date((System.currentTimeMillis() / 1000L) * 1000L + 500L);
         timer.scheduleAtFixedRate(new ClockTask(this), start, 1000L);

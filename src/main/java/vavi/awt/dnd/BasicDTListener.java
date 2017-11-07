@@ -19,10 +19,10 @@ import vavi.util.Debug;
 
 /**
  * The basic DTListener a listener that tracks the state of the operation.
- * 
+ *
  * @see java.awt.dnd.DropTargetListener
  * @see java.awt.dnd.DropTarget
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 010820 nsano initial version <br>
  */
@@ -34,7 +34,7 @@ public abstract class BasicDTListener implements DropTargetListener {
     /**
      * Called by isDragOk. Checks to see if the flavor drag flavor is
      * acceptable.
-     * 
+     *
      * @param ev the DropTargetDragEvent object
      * @return whether the flavor is acceptable
      */
@@ -42,7 +42,7 @@ public abstract class BasicDTListener implements DropTargetListener {
 
     /**
      * Called by drop. Checks the flavors and operations.
-     * 
+     *
      * @param ev the DropTargetDropEvent object
      * @return the chosen DataFlavor or null if none match
      */
@@ -50,7 +50,7 @@ public abstract class BasicDTListener implements DropTargetListener {
 
     /**
      * Called by dragEnter and dragOver. Checks the flavors and operations.
-     * 
+     *
      * @param ev the event object
      * @return whether the flavor and operation is ok
      */
@@ -187,7 +187,7 @@ Debug.printStackTrace(e);
 
     /**
      * You need to implement here dropping procedure.
-     * 
+     *
      * @param ev
      * @param data 便宜的なドロップされたデータです
      * @return ドロップが成功したかどうか

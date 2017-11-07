@@ -21,9 +21,9 @@ import vavi.util.Debug;
 
 /**
  * BorderInfoFactory.
- * 
+ *
  * @depends border.properties
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020518 nsano initial version <br>
  *          1.00 020527 nsano refine <br>

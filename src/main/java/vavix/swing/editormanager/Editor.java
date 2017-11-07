@@ -11,7 +11,7 @@ import vavi.swing.event.EditorListener;
 
 /**
  * エディタのインターフェースです．
- * 
+ *
  * @todo add close open exit
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 010820 nsano initial version <br>

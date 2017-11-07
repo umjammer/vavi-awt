@@ -24,9 +24,9 @@ import vavi.util.Debug;
 
 /**
  * コンテナの JTree
- * 
+ *
  * @depends ${JDK_HOME}/lib/dt.jar
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020510 nsano initial version <br>
  */

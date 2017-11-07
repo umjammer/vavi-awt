@@ -25,9 +25,9 @@ import vavi.swing.propertyeditor.JPropertyEditorTable;
  * Border クラスの Customizer の基底クラスです．
  * 左側にボーダーのサンプル，右側にボーダーのプロパティエディタテーブル の UI
  * で編集します．
- * 
+ *
  * @done Customizer としては，値が変わるたびに firePropertyChange する
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020523 nsano initial version <br>
  *          1.00 020527 nsano complete <br>

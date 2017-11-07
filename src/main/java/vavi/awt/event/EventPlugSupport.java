@@ -14,7 +14,7 @@ import java.util.Map;
 
 /**
  * EventPlug クラスのユーティリティです．
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020511 nsano initial version <br>
  */
@@ -25,7 +25,7 @@ public class EventPlugSupport {
 
     /**
      * EventPlug を追加します．
-     * 
+     *
      * @param eventPlug EventPlug
      */
     public void addEventPlug(EventPlug eventPlug) {
@@ -34,7 +34,7 @@ public class EventPlugSupport {
 
     /**
      * EventPlug を削除します．
-     * 
+     *
      * @param eventPlug EventPlug
      */
     public void removeEventPlug(EventPlug eventPlug) {
@@ -43,7 +43,7 @@ public class EventPlugSupport {
 
     /**
      * 指定した名前の EventPlug を削除します．
-     * 
+     *
      * @param name EventPlug の名前
      */
     public void removeEventPlug(String name) {
@@ -52,7 +52,7 @@ public class EventPlugSupport {
 
     /**
      * 指定した名前の EventPlug を取得します．
-     * 
+     *
      * @param name EventPlug の名前
      */
     private EventPlug getEventPlug(String name) {
@@ -61,7 +61,7 @@ public class EventPlugSupport {
 
     /**
      * 指定した名前の EventPlug にイベントを発行するオブジェクトを設定します．
-     * 
+     *
      * @param name EventPlug の名前
      * @param invoker イベントを発行するオブジェクト
      */
@@ -72,7 +72,7 @@ public class EventPlugSupport {
 
     /**
      * 指定した名前の EventPlug のイベントを発行するオブジェクトを取得します．
-     * 
+     *
      * @param name EventPlug の名前
      */
     public Object getInvoker(String name) {
@@ -82,7 +82,7 @@ public class EventPlugSupport {
 
     /**
      * 指定した名前の EventPlug にイベントを受け取るリスナを設定します．
-     * 
+     *
      * @param name EventPlug の名前
      * @param listener イベントを受け取るリスナ
      */
@@ -93,7 +93,7 @@ public class EventPlugSupport {
 
     /**
      * 指定した名前の EventPlug のイベントを受け取るリスナを取得します．
-     * 
+     *
      * @param name EventPlug の名前
      */
     public EventListener getEventListener(String name) {
@@ -103,7 +103,7 @@ public class EventPlugSupport {
 
     /**
      * 指定した名前の EventPlug を複製し イベントを発行するオブジェクトを設定します．
-     * 
+     *
      * @param name EventPlug の名前
      * @param newName 複製する EventPlug の名前
      * @param invoker イベントを発行するオブジェクト
@@ -115,7 +115,7 @@ public class EventPlugSupport {
 
     /**
      * 指定した名前の EventPlug を複製し イベントを受け取るリスナを設定します．
-     * 
+     *
      * @param name EventPlug の名前
      * @param newName 複製する EventPlug の名前
      * @param l イベントを受け取るリスナ
@@ -127,7 +127,7 @@ public class EventPlugSupport {
 
     /**
      * 指定した名前の EventPlug を結合，分離します．
-     * 
+     *
      * @param name EventPlug の名前
      * @param connected 結合するかどうか
      */
@@ -138,7 +138,7 @@ public class EventPlugSupport {
 
     /**
      * すべての EventPlug を結合，分離します．
-     * 
+     *
      * @param connected 結合するかどうか
      */
     public void setConnected(boolean connected) {

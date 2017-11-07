@@ -12,7 +12,7 @@ import java.io.File;
 /**
  * ファイル名を入力するためのコンポーネントです．
  * ヒストリ付きコンボボックスに"参照"ボタンがついています．
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020503 nsano initial version <br>
  *          0.10 020504 nsano deprecate Text setter, getter <br>
@@ -47,7 +47,7 @@ public class JFileChooserHistoryComboBox extends JFileChooserField {
 
     /**
      * 文字列をコンボボックスに設定します．
-     * 
+     *
      * @param text 文字列
      */
     protected void setTextImpl(String text) {
@@ -56,7 +56,7 @@ public class JFileChooserHistoryComboBox extends JFileChooserField {
 
     /**
      * コンボボックスで選択されている文字列を返します．
-     * 
+     *
      * @return 選択されている文字列
      */
     protected String getTextImpl() {
@@ -65,7 +65,7 @@ public class JFileChooserHistoryComboBox extends JFileChooserField {
 
     /**
      * ファイルをコンボボックスに設定します．
-     * 
+     *
      * @param file ファイル
      */
     protected void setSelectedFileImpl(File file) {
@@ -74,7 +74,7 @@ public class JFileChooserHistoryComboBox extends JFileChooserField {
 
     /**
      * コンボボックスで選択されているファイルを返します．
-     * 
+     *
      * @return 選択されているファイル
      */
     protected File getSelectedFileImpl() {

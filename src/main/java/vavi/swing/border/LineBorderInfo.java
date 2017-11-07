@@ -14,11 +14,11 @@ import javax.swing.border.LineBorder;
 
 /**
  * LineBorderInfo.
- * 
+ *
  * @beaninfo Color "color" false
  * @beaninfo Integer.TYPE "thickness"
  * @beaninfo Boolean.TYPE "roundedCorners"
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020524 nsano initial version <br>
  */

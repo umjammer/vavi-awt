@@ -13,7 +13,7 @@ import java.beans.PropertyChangeSupport;
 
 /**
  * NullLayoutConverter.
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020617 nsano initial version <br>
  *          0.01 020617 nsano fix firePropertyChange <br>

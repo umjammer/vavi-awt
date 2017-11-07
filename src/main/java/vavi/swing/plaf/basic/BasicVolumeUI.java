@@ -43,7 +43,7 @@ import vavi.swing.plaf.VolumeUI;
 
 /**
  * A Basic L&F implementation of VolumeUI.
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020507 nsano initial version <br>
  */
@@ -139,10 +139,10 @@ public class BasicVolumeUI extends VolumeUI {
 
         scrollTimer.stop();
         scrollTimer = null;
-        
+
         uninstallListeners(volume);
         uninstallKeyboardActions(volume);
-        
+
         focusInsets = null;
         insetCache = null;
         focusRect = null;

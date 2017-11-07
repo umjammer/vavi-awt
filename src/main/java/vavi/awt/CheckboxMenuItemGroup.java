@@ -18,7 +18,7 @@ import vavi.awt.event.ActionSupport;
 
 /**
  * CheckBoxMenuItem のグループです．
- * 
+ *
  * @target 1.1
  * @caution AWT 専用
  * @thanks Yuichi Nakajima
@@ -45,7 +45,7 @@ public class CheckboxMenuItemGroup {
     }
 
     /** */
-    private int selectedIndex = -1; 
+    private int selectedIndex = -1;
 
     /** */
     public void setSelectedIndex(int index) {

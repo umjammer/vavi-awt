@@ -24,9 +24,9 @@ import javax.swing.JPopupMenu;
 
 /**
  * SmallColorChooserPopupMenu.
- * 
+ *
  * @event PropertyChangeEvent("color", null, Color)
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version original version <br>
  *          1.00 020518 nsano refine <br>

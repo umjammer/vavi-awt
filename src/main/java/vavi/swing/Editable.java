@@ -8,7 +8,7 @@ package vavi.swing;
 
 /**
  * Editable.
- * 
+ *
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 020510 nsano initial version <br>
  */
