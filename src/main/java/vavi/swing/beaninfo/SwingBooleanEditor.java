@@ -40,8 +40,7 @@ public class SwingBooleanEditor extends SwingEditorSupport {
         public void itemStateChanged(ItemEvent ev)  {
             if (ev.getStateChange() == ItemEvent.SELECTED) {
                 setValue(Boolean.TRUE);
-            }
-            else {
+            } else {
                 setValue(Boolean.FALSE);
             }
         }
@@ -58,8 +57,7 @@ public class SwingBooleanEditor extends SwingEditorSupport {
                     // to avoid a loop.
                     checkbox.setSelected(((Boolean) value).booleanValue());
                 }
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
 e.printStackTrace();
             }
         }

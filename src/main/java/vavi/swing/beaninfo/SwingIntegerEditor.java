@@ -22,7 +22,7 @@ import javax.swing.JSpinner;
  * methods can be called.
  *
  * @author Mark Davidson
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 1.90 991111 original version <br>
  *          1.91 020524 nsano be genaric <br>
  */
@@ -84,63 +84,63 @@ public class SwingIntegerEditor extends SwingEditorSupport {
      */
     public void init(FeatureDescriptor descriptor) {
         Object[] enumeration = (Object[]) descriptor.getValue("enumerationValues");
-        // Object[] enumplus =
-        // (Object[])descriptor.getValue("enumerationValuesPlus");
+//        Object[] enumplus = (Object[])descriptor.getValue("enumerationValuesPlus");
         if (enumeration != null) {
             // The property descriptor describes an enumerated item.
             isEnumeration = true;
 
             enumEditor.init(descriptor);
             enumEditor.setEditor(null);
-            // Debug.println("enum");
-        }
-        // else if (enumplus != null) {
-        // // enhanced enum
+//Debug.println("enum");
+//        } else if (enumplus != null) {
+            // enhanced enum
 
-        // isEnumeration = true;
+//            isEnumeration = true;
 
-        // enumEditor.init(descriptor);
-        // enumEditor.setEditor(ce);
-        // Debug.println("plus");
-        // }
-        else {
+//            enumEditor.init(descriptor);
+//            enumEditor.setEditor(ce);
+//Debug.println("plus");
+        } else {
             // This is an integer item
             isEnumeration = false;
             enumEditor.setEditor(null);
-            // Debug.println("normal");
+//Debug.println("normal");
         }
     }
 
     /** */
-    // private ComboBoxEditor ce = new BasicComboBoxEditor() {
-    // public Component getEditorComponent() {
-    // return intSpinner;
-    // }
-    //
-    // public void setItem(Object item) {
-    // if (item instanceof EnumeratedItem) {
-    // intSpinner.setValue(((EnumeratedItem) item).getValue());
-    // } else if (item instanceof Integer) {
-    // intSpinner.setValue(item);
-    // }
-    // }
-    //
-    // public Object getItem() {
-    // return intSpinner.getValue();
-    // }
-    // };
+//    private ComboBoxEditor ce = new BasicComboBoxEditor() {
+//        public Component getEditorComponent() {
+//            return intSpinner;
+//        }
+//
+//        public void setItem(Object item) {
+//            if (item instanceof EnumeratedItem) {
+//                intSpinner.setValue(((EnumeratedItem) item).getValue());
+//            } else if (item instanceof Integer) {
+//                intSpinner.setValue(item);
+//            }
+//        }
+//
+//        public Object getItem() {
+//            return intSpinner.getValue();
+//        }
+//    };
+
     /** */
-    // private ChangeListener cl = new ChangeListener() {
-    // public void stateChanged(ChangeEvent ev) {
-    // SwingIntegerEditor.super.setValue(intSpinner.getValue());
-    // }
-    // };
+//    private ChangeListener cl = new ChangeListener() {
+//        public void stateChanged(ChangeEvent ev) {
+//            SwingIntegerEditor.super.setValue(intSpinner.getValue());
+//        }
+//    };
+
     /** */
-    // private PropertyChangeListener al = new PropertyChangeListener() {
-    // public void propertyChange(PropertyChangeEvent ev) {
-    // SwingIntegerEditor.super.setValue(intSpinner.getValue());
-    // }
-    // };
+//    private PropertyChangeListener al = new PropertyChangeListener() {
+//        public void propertyChange(PropertyChangeEvent ev) {
+//            SwingIntegerEditor.super.setValue(intSpinner.getValue());
+//        }
+//    };
+
     /**
      * Return the custom editor for the enumeration or the integer.
      */

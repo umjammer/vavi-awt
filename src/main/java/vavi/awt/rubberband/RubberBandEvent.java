@@ -14,7 +14,7 @@ import java.util.EventObject;
 /**
  * RubberBand が変更される時発行するイベントのクラスです．
  *
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010904 nsano initial version <br>
  *          0.10 010904 nsano fix specifications??? <br>
  *          0.20 020604 nsano fix specifications??? <br>

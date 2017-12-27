@@ -14,11 +14,8 @@ import java.awt.Dimension;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.List;
 
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListCellRenderer;
@@ -26,7 +23,6 @@ import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -45,7 +41,7 @@ import vavi.util.Debug;
 /**
  * Swing version of a Layout property editor.
  *
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020516 nsano initial version <br>
  */
 public class SwingLayoutManagerEditor extends SwingEditorSupport {
@@ -309,43 +305,6 @@ Debug.println("bean is not Container: " + bean);
         UIDefaults table = UIManager.getDefaults();
         table.put("beaninfo.LayoutIcon",
                   LookAndFeel.makeIcon(clazz, "resources/LayoutIcon.gif"));
-    }
-
-    //-------------------------------------------------------------------------
-
-    public static void main(String[] args) {
-        JFrame f = new JFrame("SwingLayoutManagerEditor T400");
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        final SwingLayoutManagerEditor editor = new SwingLayoutManagerEditor();
-        f.getContentPane().setLayout(new BorderLayout());
-        f.getContentPane().add(editor.getCustomEditor(), BorderLayout.NORTH);
-        final JPanel panel = new JPanel();
-        panel.setPreferredSize(new Dimension(100, 80));
-        panel.setBackground(Color.pink);
-        JPanel p = new JPanel(new BorderLayout());
-        p.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        p.add(panel);
-        f.getContentPane().add(p);
-        for (int i = 0; i < 6; i++) {
-            JPanel cp = new JPanel();
-            int r  = (int) (Math.random() * 256 % 256);
-            int g  = (int) (Math.random() * 256 % 256);
-            int b  = (int) (Math.random() * 256 % 256);
-//Debug.println(r + ", " + g + ", " + b);
-            cp.setBackground(new Color(r, g, b));
-            panel.add(cp);
-        }
-        editor.setValue(panel.getLayout());
-        editor.setBean(panel);
-        editor.addPropertyChangeListener(new PropertyChangeListener() {
-            public void propertyChange(PropertyChangeEvent ev) {
-//Debug.println(editor.getValue());
-                panel.setLayout((LayoutManager) editor.getValue());
-            }
-        });
-
-        f.pack();
-        f.setVisible(true);
     }
 }
 

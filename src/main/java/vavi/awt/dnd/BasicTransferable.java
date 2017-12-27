@@ -17,7 +17,7 @@ import java.util.List;
  * The basic transferable object.
  *
  * @done ClipboardOwner いるの？
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010820 nsano initial version <br>
  *          0.01 020507 nsano delete lostOwnership <br>
  *          0.02 020609 nsano refine <br>
@@ -35,7 +35,7 @@ public abstract class BasicTransferable implements Transferable {
      */
     public BasicTransferable(Object model) {
         this.model = model;
-        // Debug.println(Debug.DEBUG, model);
+//Debug.println(Debug.DEBUG, model);
     }
 
     /** Dumps flavors. */
@@ -61,14 +61,14 @@ public abstract class BasicTransferable implements Transferable {
 
     /** Tells if the specified flavor is supported or not. */
     public boolean isDataFlavorSupported(DataFlavor flavor) {
-// Debug.println(Debug.DEBUG, flavorList.contains(flavor));
+//Debug.println(Debug.DEBUG, flavorList.contains(flavor));
         return flavorList.contains(flavor);
     }
 
     /** Gets the transferable data. */
     public synchronized Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
-// Debug.println(Debug.DEBUG, toString());
-//      dumpFlavor(flavor);
+//Debug.println(Debug.DEBUG, toString());
+//        dumpFlavor(flavor);
 
         if (isDataFlavorSupported(flavor)) {
             return model;

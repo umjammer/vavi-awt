@@ -20,7 +20,7 @@ import javax.swing.border.EmptyBorder;
 /**
  * JTreeComboBox のデフォルトのセルレンダラです．
  *
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020330 nsano initial version <br>
  */
 public class DefaultTreeComboBoxCellRenderer<E> extends JLabel implements ListCellRenderer<E> {

@@ -17,7 +17,6 @@ import java.beans.PropertyChangeListener;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import vavi.swing.fontchooser.SmallFontEditor;
@@ -30,7 +29,7 @@ import vavi.swing.fontchooser.SmallFontEditor;
  *
  * @author Tom Santos
  * @author Mark Davidson
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 1.40 010103       original version <br>
  *          1.41 020516 nsano i18n <br>
  *          2.00 020517 nsano separate FontEditor <br>
@@ -107,17 +106,6 @@ public class SwingFontEditor extends SwingEditorSupport {
             font.getFamily() + "\", " +
             font.getStyle() + ", " +
             font.getSize() + ")";
-    }
-
-    //-------------------------------------------------------------------------
-
-    public static void main(String[] argv) {
-        JFrame f = new JFrame("SwingFontEditor T400");
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        SwingFontEditor editor = new SwingFontEditor();
-        f.getContentPane().add(editor.getCustomEditor());
-        f.pack();
-        f.setVisible(true);
     }
 }
 

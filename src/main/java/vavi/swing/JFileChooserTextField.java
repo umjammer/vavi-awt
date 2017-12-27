@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 /**
  * ファイル名を入力するためのコンポーネントです． テキストフィールドに"参照"ボタンがついています．
  *
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010823 nsano initial version <br>
  *          0.10 020427 nsano repackage <br>
  *          0.11 020427 nsano refine <br>

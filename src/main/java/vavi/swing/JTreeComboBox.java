@@ -29,7 +29,7 @@ import javax.swing.tree.TreeModel;
 /**
  * ドロップダウンリストがツリー表示のコンボボックスです．
  *
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020330 nsano rename, repackage <br>
  */
 public class JTreeComboBox extends JComboBox<Object> {

@@ -15,7 +15,7 @@ import java.util.Comparator;
  * The Strings returned from getDisplayName are used in the comparison.
  *
  * @author Mark Davidson
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 1.1 990923 mark original version <br>
  */
 public class DescriptorComparator<T extends FeatureDescriptor> implements Comparator<T> {

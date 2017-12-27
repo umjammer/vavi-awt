@@ -17,7 +17,6 @@ import java.util.logging.Level;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 import javax.swing.LookAndFeel;
 import javax.swing.UIDefaults;
@@ -34,7 +33,7 @@ import vavi.util.Debug;
  *
  * @depends border.properties
  *
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 original version <br>
  *          1.00 020527 nsano complete <br>
  */
@@ -151,17 +150,6 @@ Debug.printStackTrace(e);
                   LookAndFeel.makeIcon(clazz, "resources/nullBorder.gif"));
         table.put("borderChooser.unknownBorderIcon",
                   LookAndFeel.makeIcon(clazz, "resources/unknownBorder.gif"));
-    }
-
-    //-------------------------------------------------------------------------
-
-    /** Tests this class. */
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("BorderChooser");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(new BorderChooser());
-        frame.pack();
-        frame.setVisible(true);
     }
 }
 

@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 /**
  * Regex でフィルタをかけるファイルフィルタです．
  *
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010910 nsano initial version <br>
  *          0.01 010912 nsano ignors InterruptedException <br>
  */

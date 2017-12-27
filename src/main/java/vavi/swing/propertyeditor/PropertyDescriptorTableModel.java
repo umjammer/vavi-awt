@@ -29,7 +29,7 @@ import vavi.util.Debug;
  * an array of PropertyDescriptors.
  *
  * @author Mark Davidson
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 1.11 000105 original version <br>
  *          1.12 020525 nsano refine <br>
  */

@@ -78,7 +78,7 @@ import java.util.Vector;
  *
  * @caution JDK 1.1 用
  *
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010901 nsano port from Acme.MainFrame <br>
  *          0.01 020415 nsano un swinging <br>
  *          0.02 020613 nsano fix size around <br>

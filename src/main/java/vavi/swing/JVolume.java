@@ -30,7 +30,7 @@ import javax.swing.event.MouseInputListener;
 /**
  * ボリューム
  *
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010919 nsano initial version <br>
  *          0.01 020516 nsano use paintComponent <br>
  */

@@ -34,7 +34,7 @@ import vavi.awt.dnd.BasicDTListener;
  *       ヒストリの削除
  *       DnD って UI で指定するもの？
  *
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020503 nsano initial version <br>
  *          0.01 021222 nsano try native DnD <br>
  *          0.02 021223 nsano fix native DnD <br>

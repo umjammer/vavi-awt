@@ -44,7 +44,7 @@ import vavi.util.Debug;
  *
  * TODO ComponentSelectionModel をつくるべきか
  *
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020604 nsano initial version <br>
  *          0.10 020609 nsnao be editable <br>
  *          0.11 020609 nsnao implement clipboard <br>

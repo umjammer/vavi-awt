@@ -14,6 +14,7 @@ import java.lang.annotation.Target;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
@@ -37,6 +38,8 @@ public @interface Components {
 
     /** */
     class Util {
+
+        private static Logger logger = Logger.getLogger(Util.class.getName());
 
         private Util() {
         }
@@ -93,7 +96,7 @@ public @interface Components {
             //
             for (Field field : getComponentFields(bean.getClass())) {
                 String name = Component.Util.getName(field);
-System.err.println("field: " + name);
+logger.fine("field: " + name);
                 for (Field swingField : swings.getClass().getDeclaredFields()) {
                     if (swingField.getName().equals(name)) {
                         Object fieldValue = BeanUtil.getFieldValue(swingField, swings);

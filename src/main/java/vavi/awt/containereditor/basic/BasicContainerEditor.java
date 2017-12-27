@@ -6,8 +6,6 @@
 
 package vavi.awt.containereditor.basic;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -17,9 +15,6 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.UIManager;
 import javax.swing.event.MouseInputListener;
 
 import vavi.awt.Selectable;
@@ -38,7 +33,7 @@ import vavi.swing.event.EditorListener;
  * @event EditorEvent("location", Component)
  * @event EditorEvent("bounds", Component)
  *
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020604 nsano initial version <br>
  *          0.01 020609 nsano delete cse -> editor event <br>
  *          0.10 020611 nsano fix <br>
@@ -249,57 +244,6 @@ public class BasicContainerEditor extends ContainerEditor {
     public void setComponentBounds(Component component, Rectangle bounds) {
         LocatableController controller = getControllerFor(component);
         controller.setBounds(bounds);
-    }
-
-    // -------------------------------------------------------------------------
-
-    /** Tests this class. */
-    public static void main(String[] args) {
-        JFrame f = new JFrame("BasicContainerEditor T400");
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.getContentPane().setLayout(new BorderLayout());
-        // ((JComponent) f.getContentPane()).setOpaque(true);
-        Color bc = UIManager.getColor("Desktop.background");
-        f.getContentPane().setBackground(bc);
-        // f.getContentPane().addComponentListener(new ComponentAdapter() {
-        // public void componentResized(ComponentEvent ev) {
-        // Debug.println(ev.getComponent().getSize());
-        // }
-        // });
-
-        JPanel panel = new JPanel();
-        panel.setLayout(null);
-        panel.setPreferredSize(new Dimension(320, 200));
-        panel.setBackground(Color.pink);
-
-        f.getContentPane().add(panel);
-        f.pack();
-
-        ContainerEditor editor = new BasicContainerEditor(panel);
-        editor.setEditable(true);
-
-        for (int i = 0; i < 6; i++) {
-            JPanel cp = new JPanel();
-
-            int r = (int) (Math.random() * 256 % 256);
-            int g = (int) (Math.random() * 256 % 256);
-            int b = (int) (Math.random() * 256 % 256);
-
-            int x = (int) (Math.random() * 240 % 240);
-            int y = (int) (Math.random() * 170 % 170);
-
-            cp.setSize(new Dimension(80, 30));
-            cp.setBackground(new Color(r, g, b));
-            // Debug.println(x + ", " + y);
-            cp.setLocation(new Point(x, y));
-            cp.setName("Panel_" + i);
-
-            panel.add(cp, -1);
-            // Component cc = new GlassController(cp);
-            // panel.add(cc, 0);
-        }
-
-        f.setVisible(true);
     }
 }
 

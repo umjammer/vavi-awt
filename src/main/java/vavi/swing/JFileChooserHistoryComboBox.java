@@ -13,7 +13,7 @@ import java.io.File;
  * ファイル名を入力するためのコンポーネントです．
  * ヒストリ付きコンボボックスに"参照"ボタンがついています．
  *
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020503 nsano initial version <br>
  *          0.10 020504 nsano deprecate Text setter, getter <br>
  *          0.11 020515 nsano fix getSelectedFile <br>

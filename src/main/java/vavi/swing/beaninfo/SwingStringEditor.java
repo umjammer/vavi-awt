@@ -21,7 +21,7 @@ import javax.swing.JTextField;
  * A property editor for editing strings.
  *
  * @author Mark Davidson
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 1.20 991105       orginal version <br>
  *          1.21 020527 nsano enum'able <br>
  */

@@ -39,7 +39,7 @@ import static vavi.swing.colorchooser.MainSwatchPanel.colors;
  * long term persistence.
  *
  * @author Steve Wilson
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 1.14 980828 original version <br>
  *          1.20 020518 nsano refine <br>
  *          1.21 020618 nsano fix firePropertyChange <br>

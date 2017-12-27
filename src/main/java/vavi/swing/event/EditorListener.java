@@ -12,7 +12,7 @@ import java.util.EventListener;
 /**
  * エディタのリスナインターフェースです．
  *
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010820 nsano initial version <br>
  *          0.10 010906 nsano be generic <br>
  *          0.11 020503 nsano repackage <br>

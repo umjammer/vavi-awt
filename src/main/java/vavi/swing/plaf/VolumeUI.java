@@ -12,7 +12,7 @@ import javax.swing.plaf.ComponentUI;
 /**
  * Pluggable look and feel interface for JVolume.
  *
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010919 nsano initial version <br>
  */
 public abstract class VolumeUI extends ComponentUI {

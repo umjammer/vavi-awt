@@ -19,7 +19,7 @@ import javax.swing.border.EtchedBorder;
  * @beaninfo Color "highlightColor"
  * @beaninfo Color "shadowColor"
  *
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020524 nsano initial version <br>
  */
 public class EtchedBorderInfo extends SimpleBorderInfo {

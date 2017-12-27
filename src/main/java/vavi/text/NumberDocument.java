@@ -15,7 +15,7 @@ import javax.swing.text.PlainDocument;
  * A text document which will reject any characters that are not digits.
  *
  * @author Mark Davidson
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 1.10 990923 original version <br>
  *          1.11 020516 nsano repackage <br>
  */

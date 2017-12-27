@@ -30,7 +30,7 @@ import vavi.util.Debug;
 /**
  * ドラッグアンドドロップができるクラス．
  *
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010820 nsano initial version <br>
  *          0.10 010910 nsano fix #setDragAction <br>
  */
@@ -88,8 +88,9 @@ public abstract class Draggable {
      * 一つ一つのコンポーネントに Draggable を設定する際は
      * data にコンポーネントのデータを指定したほうが楽です．
      * それ以外 (JTree 等) は data は null にしておきます．
-     * @param    source    ドラッグされるコンポーネント
-     * @param    data    the real data
+     *
+     * @param source ドラッグされるコンポーネント
+     * @param data the real data
      */
     public Draggable(Component source, Object data) {
 

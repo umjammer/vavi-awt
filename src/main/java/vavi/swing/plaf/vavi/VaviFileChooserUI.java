@@ -10,7 +10,7 @@ import javax.swing.plaf.metal.MetalFileChooserUI;
 /**
  * Original look&feel (filechooser).
  *
- * @author        <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author        <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  */
 public class VaviFileChooserUI extends MetalFileChooserUI {
 

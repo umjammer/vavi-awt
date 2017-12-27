@@ -12,7 +12,7 @@ import java.util.EventObject;
 /**
  * エディタのイベントです．
  *
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010820 nsano initial version <br>
  *          0.01 020503 nsano repackage <br>
  *          0.02 020510 nsano repackage <br>

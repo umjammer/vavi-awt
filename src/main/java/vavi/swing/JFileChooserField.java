@@ -37,7 +37,7 @@ import vavi.util.Debug;
  *
  * @done Listener の見直し
  *
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020503 nsano initial version <br>
  *          0.10 020504 nsano deprecate Text setter, getter <br>
  *          0.20 020515 nsano revive Text setter, getter <br>

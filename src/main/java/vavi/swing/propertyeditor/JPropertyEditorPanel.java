@@ -48,7 +48,7 @@ import vavi.util.Debug;
  *
  * @author John J. Walker
  * @author Mark Davidson
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 1.16 991111       original version <br>
  *          1.17 020512 nsano refine <br>
  *          1.18 020515 nsano rename <br>

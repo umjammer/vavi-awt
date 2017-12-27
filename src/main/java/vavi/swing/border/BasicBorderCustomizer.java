@@ -28,7 +28,7 @@ import vavi.swing.propertyeditor.JPropertyEditorTable;
  *
  * @done Customizer としては，値が変わるたびに firePropertyChange する
  *
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020523 nsano initial version <br>
  *          1.00 020527 nsano complete <br>
  */

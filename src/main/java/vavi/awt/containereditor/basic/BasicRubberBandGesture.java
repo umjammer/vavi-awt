@@ -26,7 +26,7 @@ import vavi.swing.event.EditorEvent;
  *
  * @event EditorEvent("clicked", Object[] { Selectable, Boolean } | null)
  *
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020603 nsano initial version <br>
  *          0.10 020611 nsano fix <br>
  *          0.11 020613 nsano refine <br>
@@ -61,21 +61,21 @@ public class BasicRubberBandGesture extends RubberBandGesture {
             renderer.drawSelected(ev.getBounds());
         }
         /** */
-//          public void moving(RubberBandEvent ev) {
-//              renderer.drawMoving(ev.getBounds());
-//          }
-//          /** */
-//          public void moved(RubberBandEvent ev) {
-//              renderer.drawMoved(ev.getBounds());
-//          }
-//          /** */
-//          public void resizing(RubberBandEvent ev) {
-//              renderer.drawResizing(ev.getBounds());
-//          }
-//          /** */
-//          public void resized(RubberBandEvent ev) {
-//              renderer.drawResized(ev.getBounds());
-//          }
+//        public void moving(RubberBandEvent ev) {
+//            renderer.drawMoving(ev.getBounds());
+//        }
+        /** */
+//        public void moved(RubberBandEvent ev) {
+//            renderer.drawMoved(ev.getBounds());
+//        }
+        /** */
+//        public void resizing(RubberBandEvent ev) {
+//            renderer.drawResizing(ev.getBounds());
+//        }
+        /** */
+//        public void resized(RubberBandEvent ev) {
+//            renderer.drawResized(ev.getBounds());
+//        }
     };
 
     //-------------------------------------------------------------------------

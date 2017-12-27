@@ -23,7 +23,7 @@ import vavi.util.Debug;
  * @see java.awt.dnd.DropTargetListener
  * @see java.awt.dnd.DropTarget
  *
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010820 nsano initial version <br>
  */
 public abstract class BasicDTListener implements DropTargetListener {
