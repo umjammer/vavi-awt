@@ -11,9 +11,13 @@
   <organization>
     <name></name>
   </organization>
-  <version>1.0.3</version>
+  <version>1.0.4</version>
   <url>https://github.com/umjammer/vavi-awt</url>
-  <description>1.0.3
+  <description>1.0.4
+
+    maintenace version
+
+1.0.3
 
     easy binding
         text field
@@ -87,6 +91,35 @@ TODO
         </executions>
       </plugin>
     </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+          <groupId>org.eclipse.m2e</groupId>
+          <artifactId>lifecycle-mapping</artifactId>
+          <version>1.0.0</version>
+          <configuration>
+            <lifecycleMappingMetadata>
+              <pluginExecutions>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>native2ascii-maven-plugin</artifactId>
+                    <versionRange>[1.0-alpha-1,)</versionRange>
+                    <goals>
+                      <goal>native2ascii</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore></ignore>
+                  </action>
+                </pluginExecution>
+              </pluginExecutions>
+            </lifecycleMappingMetadata>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
   </build>
   <repositories>
     <repository>
