@@ -11,11 +11,26 @@
   <organization>
     <name></name>
   </organization>
-  <version>1.0.1</version>
+  <version>1.0.3</version>
   <url>https://github.com/umjammer/vavi-awt</url>
-  <description>1.0.1
+  <description>1.0.3
 
-    add editor support</description>
+    easy binding
+        text field
+
+1.0.2
+
+    fix native2ascii
+
+1.0.1
+
+    add editor support
+    easy binding
+
+TODO
+
+    separate compiler version in maven
+    save history</description>
   <distributionManagement>
     <repository>
       <id>internal.repo</id>
@@ -27,6 +42,28 @@
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>8</id>
+            <configuration>
+              <source>1.8</source>
+              <target>1.8</target>
+              <excludes>
+                <exclude>vavi/awt/AppletFrame.java</exclude>
+              </excludes>
+            </configuration>
+          </execution>
+          <execution>
+            <id>1.3</id>
+            <configuration>
+              <source>1.1</source>
+              <target>1.1</target>
+              <includes>
+                <include>vavi/awt/AppletFrame.java</include>
+              </includes>
+            </configuration>
+          </execution>
+        </executions>
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
@@ -42,41 +79,14 @@
               <goal>native2ascii</goal>
             </goals>
             <configuration>
-              <encoding>Windows-31J</encoding>
+              <includes>
+                <include>**/*_ja.properties</include>
+              </includes>
             </configuration>
           </execution>
         </executions>
       </plugin>
     </plugins>
-    <pluginManagement>
-      <plugins>
-        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
-        <plugin>
-          <groupId>org.eclipse.m2e</groupId>
-          <artifactId>lifecycle-mapping</artifactId>
-          <version>1.0.0</version>
-          <configuration>
-            <lifecycleMappingMetadata>
-              <pluginExecutions>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>native2ascii-maven-plugin</artifactId>
-                    <versionRange>[1.0-alpha-1,)</versionRange>
-                    <goals>
-                      <goal>native2ascii</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <execute/>
-                  </action>
-                </pluginExecution>
-              </pluginExecutions>
-            </lifecycleMappingMetadata>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
   </build>
   <repositories>
     <repository>
