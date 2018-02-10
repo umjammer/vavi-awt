@@ -31,7 +31,7 @@ import vavi.swing.event.EditorListener;
  * TODO overlaid
  * DONE GridBagLayout 変換ボタン
  * </p>
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020527 nsano initial version <br>
  */
 public class NullLayoutCustomizer extends BasicLayoutManagerCustomizer {
@@ -130,7 +130,7 @@ public class NullLayoutCustomizer extends BasicLayoutManagerCustomizer {
         int y1 = r.y;
         int x2 = r.x + r.width;
         int y2 = r.y + r.height;
- 
+
         int dx = x1 % W;
         int tx1 = dx < (W - dx) ? x1 - dx : x1 + (W - dx);
         int dy = y1 % H;

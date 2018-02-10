@@ -53,7 +53,7 @@ public class FontChooser {
                 families.add(fonts[i].getFamily());
             }
         }
-        family = new JComboBox(families);
+        family = new JComboBox<>(families);
         family.setSelectedItem(font.getFamily());
         family.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent event) {
@@ -69,7 +69,7 @@ public class FontChooser {
             }
         });
 
-        style = new JComboBox(styles);
+        style = new JComboBox<>(styles);
         for (int i = 0; i < styleCodes.length; i++) {
             if (styleCodes[i] == font.getStyle()) {
                 style.setSelectedItem(styles[i]);
@@ -102,7 +102,7 @@ public class FontChooser {
         for (int i = 4; i < 90; i += 4) {
             sizes.add(Integer.toString(i));
         }
-        size = new JComboBox(sizes);
+        size = new JComboBox<>(sizes);
         size.setSelectedItem(Integer.toString(font.getSize()));
         size.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent event) {

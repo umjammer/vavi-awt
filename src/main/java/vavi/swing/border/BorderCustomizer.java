@@ -13,8 +13,8 @@ import javax.swing.border.Border;
 
 /**
  * BorderCustomizer.
- * 
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ *
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020518 nsano initial version <br>
  *          1.00 020527 nsano complete <br>
  */
@@ -32,7 +32,7 @@ public interface BorderCustomizer /* extends Customizer */ {
      * @param listener 削除される PropertyChange リスナー
      */
     void removePropertyChangeListener(PropertyChangeListener listener);
- 
+
     /**
      * カスタマイズする Border を設定します。
      * このメソッドは、Customizer を親 AWT コンテナに追加する前に

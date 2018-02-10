@@ -24,7 +24,7 @@ import vavi.util.Debug;
  * Table model used to obtain property names and values.
  * This model encapsulates an array of PropertyDescriptors.
  *
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020528 nsano initial version <br>
  */
 public class PropertyDescriptorTableModel
@@ -109,7 +109,7 @@ for (int i = 0; i < args.length; i++) {
 Debug.println(e);
 Debug.println(descriptors[row].getShortDescription());
 Debug.println("LayoutManager: " + bean.toString());
-                } 
+                }
             }
         }
         return value;

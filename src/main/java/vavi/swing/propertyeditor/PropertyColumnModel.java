@@ -26,9 +26,9 @@ import javax.swing.table.TableColumn;
 
 /**
  * Column model for the PropertyTable
- * 
+ *
  * @author Mark Davidson
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 1.50 000503 original version <br>
  *          1.51 020523 nsano add border, layoutManager <br>
  */
@@ -89,7 +89,7 @@ public class PropertyColumnModel extends DefaultTableColumnModel  {
 
             setToolTipText(table.getShortDescription(row));
             setBackground(UIManager.getColor("control"));
-            // blur uneditable            
+            // blur uneditable
             if (table.isCellEditable(row, JPropertyEditorTable.COL_VALUE)) {
                 setForeground(UIManager.getColor("textText"));
             } else {

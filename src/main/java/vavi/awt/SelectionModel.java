@@ -17,10 +17,10 @@ import vavi.util.Debug;
 
 /**
  * SelectionModel.
- * 
+ *
  * @event SelectionEvent(Container, List<Selectable>)
- * 
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ *
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020529 nsano initial version <br>
  */
 public class SelectionModel {
@@ -65,7 +65,7 @@ Debug.println("Warnning: be careful to use this method.");
 
     /**
      * Selectable を選択状態にします．
-     * 
+     *
      * @param selectables
      */
     public void select(Selectable[] selectables) {
@@ -79,7 +79,7 @@ Debug.println("Warnning: be careful to use this method.");
 
     /**
      * Selectable を選択状態にします．
-     * 
+     *
      * @param selectable 対象となる Object
      * @param isMultiSelection 複数選択かどうか
      */

@@ -29,8 +29,8 @@ import vavi.util.Debug;
 
 /**
  * ドラッグアンドドロップができるクラス．
- * 
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ *
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010820 nsano initial version <br>
  *          0.10 010910 nsano fix #setDragAction <br>
  */
@@ -88,25 +88,26 @@ public abstract class Draggable {
      * 一つ一つのコンポーネントに Draggable を設定する際は
      * data にコンポーネントのデータを指定したほうが楽です．
      * それ以外 (JTree 等) は data は null にしておきます．
-     * @param    source    ドラッグされるコンポーネント
-     * @param    data    the real data
+     *
+     * @param source ドラッグされるコンポーネント
+     * @param data the real data
      */
     public Draggable(Component source, Object data) {
 
-        this.source = source; 
-    
+        this.source = source;
+
         this.data = data;
-    
+
         dragSource = DragSource.getDefaultDragSource();
         dgListener = new DGListener();
         dsListener = new DSListener();
-    
+
 Debug.println("image: " + DragSource.isDragImageSupported());
         // component, action, listener
         dsRecognizer = dragSource.createDefaultDragGestureRecognizer(
             source,
             DnDConstants.ACTION_MOVE,
-            dgListener); 
+            dgListener);
     }
 
     /** */
@@ -131,7 +132,7 @@ return Toolkit.getDefaultToolkit().createCustomCursor(image, point0, "my cursor"
      * has access to top level's dsListener and dragSource
      * @see java.awt.dnd.DragGestureListener
      * @see java.awt.dnd.DragSource
-     * @see java.awt.datatransfer.StringSelection      
+     * @see java.awt.datatransfer.StringSelection
      */
     private class DGListener implements DragGestureListener {
 
@@ -155,12 +156,12 @@ Debug.println("my action: " + ev.getDragAction() + ": " +
             if ((ev.getDragAction() & dsRecognizer.getSourceActions()) == 0) {
                 return;
             }
-          
+
             Transferable transferable = getTransferable(ev);
             if (transferable == null) {
                 return;
             }
-    
+
             // now kick off the drag
             try {
                 if (image != null) {
@@ -183,10 +184,10 @@ Debug.printStackTrace(e);
     /**
      * DragSourceListener
      * a listener that will track the state of the DnD operation
-     * 
+     *
      * @see java.awt.dnd.DragSourceListener
      * @see java.awt.dnd.DragSource
-     * @see java.awt.datatransfer.StringSelection      
+     * @see java.awt.datatransfer.StringSelection
      */
     private class DSListener implements DragSourceListener {
 
@@ -219,7 +220,7 @@ Debug.println("my action: " + ev.getDropAction() + ": " +
 ((ev.getDropAction() & DnDConstants.ACTION_COPY) != 0 ? "copy" : "") +
 ((ev.getDropAction() & DnDConstants.ACTION_MOVE) != 0 ? "move" : "") +
 ((ev.getDropAction() & DnDConstants.ACTION_LINK) != 0 ? "link" : ""));
-//            if ((myaction & Draggable.this.dragAction) != 0) {    
+//            if ((myaction & Draggable.this.dragAction) != 0) {
 //                context.setCursor(DragSource.DefaultCopyDrop);
                 // カーソルを変更します．
                 context.setCursor(getCursor(ev.getDropAction()));
@@ -240,7 +241,7 @@ Debug.println("my action: " + ev.getDropAction() + ": " +
 //Debug.println(Debug.DEBUG, "dl dragOver source actions: " + sa);
 //Debug.println(Debug.DEBUG, "user action: " + ua);
 //Debug.println(Debug.DEBUG, "drop actions: " + da);
-//Debug.println(Debug.DEBUG, "target actions: " + ta);      
+//Debug.println(Debug.DEBUG, "target actions: " + ta);
         }
 
         /**
@@ -253,7 +254,7 @@ Debug.println("my action: " + ev.getDropAction() + ": " +
 
         /**
          * ドロップアクションが変更されたときに呼ばれます．
-         * @param    ev    the event     
+         * @param    ev    the event
          */
         public void dropActionChanged(DragSourceDragEvent ev) {
             DragSourceContext context = ev.getDragSourceContext();

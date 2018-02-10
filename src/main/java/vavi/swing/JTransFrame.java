@@ -106,7 +106,7 @@ public class JTransFrame extends JFrame implements Translucentable {
 
     protected void processComponentEvent(ComponentEvent e) {
         if (capture.isCapturing()) {
-            if (e.getID() == ComponentEvent.COMPONENT_MOVED 
+            if (e.getID() == ComponentEvent.COMPONENT_MOVED
                 || e.getID() == ComponentEvent.COMPONENT_RESIZED) {
                 capture.notifyMove();
             }

@@ -14,10 +14,14 @@ import java.lang.annotation.Target;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JSlider;
+import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import vavi.beans.BeanUtil;
 
@@ -37,6 +41,8 @@ public @interface Components {
 
     /** */
     class Util {
+
+        private static Logger logger = Logger.getLogger(Util.class.getName());
 
         private Util() {
         }
@@ -58,7 +64,7 @@ public @interface Components {
 
         /**
          * TODO メソッドにアノテーションされた場合
-         * @return only {@link Component} annotated fields 
+         * @return only {@link Component} annotated fields
          * @throws IllegalArgumentException bean is not annotated with {@link Components}
          */
         public static List<Field> getComponentFields(Class<?> beanClass) {
@@ -81,6 +87,12 @@ public @interface Components {
             return componentFields;
         }
 
+        private static boolean enabled = true;
+
+        public static void setEnabled(boolean enabled) {
+            Util.enabled = enabled;
+        }
+
         public static <T> void bind(T bean, Object swings) throws IOException {
             //
             Components propsEntity = bean.getClass().getAnnotation(Components.class);
@@ -93,7 +105,7 @@ public @interface Components {
             //
             for (Field field : getComponentFields(bean.getClass())) {
                 String name = Component.Util.getName(field);
-System.err.println("field: " + name);
+logger.fine("field: " + name);
                 for (Field swingField : swings.getClass().getDeclaredFields()) {
                     if (swingField.getName().equals(name)) {
                         Object fieldValue = BeanUtil.getFieldValue(swingField, swings);
@@ -102,6 +114,9 @@ System.err.println("field: " + name);
                                 JCheckBox checkBox = JCheckBox.class.cast(fieldValue);
                                 checkBox.setSelected((boolean) BeanUtil.getFieldValue(field, bean));
                                 checkBox.addActionListener(e -> {
+                                    if (!enabled) {
+                                        return;
+                                    }
                                     BeanUtil.setFieldValue(field, bean, checkBox.isSelected());
                                     updater.update(bean);
                                 });
@@ -109,6 +124,9 @@ System.err.println("field: " + name);
                                 JSlider slider = JSlider.class.cast(fieldValue);
                                 slider.setValue((int) BeanUtil.getFieldValue(field, bean));
                                 slider.addChangeListener(e -> {
+                                    if (!enabled) {
+                                        return;
+                                    }
                                     JSlider source = (JSlider) e.getSource();
                                     if (source.getValueIsAdjusting()) {
                                         return;
@@ -116,9 +134,32 @@ System.err.println("field: " + name);
                                     BeanUtil.setFieldValue(field, bean, slider.getValue());
                                     updater.update(bean);
                                 });
+                            } else if (JTextField.class.isInstance(fieldValue)) {
+                                JTextField textField = JTextField.class.cast(fieldValue);
+                                textField.setText((String) BeanUtil.getFieldValue(field, bean));
+                                textField.getDocument().addDocumentListener(new DocumentListener() {
+                                    public void changedUpdate(DocumentEvent e) {
+                                        update();
+                                    }
+                                    public void removeUpdate(DocumentEvent e) {
+                                        update();
+                                    }
+                                    public void insertUpdate(DocumentEvent e) {
+                                        update();
+                                    }
+                                    void update() {
+                                        if (!enabled) {
+                                            return;
+                                        }
+                                        BeanUtil.setFieldValue(field, bean, textField.getText());
+                                        updater.update(bean);
+                                    }
+                                });
+                            } else {
+                                logger.warning("field: " + name + " (" + fieldValue.getClass().getName() + ") is not implemented.");
                             }
                         } else {
-                            System.err.println("field: " + name + " is not a sub class of JComponent.");
+                            logger.warning("field: " + name + " is not a sub class of JComponent.");
                         }
                     }
                 }

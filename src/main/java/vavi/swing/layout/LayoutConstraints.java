@@ -15,8 +15,8 @@ import java.beans.*;
  * <p>
  * setter メソッドでは PropertyChangeEvent を発行してください． // TODO
  * </p>
- * 
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ *
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020528 nsano initial version <br>
  */
 public abstract class LayoutConstraints {

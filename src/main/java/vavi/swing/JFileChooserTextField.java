@@ -13,8 +13,8 @@ import javax.swing.JTextField;
 
 /**
  * ファイル名を入力するためのコンポーネントです． テキストフィールドに"参照"ボタンがついています．
- * 
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ *
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010823 nsano initial version <br>
  *          0.10 020427 nsano repackage <br>
  *          0.11 020427 nsano refine <br>
@@ -52,7 +52,7 @@ public class JFileChooserTextField extends JFileChooserField {
 
     /**
      * 文字列をテキストフィールドに設定します．
-     * 
+     *
      * @param text 文字列
      */
     protected void setTextImpl(String text) {
@@ -61,7 +61,7 @@ public class JFileChooserTextField extends JFileChooserField {
 
     /**
      * テキストフィールドに表示されている文字列を返します．
-     * 
+     *
      * @return 表示されている文字列
      */
     protected String getTextImpl() {
@@ -70,7 +70,7 @@ public class JFileChooserTextField extends JFileChooserField {
 
     /**
      * ファイルをテキストフィールドに設定します．
-     * 
+     *
      * @param file ファイル
      */
     protected void setSelectedFileImpl(File file) {
@@ -79,7 +79,7 @@ public class JFileChooserTextField extends JFileChooserField {
 
     /**
      * テキストフィールドに表示されているファイルを返します．
-     * 
+     *
      * @return 表示されているファイル
      */
     protected File getSelectedFileImpl() {

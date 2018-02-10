@@ -28,21 +28,21 @@ import javax.swing.tree.TreeModel;
 
 /**
  * ドロップダウンリストがツリー表示のコンボボックスです．
- * 
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ *
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020330 nsano rename, repackage <br>
  */
-public class JTreeComboBox extends JComboBox {
+public class JTreeComboBox extends JComboBox<Object> {
 
     /** ドロップダウンリストがツリー表示のコンボボックスを構築します． */
     public JTreeComboBox(TreeModel aTreeModel) {
         super();
         setModel(new TreeToListModel(aTreeModel));
-        setRenderer(new DefaultTreeComboBoxCellRenderer());
+        setRenderer(new DefaultTreeComboBoxCellRenderer<>());
     }
 
     /** ツリーモデルをリストモデルに変換して扱うクラスです． */
-    class TreeToListModel extends AbstractListModel implements ComboBoxModel, TreeModelListener {
+    class TreeToListModel extends AbstractListModel<Object> implements ComboBoxModel<Object>, TreeModelListener {
 
         TreeModel source;
 

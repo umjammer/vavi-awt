@@ -13,8 +13,8 @@ import javax.swing.event.EventListenerList;
 
 /**
  * ComponentSelection リスナーのユーティリティです．
- * 
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ *
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020509 nsano initial version <br>
  */
 public class ComponentSelectionSupport implements Serializable {
@@ -24,7 +24,7 @@ public class ComponentSelectionSupport implements Serializable {
 
     /**
      * ComponentSelection リスナーをアタッチします．
-     * 
+     *
      * @param l ComponentSelectionListener
      */
     public void addComponentSelectionListener(ComponentSelectionListener l) {
@@ -33,7 +33,7 @@ public class ComponentSelectionSupport implements Serializable {
 
     /**
      * ComponentSelection リスナーをリムーブします．
-     * 
+     *
      * @param l ComponentSelectionListener
      */
     public void removeComponentSelectionListener(ComponentSelectionListener l) {

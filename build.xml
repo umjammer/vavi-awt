@@ -7,43 +7,32 @@
 <!--                                                                        -->
 <!-- vavi-awt                                                               -->
 <!--                                                                        -->
-<!-- @author	Naohide Sano                                                -->
-<!-- @version	0.00	021116	nsano	initial version                     -->
+<!-- @author Naohide Sano                                                   -->
+<!-- @version 0.00 021116 nsano initial version                             -->
 <!--                                                                        -->
 <!-- ////////////////////////////////////////////////////////////////////// -->
 
-<project name="vavi-awt" default="compile" basedir="."
+<project name="vavi-awt" default="run" basedir="."
          xmlns:artifact="urn:maven-artifact-ant">
 
   <path id="maven-ant-tasks.classpath">
-    <fileset dir="${user.home}/lib/java/maven-ant-tasks">
-      <include name="*.jar" />
+    <fileset dir="${user.home}/lib/java">
+      <include name="maven-ant-tasks*.jar" />
     </fileset>
   </path>
   <typedef resource="org/apache/maven/artifact/ant/antlib.xml" uri="urn:maven-artifact-ant"
-           classpathref="maven-ant-tasks.classpath" />
+           classpathref="maven-ant-tasks.classpath" /> 
 
   <property environment="env"/>
   <property file="local.properties" />
-
   <xmlproperty file="pom.xml" />
 
   <!-- Path Definitions -->
   <path id="project.class.path">
+    <pathelement location="${javac.dest.test}" />
+    <pathelement location="${javac.dest}" />
     <fileset refid="maven-ant-tasks.dependency.fileset"/>
   </path>
-
-  <!-- clean -->
-  <target name="clean" description="Cleaning">
-    <delete>
-      <fileset dir="${javac.dest}">
-        <include name="**/*" />
-      </fileset>
-      <fileset dir="${javac.dest.test}">
-        <include name="**/*" />
-      </fileset>
-    </delete>
-  </target>
 
   <!-- prepare -->
   <target name="prepare" description="Preparing">
@@ -51,65 +40,18 @@
     <artifact:dependencies fileSetId="maven-ant-tasks.dependency.fileset">
       <pom refid="maven.project"/>
     </artifact:dependencies>
+    <artifact:mvn pom="pom.xml">
+      <arg value="-q" />
+      <arg value="clean" />
+      <arg value="package" />
+      <arg value="-DskipTests=true" />
+    </artifact:mvn>
   </target>
-
-  <!-- javac 1.3 -->
-  <target name="compile.1.3" description="コンパイル 1.3">
-    <javac debug="on" destdir="${javac.dest}"
-           source="1.3"
-           target="1.3"
-           encoding="${project.build.plugins.plugin.configuration.encoding}">
-      <classpath refid="project.class.path" />
-      <exclude name="vavi/swing/JAppletFrame.java" />
-      <src path="${javac.source}" />
-    </javac>
-  </target>
-
-  <!-- javac -->
-  <target name="compile.current" depends="prepare" description="Compiling">
-    <javac debug="on" destdir="${javac.dest}"
-           source="${project.build.plugins.plugin.configuration.source}"
-           target="${project.build.plugins.plugin.configuration.target}"
-           encoding="${project.build.plugins.plugin.configuration.encoding}">
-      <classpath refid="project.class.path" />
-      <include name="**/*.java" />
-      <exclude name="vavi/swing/JAppletFrame.java" />
-      <src path="${javac.source}" />
-    </javac>
-
-    <copy todir="${javac.dest}">
-      <fileset dir="${javac.resource}">
-        <include name="**/*" />
-      </fileset>
-    </copy>
-
-    <javac debug="on" destdir="${javac.dest.test}"
-           source="${project.build.plugins.plugin.configuration.source}"
-           target="${project.build.plugins.plugin.configuration.target}"
-           encoding="${project.build.plugins.plugin.configuration.encoding}">
-      <classpath>
-        <path refid="project.class.path" />
-        <pathelement location="${javac.dest}" />
-      </classpath>
-      <include name="**/*.java" />
-      <src path="${javac.source.test}" />
-    </javac>
-
-    <copy todir="${javac.dest.test}">
-      <fileset dir="${javac.resource.test}">
-        <include name="**/*" />
-      </fileset>
-    </copy>
-  </target>
-
-  <target name="compile" depends="compile.current,compile.1.3" />
 
   <!-- run -->
-  <target name="run" depends="compile" description="">
+  <target name="run" depends="prepare" description="">
     <java classname="vavi.util.RegexFileFilterTest" fork="yes">
       <classpath>
-        <pathelement location="${javac.dest}" />
-        <pathelement location="${javac.dest.test}" />
         <path refid="project.class.path" />
       </classpath>
     </java>

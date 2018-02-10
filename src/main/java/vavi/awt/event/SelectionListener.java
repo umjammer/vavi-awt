@@ -11,8 +11,8 @@ import java.util.EventListener;
 
 /**
  * Selection リスナーインターフェースです．
- * 
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ *
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020603 nsano initial version <br>
  */
 public interface SelectionListener extends EventListener {

@@ -32,12 +32,12 @@ import javax.swing.JToggleButton;
 
 /**
  * BoxLayoutCustomizer.
- * 
+ *
  * <pre>
  *  { X_AXIS, Y_AXIS }
  * </pre>
- * 
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ *
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020518 nsano initial version <br>
  */
 public class BoxLayoutCustomizer extends BasicLayoutManagerCustomizer {
@@ -54,7 +54,7 @@ public class BoxLayoutCustomizer extends BasicLayoutManagerCustomizer {
     private JCheckBox xAxis;
     private JCheckBox yAxis;
 
-    private JButton glue; 
+    private JButton glue;
     private JButton vGlue;
     private JButton hGlue;
     private JButton rigid;

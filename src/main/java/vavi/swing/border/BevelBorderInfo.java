@@ -16,12 +16,12 @@ import javax.swing.border.BevelBorder;
  * BevelBorderInfo.
  *
  * @beaninfo Integer.TYPE "bevelType" true { LOWERED, RAISED }
- * @beaninfo Color "highlightInnerColor" false 
- * @beaninfo Color "highlightOuterColor" false 
- * @beaninfo Color "shadowInnerColor"    false 
- * @beaninfo Color "shadowOuterColor"    false 
+ * @beaninfo Color "highlightInnerColor" false
+ * @beaninfo Color "highlightOuterColor" false
+ * @beaninfo Color "shadowInnerColor"    false
+ * @beaninfo Color "shadowOuterColor"    false
  *
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020524 nsano initial version <br>
  */
 public class BevelBorderInfo extends SimpleBorderInfo {

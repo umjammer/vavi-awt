@@ -11,8 +11,8 @@ import java.util.EventObject;
 
 /**
  * Component が選択される時発行するイベントのクラスです．
- * 
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ *
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020509 nsano initial version <br>
  */
 public class ComponentSelectionEvent extends EventObject {

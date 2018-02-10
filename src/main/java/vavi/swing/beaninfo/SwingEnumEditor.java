@@ -23,7 +23,7 @@ import javax.swing.JPanel;
  * called.
  *
  * @author Mark Davidson
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version                   original version <br>
  *          0.01 020524 nsano be genaric #init <br>
  *          0.01 020527 nsano be genaric EnumeratedItem <br>
@@ -83,8 +83,7 @@ public class SwingEnumEditor extends SwingEditorSupport {
                     }
                 }
             }
-        }
-        else {
+        } else {
             combobox.removeActionListener(al);
             combobox.setSelectedItem(selected);
             combobox.addActionListener(al);

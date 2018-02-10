@@ -9,8 +9,8 @@ package vavi.swing.layout;
 
 /**
  * BorderLayoutConstraints.
- * 
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ *
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020528 nsano initial version <br>
  *          0.01 020617 nsano fix firePropertyChange <br>
  */

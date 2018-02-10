@@ -18,8 +18,8 @@ import vavi.util.Debug;
 /**
  * GlassPaneLayout
  *
- * @author    <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
- * @version    0.00    020613    nsano    initial version <br>
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
+ * @version 0.00 020613 nsano initial version <br>
  */
 public class GlassPaneLayout implements LayoutManager {
 

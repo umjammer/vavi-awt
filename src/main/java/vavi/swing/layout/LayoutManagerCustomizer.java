@@ -13,8 +13,8 @@ import java.beans.PropertyChangeListener;
 
 /**
  * LayoutManagerCustomizer.
- * 
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ *
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020518 nsano initial version <br>
  */
 public interface LayoutManagerCustomizer {
@@ -31,7 +31,7 @@ public interface LayoutManagerCustomizer {
      * @param listener 削除される PropertyChange リスナー
      */
     void removePropertyChangeListener(PropertyChangeListener listener);
- 
+
     /**
      * カスタマイズする LayoutManager を設定します。
      * このメソッドは、Customizer を親 AWT コンテナに追加する前に

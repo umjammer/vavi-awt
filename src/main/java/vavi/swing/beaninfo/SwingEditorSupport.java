@@ -19,7 +19,7 @@ import javax.swing.JPanel;
  *
  * @author Tom Santos
  * @author Mark Davidson
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 1.30 000620       original version <br>
  *          1.31 020524 nsano refine <br>
  */
@@ -57,7 +57,7 @@ public class SwingEditorSupport extends PropertyEditorSupport {
      * For property editors that must be initialized with values from
      * the property descriptor.
      */
-    public void init(FeatureDescriptor descriptor)  {  
+    public void init(FeatureDescriptor descriptor)  {
     }
 }
 

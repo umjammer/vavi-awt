@@ -25,10 +25,10 @@ import javax.swing.event.TableModelListener;
 
 /**
  * BorderLayoutCustomizer.
- * 
+ *
  * @todo get constraint when initializing components in the container.
- * 
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ *
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020527 nsano initial version <br>
  *          0.01 020618 nsano refine <br>
  */
@@ -159,7 +159,7 @@ public class BorderLayoutCustomizer extends BasicLayoutManagerCustomizer {
     /** */
     private void setCurrentConstraints(int index) {
         constraintsEditor.setCurrentIndex(index);
-            
+
         TitledBorder b = (TitledBorder) lcPanel.getBorder();
         b.setTitle("Component Constraints: " + index);
         lcPanel.repaint();

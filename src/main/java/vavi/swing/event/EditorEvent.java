@@ -11,8 +11,8 @@ import java.util.EventObject;
 
 /**
  * エディタのイベントです．
- * 
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ *
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010820 nsano initial version <br>
  *          0.01 020503 nsano repackage <br>
  *          0.02 020510 nsano repackage <br>
@@ -35,7 +35,7 @@ public class EditorEvent extends EventObject {
 
     /**
      * Creates an editor event.
-     * 
+     *
      * @param source the event source
      * @param name the event name
      */
@@ -45,7 +45,7 @@ public class EditorEvent extends EventObject {
 
     /**
      * Creates an editor event.
-     * 
+     *
      * @param source the event source
      * @param name the event name
      * @param argument the event argument

@@ -46,12 +46,12 @@ import vavi.util.Debug;
  *   font        フォントのプロパティ
  *
  * </pre>
- * 
+ *
  * @depends /vavi/swing/resource${I18N}.properties
  * @depends /vavi/swing/JFontChooser.properties
- * 
+ *
  * @thanks <A HREF="mailto:emeade@teknolsut.com">Erik Meade</A>
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020502 nsano initial version <br>
  *          0.10 020517 nsano separate UI <br>
  *          0.11 020517 nsano FontEditor to be specifiable <br>

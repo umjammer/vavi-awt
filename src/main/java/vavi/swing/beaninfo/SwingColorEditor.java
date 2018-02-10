@@ -6,7 +6,6 @@
 
 package vavi.swing.beaninfo;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -21,14 +20,12 @@ import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -53,7 +50,7 @@ import vavi.swing.colorchooser.SmallColorChooserPopupMenu;
  *
  * @author Tom Santos
  * @author Mark Davidson
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 1.20 000620 original version <br>
  *          1.30 020518 nsano refine <br>
  */
@@ -290,33 +287,6 @@ public class SwingColorEditor extends SwingEditorSupport {
                 }
             }
         };
-    }
-
-    //-------------------------------------------------------------------------
-
-    public static void main(String[] argv) {
-        JFrame f = new JFrame("SwingColorEditor T400");
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        final SwingColorEditor editor = new SwingColorEditor();
-        f.getContentPane().setLayout(new BorderLayout());
-        f.getContentPane().add(editor.getCustomEditor(), BorderLayout.NORTH);
-        final JPanel panel = new JPanel();
-        panel.setPreferredSize(new Dimension(100, 80));
-        panel.setBackground(Color.pink);
-        JPanel p = new JPanel(new BorderLayout());
-        p.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        p.add(panel);
-        f.getContentPane().add(p);
-        editor.setValue(panel.getBorder());
-        editor.addPropertyChangeListener(new PropertyChangeListener() {
-            public void propertyChange(PropertyChangeEvent ev) {
-//Debug.println(ev.getOldValue() + ", " + ev.getNewValue());
-                panel.setBackground((Color) editor.getValue());
-            }
-        });
-
-        f.pack();
-        f.setVisible(true);
     }
 }
 

@@ -15,8 +15,8 @@ import vavi.swing.event.EditorListener;
 
 /**
  * 複数のエディタを管理する基本クラスです．
- * 
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ *
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010820 nsano initial version <br>
  *          0.10 010906 nsano be abstract class <br>
  *          0.11 020503 nsano repackage <br>
@@ -82,21 +82,21 @@ public abstract class EditorManager implements EditorListener {
 
     /**
      * エディタをオープンします．
-     * 
+     *
      * @param editor エディタ
      */
     public abstract void openEditor(Editor editor);
 
     /**
      * エディタをクローズします．
-     * 
+     *
      * @param editor エディタ
      */
     public abstract void closeEditor(Editor editor);
 
     /**
      * エディタをアップデートします．
-     * 
+     *
      * @param editor エディタ
      */
     public abstract void updateEditor(Editor editor);
@@ -123,7 +123,7 @@ public abstract class EditorManager implements EditorListener {
 
     /**
      * エディタのリストを取得します．
-     * 
+     *
      * @return エディタのリスト
      */
     public List<Editor> getEditors() {

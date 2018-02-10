@@ -29,15 +29,15 @@ import vavi.util.Debug;
  * ファイル名を入力するためのコンポーネントの基本クラスです．
  * 入力フィールドに"参照"ボタンがついています．
  * 現在のところファイルチューザとテキストフィールドの拡張とみなしています．
- * 
+ *
  * @event PropetyChangeEvent("text",,String)
  * @event PropetyChangeEvent("selectedFile",,File)
- * 
+ *
  * @depends /vavi/swing/resource${I18N}.properties
- * 
+ *
  * @done Listener の見直し
- * 
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ *
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020503 nsano initial version <br>
  *          0.10 020504 nsano deprecate Text setter, getter <br>
  *          0.20 020515 nsano revive Text setter, getter <br>
@@ -125,28 +125,28 @@ public abstract class JFileChooserField extends JComponent {
 
     /**
      * #pathField に文字列を設定して下さい．
-     * 
+     *
      * @param text 文字列
      */
     protected abstract void setTextImpl(String text);
 
     /**
      * #pathField から取得した文字列を返して下さい．
-     * 
+     *
      * @return 表示されている文字列
      */
     protected abstract String getTextImpl();
 
     /**
      * #pathField にファイルを設定して下さい．
-     * 
+     *
      * @param file ファイル
      */
     protected abstract void setSelectedFileImpl(File file);
 
     /**
      * #pathField から取得したファイルを返して下さい．
-     * 
+     *
      * @return 表示されているファイル
      */
     protected abstract File getSelectedFileImpl();
@@ -173,7 +173,7 @@ public abstract class JFileChooserField extends JComponent {
 
     /**
      * 選択されたファイルを設定します． ファイルチューザのカレントディレクトリは指定したファイルの ディレクトリになります．
-     * 
+     *
      * @param file ファイル
      */
     public void setSelectedFile(File file) {
@@ -184,7 +184,7 @@ public abstract class JFileChooserField extends JComponent {
 
     /**
      * 選択されたファイルを返します．
-     * 
+     *
      * @return 表示されているファイル
      */
     public File getSelectedFile() {
@@ -212,7 +212,7 @@ public abstract class JFileChooserField extends JComponent {
     // }
     /**
      * ファイルチューザのファイル選択モードを設定します．
-     * 
+     *
      * @param selectionMode ファイル選択タイプ
      */
     public void setFileSelectionMode(int selectionMode) {
@@ -269,7 +269,7 @@ public abstract class JFileChooserField extends JComponent {
 
     /**
      * すべてのコンポーネントに add するようにオーバーライドします．
-     * 
+     *
      * @param l マウスリスナ
      */
     public synchronized void addMouseListener(MouseListener l) {
@@ -280,7 +280,7 @@ public abstract class JFileChooserField extends JComponent {
 
     /**
      * すべてのコンポーネントに add するようにオーバーライドします．
-     * 
+     *
      * @param l マウスモーションリスナ
      */
     public synchronized void addMouseMotionListener(MouseMotionListener l) {
@@ -291,7 +291,7 @@ public abstract class JFileChooserField extends JComponent {
 
     /**
      * すべてのコンポーネントに remove するようにオーバーライドします．
-     * 
+     *
      * @param l マウスリスナ
      */
     public synchronized void removeMouseListener(MouseListener l) {
@@ -302,7 +302,7 @@ public abstract class JFileChooserField extends JComponent {
 
     /**
      * すべてのコンポーネントに remove するようにオーバーライドします．
-     * 
+     *
      * @param l マウスモーションリスナ
      */
     public synchronized void removeMouseMotionListener(MouseMotionListener l) {

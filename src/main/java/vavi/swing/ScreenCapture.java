@@ -13,7 +13,7 @@ import java.util.TimerTask;
 
 
 class ScreenCapture {
-    private Robot robot; 
+    private Robot robot;
 
     private Thread thread;
     private volatile boolean dirtyFlag;

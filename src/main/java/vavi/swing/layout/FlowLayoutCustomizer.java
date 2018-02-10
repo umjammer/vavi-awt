@@ -20,8 +20,8 @@ import javax.swing.event.TableModelListener;
 
 /**
  * FlowLayoutCustomizer.
- * 
- * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
+ *
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020527 nsano initial version <br>
  *          0.01 020618 nsano refine <br>
  */
