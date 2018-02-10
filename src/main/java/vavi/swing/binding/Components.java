@@ -19,6 +19,9 @@ import java.util.logging.Logger;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JSlider;
+import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import vavi.beans.BeanUtil;
 
@@ -84,6 +87,12 @@ public @interface Components {
             return componentFields;
         }
 
+        private static boolean enabled = true;
+
+        public static void setEnabled(boolean enabled) {
+            Util.enabled = enabled;
+        }
+
         public static <T> void bind(T bean, Object swings) throws IOException {
             //
             Components propsEntity = bean.getClass().getAnnotation(Components.class);
@@ -105,6 +114,9 @@ logger.fine("field: " + name);
                                 JCheckBox checkBox = JCheckBox.class.cast(fieldValue);
                                 checkBox.setSelected((boolean) BeanUtil.getFieldValue(field, bean));
                                 checkBox.addActionListener(e -> {
+                                    if (!enabled) {
+                                        return;
+                                    }
                                     BeanUtil.setFieldValue(field, bean, checkBox.isSelected());
                                     updater.update(bean);
                                 });
@@ -112,6 +124,9 @@ logger.fine("field: " + name);
                                 JSlider slider = JSlider.class.cast(fieldValue);
                                 slider.setValue((int) BeanUtil.getFieldValue(field, bean));
                                 slider.addChangeListener(e -> {
+                                    if (!enabled) {
+                                        return;
+                                    }
                                     JSlider source = (JSlider) e.getSource();
                                     if (source.getValueIsAdjusting()) {
                                         return;
@@ -119,9 +134,32 @@ logger.fine("field: " + name);
                                     BeanUtil.setFieldValue(field, bean, slider.getValue());
                                     updater.update(bean);
                                 });
+                            } else if (JTextField.class.isInstance(fieldValue)) {
+                                JTextField textField = JTextField.class.cast(fieldValue);
+                                textField.setText((String) BeanUtil.getFieldValue(field, bean));
+                                textField.getDocument().addDocumentListener(new DocumentListener() {
+                                    public void changedUpdate(DocumentEvent e) {
+                                        update();
+                                    }
+                                    public void removeUpdate(DocumentEvent e) {
+                                        update();
+                                    }
+                                    public void insertUpdate(DocumentEvent e) {
+                                        update();
+                                    }
+                                    void update() {
+                                        if (!enabled) {
+                                            return;
+                                        }
+                                        BeanUtil.setFieldValue(field, bean, textField.getText());
+                                        updater.update(bean);
+                                    }
+                                });
+                            } else {
+                                logger.warning("field: " + name + " (" + fieldValue.getClass().getName() + ") is not implemented.");
                             }
                         } else {
-                            System.err.println("field: " + name + " is not a sub class of JComponent.");
+                            logger.warning("field: " + name + " is not a sub class of JComponent.");
                         }
                     }
                 }
