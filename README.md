@@ -2,3 +2,6 @@
 
 # vavi-awt
 awt, swing helpers
+
+- easy swing binding system
+- rubber band selection
