@@ -42,7 +42,9 @@ public class JTransFrame extends JFrame implements Translucentable {
 
     public synchronized void init() {
         setRootPane(new TransGlassPane());
-        getRootPane().putClientProperty("Window.shadow", false); // Mac specific
+        if (System.getProperty("os.name").startsWith("Mac OS X")) {
+            getRootPane().putClientProperty("Window.shadow", false); // Mac specific
+        }
 
         JComponent content = (JComponent)getContentPane();
         content.setOpaque(false);

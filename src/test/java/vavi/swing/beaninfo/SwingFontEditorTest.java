@@ -8,10 +8,10 @@ package vavi.swing.beaninfo;
 
 import javax.swing.JFrame;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
 
 /**
@@ -20,7 +20,7 @@ import static org.junit.Assert.fail;
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (umjammer)
  * @version 0.00 Nov 15, 2017 umjammer initial version <br>
  */
-@Ignore
+@Disabled
 public class SwingFontEditorTest {
 
     @Test

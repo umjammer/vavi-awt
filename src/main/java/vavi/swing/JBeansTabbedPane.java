@@ -21,7 +21,6 @@ import java.util.logging.Level;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JToggleButton;
@@ -215,19 +214,6 @@ Debug.printStackTrace(e);
 Debug.println(Level.SEVERE, "no properties file");
             throw new IllegalStateException(e);
         }
-    }
-
-    //-------------------------------------------------------------------------
-
-    /** このクラスをテストします． */
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("JBeansTabbedPane Demo");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JBeansTabbedPane t = new JBeansTabbedPane();
-        t.setPreferredSize(new Dimension(640, 80));
-        frame.getContentPane().add(t);
-        frame.pack();
-        frame.setVisible(true);
     }
 }
 

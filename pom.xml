@@ -11,9 +11,14 @@
   <organization>
     <name></name>
   </organization>
-  <version>1.0.4</version>
+  <version>1.0.5</version>
   <url>https://github.com/umjammer/vavi-awt</url>
-  <description>1.0.4
+  <description>1.0.5
+
+    glass pane for rubber band
+    update swing binding
+
+1.0.4
 
     maintenace version
 
@@ -106,11 +111,25 @@ TODO
       <version>0.3.3</version>
     </dependency>
     <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>4.5</version>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>5.3.0</version>
         <type>jar</type>
         <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>net.java.linoleum</groupId>
+      <artifactId>jlfgr</artifactId>
+      <version>1_0</version>
+      <scope>runtime</scope>
+    </dependency>
+<!--
+    <dependency>
+      <groupId>com.github.umjammer</groupId>
+      <artifactId>vavi-apps-editablepanel</artifactId>
+      <version>3.0.1</version>
+      <scope>test</scope>
+    </dependency>
+-->
   </dependencies>
 </project>

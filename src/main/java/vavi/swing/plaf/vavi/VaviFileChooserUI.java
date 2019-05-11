@@ -10,7 +10,7 @@ import javax.swing.plaf.metal.MetalFileChooserUI;
 /**
  * Original look&feel (filechooser).
  *
- * @author        <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
+ * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  */
 public class VaviFileChooserUI extends MetalFileChooserUI {
 
@@ -51,17 +51,6 @@ public class VaviFileChooserUI extends MetalFileChooserUI {
                 super.setFileName(oldName);
             }
         }
-    }
-
-    /** */
-    public static void main(String[] args) {
-        JFileChooser fc = new JFileChooser();
-        System.err.println(fc.getUI().getClass());
-        fc.setSelectedFile(new File("T400.java"));
-        fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        fc.showOpenDialog(null);
-        System.err.println(fc.getSelectedFile());
-        System.exit(0);
     }
 }
 

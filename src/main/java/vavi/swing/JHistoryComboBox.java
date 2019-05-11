@@ -52,10 +52,7 @@ public class JHistoryComboBox extends JComboBox<Object> {
         this.setEditable(true);
         this.addActionListener(actionListener);
 
-        new DropTarget(editor,
-                       DnDConstants.ACTION_COPY_OR_MOVE,
-                       new DTListener(),
-                       true);
+        new DropTarget(editor, DnDConstants.ACTION_COPY_OR_MOVE, new DTListener(), true);
     }
 
     //
@@ -79,7 +76,7 @@ public class JHistoryComboBox extends JComboBox<Object> {
 
     //----
 
-    /** */
+    /** this is the DnD target sample for a file name from external applications */
     private class DTListener extends BasicDTListener {
 
         public DTListener() {
@@ -89,8 +86,8 @@ public class JHistoryComboBox extends JComboBox<Object> {
         /**
          * Called by isDragOk
          * Checks to see if the flavor drag flavor is acceptable
-         * @param    ev    the DropTargetDragEvent object
-         * @return    whether the flavor is acceptable
+         * @param ev the DropTargetDragEvent object
+         * @return whether the flavor is acceptable
          */
         protected boolean isDragFlavorSupported(DropTargetDragEvent ev) {
             return ev.isDataFlavorSupported(DataFlavor.javaFileListFlavor);
@@ -99,13 +96,12 @@ public class JHistoryComboBox extends JComboBox<Object> {
         /**
          * Called by drop
          * Checks the flavors and operations
-         * @param    ev    the DropTargetDropEvent object
-         * @return    the chosen DataFlavor or null if none match
+         * @param ev the DropTargetDropEvent object
+         * @return the chosen DataFlavor or null if none match
          */
         protected DataFlavor chooseDropFlavor(DropTargetDropEvent ev) {
 //Debug.println(ev.getCurrentDataFlavorsAsList());
-            if (ev.isLocalTransfer() == true &&
-                ev.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
+            if (ev.isLocalTransfer() == true && ev.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
                 return DataFlavor.javaFileListFlavor;
             }
             DataFlavor chosen = null;

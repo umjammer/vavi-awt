@@ -9,8 +9,9 @@ package vavi.swing;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Insets;
-import java.awt.Toolkit;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 import javax.swing.border.Border;
 
@@ -66,8 +67,11 @@ public class JImageComponent extends JComponent {
 
     /** */
     static {
-        Toolkit t = Toolkit.getDefaultToolkit();
-        noimage = t.getImage(JImageComponent.class.getResource("/noimage.png"));
+        try {
+            noimage = ImageIO.read(JImageComponent.class.getResourceAsStream("/noimage.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 
