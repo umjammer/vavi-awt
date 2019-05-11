@@ -30,6 +30,7 @@ import vavi.util.Debug;
  * GlassPane
  *
  * container に setSize すること．
+ * TODO container editor が混ざっている, pure rubber band と分離
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020613 nsano initial version <br>

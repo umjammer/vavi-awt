@@ -86,8 +86,7 @@ public class BasicRubberBandGesture extends RubberBandGesture {
         Object args;
         if (component == glassPane) {
             args = null;
-        }
-        else {                    // Controller
+        } else { // Controller
             // Shift キーを押していたら複数選択にする
             Boolean isMultiSelect = Boolean.valueOf(ev.isShiftDown());
             args = new Object[] { component, isMultiSelect };
@@ -131,14 +130,11 @@ public class BasicRubberBandGesture extends RubberBandGesture {
     if (component instanceof Selectable &&
             !((Selectable) component).isSelected()) {
         rubberBand.setMode(RubberBand.NORMAL_MODE);
-    }
-    else if (ev.getSource() == glassPane) {
+    } else if (ev.getSource() == glassPane) {
         rubberBand.setMode(RubberBand.NORMAL_MODE);
-    }
-        else if (ev.getSource() == component) {
-            rubberBand.setMode(renderer.getMode(component,ev.getPoint()));
-        }
-        else {
+    } else if (ev.getSource() == component) {
+        rubberBand.setMode(renderer.getMode(component,ev.getPoint()));
+    } else {
         rubberBand.setMode(RubberBand.MOVE_MODE);
     }
 

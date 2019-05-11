@@ -107,6 +107,7 @@ public class RubberBand {
 
     /**
      * 選択確定時の Bounds を返します．
+     * TODO w, h が x2, y2 になってる...
      */
     protected Rectangle getSelectedBounds(Point point) {
 
