@@ -6,7 +6,6 @@
 
 package vavi.swing.binding;
 
-import java.io.IOException;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -24,6 +23,8 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import vavi.beans.BeanUtil;
+import vavi.util.Debug;
+import vavi.util.StringUtil;
 
 
 /**
@@ -87,13 +88,20 @@ public @interface Components {
             return componentFields;
         }
 
+        // TODO not thread safe
         private static boolean enabled = true;
 
-        public static void setEnabled(boolean enabled) {
+        private static void setEnabled(boolean enabled) {
             Util.enabled = enabled;
         }
 
-        public static <T> void bind(T bean, Object swings) throws IOException {
+        public static <T> void rebind(T bean, Object swings) {
+            setEnabled(false);
+            bind(bean, swings);
+            setEnabled(true);
+        }
+
+        public static <T> void bind(T bean, Object swings) {
             //
             Components propsEntity = bean.getClass().getAnnotation(Components.class);
             if (propsEntity == null) {
@@ -113,48 +121,53 @@ logger.fine("field: " + name);
                             if (JCheckBox.class.isInstance(fieldValue)) {
                                 JCheckBox checkBox = JCheckBox.class.cast(fieldValue);
                                 checkBox.setSelected((boolean) BeanUtil.getFieldValue(field, bean));
-                                checkBox.addActionListener(e -> {
-                                    if (!enabled) {
-                                        return;
-                                    }
-                                    BeanUtil.setFieldValue(field, bean, checkBox.isSelected());
-                                    updater.update(bean);
-                                });
-                            } else if (JSlider.class.isInstance(fieldValue)) {
-                                JSlider slider = JSlider.class.cast(fieldValue);
-                                slider.setValue((int) BeanUtil.getFieldValue(field, bean));
-                                slider.addChangeListener(e -> {
-                                    if (!enabled) {
-                                        return;
-                                    }
-                                    JSlider source = (JSlider) e.getSource();
-                                    if (source.getValueIsAdjusting()) {
-                                        return;
-                                    }
-                                    BeanUtil.setFieldValue(field, bean, slider.getValue());
-                                    updater.update(bean);
-                                });
-                            } else if (JTextField.class.isInstance(fieldValue)) {
-                                JTextField textField = JTextField.class.cast(fieldValue);
-                                textField.setText((String) BeanUtil.getFieldValue(field, bean));
-                                textField.getDocument().addDocumentListener(new DocumentListener() {
-                                    public void changedUpdate(DocumentEvent e) {
-                                        update();
-                                    }
-                                    public void removeUpdate(DocumentEvent e) {
-                                        update();
-                                    }
-                                    public void insertUpdate(DocumentEvent e) {
-                                        update();
-                                    }
-                                    void update() {
+                                if (enabled) {
+                                    checkBox.addActionListener(e -> {
                                         if (!enabled) {
                                             return;
                                         }
-                                        BeanUtil.setFieldValue(field, bean, textField.getText());
+                                        BeanUtil.setFieldValue(field, bean, checkBox.isSelected());
                                         updater.update(bean);
-                                    }
-                                });
+                                    });
+                                }
+                            } else if (JSlider.class.isInstance(fieldValue)) {
+                                JSlider slider = JSlider.class.cast(fieldValue);
+                                slider.setValue((int) BeanUtil.getFieldValue(field, bean));
+                                if (enabled) {
+                                    slider.addChangeListener(e -> {
+                                        if (!enabled) {
+                                            return;
+                                        }
+                                        JSlider source = (JSlider) e.getSource();
+                                        if (source.getValueIsAdjusting()) {
+                                            return;
+                                        }
+                                        BeanUtil.setFieldValue(field, bean, slider.getValue());
+                                        updater.update(bean);
+                                    });
+                                }
+                            } else if (JTextField.class.isInstance(fieldValue)) {
+                                JTextField textField = JTextField.class.cast(fieldValue);
+                                textField.setText((String) BeanUtil.getFieldValue(field, bean));
+                                if (enabled) {
+                                    textField.getDocument().addDocumentListener(new DocumentListener() {
+                                        public void changedUpdate(DocumentEvent e) {
+                                            update();
+                                        }
+                                        public void removeUpdate(DocumentEvent e) {
+                                        }
+                                        public void insertUpdate(DocumentEvent e) {
+                                        }
+                                        void update() {
+                                            if (!enabled) {
+                                                return;
+                                            }
+                                            BeanUtil.setFieldValue(field, bean, textField.getText());
+Debug.println(StringUtil.paramString(bean));
+                                            updater.update(bean);
+                                        }
+                                    });
+                                }
                             } else {
                                 logger.warning("field: " + name + " (" + fieldValue.getClass().getName() + ") is not implemented.");
                             }
