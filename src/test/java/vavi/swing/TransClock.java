@@ -23,8 +23,10 @@ import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
+import vavi.swing.ClockTask.Updatable;
 
-public class TransClock {
+
+public class TransClock implements Updatable {
     private Preferences prefs;
     private final static String FAMILY = "family";
     private final static String STYLE = "style";
@@ -94,7 +96,7 @@ public class TransClock {
 
         frame.pack();
         Dimension dim = frame.getSize();
-        frame.setSize((int)(dim.width * 1.1), dim.height);
+        frame.setSize((int) (dim.width * 1.1), dim.height);
         frame.setVisible(true);
 
         initTimer();
@@ -163,25 +165,23 @@ public class TransClock {
         colorChooser = new JColorChooser(color);
         colorChooser.addChooserPanel(new ARGBChooserPanel());
 
-        JDialog dialog = JColorChooser.createDialog(frame, "Font Color", true,
-                    colorChooser,
-                    new ActionListener() {
-                            public void actionPerformed(ActionEvent e) {
-                                color = colorChooser.getColor();
+        JDialog dialog = JColorChooser.createDialog(frame, "Font Color", true, colorChooser, new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                color = colorChooser.getColor();
 
-                                prefs.putInt(COLOR, color.getRGB());
-                                try {
-                                    prefs.flush();
-                                } catch (BackingStoreException ex) {
-                                    ex.printStackTrace();
-                                }
+                prefs.putInt(COLOR, color.getRGB());
+                try {
+                    prefs.flush();
+                } catch (BackingStoreException ex) {
+                    ex.printStackTrace();
+                }
 
-                                clockLabel.setForeground(color);
-                            }
-                        },
-                    new ActionListener() {
-                            public void actionPerformed(ActionEvent e) {}
-                        });
+                clockLabel.setForeground(color);
+            }
+        }, new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
         dialog.setVisible(true);
     }
 
