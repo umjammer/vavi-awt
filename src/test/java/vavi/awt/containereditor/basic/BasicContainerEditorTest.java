@@ -44,14 +44,14 @@ public class BasicContainerEditorTest {
         JFrame f = new JFrame("BasicContainerEditor");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.getContentPane().setLayout(new BorderLayout());
-        // ((JComponent) f.getContentPane()).setOpaque(true);
+//        ((JComponent) f.getContentPane()).setOpaque(true);
         Color bc = UIManager.getColor("Desktop.background");
         f.getContentPane().setBackground(bc);
-        // f.getContentPane().addComponentListener(new ComponentAdapter() {
-        // public void componentResized(ComponentEvent ev) {
-        // Debug.println(ev.getComponent().getSize());
-        // }
-        // });
+//        f.getContentPane().addComponentListener(new ComponentAdapter() {
+//            public void componentResized(ComponentEvent ev) {
+//Debug.println(ev.getComponent().getSize());
+//            }
+//        });
 
         JPanel panel = new JPanel();
         panel.setLayout(null);
@@ -76,13 +76,13 @@ public class BasicContainerEditorTest {
 
             cp.setSize(new Dimension(80, 30));
             cp.setBackground(new Color(r, g, b));
-            // Debug.println(x + ", " + y);
+// Debug.println(x + ", " + y);
             cp.setLocation(new Point(x, y));
             cp.setName("Panel_" + i);
 
             panel.add(cp, -1);
-            // Component cc = new GlassController(cp);
-            // panel.add(cc, 0);
+//            Component cc = new GlassController(cp);
+//            panel.add(cc, 0);
         }
 
         f.setVisible(true);
