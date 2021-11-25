@@ -14,41 +14,17 @@
   </organization>
   <version>1.0.5</version>
   <url>https://github.com/umjammer/vavi-awt</url>
-  <description>1.0.5
-
-    glass pane for rubber band
-    update swing binding
-
-1.0.4
-
-    maintenace version
-
-1.0.3
-
-    easy binding
-        text field
-
-1.0.2
-
-    fix native2ascii
-
-1.0.1
-
-    add editor support
-    easy binding
-
+  <description>
 TODO
 
     separate compiler version in maven
     save history</description>
-
-  <distributionManagement>
-    <repository>
-      <id>internal.repo</id>
-      <name>Temporary Staging Repository</name>
-      <url>file://${project.build.directory}/mvn-repo</url>
-    </repository>
-  </distributionManagement>
+  <scm>
+    <url>https://github.com/umjammer/vavi-awt</url>
+  </scm>
+  <issueManagement>
+    <url>https://github.com/umjammer/vavi-awt/issues</url>
+  </issueManagement>
 
   <build>
     <plugins>
@@ -99,6 +75,18 @@ TODO
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M5</version>
+        <configuration>
+          <forkMode>once</forkMode>
+          <argLine>
+            -Djava.util.logging.config.file=${project.build.testOutputDirectory}/logging.properties
+            -Dvavi.util.logging.VaviFormatter.extraClassMethod=sun\.util\.logging\.LoggingSupport#log
+          </argLine>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 
@@ -109,11 +97,23 @@ TODO
     </repository>
   </repositories>
 
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.junit</groupId>
+        <artifactId>junit-bom</artifactId>
+        <version>5.8.1</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <dependencies>
     <dependency>
       <groupId>com.github.umjammer</groupId>
       <artifactId>vavi-commons-sandbox</artifactId>
-      <version>0.3.3</version>
+      <version>0.4.0</version>
     </dependency>
 
     <dependency>
@@ -123,27 +123,28 @@ TODO
       <scope>runtime</scope>
     </dependency>
 
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <version>5.3.0</version>
-        <type>jar</type>
-        <scope>test</scope>
-    </dependency>
-<!--
+<!-- 
     <dependency>
       <groupId>com.github.umjammer</groupId>
       <artifactId>vavi-apps-editablepanel</artifactId>
-      <version>3.0.1</version>
+      <version>master-SNAPSHOT</version>
       <scope>test</scope>
     </dependency>
 -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-commons</artifactId>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
-
-  <scm>
-    <url>https://github.com/umjammer/vavi-awt</url>
-  </scm>
-  <issueManagement>
-    <url>https://github.com/umjammer/vavi-awt/issues</url>
-  </issueManagement>
 </project>
