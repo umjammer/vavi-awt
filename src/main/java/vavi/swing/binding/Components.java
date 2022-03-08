@@ -19,8 +19,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JSlider;
 import javax.swing.JTextField;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 import vavi.beans.BeanUtil;
 import vavi.util.Debug;
@@ -64,7 +62,7 @@ public @interface Components {
         }
 
         /**
-         * TODO メソッドにアノテーションされた場合
+         * TODO annotation for method
          * @return only {@link Component} annotated fields
          * @throws IllegalArgumentException bean is not annotated with {@link Components}
          */
@@ -75,7 +73,7 @@ public @interface Components {
                 throw new IllegalArgumentException("bean is not annotated with @Components");
             }
 
-            // {@link Component} でアノテートされた {@link Field} のセット
+            // set annotated {@link Component} {@link Field}
             List<Field> componentFields = new ArrayList<>();
             for (Field field : beanClass.getDeclaredFields()) {
                 Component component = field.getAnnotation(Component.class);
@@ -150,22 +148,13 @@ logger.fine("field: " + name);
                                 JTextField textField = JTextField.class.cast(fieldValue);
                                 textField.setText((String) BeanUtil.getFieldValue(field, bean));
                                 if (enabled) {
-                                    textField.getDocument().addDocumentListener(new DocumentListener() {
-                                        public void changedUpdate(DocumentEvent e) {
-                                            update();
+                                    textField.addActionListener(e -> {
+                                        if (!enabled) {
+                                            return;
                                         }
-                                        public void removeUpdate(DocumentEvent e) {
-                                        }
-                                        public void insertUpdate(DocumentEvent e) {
-                                        }
-                                        void update() {
-                                            if (!enabled) {
-                                                return;
-                                            }
-                                            BeanUtil.setFieldValue(field, bean, textField.getText());
+                                        BeanUtil.setFieldValue(field, bean, textField.getText());
 Debug.println(StringUtil.paramString(bean));
-                                            updater.update(bean);
-                                        }
+                                        updater.update(bean);
                                     });
                                 }
                             } else {
