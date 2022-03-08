@@ -12,8 +12,6 @@ import javax.swing.JFrame;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 
 /**
  * JBeansTabbedPaneTest.
@@ -25,12 +23,18 @@ public class JBeansTabbedPaneTest {
 
     @Test
     public void test() {
-        fail("Not yet implemented");
+        JFrame frame = new JFrame("JBeansTabbedPane Demo");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JBeansTabbedPane t = new JBeansTabbedPane();
+        t.setPreferredSize(new Dimension(640, 80));
+        frame.getContentPane().add(t);
+        frame.pack();
+        frame.setVisible(true);
     }
 
     //-------------------------------------------------------------------------
 
-    /** このクラスをテストします． */
+    /** */
     public static void main(String[] args) {
         JFrame frame = new JFrame("JBeansTabbedPane Demo");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

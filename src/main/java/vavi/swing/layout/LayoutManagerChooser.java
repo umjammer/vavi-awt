@@ -19,7 +19,6 @@ import java.util.logging.Level;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 import javax.swing.LookAndFeel;
 import javax.swing.UIDefaults;
@@ -175,17 +174,6 @@ Debug.printStackTrace(e);
         UIDefaults table = UIManager.getDefaults();
         table.put("layoutManagerChooser.nullLayoutIcon", LookAndFeel.makeIcon(clazz, "resources/NullLayout.gif"));
         table.put("layoutManagerChooser.unknownLayoutIcon", LookAndFeel.makeIcon(clazz, "resources/AbstractLayout.gif"));
-    }
-
-    // -------------------------------------------------------------------------
-
-    /** Tests this class. */
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("LayoutManagerChooser");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(new LayoutManagerChooser());
-        frame.pack();
-        frame.setVisible(true);
     }
 }
 

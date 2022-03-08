@@ -36,7 +36,6 @@ public class t50 {
     public static void main(String[] args) throws Exception {
         final Toolkit t = Toolkit.getDefaultToolkit();
 
-        // fuck png is broken
         String className = System.getProperty("image.reader.class", "com.sixlegs.png.iio.PngImageReader");
         Class<?> imageReaderClass;
         try {

@@ -146,5 +146,12 @@ TODO
       <artifactId>junit-platform-commons</artifactId>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+      <groupId>com.formdev</groupId>
+      <artifactId>flatlaf</artifactId>
+      <version>1.6.1</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 </project>
