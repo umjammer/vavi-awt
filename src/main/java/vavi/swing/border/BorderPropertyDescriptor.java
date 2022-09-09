@@ -36,7 +36,7 @@ public class BorderPropertyDescriptor extends FeatureDescriptor {
         this.setShortDescription(propertyName);
     }
 
-    /** */
+    /** @return null when error */
     public Method getReadMethod() {
         try {
             char c = Character.toUpperCase(propertyName.charAt(0));

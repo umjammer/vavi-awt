@@ -105,21 +105,17 @@ public abstract class JFileChooserField extends JComponent {
     protected abstract void addActionListenerImpl();
 
     /** フィールドの処理 TODO text only でいいのか？ */
-    protected ActionListener pathFieldActionListener = new ActionListener() {
-        public void actionPerformed(ActionEvent ev) {
-            // Debug.println(ev.getSource().getClass().getName());
-            setText(getText());
-        }
+    protected ActionListener pathFieldActionListener = ev -> {
+        // Debug.println(ev.getSource().getClass().getName());
+        setText(getText());
     };
 
     /** 選択ボタンの処理 */
-    private ActionListener selectButtonActionListener = new ActionListener() {
-        public void actionPerformed(ActionEvent ev) {
-            // Debug.println(ev.getSource().getClass().getName());
-            int returnValue = chooser.showDialog(getParent(), title);
-            if (returnValue == JFileChooser.APPROVE_OPTION) {
-                setSelectedFile(chooser.getSelectedFile());
-            }
+    private final ActionListener selectButtonActionListener = ev -> {
+        // Debug.println(ev.getSource().getClass().getName());
+        int returnValue = chooser.showDialog(getParent(), title);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            setSelectedFile(chooser.getSelectedFile());
         }
     };
 
@@ -202,14 +198,15 @@ public abstract class JFileChooserField extends JComponent {
         } else {
             defaultPath = new File(System.getProperty("user.home"));
         }
-        Debug.println(defaultPath);
+Debug.println(defaultPath);
         chooser.setCurrentDirectory(defaultPath);
     }
 
     /** ファイルチューザのカレントディレクトリを取得します． */
-    // private File getCurrentDirectory() {
-    // return chooser.getCurrentDirectory();
-    // }
+//    private File getCurrentDirectory() {
+//        return chooser.getCurrentDirectory();
+//    }
+
     /**
      * ファイルチューザのファイル選択モードを設定します．
      *

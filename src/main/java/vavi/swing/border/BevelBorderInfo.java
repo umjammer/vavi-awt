@@ -44,8 +44,8 @@ public class BevelBorderInfo extends SimpleBorderInfo {
         BorderPropertyDescriptor[] bpds = new BorderPropertyDescriptor[5];
         bpds[0] = new BorderPropertyDescriptor("bevelType", clazz);
         Object[] value = new Object[] {
-            "RAISED", new Integer(BevelBorder.RAISED), null,
-            "LOWERED", new Integer(BevelBorder.LOWERED), null,
+            "RAISED", BevelBorder.RAISED, null,
+            "LOWERED", BevelBorder.LOWERED, null,
         };
         bpds[0].setValue("enumerationValues", value);
         bpds[1] = new BorderPropertyDescriptor("highlightInnerColor", clazz);

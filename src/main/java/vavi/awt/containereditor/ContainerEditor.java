@@ -88,13 +88,12 @@ public abstract class ContainerEditor implements Editable {
 
     /** listener for selection model */
     private SelectionListener sl = new SelectionListener() {
+        final List<Component> cs = new ArrayList<>();
         public void valueChanged(SelectionEvent ev) {
-            final List<Component> cs = new ArrayList<>();
             cs.clear();
             @SuppressWarnings("unchecked")
             List<Selectable> selected = (List<Selectable>) ev.getSelected();
-            for (int i = 0; i < selected.size(); i++) {
-                Selectable selectable = selected.get(i);
+            for (Selectable selectable : selected) {
                 cs.add(((Controller) selectable).getView());
             }
             fireEditorUpdated(new EditorEvent(ContainerEditor.this, "select", cs));
@@ -129,8 +128,8 @@ public abstract class ContainerEditor implements Editable {
     public List<Selectable> getSelected() {
         List<Selectable> selected = selectionModel.getSelected();
         List<Selectable> selection = new ArrayList<>();
-        for (int i = 0; i < selected.size(); i++) {
-            Controller controller = (Controller) selected.get(i);
+        for (Selectable selectable : selected) {
+            Controller controller = (Controller) selectable;
             selection.add((Selectable) controller.getView());
         }
         return selection;
@@ -148,12 +147,12 @@ public abstract class ContainerEditor implements Editable {
             selected.add((Selectable) container);
             fireEditorUpdated(new EditorEvent(ContainerEditor.this, "select", selected));
         } else {
-            for (int i = 0; i < selection.size(); i++) {
-                Component component = (Component) selection.get(i);
+            for (Selectable selectable : selection) {
+                Component component = (Component) selectable;
                 Controller controller = getControllerFor(component);
                 selected.add(controller);
             }
-            selectionModel.select(selected.toArray(new Selectable[selected.size()]));
+            selectionModel.select(selected.toArray(new Selectable[0]));
         }
     }
 
@@ -172,11 +171,12 @@ public abstract class ContainerEditor implements Editable {
         }
     }
 
+    private final List<Selectable> selected = new ArrayList<>();
+
     /**
      * Component をすべて選択します．
      */
     public void selectAll() {
-        final List<Selectable> selected = new ArrayList<>();
         selected.clear();
         for (int i = 0; i < container.getComponentCount(); i++) {
             Component component = container.getComponent(i);
@@ -184,7 +184,7 @@ public abstract class ContainerEditor implements Editable {
                 selected.add((Selectable) component);
             }
         }
-        selectionModel.select(selected.toArray(new Selectable[selected.size()]));
+        selectionModel.select(selected.toArray(new Selectable[0]));
     }
 
     /**
@@ -265,8 +265,8 @@ Debug.println(Level.SEVERE, e);
             Transferable transferable = currentClipboard.getContents(this);
             @SuppressWarnings("unchecked")
             List<Selectable> selection = (List<Selectable>) transferable.getTransferData(flavor);
-            for (int i = 0; i < selection.size(); i++) {
-                LocatableController controller = (LocatableController) selection.get(i);
+            for (Selectable selectable : selection) {
+                LocatableController controller = (LocatableController) selectable;
                 Point point = controller.getLocation();
                 point.x += pasteCount;
                 point.y += pasteCount;
@@ -288,8 +288,8 @@ Debug.printStackTrace(e);
      */
     public void delete() {
         List<Selectable> selected = selectionModel.getSelected();
-        for (int i = 0; i < selected.size(); i++) {
-            LocatableController controller = (LocatableController) selected.get(i);
+        for (Selectable selectable : selected) {
+            LocatableController controller = (LocatableController) selectable;
             container.remove(controller.getView());
         }
 
@@ -324,8 +324,8 @@ Debug.printStackTrace(e);
         LocatableController c = (LocatableController) selected.get(0);
         int y = c.getLocation().y;
 
-        for (int i = 0; i < selected.size(); i++) {
-            c = (LocatableController) selected.get(i);
+        for (Selectable selectable : selected) {
+            c = (LocatableController) selectable;
             Point p = c.getLocation();
             p.y = y;
             c.setLocation(p);
@@ -344,8 +344,8 @@ Debug.printStackTrace(e);
         LocatableController c = (LocatableController) selected.get(0);
         int x = c.getLocation().x;
 
-        for (int i = 0; i < selected.size(); i++) {
-            c = (LocatableController) selected.get(i);
+        for (Selectable selectable : selected) {
+            c = (LocatableController) selectable;
             Point p = c.getLocation();
             p.x = x;
             c.setLocation(p);
@@ -364,8 +364,8 @@ Debug.printStackTrace(e);
         LocatableController c = (LocatableController) selected.get(0);
         int x = c.getLocation().x + c.getSize().width;
 
-        for (int i = 0; i < selected.size(); i++) {
-            c = (LocatableController) selected.get(i);
+        for (Selectable selectable : selected) {
+            c = (LocatableController) selectable;
             Point p = c.getLocation();
             p.x = x - c.getSize().width;
             c.setLocation(p);
@@ -384,8 +384,8 @@ Debug.printStackTrace(e);
         LocatableController c = (LocatableController) selected.get(0);
         int y = c.getLocation().y + c.getSize().height;
 
-        for (int i = 0; i < selected.size(); i++) {
-            c = (LocatableController) selected.get(i);
+        for (Selectable selectable : selected) {
+            c = (LocatableController) selectable;
             Point p = c.getLocation();
             p.y = y - c.getSize().height;
             c.setLocation(p);
@@ -404,8 +404,8 @@ Debug.printStackTrace(e);
         LocatableController c = (LocatableController) selected.get(0);
         int w = c.getSize().width;
 
-        for (int i = 0; i < selected.size(); i++) {
-            c = (LocatableController) selected.get(i);
+        for (Selectable selectable : selected) {
+            c = (LocatableController) selectable;
             Dimension d = c.getSize();
             d.width = w;
             c.setSize(d);
@@ -424,8 +424,8 @@ Debug.printStackTrace(e);
         LocatableController c = (LocatableController) selected.get(0);
         int h = c.getSize().height;
 
-        for (int i = 0; i < selected.size(); i++) {
-            c = (LocatableController) selected.get(i);
+        for (Selectable selectable : selected) {
+            c = (LocatableController) selectable;
             Dimension d = c.getSize();
             d.height = h;
             c.setSize(d);
@@ -519,8 +519,8 @@ Debug.printStackTrace(e);
     public void toFront() {
 
         List<Selectable> selected = selectionModel.getSelected();
-        for (int i = 0; i < selected.size(); i++) {
-            LocatableController controller = (LocatableController) selected.get(i);
+        for (Selectable selectable : selected) {
+            LocatableController controller = (LocatableController) selectable;
             Component component = controller.getView();
 //          container.disableEvents(AWTEvent.CONTAINER_EVENT_MASK);
             container.remove(component);
@@ -540,8 +540,8 @@ Debug.printStackTrace(e);
     public void toBack() {
 
         List<Selectable> selected = selectionModel.getSelected();
-        for (int i = 0; i < selected.size(); i++) {
-            LocatableController controller = (LocatableController) selected.get(i);
+        for (Selectable selectable : selected) {
+            LocatableController controller = (LocatableController) selectable;
             Component component = controller.getView();
 //          container.disableEvents(AWTEvent.CONTAINER_EVENT_MASK);
             container.remove(component);

@@ -125,7 +125,6 @@ return Toolkit.getDefaultToolkit().createCustomCursor(image, point0, "my cursor"
         }
     }
 
-
     /**
      * DragGestureListener
      * a listener that will start the drag.
@@ -192,7 +191,7 @@ Debug.printStackTrace(e);
     private class DSListener implements DragSourceListener {
 
         /**
-         * @param    ev    the event
+         * @param ev the event
          */
         public void dragDropEnd(DragSourceDropEvent ev) {
 //            if (ev.getDropSuccess() == false) {
@@ -209,7 +208,7 @@ Debug.printStackTrace(e);
 
         /**
          * ドラッグ状態になったときに呼ばれます．
-         * @param    ev    the event
+         * @param ev the event
          */
         public void dragEnter(DragSourceDragEvent ev) {
 //Debug.println(Debug.DEBUG, ev);
@@ -230,7 +229,7 @@ Debug.println("my action: " + ev.getDropAction() + ": " +
         }
 
         /**
-         * @param    ev    the event
+         * @param ev the event
          */
         public void dragOver(DragSourceDragEvent ev) {
 //            DragSourceContext context = ev.getDragSourceContext();
@@ -245,7 +244,7 @@ Debug.println("my action: " + ev.getDropAction() + ": " +
         }
 
         /**
-         * @param    ev    the event
+         * @param ev the event
          */
         public void dragExit(DragSourceEvent ev) {
 //Debug.println(Debug.DEBUG, "exit: " + ev);
@@ -254,7 +253,7 @@ Debug.println("my action: " + ev.getDropAction() + ": " +
 
         /**
          * ドロップアクションが変更されたときに呼ばれます．
-         * @param    ev    the event
+         * @param ev the event
          */
         public void dropActionChanged(DragSourceDragEvent ev) {
             DragSourceContext context = ev.getDragSourceContext();

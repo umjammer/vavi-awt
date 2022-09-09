@@ -56,7 +56,7 @@ public abstract class BasicDTListener implements DropTargetListener {
      */
     private boolean isDragOk(DropTargetDragEvent ev) {
 
-        if (isDragFlavorSupported(ev) == false) {
+        if (!isDragFlavorSupported(ev)) {
             Debug.println(Level.WARNING, "no flavors chosen");
             return false;
         }
@@ -71,10 +71,7 @@ public abstract class BasicDTListener implements DropTargetListener {
 // Debug.println("drop action: " + da + " my acceptable actions " + dragAction);
 
         // we're saying that these actions are necessary
-        if ((da & dragAction) == 0)
-            return false;
-
-        return true;
+        return (da & dragAction) != 0;
     }
 
     /**
@@ -84,7 +81,7 @@ public abstract class BasicDTListener implements DropTargetListener {
      */
     public void dragEnter(DropTargetDragEvent ev) {
 // Debug.println(ev);
-        if (isDragOk(ev) == false) {
+        if (!isDragOk(ev)) {
             Debug.println(Level.WARNING, "not ok");
             ev.rejectDrag();
             return;
@@ -100,7 +97,7 @@ public abstract class BasicDTListener implements DropTargetListener {
      */
     public void dragOver(DropTargetDragEvent ev) {
 
-        if (isDragOk(ev) == false) {
+        if (!isDragOk(ev)) {
             Debug.println(Level.WARNING, "not ok");
             ev.rejectDrag();
             return;
@@ -114,7 +111,7 @@ public abstract class BasicDTListener implements DropTargetListener {
      */
     public void dropActionChanged(DropTargetDragEvent ev) {
 
-        if (isDragOk(ev) == false) {
+        if (!isDragOk(ev)) {
             Debug.println(Level.WARNING, "not ok");
             ev.rejectDrag();
             return;
@@ -173,8 +170,6 @@ public abstract class BasicDTListener implements DropTargetListener {
             ev.acceptDrop(dragAction);
 
             data = ev.getTransferable().getTransferData(chosen);
-            if (data == null)
-                throw new NullPointerException("transfered data is null");
         } catch (Throwable e) { // TODO
 Debug.println(Level.SEVERE, e);
 Debug.printStackTrace(e);

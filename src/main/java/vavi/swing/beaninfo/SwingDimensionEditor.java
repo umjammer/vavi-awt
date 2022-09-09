@@ -53,13 +53,13 @@ public class SwingDimensionEditor extends SwingEditorSupport {
 
         Dimension dim = (Dimension) value;
 
-        widthSpinner .setValue(new Integer(dim.width));
-        heightSpinner.setValue(new Integer(dim.height));
+        widthSpinner .setValue(dim.width);
+        heightSpinner.setValue(dim.height);
     }
 
     public Object getValue()  {
-        int width  = ((Integer) widthSpinner .getValue()).intValue();
-        int height = ((Integer) heightSpinner.getValue()).intValue();
+        int width  = (Integer) widthSpinner.getValue();
+        int height = (Integer) heightSpinner.getValue();
 
         return new Dimension(width, height);
     }

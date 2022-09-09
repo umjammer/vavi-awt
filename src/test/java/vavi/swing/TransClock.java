@@ -127,27 +127,15 @@ public class TransClock implements Updatable {
     private JPopupMenu initPopupMenu() {
         JPopupMenu menu = new JPopupMenu();
         JMenuItem item = new JMenuItem("色の変更...");
-        item.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent event) {
-                    changeColor();
-                }
-            });
+        item.addActionListener(event -> changeColor());
         menu.add(item);
 
         item = new JMenuItem("フォントの変更...");
-        item.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent event) {
-                    changeFont();
-                }
-            });
+        item.addActionListener(event -> changeFont());
         menu.add(item);
 
         item = new JMenuItem("終了");
-        item.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent event) {
-                    System.exit(0);
-                }
-            });
+        item.addActionListener(event -> System.exit(0));
         menu.add(item);
 
         return menu;

@@ -65,7 +65,7 @@ public class JImageComponent extends JComponent {
     /** */
     private static Image noimage;
 
-    /** */
+    /* */
     static {
         try {
             noimage = ImageIO.read(JImageComponent.class.getResourceAsStream("/noimage.png"));

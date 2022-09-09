@@ -36,13 +36,11 @@ public class SwingBooleanEditor extends SwingEditorSupport {
     }
 
     /** */
-    private ItemListener il = new ItemListener() {
-        public void itemStateChanged(ItemEvent ev)  {
-            if (ev.getStateChange() == ItemEvent.SELECTED) {
-                setValue(Boolean.TRUE);
-            } else {
-                setValue(Boolean.FALSE);
-            }
+    private ItemListener il = ev -> {
+        if (ev.getStateChange() == ItemEvent.SELECTED) {
+            setValue(true);
+        } else {
+            setValue(false);
         }
     };
 
@@ -52,10 +50,10 @@ public class SwingBooleanEditor extends SwingEditorSupport {
         if (value != null) {
             try {
                 checkbox.setText(value.toString());
-                if (checkbox.isSelected() != ((Boolean) value).booleanValue()) {
+                if (checkbox.isSelected() != (Boolean) value) {
                     // Don't call setSelected unless the state actually changes
                     // to avoid a loop.
-                    checkbox.setSelected(((Boolean) value).booleanValue());
+                    checkbox.setSelected((Boolean) value);
                 }
             } catch (Exception e) {
 e.printStackTrace();
@@ -65,7 +63,7 @@ e.printStackTrace();
 
     /** */
     public Object getValue() {
-        return Boolean.valueOf(checkbox.isSelected());
+        return checkbox.isSelected();
     }
 }
 
