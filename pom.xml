@@ -26,10 +26,46 @@ TODO
     <url>https://github.com/umjammer/vavi-awt/issues</url>
   </issueManagement>
 
+  <profiles>
+    <profile>
+      <id>renamer</id>
+      <activation>
+        <property>
+          <name>renamer</name>
+          <value/>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <!-- exec:exec -->
+            <!-- $ mvn -P renamer exec:java -Dexec.args='"dir"' -->
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>1.6.0</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>java</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <mainClass>FileRenamer</mainClass>
+              <classpathScope>test</classpathScope>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
   <build>
     <plugins>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.10.1</version>
         <executions>
           <execution>
             <id>8</id>
