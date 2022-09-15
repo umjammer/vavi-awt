@@ -8,11 +8,12 @@
 
   <groupId>vavi</groupId>
   <artifactId>vavi-awt</artifactId>
+  <version>1.0.6-SNAPSHOT</version>
+
   <name>Vavi AWT Support API</name>
   <organization>
-    <name></name>
+    <name>vavi</name>
   </organization>
-  <version>1.0.5</version>
   <url>https://github.com/umjammer/vavi-awt</url>
   <description>
 TODO
@@ -114,7 +115,7 @@ TODO
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.0.0-M5</version>
+        <version>3.0.0-M7</version>
         <configuration>
           <forkMode>once</forkMode>
           <argLine>
@@ -138,7 +139,7 @@ TODO
       <dependency>
         <groupId>org.junit</groupId>
         <artifactId>junit-bom</artifactId>
-        <version>5.8.1</version>
+        <version>5.8.2</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -147,9 +148,9 @@ TODO
 
   <dependencies>
     <dependency>
-      <groupId>com.github.umjammer</groupId>
+      <groupId>vavi</groupId> <!-- com.github.umjammer -->
       <artifactId>vavi-commons-sandbox</artifactId>
-      <version>0.4.0</version>
+      <version>0.4.2-SNAPSHOT</version>
     </dependency>
 
     <dependency>
@@ -159,18 +160,24 @@ TODO
       <scope>runtime</scope>
     </dependency>
 
-<!-- 
     <dependency>
-      <groupId>com.github.umjammer</groupId>
-      <artifactId>vavi-apps-editablepanel</artifactId>
-      <version>master-SNAPSHOT</version>
+      <groupId>com.formdev</groupId>
+      <artifactId>flatlaf</artifactId>
+      <version>2.4</version>
+      <scope>runtime</scope>
+    </dependency>
+
+    <dependency> <!-- TODO not good dependency -->
+      <groupId>vavi</groupId> <!-- com.github.umjammer -->
+      <artifactId>vavi-apps-editablePanel</artifactId>
+      <version>3.0.1-SNAPSHOT</version>
       <scope>test</scope>
     </dependency>
--->
+
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
-        <scope>test</scope>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -180,13 +187,6 @@ TODO
     <dependency>
       <groupId>org.junit.platform</groupId>
       <artifactId>junit-platform-commons</artifactId>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>com.formdev</groupId>
-      <artifactId>flatlaf</artifactId>
-      <version>1.6.1</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
