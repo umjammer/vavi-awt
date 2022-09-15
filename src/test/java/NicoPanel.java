@@ -18,12 +18,12 @@ import javax.swing.JPanel;
 
 
 /**
- * t49. niconico
+ * NicoPanel. niconico
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 2010/01/22 nsano initial version <br>
  */
-public class t49 {
+public class NicoPanel {
 
     static class Comment {
         long time;

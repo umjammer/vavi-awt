@@ -23,6 +23,7 @@ import java.awt.dnd.DragSourceDropEvent;
 import java.awt.dnd.DragSourceEvent;
 import java.awt.dnd.DragSourceListener;
 import java.awt.dnd.InvalidDnDOperationException;
+import java.util.logging.Level;
 
 import vavi.util.Debug;
 
@@ -102,7 +103,7 @@ public abstract class Draggable {
         dgListener = new DGListener();
         dsListener = new DSListener();
 
-Debug.println("image: " + DragSource.isDragImageSupported());
+Debug.println(Level.FINE, "image: " + DragSource.isDragImageSupported());
         // component, action, listener
         dsRecognizer = dragSource.createDefaultDragGestureRecognizer(
             source,
@@ -137,16 +138,16 @@ return Toolkit.getDefaultToolkit().createCustomCursor(image, point0, "my cursor"
 
         /**
          * Start the drag if the operation is ok.
-         * @param    ev    the event object
+         * @param ev the event object
          */
         public void dragGestureRecognized(DragGestureEvent ev) {
 
-Debug.println("-------------------------");
-Debug.println("accept action: " + dsRecognizer.getSourceActions() + ": " +
+Debug.println(Level.FINE, "-------------------------");
+Debug.println(Level.FINE, "accept action: " + dsRecognizer.getSourceActions() + ": " +
 ((dsRecognizer.getSourceActions()&DnDConstants.ACTION_COPY)!=0?"copy":"")+
 ((dsRecognizer.getSourceActions()&DnDConstants.ACTION_MOVE)!=0?", move":"")+
 ((dsRecognizer.getSourceActions()&DnDConstants.ACTION_LINK)!=0?", link":""));
-Debug.println("my action: " + ev.getDragAction() + ": " +
+Debug.println(Level.FINE, "my action: " + ev.getDragAction() + ": " +
 ((ev.getDragAction() & DnDConstants.ACTION_COPY) != 0 ? "copy" : "") +
 ((ev.getDragAction() & DnDConstants.ACTION_MOVE) != 0 ? "move" : "") +
 ((ev.getDragAction() & DnDConstants.ACTION_LINK) != 0 ? "link" : ""));
@@ -202,7 +203,7 @@ Debug.printStackTrace(e);
              * the dropAction should be what the drop target specified
              * in acceptDrop
              */
-//Debug.println(Debug.DEBUG, "action: " + ev.getDropAction());
+//Debug.println(Level.FINE, "action: " + ev.getDropAction());
             Draggable.this.dragDropEnd(ev);
         }
 
@@ -211,11 +212,11 @@ Debug.printStackTrace(e);
          * @param ev the event
          */
         public void dragEnter(DragSourceDragEvent ev) {
-//Debug.println(Debug.DEBUG, ev);
+//Debug.println(Level.FINE, ev);
             DragSourceContext context = ev.getDragSourceContext();
             // intersection of the users selected action,
             // and the source and target actions
-Debug.println("my action: " + ev.getDropAction() + ": " +
+Debug.println(Level.FINE, "my action: " + ev.getDropAction() + ": " +
 ((ev.getDropAction() & DnDConstants.ACTION_COPY) != 0 ? "copy" : "") +
 ((ev.getDropAction() & DnDConstants.ACTION_MOVE) != 0 ? "move" : "") +
 ((ev.getDropAction() & DnDConstants.ACTION_LINK) != 0 ? "link" : ""));
@@ -237,17 +238,17 @@ Debug.println("my action: " + ev.getDropAction() + ": " +
 //            int ua = ev.getUserAction();
 //            int da = ev.getDropAction();
 //            int ta = ev.getTargetActions();
-//Debug.println(Debug.DEBUG, "dl dragOver source actions: " + sa);
-//Debug.println(Debug.DEBUG, "user action: " + ua);
-//Debug.println(Debug.DEBUG, "drop actions: " + da);
-//Debug.println(Debug.DEBUG, "target actions: " + ta);
+//Debug.println(Level.FINE, "dl dragOver source actions: " + sa);
+//Debug.println(Level.FINE, "user action: " + ua);
+//Debug.println(Level.FINE, "drop actions: " + da);
+//Debug.println(Level.FINE, "target actions: " + ta);
         }
 
         /**
          * @param ev the event
          */
         public void dragExit(DragSourceEvent ev) {
-//Debug.println(Debug.DEBUG, "exit: " + ev);
+//Debug.println(Level.FINE, "exit: " + ev);
 //            DragSourceContext context = ev.getDragSourceContext();
         }
 
@@ -257,7 +258,7 @@ Debug.println("my action: " + ev.getDropAction() + ": " +
          */
         public void dropActionChanged(DragSourceDragEvent ev) {
             DragSourceContext context = ev.getDragSourceContext();
-Debug.println("my action: " + ev.getUserAction() + ": " +
+Debug.println(Level.FINE, "my action: " + ev.getUserAction() + ": " +
 ((ev.getUserAction() & DnDConstants.ACTION_COPY) != 0 ? "copy" : "") +
 ((ev.getUserAction() & DnDConstants.ACTION_MOVE) != 0 ? "move" : "") +
 ((ev.getUserAction() & DnDConstants.ACTION_LINK) != 0 ? "link" : ""));

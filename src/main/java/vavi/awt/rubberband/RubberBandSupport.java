@@ -7,8 +7,8 @@
 package vavi.awt.rubberband;
 
 import java.io.Serializable;
-
-import javax.swing.event.EventListenerList;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -19,18 +19,17 @@ import javax.swing.event.EventListenerList;
  *          0.10 010904 nsano fix specifications??? <br>
  *          0.20 020503 nsano use EventListenerList <br>
  */
-public class RubberBandSupport
-    implements Serializable {
+public class RubberBandSupport implements Serializable {
 
     /** RubberBand のリスナー */
-    private EventListenerList listenerList = new EventListenerList();
+    private List<RubberBandListener> listeners = new ArrayList<>();
 
     /**
      * RubberBand リスナーを追加します．
      * @param l RubberBandListener
      */
     public void addRubberBandListener(RubberBandListener l) {
-        listenerList.add(RubberBandListener.class, l);
+        listeners.add(l);
     }
 
     /**
@@ -38,18 +37,15 @@ public class RubberBandSupport
      * @param l RubberBandListener
      */
     public void removeRubberBandListener(RubberBandListener l) {
-        listenerList.remove(RubberBandListener.class, l);
+        listeners.remove(l);
     }
 
     /**
      * 選択中のイベントを発行します．
      */
     public void fireSelecting(RubberBandEvent ev) {
-        Object[] listeners = listenerList.getListenerList();
-        for (int i = listeners.length - 2; i >= 0; i -= 2) {
-            if (listeners[i] == RubberBandListener.class) {
-                ((RubberBandListener) listeners[i + 1]).selecting(ev);
-            }
+        for (RubberBandListener listener : listeners) {
+            listener.selecting(ev);
         }
     }
 
@@ -57,11 +53,8 @@ public class RubberBandSupport
      * 選択確定のイベントを発行します．
      */
     public void fireSelected(RubberBandEvent ev) {
-        Object[] listeners = listenerList.getListenerList();
-        for (int i = listeners.length - 2; i >= 0; i -= 2) {
-            if (listeners[i] == RubberBandListener.class) {
-                ((RubberBandListener) listeners[i + 1]).selected(ev);
-            }
+        for (RubberBandListener listener : listeners) {
+            listener.selected(ev);
         }
     }
 
@@ -69,11 +62,8 @@ public class RubberBandSupport
      * 選択対象が移動中のイベントを発行します．
      */
     public void fireMoving(RubberBandEvent ev) {
-        Object[] listeners = listenerList.getListenerList();
-        for (int i = listeners.length - 2; i >= 0; i -= 2) {
-            if (listeners[i] == RubberBandListener.class) {
-                ((RubberBandListener) listeners[i + 1]).moving(ev);
-            }
+        for (RubberBandListener listener : listeners) {
+            listener.moving(ev);
         }
     }
 
@@ -81,11 +71,8 @@ public class RubberBandSupport
      * 選択対象が移動確定のイベントを発行します．
      */
     public void fireMoved(RubberBandEvent ev) {
-        Object[] listeners = listenerList.getListenerList();
-        for (int i = listeners.length - 2; i >= 0; i -= 2) {
-            if (listeners[i] == RubberBandListener.class) {
-                ((RubberBandListener) listeners[i + 1]).moved(ev);
-            }
+        for (RubberBandListener listener : listeners) {
+            listener.moved(ev);
         }
     }
 
@@ -93,11 +80,8 @@ public class RubberBandSupport
      * 選択対象がリサイズ中のイベントを発行します．
      */
     public void fireResizing(RubberBandEvent ev) {
-        Object[] listeners = listenerList.getListenerList();
-        for (int i = listeners.length - 2; i >= 0; i -= 2) {
-            if (listeners[i] == RubberBandListener.class) {
-                ((RubberBandListener) listeners[i + 1]).resizing(ev);
-            }
+        for (RubberBandListener listener : listeners) {
+            listener.resizing(ev);
         }
     }
 
@@ -105,11 +89,8 @@ public class RubberBandSupport
      * 選択対象がリサイズ確定のイベントを発行します．
      */
     public void fireResized(RubberBandEvent ev) {
-        Object[] listeners = listenerList.getListenerList();
-        for (int i = listeners.length - 2; i >= 0; i -= 2) {
-            if (listeners[i] == RubberBandListener.class) {
-                ((RubberBandListener) listeners[i + 1]).resized(ev);
-            }
+        for (RubberBandListener listener : listeners) {
+            listener.resized(ev);
         }
     }
 }

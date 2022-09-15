@@ -29,10 +29,10 @@ import static org.junit.jupiter.api.Assertions.fail;
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (umjammer)
  * @version 0.00 Nov 15, 2017 umjammer initial version <br>
  */
-@Disabled
 public class SwingBorderEditorTest {
 
     @Test
+    @Disabled
     public void test() {
         fail("Not yet implemented");
     }
@@ -53,11 +53,7 @@ public class SwingBorderEditorTest {
         p.add(panel);
         f.getContentPane().add(p);
         editor.setValue(panel.getBorder());
-        editor.addPropertyChangeListener(new PropertyChangeListener() {
-            public void propertyChange(PropertyChangeEvent ev) {
-                panel.setBorder((Border) editor.getValue());
-            }
-        });
+        editor.addPropertyChangeListener(ev -> panel.setBorder((Border) editor.getValue()));
 
         f.pack();
         f.setVisible(true);

@@ -57,7 +57,7 @@ public abstract class BasicDTListener implements DropTargetListener {
     private boolean isDragOk(DropTargetDragEvent ev) {
 
         if (!isDragFlavorSupported(ev)) {
-            Debug.println(Level.WARNING, "no flavors chosen");
+Debug.println(Level.WARNING, "no flavors chosen");
             return false;
         }
 
@@ -68,7 +68,7 @@ public abstract class BasicDTListener implements DropTargetListener {
         // the docs on DropTargetDragEvent rejectDrag says that
         // the dropAction should be examined
         int da = ev.getDropAction();
-// Debug.println("drop action: " + da + " my acceptable actions " + dragAction);
+//Debug.println(Level.FINE, "drop action: " + da + " my acceptable actions " + dragAction);
 
         // we're saying that these actions are necessary
         return (da & dragAction) != 0;
@@ -77,37 +77,40 @@ public abstract class BasicDTListener implements DropTargetListener {
     /**
      * start "drag under" feedback on component invoke acceptDrag or rejectDrag
      * based on isDragOk
-     * オーバーライドするときは super.dragEnter(ev) を忘れずに．
+     * オーバーライドするときは <code>super.dragEnter(ev)</code> を忘れずに．
+     * @callsuper
      */
     public void dragEnter(DropTargetDragEvent ev) {
-// Debug.println(ev);
+//Debug.println(Level.FINEST, ev);
         if (!isDragOk(ev)) {
-            Debug.println(Level.WARNING, "not ok");
+Debug.println(Level.WARNING, "not ok");
             ev.rejectDrag();
             return;
         }
-// Debug.println("accepting: " + ev.getDropAction());
+//Debug.println(Level.FINE, "accepting: " + ev.getDropAction());
         ev.acceptDrag(ev.getDropAction());
     }
 
     /**
      * continue "drag under" feedback on component invoke acceptDrag or
      * rejectDrag based on isDragOk
-     * オーバーライドするときは super.dragOver(ev) を忘れずに．
+     * オーバーライドするときは <code>super.dragOver(ev)</code> を忘れずに．
+     * @callsuper
      */
     public void dragOver(DropTargetDragEvent ev) {
 
         if (!isDragOk(ev)) {
-            Debug.println(Level.WARNING, "not ok");
+Debug.println(Level.WARNING, "not ok");
             ev.rejectDrag();
             return;
         }
-// Debug.println("accepting");
+//Debug.println(Level.FINE, "accepting");
         ev.acceptDrag(ev.getDropAction());
     }
 
     /**
-     * オーバーライドするときは super.dropActionChanged(ev) を忘れずに．
+     * オーバーライドするときは <code>super.dropActionChanged(ev)</code> を忘れずに．
+     * @callsuper
      */
     public void dropActionChanged(DropTargetDragEvent ev) {
 
@@ -116,16 +119,16 @@ public abstract class BasicDTListener implements DropTargetListener {
             ev.rejectDrag();
             return;
         }
-// Debug.println("accepting: " + ev.getDropAction());
+//Debug.println(Level.FINE, "accepting: " + ev.getDropAction());
         ev.acceptDrag(ev.getDropAction());
     }
 
     /**
      * ドラッグ動作が終了したときに呼ばれます．
-     * オーバーライドするときは super.dragExit(ev) 特にしなくていいです．
+     * オーバーライドするときは <code>super.dragExit(ev)</code> 特にしなくていいです．
      */
     public void dragExit(DropTargetEvent ev) {
-        // Debug.println(ev);
+//Debug.println(Level.FINEST, ev);
     }
 
     /**
@@ -136,26 +139,26 @@ public abstract class BasicDTListener implements DropTargetListener {
      * flavor do the transfer
      */
     public void drop(DropTargetDropEvent ev) {
-// Debug.println(ev);
+//Debug.println(Level.FINEST, ev);
 
         DataFlavor chosen = chooseDropFlavor(ev);
         if (chosen == null) {
-            Debug.println(Level.WARNING, "No flavor match found");
+Debug.println(Level.WARNING, "No flavor match found");
             ev.rejectDrop();
             return;
         }
-// Debug.println("data flavor is " + chosen.getMimeType());
+//Debug.println(Level.FINE, "data flavor is " + chosen.getMimeType());
 
         // the actual operation
         // int da = ev.getDropAction();
         // the actions that the source has specified with
         // DragGestureRecognizer
         int sa = ev.getSourceActions();
-// Debug.println("sourceActions: " + sa);
-// Debug.println("dropAction: " + da);
+//Debug.println(Level.FINE, "sourceActions: " + sa);
+//Debug.println(Level.FINE, "dropAction: " + da);
 
         if ((sa & dragAction) == 0) {
-            Debug.println(Level.WARNING, "No action match found");
+Debug.println(Level.WARNING, "No action match found");
             ev.rejectDrop();
             return;
         }
@@ -183,7 +186,7 @@ Debug.printStackTrace(e);
     /**
      * You need to implement here dropping procedure.
      *
-     * @param ev
+     * @param ev the event object
      * @param data 便宜的なドロップされたデータです
      * @return ドロップが成功したかどうか
      */

@@ -13,16 +13,14 @@ import javax.swing.JLabel;
 
 
 /**
- * t46. mac frame
+ * MacFrame. mac frame
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (vavi)
  * @version 0.00 090619 nsano initial version <br>
  */
-public class t46 {
+public class MacFrame {
 
-    /**
-     * The program entry.
-     */
+    /** */
     public static void main(String[] args) throws Exception {
         JFrame frame = new JFrame();
         frame.setLocation(300, 300);
@@ -30,7 +28,7 @@ public class t46 {
         frame.setUndecorated(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //if (System.getProperty("java.vendor").startsWith("Apple Inc.")) {
-//frame.getRootPane().putClientProperty("Window.alpha", new Float(0.7f)); // Mac specific
+//frame.getRootPane().putClientProperty("Window.alpha", new Float(0.7f)); // Mac specific (MRJ)
 //}
         frame.setOpacity(0.7f);
         frame.getContentPane().setLayout(new BorderLayout());

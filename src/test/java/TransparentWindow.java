@@ -21,17 +21,15 @@ import javax.swing.JPanel;
 
 
 /**
- * t50. transparent window
+ * TransparentWindow. transparent window
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 2010/01/22 nsano initial version <br>
  */
-public class t50 {
+public class TransparentWindow {
 
     /**
      * @jvmarg -Dimage.reader.class=com.sixlegs.png.iio.PngImageReader
-     *
-     * @param args
      */
     public static void main(String[] args) throws Exception {
         final Toolkit t = Toolkit.getDefaultToolkit();
@@ -61,7 +59,8 @@ System.err.println("imageIOSupport:: imageReader: " + ir.getClass());
 
         // TODO move frame instead of image
         JPanel panel = new JPanel() {
-            public void paint(Graphics g) {
+            public void paintComponent(Graphics g) {
+                super.paintComponent(g);
                 g.clearRect(0, 0, getWidth(), getHeight());
                 g.drawImage(image, x, y, this);
             }

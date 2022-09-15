@@ -1,5 +1,7 @@
-Border 関連のクラスを提供します．
+# vavi.awt.swing.barder
 
-## TODO これから実装すること
+provides about Border classes
+
+## TODO
 
  * クラスの見極めちゃんとやる(名前じゃなく)

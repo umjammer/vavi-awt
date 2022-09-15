@@ -47,7 +47,7 @@ public class RubberBand {
     /** 移動を表す定数 */
     public static final int MOVE_MODE = 3;
 
-    /** RubberBnad のモード */
+    /** RubberBand のモード */
     protected int mode;
 
     /** リサイズするコンポーネント上におけるマウスが押されたときの座標 */
