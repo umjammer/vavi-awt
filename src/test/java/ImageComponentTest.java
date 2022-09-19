@@ -8,12 +8,12 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.RenderingHints;
-import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
 
+import vavi.awt.ImageComponent;
 import vavi.swing.JImageComponent;
 import vavi.util.Debug;
 
@@ -24,29 +24,24 @@ import vavi.util.Debug;
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (vavi)
  * @version 0.00 220915 nsano initial version <br>
  */
-public class JImageComponentTest {
+public class ImageComponentTest {
 
     /** */
     public static void main(String[] args) throws Exception {
         JFrame frame = new JFrame();
-        frame.setTitle("JImageComponent");
+        frame.setTitle("ImageComponent");
         frame.setLocation(300, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JImageComponent image = new JImageComponent(true);
+        ImageComponent image = new ImageComponent(true);
         image.setPreferredSize(new Dimension(400, 600));
         image.addPropertyChangeListener(e -> {
-Debug.println(e.getPropertyName() + ", " + e.getNewValue());
             if (e.getPropertyName().equals("droppedImage")) {
 Debug.println("dropped: " + e.getNewValue());
             } else if (e.getPropertyName().equals("image")) {
-try {
-                BufferedImage sub = image.getSubimage(10, 10, 40, 40);
+                Image sub = image.getSubimage(10, 10, 40, 40);
 Debug.println("sub: " + sub);
                 assert sub != null : "sub image is null";
-} catch (Throwable t) {
- t.printStackTrace();
-}
             }
         });
         // https://componenthouse.com/2008/02/08/high-quality-image-resize-with-java/
