@@ -7,6 +7,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import javax.swing.BorderFactory;
@@ -14,8 +15,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
+import vavi.swing.FontChooser;
+import vavi.util.Debug;
 
 
 /**
@@ -24,18 +28,21 @@ import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 2022-08-10 nsano initial version <br>
  */
+@EnabledIfSystemProperty(named = "vavi.test", matches = "ide")
 public class IdeTest {
 
-    @Test
-    @EnabledIfSystemProperty(named = "vavi.test", matches = "ide")
-    void testFileRenamer() throws Exception {
-        FileRenamer.main(new String[] { System.getProperty("user.home") + "/Downloads/JDownloader/wip3" });
+    @AfterEach
+    void teardown() {
         while (true)
             Thread.yield();
     }
 
     @Test
-    @EnabledIfSystemProperty(named = "vavi.test", matches = "ide")
+    void testFileRenamer() throws Exception {
+        FileRenamer.main(new String[] { System.getProperty("user.home") + "/Downloads/JDownloader/wip3" });
+    }
+
+    @Test
     void testIntersection() throws Exception {
         JFrame frame = new JFrame();
         frame.setLocation(300, 300);
@@ -72,5 +79,13 @@ public class IdeTest {
             Thread.sleep(100);
             panel.repaint();
         }
+    }
+
+    @Test
+    void testFontChooser() throws Exception {
+        FontChooser fontChooser = new FontChooser(new Font("Dialog", 16, Font.PLAIN));
+        fontChooser.showDialog(null);
+        Font font = fontChooser.getFont();
+Debug.println(font.getFamily() + ", " + font.getName() + ", " + font.getSize() + ", " + font.getStyle());
     }
 }

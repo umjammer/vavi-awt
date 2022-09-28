@@ -105,7 +105,7 @@ public class JPropertyEditorTable extends JTable {
 
     //-------------------------------------------------------------------------
 
-    /**
+    /*
      * Method which registers property editors for types.
      */
     static {
@@ -121,7 +121,7 @@ public class JPropertyEditorTable extends JTable {
                 String key = "clazz." + i;
                 String value = props.getProperty(key);
                 if (value == null) {
-Debug.println("no property for: clazz." + i);
+Debug.println(Level.FINE, "no property for: clazz." + i);
                     break;
                 }
 

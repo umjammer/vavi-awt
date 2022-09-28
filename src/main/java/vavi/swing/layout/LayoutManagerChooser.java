@@ -166,9 +166,9 @@ Debug.printStackTrace(e);
         }
     }
 
-    // -------------------------------------------------------------------------
+    // ----
 
-    /** */
+    /* */
     static {
         Class<?> clazz = LayoutManagerChooser.class;
         UIDefaults table = UIManager.getDefaults();

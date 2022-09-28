@@ -9,6 +9,9 @@ package vavi.swing;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
+
 
 /**
  * JHistoryComboBoxTest.
@@ -17,6 +20,13 @@ import javax.swing.JFrame;
  * @version 0.00 2022-08-26 nsano initial version <br>
  */
 class JHistoryComboBoxTest {
+
+    @Test
+    @EnabledIfSystemProperty(named = "vav.test", matches = "ide")
+    public void test() {
+        main(new String[] {});
+        while (true) Thread.yield();
+    }
 
     //----
 

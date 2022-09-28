@@ -7,9 +7,9 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
-
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -46,25 +46,23 @@ public class FontChooser {
 
         GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
         Font[] fonts = env.getAllFonts();
-        Vector<String> families = new Vector<>();
-        for (int i = 0; i < fonts.length; i++) {
-            String f = fonts[i].getFamily();
-            if (families.indexOf(f) == -1) {
-                families.add(fonts[i].getFamily());
+        List<String> families = new ArrayList<>();
+        for (Font value : fonts) {
+            String f = value.getFamily();
+            if (!families.contains(f)) {
+                families.add(value.getFamily());
             }
         }
-        family = new JComboBox<>(families);
+        family = new JComboBox<>(families.toArray());
         family.setSelectedItem(font.getFamily());
-        family.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent event) {
-                if (event.getStateChange() == ItemEvent.SELECTED) {
-                    String f = (String) event.getItem();
-                    font = new Font(f, font.getStyle(), font.getSize());
-                    example.setFont(font);
+        family.addItemListener(event -> {
+            if (event.getStateChange() == ItemEvent.SELECTED) {
+                String f = (String) event.getItem();
+                font = new Font(f, font.getStyle(), font.getSize());
+                example.setFont(font);
 
-                    if (dialog != null) {
-                        dialog.pack();
-                    }
+                if (dialog != null) {
+                    dialog.pack();
                 }
             }
         });
@@ -76,24 +74,22 @@ public class FontChooser {
                 break;
             }
         }
-        style.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent event) {
-                if (event.getStateChange() == ItemEvent.SELECTED) {
-                    String s = (String) event.getItem();
-                    int sc = Font.PLAIN;
-                    for (int i = 0; i < styles.length; i++) {
-                        if (s.equals(styles[i])) {
-                            sc = styleCodes[i];
-                            break;
-                        }
+        style.addItemListener(event -> {
+            if (event.getStateChange() == ItemEvent.SELECTED) {
+                String s = (String) event.getItem();
+                int sc = Font.PLAIN;
+                for (int i = 0; i < styles.length; i++) {
+                    if (s.equals(styles[i])) {
+                        sc = styleCodes[i];
+                        break;
                     }
+                }
 
-                    font = new Font(font.getFamily(), sc, font.getSize());
-                    example.setFont(font);
+                font = new Font(font.getFamily(), sc, font.getSize());
+                example.setFont(font);
 
-                    if (dialog != null) {
-                        dialog.pack();
-                    }
+                if (dialog != null) {
+                    dialog.pack();
                 }
             }
         });
@@ -104,16 +100,14 @@ public class FontChooser {
         }
         size = new JComboBox<>(sizes);
         size.setSelectedItem(Integer.toString(font.getSize()));
-        size.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent event) {
-                if (event.getStateChange() == ItemEvent.SELECTED) {
-                    String s = (String) event.getItem();
-                    font = new Font(font.getFamily(), font.getStyle(), Integer.parseInt(s));
-                    example.setFont(font);
+        size.addItemListener(event -> {
+            if (event.getStateChange() == ItemEvent.SELECTED) {
+                String s = (String) event.getItem();
+                font = new Font(font.getFamily(), font.getStyle(), Integer.parseInt(s));
+                example.setFont(font);
 
-                    if (dialog != null) {
-                        dialog.pack();
-                    }
+                if (dialog != null) {
+                    dialog.pack();
                 }
             }
         });
@@ -154,7 +148,7 @@ public class FontChooser {
             }
         }
         dialog = null;
-        if (result.intValue() == JOptionPane.OK_OPTION) {
+        if (result == JOptionPane.OK_OPTION) {
             return APPROVE_OPTION;
         } else {
             return CANCEL_OPTION;

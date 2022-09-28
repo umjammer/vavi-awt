@@ -11,6 +11,7 @@ import java.awt.GridBagLayout;
 import javax.swing.JFrame;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
 
 
 /**
@@ -22,8 +23,10 @@ import org.junit.jupiter.api.Test;
 class LayoutManagerChooserTest {
 
     @Test
-    void test() {
-        GridBagLayout gridBagLayout = new GridBagLayout();
+    @EnabledIfSystemProperty(named = "vav.test", matches = "ide")
+    public void test() {
+        main(new String[] {});
+        while (true) Thread.yield();
     }
 
     // ----

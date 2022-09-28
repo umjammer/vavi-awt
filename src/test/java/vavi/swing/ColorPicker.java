@@ -28,7 +28,7 @@ import javax.swing.SwingUtilities;
  * ColorPicker.
  *
  * TODO なんかぼやけてる
- * "https://bugs.openjdk.java.net/browse/JDK-8207386"
+ *  - "https://bugs.openjdk.java.net/browse/JDK-8207386"
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (umjammer)
  * @version 0.00 2019/04/30 umjammer initial version <br>

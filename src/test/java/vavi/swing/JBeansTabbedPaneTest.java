@@ -11,6 +11,7 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
 
 
 /**
@@ -22,14 +23,10 @@ import org.junit.jupiter.api.Test;
 public class JBeansTabbedPaneTest {
 
     @Test
+    @EnabledIfSystemProperty(named = "vav.test", matches = "ide")
     public void test() {
-        JFrame frame = new JFrame("JBeansTabbedPane Demo");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JBeansTabbedPane t = new JBeansTabbedPane();
-        t.setPreferredSize(new Dimension(640, 80));
-        frame.getContentPane().add(t);
-        frame.pack();
-        frame.setVisible(true);
+        main(new String[] {});
+        while (true) Thread.yield();
     }
 
     //-------------------------------------------------------------------------
