@@ -1,5 +1,5 @@
 [![Release](https://jitpack.io/v/umjammer/vavi-awt.svg)](https://jitpack.io/#umjammer/vavi-awt)
-[![Java CI with Maven](https://github.com/umjammer/vavi-awt/workflows/Java%20CI%20with%20Maven/badge.svg)](https://github.com/umjammer/vavi-awt/actions)
+[![Java CI with Maven](https://github.com/umjammer/vavi-awt/workflows/Java%20CI/badge.svg)](https://github.com/umjammer/vavi-awt/actions)
 [![CodeQL](https://github.com/umjammer/vavi-awt/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/umjammer/vavi-awt/actions/workflows/codeql-analysis.yml)
 ![Java](https://img.shields.io/badge/Java-8-b07219)
 
@@ -17,7 +17,7 @@ auto wiring between a bean and swing components
 
 ### 🖌️ easy drag and drop system
 
-make a component by one liner
+make a component droppable by one liner
 
 ```java
     Droppable.makeComponentSinglePathDroppable(componebt, p -> { ... });

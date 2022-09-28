@@ -283,7 +283,7 @@ Debug.println("groups: " + matcher.groupCount());
             // reflection
             if (!filename.equals(replaced)) {
                 DiffColorizer colorizer = new DiffColorizer(filename, replaced);
-                model.setValueAt(colorizer.colorize().toString(), i, 0);
+                model.setValueAt(colorizer.colorize(), i, 0);
 
                 model.setValueAt(replaced, i, 1);
             }

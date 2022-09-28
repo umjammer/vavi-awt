@@ -8,9 +8,12 @@ package vavi.util;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,9 +23,9 @@ import java.util.regex.Pattern;
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010910 nsano initial version <br>
- *          0.01 010912 nsano ignors InterruptedException <br>
+ *          0.01 010912 nsano ignores InterruptedException <br>
  */
-public class RegexFileFilter extends javax.swing.filechooser.FileFilter implements FileFilter {
+public class RegexFileFilter extends javax.swing.filechooser.FileFilter implements FileFilter, Predicate<Path> {
 
     /** パターンの配列 */
     private List<String> regexs = new ArrayList<>(1);
@@ -69,11 +72,7 @@ public class RegexFileFilter extends javax.swing.filechooser.FileFilter implemen
         regexs.add(regex);
     }
 
-    /**
-     * 指定したファイルをフィルタが受け付けるかどうかを返します．
-     * パターンが無い場合と、ディレクトリは true を返します。
-     * @param file 対象のファイル
-     */
+    @Override
     public boolean accept(File file) {
 
         if (file.isDirectory()) {
@@ -86,38 +85,60 @@ Debug.println("no pattern");
         }
 
         try {
-            Iterator<String> i = regexs.iterator();
-            while (i.hasNext()) {
-                Pattern p = Pattern.compile(i.next());
+            for (String regex : regexs) {
+                Pattern p = Pattern.compile(regex);
                 Matcher m = p.matcher(file.getName());
                 if (m.matches()) {
                     return true;
                 }
             }
         } catch (Exception e) {
-// Debug.println(e);
+Debug.println(Level.FINE, e);
         }
 
         return false;
     }
 
-    /**
-     * フィルタの説明を返します．
-     */
+    @Override
+    public boolean test(Path file) {
+        if (Files.isDirectory(file)) {
+            return true;
+        }
+
+        if (regexs.size() == 0) {
+Debug.println("no pattern");
+            return true;
+        }
+
+        try {
+            for (String regex : regexs) {
+                Pattern p = Pattern.compile(regex);
+                Matcher m = p.matcher(file.getFileName().toString());
+                if (m.matches()) {
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+Debug.println(Level.FINE, e);
+        }
+
+        return false;
+    }
+
+    @Override
     public String getDescription() {
-        if (description != null) {
-            return description;
-        } else {
+        if (description == null) {
             if (regexs.size() == 0) {
                 return "all";
             }
-            description = new String("Regex: ");
-            for (int i = 0; i < regexs.size(); i++) {
-                description += "\'" + regexs.get(i) + "\', ";
+            StringBuilder sb = new StringBuilder("Regex: ");
+            for (String regex : regexs) {
+                sb.append("'").append(regex).append("', ");
             }
-            description = description.substring(0, description.length() - 2);
-            return description;
+            sb.setLength(sb.length() - 2);
+            description = sb.toString();
         }
+        return description;
     }
 }
 
