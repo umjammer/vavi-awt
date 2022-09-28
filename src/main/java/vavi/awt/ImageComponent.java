@@ -8,6 +8,9 @@ package vavi.awt;
 
 import java.awt.Image;
 import java.beans.PropertyChangeEvent;
+import java.util.logging.Level;
+
+import vavi.util.Debug;
 
 
 /**
@@ -40,6 +43,7 @@ public class ImageComponent extends BaseImageComponent<Image> {
         if (image != null) {
             iw = image.getWidth(null);
             ih = image.getHeight(null);
+Debug.println(Level.FINE, "image: " + iw + "x" + ih + ", " + image);
         }
     }
 }

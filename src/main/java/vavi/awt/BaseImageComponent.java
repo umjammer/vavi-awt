@@ -77,14 +77,17 @@ public abstract class BaseImageComponent<T extends Image> extends JComponent {
                 try {
                     T image = (T) ImageIO.read(Files.newInputStream(p));
 Debug.println(p + ", " + image);
-                    firePropertyChange("droppedImage", this.image, image);
-                    setImage(image);
-                    repaint();
-                    return true;
+                    if (image != null) {
+                        firePropertyChange("droppedImage", this.image, image);
+                        setImage(image);
+                        repaint();
+                        return true;
+                    }
+Debug.println(Level.INFO, "unrecognized image: " + p);
                 } catch (Throwable e) {
                     e.printStackTrace();
-                    return false;
                 }
+                return false;
             });
         }
     }
@@ -93,7 +96,6 @@ Debug.println(p + ", " + image);
     public void setImage(T image) {
         T old = this.image;
         this.image = image;
-Debug.println(Level.FINE, "image: " + iw + "x" + ih + ", " + image);
         firePropertyChange("image", old, image);
     }
 
@@ -239,7 +241,8 @@ Debug.printf(Level.FINE, "total: %d, %d %d, %d", ir.x, ir.y, ir.width, ir.height
 Debug.printf(Level.FINE, "sub: %d, %d %d, %d", sr.x, sr.y, sr.width, sr.height);
 Debug.printf(Level.FINE, "crop: %d, %d %d, %d", cr.x, cr.y, cr.width, cr.height);
 
-        BufferedImage total = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+        int t = image instanceof BufferedImage ? ((BufferedImage) image).getType() : BufferedImage.TYPE_INT_ARGB;
+        BufferedImage total = new BufferedImage(getWidth(), getHeight(), t);
         Graphics2D gt = total.createGraphics();
         paintComponent(gt);
         gt.dispose();

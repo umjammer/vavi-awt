@@ -8,8 +8,10 @@ package vavi.swing;
 
 import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
+import java.util.logging.Level;
 
 import vavi.awt.BaseImageComponent;
+import vavi.util.Debug;
 
 
 /**
@@ -44,6 +46,7 @@ public class JImageComponent extends BaseImageComponent<BufferedImage> {
         if (image != null) {
             iw = image.getWidth();
             ih = image.getHeight();
+Debug.println(Level.FINE, "image: " + iw + "x" + ih + ", " + image);
         }
     }
 }
