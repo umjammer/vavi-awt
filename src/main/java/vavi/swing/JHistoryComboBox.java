@@ -7,14 +7,8 @@
 package vavi.swing;
 
 import java.awt.Component;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.dnd.DnDConstants;
-import java.awt.dnd.DropTarget;
-import java.awt.dnd.DropTargetDragEvent;
-import java.awt.dnd.DropTargetDropEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -25,7 +19,7 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JTextField;
 
-import vavi.awt.dnd.BasicDTListener;
+import vavi.awt.dnd.Droppable;
 import vavi.util.Debug;
 
 
@@ -65,7 +59,10 @@ public class JHistoryComboBox extends JComboBox<String> {
         this.addActionListener(actionListener);
 
         if (enableDnD) {
-            new DropTarget(editor, DnDConstants.ACTION_COPY_OR_MOVE, new DTListener(), true);
+            Droppable.makeComponentSinglePathDroppable(editor, path -> {
+                setSelectedItem(path.toString());
+                return true;
+            });
         }
     }
 
@@ -74,7 +71,9 @@ public class JHistoryComboBox extends JComboBox<String> {
         return editor.getText();
     }
 
-    /** */
+    /**
+     * @param applicationId identity for prefs
+     */
     public void restoreHistory(String applicationId) {
         try {
             Preferences prefs = Preferences.userRoot().node(applicationId);
@@ -92,7 +91,9 @@ Debug.println(Level.FINE, "prefs <<: " + ("item" + i) + ": " + value);
         }
     }
 
-    /** */
+    /**
+     * @param applicationId identity for prefs
+     */
     public void saveHistory(String applicationId) {
         Preferences prefs = Preferences.userRoot().node(applicationId);
 Debug.println(Level.FINE, "prefs >>: " + prefs.name());
@@ -125,15 +126,15 @@ Debug.println(Level.FINE, ("prefs >>: item" + (i + 1)) + ": " + getItemAt(i));
     };
 
     /** backup for this combo */
-    private List<MouseListener> myMouseListeners = new ArrayList<>();
+    private final List<MouseListener> myMouseListeners = new ArrayList<>();
     /** backup for editor */
-    private List<MouseListener> editorMouseListeners = new ArrayList<>();
+    private final List<MouseListener> editorMouseListeners = new ArrayList<>();
     /** backup for drop-down button */
-    private List<MouseListener> buttonMouseListeners = new ArrayList<>();
+    private final List<MouseListener> buttonMouseListeners = new ArrayList<>();
 
     /**
-     * @see "https://stackoverflow.com/a/62161500"
      * TODO still drop-down works...
+     * @see "https://stackoverflow.com/a/62161500"
      */
     @Override
     public void setEnabled(boolean isEnabled) {
@@ -165,65 +166,6 @@ Debug.println(Level.FINE, ("prefs >>: item" + (i + 1)) + ": " + getItemAt(i));
                 backup.add(listener);
                 component.removeMouseListener(listener);
             }
-        }
-    }
-
-    //----
-
-    /** this is the DnD target sample for a file name from external applications */
-    private class DTListener extends BasicDTListener {
-
-        public DTListener() {
-            this.dragAction = DnDConstants.ACTION_COPY_OR_MOVE;
-        }
-
-        /**
-         * Called by isDragOk
-         * Checks to see if the flavor drag flavor is acceptable
-         * @param ev the DropTargetDragEvent object
-         * @return whether the flavor is acceptable
-         */
-        protected boolean isDragFlavorSupported(DropTargetDragEvent ev) {
-            return ev.isDataFlavorSupported(DataFlavor.javaFileListFlavor);
-        }
-
-        /**
-         * Called by drop
-         * Checks the flavors and operations
-         * @param ev the DropTargetDropEvent object
-         * @return the chosen DataFlavor or null if none match
-         */
-        protected DataFlavor chooseDropFlavor(DropTargetDropEvent ev) {
-//Debug.println(ev.getCurrentDataFlavorsAsList());
-            if (ev.isLocalTransfer() && ev.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
-                return DataFlavor.javaFileListFlavor;
-            }
-            DataFlavor chosen = null;
-            if (ev.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
-                chosen = DataFlavor.javaFileListFlavor;
-            }
-            return chosen;
-        }
-
-        /**
-         * ドラッグ動作中に呼ばれます．
-         */
-//      public void dragOver(DropTargetDragEvent ev) {
-//          super.dragOver(ev);
-//Debug.println("here: " + ev.isDataFlavorSupported(DataFlavor.javaFileListFlavor));
-//      }
-
-        /**
-         * You need to implement here dropping procedure.
-         * data はシリアライズされたものをデシリアライズした
-         * ものなのでクローンです．
-         * @param data ドロップされたデータ
-         */
-        @SuppressWarnings("unchecked")
-        protected boolean dropImpl(DropTargetDropEvent ev, Object data) {
-//Debug.println(((List<File>)data).get(0).getClass());
-            setSelectedItem(((List<File>) data).get(0).getPath());
-            return true;
         }
     }
 }
