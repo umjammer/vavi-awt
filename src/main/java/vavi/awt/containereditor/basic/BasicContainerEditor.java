@@ -114,7 +114,7 @@ public class BasicContainerEditor extends ContainerEditor {
                 } else { // BasicController
                     Object[] args = (Object[]) ev.getArgument();
                     Selectable selectable = (Selectable) args[0];
-                    boolean isMultiSelect = ((Boolean) args[1]).booleanValue();
+                    boolean isMultiSelect = (Boolean) args[1];
                     selectionModel.select(selectable, isMultiSelect);
                 }
                 glassPane.repaint();
@@ -127,15 +127,15 @@ public class BasicContainerEditor extends ContainerEditor {
         /** 選択 */
         public void selected(RubberBandEvent ev) {
             List<LocatableController> selected = getControllersIn(ev.getBounds());
-            selectionModel.select(selected.toArray(new Selectable[selected.size()]));
+            selectionModel.select(selected.toArray(new Selectable[0]));
             glassPane.repaint();
         }
 
         /** 移動中 */
         public void moving(RubberBandEvent ev) {
             List<Selectable> selected = selectionModel.getSelected();
-            for (int i = 0; i < selected.size(); i++) {
-                BasicController bc = (BasicController) selected.get(i);
+            for (Selectable selectable : selected) {
+                BasicController bc = (BasicController) selectable;
                 bc.setLocation(getLocationFor(bc, ev.getLocation()));
             }
         }
@@ -143,8 +143,8 @@ public class BasicContainerEditor extends ContainerEditor {
         /** 移動終了 */
         public void moved(RubberBandEvent ev) {
             List<Selectable> selected = selectionModel.getSelected();
-            for (int i = 0; i < selected.size(); i++) {
-                BasicController bc = (BasicController) selected.get(i);
+            for (Selectable selectable : selected) {
+                BasicController bc = (BasicController) selectable;
                 bc.setLocation(getLocationFor(bc, ev.getLocation()));
 
                 Component c = bc.getView();
@@ -156,8 +156,8 @@ public class BasicContainerEditor extends ContainerEditor {
         /** リサイズ中 */
         public void resizing(RubberBandEvent ev) {
             List<Selectable> selected = selectionModel.getSelected();
-            for (int i = 0; i < selected.size(); i++) {
-                BasicController bc = (BasicController) selected.get(i);
+            for (Selectable selectable : selected) {
+                BasicController bc = (BasicController) selectable;
                 bc.setBounds(getBoundsFor(bc, ev.getBounds()));
             }
         }
@@ -165,8 +165,8 @@ public class BasicContainerEditor extends ContainerEditor {
         /** リサイズ中 */
         public void resized(RubberBandEvent ev) {
             List<Selectable> selected = selectionModel.getSelected();
-            for (int i = 0; i < selected.size(); i++) {
-                BasicController bc = (BasicController) selected.get(i);
+            for (Selectable selectable : selected) {
+                BasicController bc = (BasicController) selectable;
                 bc.setBounds(getBoundsFor(bc, ev.getBounds()));
 
                 Component c = bc.getView();

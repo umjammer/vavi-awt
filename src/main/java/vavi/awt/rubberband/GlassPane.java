@@ -30,7 +30,7 @@ public class GlassPane extends JComponent {
     public GlassPane() {
         rbg = new BasicRubberBandGesture(this);
 
-        setBackground(Color.red);
+        setBackground(Color.red); // TODO what is this?
         addMouseListener(rbg);
         addMouseMotionListener(rbg);
     }

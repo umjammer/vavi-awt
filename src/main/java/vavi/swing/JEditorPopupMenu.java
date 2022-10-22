@@ -56,7 +56,7 @@ public class JEditorPopupMenu extends JPopupMenu {
     private Editable editor;
 
     /** TODO ここもいまいち */
-    class JEditorComponent implements Editable {
+    static class JEditorComponent implements Editable {
         JTextComponent tc;
         JEditorComponent(JTextComponent tc) {
             this.tc = tc;

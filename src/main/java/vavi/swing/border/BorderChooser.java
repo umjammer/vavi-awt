@@ -142,7 +142,7 @@ Debug.printStackTrace(e);
                new NullBorderCustomizer());
     }
 
-    /** get icons */
+    /* get icons */
     static {
         Class<?> clazz = BorderChooser.class;
         UIDefaults table = UIManager.getDefaults();

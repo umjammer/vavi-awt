@@ -43,7 +43,7 @@ public class BasicRubberBandRenderer implements RubberBandRenderer {
     private Insets resizingInsets = new Insets(5, 5, 5, 5);
 
     /** カーソルのテーブル TODO */
-    private Cursor[] cursors = {
+    private static final Cursor[] cursors = {
         Cursor.getDefaultCursor(),
         Cursor.getPredefinedCursor(Cursor.N_RESIZE_CURSOR),  // 1
         Cursor.getPredefinedCursor(Cursor.S_RESIZE_CURSOR),  // 2

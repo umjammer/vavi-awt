@@ -88,7 +88,7 @@ public class BasicRubberBandGesture extends RubberBandGesture {
             args = null;
         } else { // Controller
             // Shift キーを押していたら複数選択にする
-            Boolean isMultiSelect = Boolean.valueOf(ev.isShiftDown());
+            boolean isMultiSelect = ev.isShiftDown();
             args = new Object[] { component, isMultiSelect };
 
             // GlassController を最前に

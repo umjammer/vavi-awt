@@ -35,7 +35,7 @@ import vavi.util.Debug;
 
 /**
  * bean を選択する TabbedPane です．
- *
+ * <p>
  * TODO button management
  * DONE load beans
  *
@@ -51,7 +51,7 @@ import vavi.util.Debug;
  */
 public class JBeansTabbedPane extends JTabbedPane {
 
-    /** @see    BeanInfo#getIcon param iconKind */
+    /** @see BeanInfo#getIcon param iconKind */
     private int iconKind = BeanInfo.ICON_COLOR_16x16;
 
     /** Preferred size for 16 x 16 icon */
@@ -73,7 +73,7 @@ public class JBeansTabbedPane extends JTabbedPane {
     public JBeansTabbedPane() {
 
         int i = 0;
-    while (true) {
+        while (true) {
 
             // one tab
             JPanel tab = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -118,8 +118,7 @@ Debug.println("no property for: " + key);
 
                     group.add(button);
                     tab.add(button);
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
 Debug.println(value);
 Debug.printStackTrace(e);
                 }
@@ -163,7 +162,7 @@ Debug.printStackTrace(e);
     }
 
     /** ボタンが選択されたとき． */
-    private ActionListener selectAction = new ActionListener() {
+    private final ActionListener selectAction = new ActionListener() {
         public void actionPerformed(ActionEvent ev) {
             fireValueChanged(
                 new ComponentSelectionEvent(this, ev.getSource()));
@@ -173,14 +172,14 @@ Debug.printStackTrace(e);
     //-------------------------------------------------------------------------
 
     /** ComponentSelectionEvent 機構のユーティリティ */
-    private ComponentSelectionSupport css = new ComponentSelectionSupport();
+    private final ComponentSelectionSupport css = new ComponentSelectionSupport();
 
-    /** ComponentSelection リスナーをアタッチします． */
+    /** Adds a ComponentSelection listener. */
     public void addComponentSelectionListener(ComponentSelectionListener l) {
         css.addComponentSelectionListener(l);
     }
 
-    /** ComponentSelection リスナーをリムーブします． */
+    /** Removes a ComponentSelection listener. */
     public void removeComponentSelectionListener(ComponentSelectionListener l){
         css.removeComponentSelectionListener(l);
     }
@@ -193,10 +192,10 @@ Debug.printStackTrace(e);
     //-------------------------------------------------------------------------
 
     /** プロパティ */
-    private static Properties props = new Properties();
+    private static final Properties props = new Properties();
 
-    /**
-     * 初期化します．
+    /*
+     * initializes {@link #props}.
      */
     static {
         Toolkit t = Toolkit.getDefaultToolkit();

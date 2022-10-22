@@ -6,71 +6,47 @@
 
 package vavi.swing;
 
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Insets;
-import java.io.IOException;
+import java.awt.image.BufferedImage;
+import java.beans.PropertyChangeEvent;
+import java.util.logging.Level;
 
-import javax.imageio.ImageIO;
-import javax.swing.JComponent;
-import javax.swing.border.Border;
+import vavi.awt.BaseImageComponent;
+import vavi.util.Debug;
 
 
 /**
  * JImageComponent.
  *
+ * TODO filtered
+ *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 021109 nsano initial version <br>
  */
-public class JImageComponent extends JComponent {
+public class JImageComponent extends BaseImageComponent<BufferedImage> {
 
-    /** */
-    private Image image;
+    /** Creates an image component. */
+    public JImageComponent() {
+        super(false);
+    }
 
-    /** */
-    public void update(Graphics g) {
-        Border border = getBorder();
-        int l = 0;
-        int t = 0;
-        if (border == null) {
-            l = 0;
-            t = 0;
-        } else {
-            Insets i = border.getBorderInsets(this);
-            l = i.left;
-            t = i.top;
-        }
+    /**
+     * Creates an image component and make it droppable.
+     *
+     * @param droppable true: dragging a file into this component is enabled.
+     *                  when dropping a file, {@link java.beans.PropertyChangeEvent} named "droppedImage" is fired.
+     *                  {@link PropertyChangeEvent#getNewValue()} will be a dropped image.
+     */
+    public JImageComponent(boolean droppable) {
+        super(droppable);
+    }
+
+    @Override
+    public void setImage(BufferedImage image) {
+        super.setImage(image);
         if (image != null) {
-            g.drawImage(image, l, t, this);
-        } else {
-            g.drawImage(noimage, l, t, this);
-        }
-    }
-
-    /** */
-    public void paint(Graphics g) {
-        super.paint(g);
-        // Dimension d = getSize();
-        // g.clearRect(0, 0, d.width, d.height);
-        update(g);
-    }
-
-    /** */
-    public void setImage(Image image) {
-        synchronized (image) {
-            this.image = image;
-        }
-    }
-
-    /** */
-    private static Image noimage;
-
-    /** */
-    static {
-        try {
-            noimage = ImageIO.read(JImageComponent.class.getResourceAsStream("/noimage.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
+            iw = image.getWidth();
+            ih = image.getHeight();
+Debug.println(Level.FINE, "image: " + iw + "x" + ih + ", " + image);
         }
     }
 }

@@ -42,7 +42,7 @@ public class JTreeComboBox extends JComboBox<Object> {
     }
 
     /** ツリーモデルをリストモデルに変換して扱うクラスです． */
-    class TreeToListModel extends AbstractListModel<Object> implements ComboBoxModel<Object>, TreeModelListener {
+    static class TreeToListModel extends AbstractListModel<Object> implements ComboBoxModel<Object>, TreeModelListener {
 
         TreeModel source;
 

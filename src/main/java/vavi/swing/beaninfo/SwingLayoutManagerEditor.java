@@ -149,30 +149,25 @@ Debug.println("bean is not Container: " + bean);
     }
 
     /** Will show dialog. */
-    private ActionListener layoutButtonListener = new ActionListener() {
-        public void actionPerformed(ActionEvent ev) {
-            if (layoutDialog == null) {
-                layoutDialog = new LayoutDialog(panel, "Layout Chooser");
-            }
-            layoutDialog.setSelectedContainer(bean);
-            layoutDialog.setSelectedLayoutManager((LayoutManager) getValue());
-            if (layoutDialog.showDialog() == LayoutDialog.APPROVE_OPTION) {
-                LayoutManager layout = layoutDialog.getSelectedLayoutManager();
-                setValue(layout);
-            }
+    private ActionListener layoutButtonListener = ev -> {
+        if (layoutDialog == null) {
+            layoutDialog = new LayoutDialog(panel, "Layout Chooser");
+        }
+        layoutDialog.setSelectedContainer(bean);
+        layoutDialog.setSelectedLayoutManager((LayoutManager) getValue());
+        if (layoutDialog.showDialog() == LayoutDialog.APPROVE_OPTION) {
+            LayoutManager layout = layoutDialog.getSelectedLayoutManager();
+            setValue(layout);
         }
     };
 
     /** */
-    private ActionListener layoutComboListener = new ActionListener() {
-        public void actionPerformed(ActionEvent ev) {
-            @SuppressWarnings("unchecked")
-            JComboBox<SampleLayoutManagerInfo> cb = (JComboBox<SampleLayoutManagerInfo>) ev.getSource();
-            SampleLayoutManagerInfo lmi =
-                (SampleLayoutManagerInfo) cb.getSelectedItem();
-            LayoutManager layout = lmi.layout;
-            setValue(layout);
-        }
+    private ActionListener layoutComboListener = ev -> {
+        @SuppressWarnings("unchecked")
+        JComboBox<SampleLayoutManagerInfo> cb = (JComboBox<SampleLayoutManagerInfo>) ev.getSource();
+        SampleLayoutManagerInfo lmi = (SampleLayoutManagerInfo) cb.getSelectedItem();
+        LayoutManager layout = lmi.layout;
+        setValue(layout);
     };
 
     /** */
@@ -225,7 +220,7 @@ Debug.println("bean is not Container: " + bean);
     };
 
     /** */
-    private class LayoutDialog extends JDialog {
+    private static class LayoutDialog extends JDialog {
         public static final int APPROVE_OPTION = 0;
         public static final int CANCEL_OPTION = 1;
 
@@ -259,22 +254,18 @@ Debug.println("bean is not Container: " + bean);
         }
 
         /** */
-        private ActionListener okListener = new ActionListener() {
-            public void actionPerformed(ActionEvent ev) {
-                returnValue = APPROVE_OPTION;
-                // get the Layout from the pane
-                setVisible(false);
+        private ActionListener okListener = ev -> {
+            returnValue = APPROVE_OPTION;
+            // get the Layout from the pane
+            setVisible(false);
 //              dispose();
-            }
         };
 
         /** */
-        private ActionListener cancelListener = new ActionListener() {
-            public void actionPerformed(ActionEvent ev) {
-                returnValue = CANCEL_OPTION;
-                setVisible(false);
+        private ActionListener cancelListener = ev -> {
+            returnValue = CANCEL_OPTION;
+            setVisible(false);
 //              dispose();
-            }
         };
 
         /** @param container nullable */
@@ -299,7 +290,7 @@ Debug.println("bean is not Container: " + bean);
 
     //-------------------------------------------------------------------------
 
-    /** */
+    /* */
     static {
         Class<?> clazz = SwingLayoutManagerEditor.class;
         UIDefaults table = UIManager.getDefaults();

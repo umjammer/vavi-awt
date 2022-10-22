@@ -110,22 +110,18 @@ public class JFontChooser extends JComponent {
     }
 
     /** */
-    private ActionListener okListener = new ActionListener() {
-        public void actionPerformed(ActionEvent ev) {
-            returnValue = APPROVE_OPTION;
-            if (dialog != null) {
-                dialog.setVisible(false);
-            }
+    private ActionListener okListener = ev -> {
+        returnValue = APPROVE_OPTION;
+        if (dialog != null) {
+            dialog.setVisible(false);
         }
     };
 
     /** */
-    private ActionListener cancelListener = new ActionListener() {
-        public void actionPerformed(ActionEvent ev) {
-            returnValue = CANCEL_OPTION;
-            if (dialog != null) {
-                dialog.setVisible(false);
-            }
+    private ActionListener cancelListener = ev -> {
+        returnValue = CANCEL_OPTION;
+        if (dialog != null) {
+            dialog.setVisible(false);
         }
     };
 
@@ -187,7 +183,7 @@ public class JFontChooser extends JComponent {
 
     // -------------------------------------------------------------------------
 
-    /** */
+    /* */
     {
         try {
             @SuppressWarnings("unchecked")
@@ -202,7 +198,7 @@ Debug.println(Level.SEVERE, e);
     /** */
     private static final Properties props = new Properties();
 
-    /** */
+    /* */
     static {
         final Class<?> c = JFontChooser.class;
         final String path = "JFontChooser.properties";
@@ -225,7 +221,7 @@ Debug.println(Level.SEVERE, e);
     /** */
     public static void main(String[] args) {
         JFontChooser fc = new JFontChooser();
-        fc.setDialogTitle("フォントチューザ");
+        fc.setDialogTitle("Font Chooser");
         int r = fc.showDialog(null);
 System.err.println(r + ": " + fc.getSelectedFont());
         System.exit(0);

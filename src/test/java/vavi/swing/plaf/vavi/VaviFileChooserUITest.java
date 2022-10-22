@@ -12,6 +12,7 @@ import javax.swing.JFileChooser;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import vavi.util.Debug;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,10 +23,10 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (umjammer)
  * @version 0.00 2018/02/18 umjammer initial version <br>
  */
-@Disabled
 public class VaviFileChooserUITest {
 
     @Test
+    @Disabled
     public void test() {
         fail("Not yet implemented");
     }
@@ -33,12 +34,11 @@ public class VaviFileChooserUITest {
     /** */
     public static void main(String[] args) {
         JFileChooser fc = new JFileChooser();
-        System.err.println(fc.getUI().getClass());
-        fc.setSelectedFile(new File("T400.java"));
+Debug.println(fc.getUI().getClass());
+        fc.setSelectedFile(new File("VaviFileChooserUI"));
         fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
         fc.showOpenDialog(null);
-        System.err.println(fc.getSelectedFile());
-        System.exit(0);
+Debug.println(fc.getSelectedFile());
     }
 }
 

@@ -7,8 +7,8 @@
 package vavi.awt.event;
 
 import java.io.Serializable;
-
-import javax.swing.event.EventListenerList;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -20,7 +20,7 @@ import javax.swing.event.EventListenerList;
 public class SelectionSupport implements Serializable {
 
     /** Selection のリスナー */
-    private EventListenerList listenerList = new EventListenerList();
+    private List<SelectionListener> listenerList = new ArrayList<>();
 
     /**
      * Selection リスナーをアタッチします．
@@ -28,7 +28,7 @@ public class SelectionSupport implements Serializable {
      * @param l SelectionListener
      */
     public void addSelectionListener(SelectionListener l) {
-        listenerList.add(SelectionListener.class, l);
+        listenerList.add(l);
     }
 
     /**
@@ -37,18 +37,15 @@ public class SelectionSupport implements Serializable {
      * @param l SelectionListener
      */
     public void removeSelectionListener(SelectionListener l) {
-        listenerList.remove(SelectionListener.class, l);
+        listenerList.remove(l);
     }
 
     /**
      * Selection イベントを発行します．
      */
     public void fireValueChanged(SelectionEvent ev) {
-        Object[] listeners = listenerList.getListenerList();
-        for (int i = listeners.length - 2; i >= 0; i -= 2) {
-            if (listeners[i] == SelectionListener.class) {
-                ((SelectionListener) listeners[i + 1]).valueChanged(ev);
-            }
+        for (SelectionListener listener : listenerList) {
+            listener.valueChanged(ev);
         }
     }
 }

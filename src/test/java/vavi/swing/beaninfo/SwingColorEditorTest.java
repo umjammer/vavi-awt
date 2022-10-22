@@ -28,10 +28,10 @@ import static org.junit.jupiter.api.Assertions.fail;
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (umjammer)
  * @version 0.00 Nov 15, 2017 umjammer initial version <br>
  */
-@Disabled
 public class SwingColorEditorTest {
 
     @Test
+    @Disabled
     public void test() {
         fail("Not yet implemented");
     }
@@ -52,11 +52,9 @@ public class SwingColorEditorTest {
         p.add(panel);
         f.getContentPane().add(p);
         editor.setValue(panel.getBorder());
-        editor.addPropertyChangeListener(new PropertyChangeListener() {
-            public void propertyChange(PropertyChangeEvent ev) {
+        editor.addPropertyChangeListener(ev -> {
 //Debug.println(ev.getOldValue() + ", " + ev.getNewValue());
-                panel.setBackground((Color) editor.getValue());
-            }
+            panel.setBackground((Color) editor.getValue());
         });
 
         f.pack();

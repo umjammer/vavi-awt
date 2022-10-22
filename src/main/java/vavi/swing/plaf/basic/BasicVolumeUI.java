@@ -335,7 +335,6 @@ public class BasicVolumeUI extends VolumeUI {
 //      final int minValue = volume.getMinimum();
 //      final int maxValue = volume.getMaximum();
 
-
         return value;
     }
 
@@ -480,7 +479,7 @@ public class BasicVolumeUI extends VolumeUI {
         public void actionPerformed(ActionEvent e) {
             ((Timer) e.getSource()).stop();
         }
-    };
+    }
 
     /**
      * Listener for resizing events.
@@ -494,7 +493,7 @@ public class BasicVolumeUI extends VolumeUI {
             calculateGeometry();
             volume.repaint();
         }
-    };
+    }
 
     /**
      * Focus-change listener.
@@ -510,7 +509,7 @@ public class BasicVolumeUI extends VolumeUI {
         public void focusLost(FocusEvent e) {
             volume.repaint();
         }
-    };
+    }
 }
 
 /* */

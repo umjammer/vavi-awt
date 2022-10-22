@@ -11,8 +11,7 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
 
 
 /**
@@ -24,13 +23,15 @@ import static org.junit.jupiter.api.Assertions.*;
 public class JBeansTabbedPaneTest {
 
     @Test
+    @EnabledIfSystemProperty(named = "vav.test", matches = "ide")
     public void test() {
-        fail("Not yet implemented");
+        main(new String[] {});
+        while (true) Thread.yield();
     }
 
     //-------------------------------------------------------------------------
 
-    /** このクラスをテストします． */
+    /** */
     public static void main(String[] args) {
         JFrame frame = new JFrame("JBeansTabbedPane Demo");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -142,14 +142,12 @@ public class SwingBorderEditor extends SwingEditorSupport {
     };
 
     /** */
-    private ActionListener borderComboListener = new ActionListener() {
-        public void actionPerformed(ActionEvent ev) {
-            @SuppressWarnings("unchecked")
-            JComboBox<SampleBorderInfo> cb = (JComboBox<SampleBorderInfo>) ev.getSource();
-            SampleBorderInfo bi = (SampleBorderInfo) cb.getSelectedItem();
-            Border border = bi.border;
-            setValue(border);
-        }
+    private ActionListener borderComboListener = ev -> {
+        @SuppressWarnings("unchecked")
+        JComboBox<SampleBorderInfo> cb = (JComboBox<SampleBorderInfo>) ev.getSource();
+        SampleBorderInfo bi = (SampleBorderInfo) cb.getSelectedItem();
+        Border border = bi.border;
+        setValue(border);
     };
 
     /** */
@@ -234,20 +232,16 @@ public class SwingBorderEditor extends SwingEditorSupport {
             setLocationRelativeTo(SwingUtilities.getRoot(panel));
         }
 
-        private ActionListener okListener = new ActionListener() {
-            public void actionPerformed(ActionEvent ev) {
-                returnValue = APPROVE_OPTION;
-                setVisible(false);
+        private ActionListener okListener = ev -> {
+            returnValue = APPROVE_OPTION;
+            setVisible(false);
 //                dispose();
-            }
         };
 
-        private ActionListener cancelListener = new ActionListener() {
-            public void actionPerformed(ActionEvent ev) {
-                returnValue = CANCEL_OPTION;
-                setVisible(false);
+        private ActionListener cancelListener = ev -> {
+            returnValue = CANCEL_OPTION;
+            setVisible(false);
 //                dispose();
-            }
         };
 
         public void setSelectedBorder(Border border) {
@@ -267,7 +261,7 @@ public class SwingBorderEditor extends SwingEditorSupport {
 
     //-------------------------------------------------------------------------
 
-    /** */
+    /* */
     static {
         Class<?> clazz = SwingBorderEditor.class;
         UIDefaults table = UIManager.getDefaults();

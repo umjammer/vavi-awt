@@ -28,10 +28,10 @@ import static org.junit.jupiter.api.Assertions.fail;
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (umjammer)
  * @version 0.00 Nov 15, 2017 umjammer initial version <br>
  */
-@Disabled
 public class SwingIconEditorTest {
 
     @Test
+    @Disabled
     public void test() {
         fail("Not yet implemented");
     }
@@ -50,11 +50,7 @@ public class SwingIconEditorTest {
         label.setBackground(Color.pink);
         label.setHorizontalAlignment(JLabel.CENTER);
         f.getContentPane().add(label);
-        editor.addPropertyChangeListener(new PropertyChangeListener() {
-            public void propertyChange(PropertyChangeEvent ev) {
-                label.setIcon((Icon) editor.getValue());
-            }
-        });
+        editor.addPropertyChangeListener(ev -> label.setIcon((Icon) editor.getValue()));
 
         f.pack();
         f.setVisible(true);

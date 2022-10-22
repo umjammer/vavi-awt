@@ -54,32 +54,29 @@ public class SwingIconEditor extends SwingEditorSupport {
     }
 
     /** */
-    private PropertyChangeListener pcl = new PropertyChangeListener()  {
-        public void propertyChange(PropertyChangeEvent ev)  {
-            String name = ev.getPropertyName();
-            String path = null;
-            if ("text".equals(name)) {
-                path = chooser.getText();
-            } else if ("selectedFile".equals(name)) {
-                path = chooser.getSelectedFile().getAbsolutePath();
-            }
+    private PropertyChangeListener pcl = ev -> {
+        String name = ev.getPropertyName();
+        String path = null;
+        if ("text".equals(name)) {
+            path = chooser.getText();
+        } else if ("selectedFile".equals(name)) {
+            path = chooser.getSelectedFile().getAbsolutePath();
+        }
 
-            if (path == null) {
+        if (path == null) {
 //Debug.println("null image");
-                return;
-            }
+            return;
+        }
 
-            try {
-                MediaTracker tracker = new MediaTracker(panel);
-                Image image = Toolkit.getDefaultToolkit().getImage(path);
-                tracker.addImage(image, 0);
-                tracker.waitForAll();
-                setValue(new ImageIcon(image));
-            } catch (Exception e) {
+        try {
+            MediaTracker tracker = new MediaTracker(panel);
+            Image image = Toolkit.getDefaultToolkit().getImage(path);
+            tracker.addImage(image, 0);
+            tracker.waitForAll();
+            setValue(new ImageIcon(image));
+        } catch (Exception e) {
 //Debug.printStackTrace(e);
 Debug.println(Level.SEVERE, e);
-                return;
-            }
         }
     };
 }

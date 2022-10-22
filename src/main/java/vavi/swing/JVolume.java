@@ -15,14 +15,12 @@ import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Arc2D;
 import java.io.Serializable;
-
 import javax.swing.BoundedRangeModel;
 import javax.swing.DefaultBoundedRangeModel;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.event.EventListenerList;
 import javax.swing.event.MouseInputAdapter;
 import javax.swing.event.MouseInputListener;
 
@@ -151,21 +149,18 @@ public class JVolume extends JComponent {
 
     /**
      * Send a ChangeEvent, whose source is this Volume, to
-     * each listener.  This method method is called each time
+     * each listener.  This method is called each time
      * a ChangeEvent is received from the model.
      *
      * @see #addChangeListener
-     * @see EventListenerList
+     * @see javax.swing.event.EventListenerList
      */
     protected void fireStateChanged() {
-        Object[] listeners = listenerList.getListenerList();
-        for (int i = listeners.length - 2; i >= 0; i -= 2) {
-            if (listeners[i] == ChangeListener.class) {
-                if (changeEvent == null) {
-                    changeEvent = new ChangeEvent(this);
-                }
-                ((ChangeListener) listeners[i+1]).stateChanged(changeEvent);
+        for (ChangeListener listener : listenerList.getListeners(ChangeListener.class)) {
+            if (changeEvent == null) {
+                changeEvent = new ChangeEvent(this);
             }
+            listener.stateChanged(changeEvent);
         }
     }
 

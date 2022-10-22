@@ -214,7 +214,6 @@ public class ARGBChooserPanel extends AbstractColorChooserPanel implements Chang
             getColorSelectionModel().setSelectedColor(color);
         }
     }
-
 }
 
 

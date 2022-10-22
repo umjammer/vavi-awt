@@ -35,7 +35,7 @@ public abstract class BasicTransferable implements Transferable {
      */
     public BasicTransferable(Object model) {
         this.model = model;
-//Debug.println(Debug.DEBUG, model);
+//Debug.println(Level.FINE, model);
     }
 
     /** Dumps flavors. */
@@ -61,13 +61,13 @@ public abstract class BasicTransferable implements Transferable {
 
     /** Tells if the specified flavor is supported or not. */
     public boolean isDataFlavorSupported(DataFlavor flavor) {
-//Debug.println(Debug.DEBUG, flavorList.contains(flavor));
+//Debug.println(Level.FINE, flavorList.contains(flavor));
         return flavorList.contains(flavor);
     }
 
     /** Gets the transferable data. */
     public synchronized Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
-//Debug.println(Debug.DEBUG, toString());
+//Debug.println(Level.FINE, toString());
 //        dumpFlavor(flavor);
 
         if (isDataFlavorSupported(flavor)) {

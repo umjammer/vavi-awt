@@ -57,11 +57,9 @@ public class SwingFontEditor extends SwingEditorSupport {
     }
 
     /** */
-    private PropertyChangeListener pcl = new PropertyChangeListener() {
-        public void propertyChange(PropertyChangeEvent ev) {
-            if ("font".equals(ev.getPropertyName())) {
-                SwingFontEditor.super.setValue(ev.getNewValue());
-            }
+    private PropertyChangeListener pcl = ev -> {
+        if ("font".equals(ev.getPropertyName())) {
+            SwingFontEditor.super.setValue(ev.getNewValue());
         }
     };
 

@@ -46,12 +46,10 @@ public class SwingObjectEditor extends SwingEditorSupport {
         // NOTE: This should work but there was a regression in JDK 1.3 beta which
         // doesn't fire for text fields.
         // This should be fixed for RC 1.
-        textfield.addActionListener(new ActionListener()  {
-            public void actionPerformed(ActionEvent evt)  {
-                // XXX - debug
-                System.out.println("SwingObjectEditor.actionPerformed");
-                handleAction();
-            }
+        textfield.addActionListener(evt -> {
+            // XXX - debug
+            System.out.println("SwingObjectEditor.actionPerformed");
+            handleAction();
         });
 
         // XXX - Temporary workaround for 1.3 beta

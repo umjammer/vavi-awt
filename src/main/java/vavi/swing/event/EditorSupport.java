@@ -7,8 +7,8 @@
 package vavi.swing.event;
 
 import java.io.Serializable;
-
-import javax.swing.event.EventListenerList;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -25,47 +25,38 @@ public class EditorSupport
     implements Serializable {
 
     /** The editor listeners */
-    private EventListenerList listenerList = new EventListenerList();
+    private List<EditorListener> listeners = new ArrayList<>();
 
     /** EditorListener を追加します． */
     public void addEditorListener(EditorListener l) {
-        listenerList.add(EditorListener.class, l);
+        listeners.add(l);
     }
 
     /** EditorListener を削除します． */
     public void removeEditorListener(EditorListener l) {
-        listenerList.remove(EditorListener.class, l);
+        listeners.remove(l);
     }
 
     /** エディタがオープンされたイベントを発行します． */
-//      public void fireEditorOpened(EditorEvent ev) {
-//          Object[] listeners = listenerList.getListenerList();
-//          for (int i = listeners.length - 2; i >= 0; i -= 2) {
-//              if (listeners[i] == EditorListener.class) {
-//                  ((EditorListener) listeners[i + 1]).editorOpened(ev);
-//              }
-//          }
-//      }
+//    public void fireEditorOpened(EditorEvent ev) {
+//        for (EditorListener listener : listeners) {
+//            listener.editorOpened(ev);
+//        }
+//    }
 
     /** エディタがアップデートされたイベントを発行します． */
     public void fireEditorUpdated(EditorEvent ev) {
-        Object[] listeners = listenerList.getListenerList();
-        for (int i = listeners.length - 2; i >= 0; i -= 2) {
-            if (listeners[i] == EditorListener.class) {
-                ((EditorListener) listeners[i + 1]).editorUpdated(ev);
-            }
+        for (EditorListener listener : listeners) {
+            listener.editorUpdated(ev);
         }
     }
 
     /** エディタがクローズされたイベントを発行します． */
-//      public void fireEditorClosed(EditorEvent ev) {
-//          Object[] listeners = listenerList.getListenerList();
-//          for (int i = listeners.length - 2; i >= 0; i -= 2) {
-//              if (listeners[i] == EditorListener.class) {
-//                  ((EditorListener) listeners[i + 1]).editorClosed(ev);
-//              }
-//          }
-//      }
+//    public void fireEditorClosed(EditorEvent ev) {
+//        for (EditorListener listener : listeners) {
+//            listener.editorClosed(ev);
+//        }
+//    }
 }
 
 /* */

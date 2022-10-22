@@ -112,38 +112,32 @@ public class SwingColorEditor extends SwingEditorSupport {
     }
 
     /** for TextField */
-    private ActionListener rgbListener = new ActionListener() {
-        public void actionPerformed(ActionEvent ev) {
-            try {
-                setAsText(getAsText());
-            } catch (IllegalArgumentException e) {
-                JOptionPane.showMessageDialog(panel.getParent(), e.toString());
-                setValue(null);
-            }
+    private ActionListener rgbListener = ev -> {
+        try {
+            setAsText(getAsText());
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(panel.getParent(), e.toString());
+            setValue(null);
         }
     };
 
     /** for SmallColorChooserButton */
-    private PropertyChangeListener pcl = new PropertyChangeListener() {
-        public void propertyChange(PropertyChangeEvent ev) {
-            if ("color".equals(ev.getPropertyName())) {
-                Color color = (Color) ev.getNewValue();
-                setValue(color);
-            }
+    private PropertyChangeListener pcl = ev -> {
+        if ("color".equals(ev.getPropertyName())) {
+            Color color = (Color) ev.getNewValue();
+            setValue(color);
         }
     };
 
     /** for Button */
-    private ActionListener buttonListener = new ActionListener() {
-        public void actionPerformed(ActionEvent e){
-            Color oldColor = (Color) getValue();
-            Color color = JColorChooser.showDialog(panel.getParent(),
-                                                   "Color Chooser",
-                                                   oldColor);
-            if (oldColor != color) {
-                setValue(color);
-                colorChooserCombo.setMostRecentColor(color);
-            }
+    private ActionListener buttonListener = ev -> {
+        Color oldColor = (Color) getValue();
+        Color color = JColorChooser.showDialog(panel.getParent(),
+                                               "Color Chooser",
+                                               oldColor);
+        if (oldColor != color) {
+            setValue(color);
+            colorChooserCombo.setMostRecentColor(color);
         }
     };
 
@@ -278,13 +272,11 @@ public class SwingColorEditor extends SwingEditorSupport {
         };
 
         /** */
-        private PropertyChangeListener pcl = new PropertyChangeListener() {
-            public void propertyChange(PropertyChangeEvent ev) {
-                if ("color".equals(ev.getPropertyName())) {
-                    Color oldColor = (Color) ev.getOldValue();
-                    Color color = (Color) ev.getNewValue();
-                    firePropertyChange("color", oldColor, color);
-                }
+        private PropertyChangeListener pcl = ev -> {
+            if ("color".equals(ev.getPropertyName())) {
+                Color oldColor = (Color) ev.getOldValue();
+                Color color = (Color) ev.getNewValue();
+                firePropertyChange("color", oldColor, color);
             }
         };
     }
