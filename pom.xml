@@ -148,9 +148,9 @@ TODO
 
   <dependencies>
     <dependency>
-      <groupId>vavi</groupId> <!-- com.github.umjammer -->
+      <groupId>com.github.umjammer</groupId> <!-- com.github.umjammer -->
       <artifactId>vavi-commons-sandbox</artifactId>
-      <version>0.4.2-SNAPSHOT</version>
+      <version>0.4.2</version>
     </dependency>
 
     <dependency>
