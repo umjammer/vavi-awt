@@ -56,7 +56,12 @@ Debug.println(Level.FINE, columnGetterMethods);
     public String getColumnName(int columnIndex) {
         Method method = columnGetterMethods.get(columnIndex);
         String name = method.getAnnotation(Column.class).name();
-        return name.isEmpty() ? method.getName() : uncapitalizeFirstChar(name.replaceFirst("^(get|is)", ""));
+        return !name.isEmpty() ? name : normalizeName(method.getName());
+    }
+
+    /** getter -> field */
+    private static String normalizeName(String string) {
+        return uncapitalizeFirstChar(string.replaceFirst("^(get|is)", ""));
     }
 
     /** */
