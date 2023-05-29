@@ -1,19 +1,19 @@
-Swing 拡張のクラスを提供します．
+Provides Swing extension classes.
 
-## これから実装すること
+## TODO
 
- * ~~JFileChooserTextField の TextField を CombpBox 化~~
- * ~~ヒストリ付 ComboBox~~
+ * ~~change JFileChooserTextField's TextField to CombpBox~~
+ * ~~ComboBox w/ history~~
  * ~~JFontChooser~~
- * JVolume の UI
- * Swing Worker の見直し
+ * JVolume's UI
+ * review Swing Worker
  * ~~020616 JEditablePanel~~
- * ~~020616 enableEvents/disableEvents が効いていない~~
- * ~~020606 processContainerEvent を GlassContainerEditor へ移す？~~
- * ~~020616 並び替えコマンドのレイアウタ化?~~
- * ~~020616 LayoutEditorからかえって来たときコントローラがおかしい~~
+ * ~~020616 enableEvents/disableEvents doesn't work~~
+ * ~~020606 mode processContainerEvent into GlassContainerEditor?~~
+ * ~~020616 make reorder command "layout manager"?~~
+ * ~~020616 controller LayoutEditor returns is something wrong~~
  * ~~020616 clipboard~~
 
-## わかったこと
+## Tech Know
 
- * JComboBox の DnD は getEditor でとってきた TextField に対して行う
+ * JComboBox's DnD target is a TextField via #getEditor()

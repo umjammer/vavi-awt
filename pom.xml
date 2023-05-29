@@ -18,8 +18,7 @@
   <description>
 TODO
 
-    separate compiler version in maven
-    save history</description>
+    separate compiler version in maven</description>
   <scm>
     <url>https://github.com/umjammer/vavi-awt</url>
   </scm>
@@ -32,28 +31,34 @@ TODO
       <id>renamer</id>
       <activation>
         <property>
-          <name>renamer</name>
+          <name>dir</name>
           <value/>
         </property>
       </activation>
       <build>
         <plugins>
           <plugin>
-            <!-- exec:exec -->
-            <!-- $ mvn -P renamer exec:java -Dexec.args='"dir"' -->
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>exec-maven-plugin</artifactId>
-            <version>1.6.0</version>
-            <executions>
-              <execution>
+            <!-- $ mvn -P renamer antrun:run -Dexec.args='"dir"' -->
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>3.1.0</version>
                 <goals>
-                  <goal>java</goal>
+              <goal>run</goal>
                 </goals>
-              </execution>
-            </executions>
             <configuration>
-              <mainClass>FileRenamer</mainClass>
-              <classpathScope>test</classpathScope>
+              <target>
+                <java classname="FileRenamer" fork="true">
+                  <classpath>
+                    <path refid="maven.compile.classpath"/>
+                    <path refid="maven.test.classpath"/>
+                  </classpath>
+                  <jvmarg value="-Djava.util.logging.config.file=${project.build.testOutputDirectory}/logging.properties"/>
+                  <jvmarg value="-Dswing.defaultlaf=com.formdev.flatlaf.FlatLightLaf" />
+                  <jvmarg value="-Dapple.laf.useScreenMenuBar=true" />
+                  <jvmarg value="-Dapple.awt.application.name=FileRenamer" />
+                  <arg value="${dir}"/>
+                </java>
+              </target>
             </configuration>
           </plugin>
         </plugins>
@@ -139,7 +144,7 @@ TODO
       <dependency>
         <groupId>org.junit</groupId>
         <artifactId>junit-bom</artifactId>
-        <version>5.9.1</version>
+        <version>5.9.3</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -163,7 +168,7 @@ TODO
     <dependency>
       <groupId>com.formdev</groupId>
       <artifactId>flatlaf</artifactId>
-      <version>2.6</version>
+      <version>3.0</version>
       <scope>runtime</scope>
     </dependency>
 
