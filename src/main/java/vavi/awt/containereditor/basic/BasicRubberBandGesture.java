@@ -96,7 +96,7 @@ public class BasicRubberBandGesture extends RubberBandGesture {
             glassPane.add(component, 0);
         }
 
-        fireEditorUpdated(new EditorEvent(this, "clicked", args));
+        fireEditorUpdated(new EditorEvent(this, "clicked", (Object[]) args));
     }
 
     /** */

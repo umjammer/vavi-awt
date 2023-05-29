@@ -23,15 +23,7 @@ public class EditorEvent extends EventObject {
     private String name;
 
     /** */
-    private Object argument;
-
-    /**
-     * Creates an editor event.
-     * @param    source    the event source
-     */
-//  public EditorEvent(Object source) {
-//      this(source, "", null);
-//  }
+    private Object[] arguments;
 
     /**
      * Creates an editor event.
@@ -40,7 +32,7 @@ public class EditorEvent extends EventObject {
      * @param name the event name
      */
     public EditorEvent(Object source, String name) {
-        this(source, name, null);
+        this(source, name, (Object) null);
     }
 
     /**
@@ -48,13 +40,13 @@ public class EditorEvent extends EventObject {
      *
      * @param source the event source
      * @param name the event name
-     * @param argument the event argument
+     * @param arguments the event argument
      */
-    public EditorEvent(Object source, String name, Object argument) {
+    public EditorEvent(Object source, String name, Object... arguments) {
         super(source);
 
         this.name = name;
-        this.argument = argument;
+        this.arguments = arguments;
     }
 
     /** */
@@ -63,8 +55,8 @@ public class EditorEvent extends EventObject {
     }
 
     /** @return nullable */
-    public Object getArgument() {
-        return argument;
+    public Object[] getArguments() {
+        return arguments;
     }
 }
 
