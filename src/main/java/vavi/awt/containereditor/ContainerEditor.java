@@ -36,7 +36,7 @@ import vavi.util.Debug;
 
 
 /**
- * SelectinModel を用いる Container のエディタです．
+ * SelectionModel を用いる Container のエディタです．
  *
  * @event EditorEvent("copy", Vector<Component>)
  * @event EditorEvent("lostOwnership")

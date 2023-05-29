@@ -28,8 +28,8 @@ import vavi.util.Debug;
  * @author Mark Davidson
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version                   original version <br>
- *          0.01 020524 nsano be genaric #init <br>
- *          0.01 020527 nsano be genaric EnumeratedItem <br>
+ *          0.01 020524 nsano be generic #init <br>
+ *          0.01 020527 nsano be generic EnumeratedItem <br>
  */
 public class SwingEnumEditor extends SwingEditorSupport {
 

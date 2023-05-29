@@ -8,7 +8,6 @@ package vavi.awt.event;
 
 import java.util.EventListener;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 
@@ -142,9 +141,8 @@ public class EventPlugSupport {
      * @param connected 結合するかどうか
      */
     public void setConnected(boolean connected) {
-        Iterator<EventPlug> e = eventPlugs.values().iterator();
-        while (e.hasNext()) {
-            e.next().setConnected(connected);
+        for (EventPlug eventPlug : eventPlugs.values()) {
+            eventPlug.setConnected(connected);
         }
     }
 }

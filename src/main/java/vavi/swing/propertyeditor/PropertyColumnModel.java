@@ -174,9 +174,9 @@ public class PropertyColumnModel extends DefaultTableColumnModel  {
                                                        column);
         }
 
-        /**
-         * Retrieves the property editor for this value.
-         */
+//        /**
+//         * Retrieves the property editor for this value.
+//         */
 //          public PropertyEditor getPropertyEditor()  {
 //              return editor;
 //          }

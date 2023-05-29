@@ -13,7 +13,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 import javax.swing.JButton;
@@ -79,14 +78,12 @@ public class SmallColorChooserPopupMenu extends JPopupMenu {
     };
 
     /** for SwatchChooserPanel */
-    private PropertyChangeListener pcl = new PropertyChangeListener() {
-        public void propertyChange(PropertyChangeEvent ev) {
-            if ("color".equals(ev.getPropertyName())) {
-                Color oldColor = (Color) ev.getOldValue();
-                Color color = (Color) ev.getNewValue();
-                firePropertyChange("color", oldColor, color);
-                setVisible(false);
-            }
+    private PropertyChangeListener pcl = ev -> {
+        if ("color".equals(ev.getPropertyName())) {
+            Color oldColor = (Color) ev.getOldValue();
+            Color color = (Color) ev.getNewValue();
+            firePropertyChange("color", oldColor, color);
+            setVisible(false);
         }
     };
 }

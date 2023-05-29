@@ -20,7 +20,7 @@ import java.beans.PropertyChangeSupport;
  */
 public class NullLayoutConverter {
 
-    /** */
+//    /** */
 //  private boolean savingAsGridBagLayout;
     /** */
     private boolean overlaid;

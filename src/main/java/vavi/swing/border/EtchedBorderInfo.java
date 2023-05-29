@@ -42,8 +42,8 @@ public class EtchedBorderInfo extends SimpleBorderInfo {
         BorderPropertyDescriptor[] bpds = new BorderPropertyDescriptor[3];
         bpds[0] = new BorderPropertyDescriptor("etchType", clazz);
         Object[] value = new Object[] {
-            "RAISED", new Integer(EtchedBorder.RAISED), null,
-            "LOWERED", new Integer(EtchedBorder.LOWERED), null,
+            "RAISED", EtchedBorder.RAISED, null,
+            "LOWERED", EtchedBorder.LOWERED, null,
         };
         bpds[0].setValue("enumerationValues", value);
         bpds[1] = new BorderPropertyDescriptor("highlightColor", clazz);

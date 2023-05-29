@@ -24,7 +24,7 @@ import javax.swing.text.JTextComponent;
 /**
  * フィールド編集用ポップアップメニューです．
  *
- * @todo アーキテクチャちゃんと考える
+ * TODO アーキテクチャちゃんと考える
  *
  * @depends /vavi/swing/resource${I18N}.properties
  *

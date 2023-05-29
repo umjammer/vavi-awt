@@ -13,7 +13,6 @@ import java.awt.GridLayout;
 import java.awt.Rectangle;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.Iterator;
 import java.util.logging.Level;
 
 import javax.swing.BorderFactory;
@@ -188,9 +187,8 @@ Debug.println(Level.FINER, x + ", " + y);
 
     /** called last, to set layout to your container */
     public void layoutContainer() {
-        Iterator<Object> e = components.keySet().iterator();
-        while (e.hasNext()) {
-            Component controller = (Component) e.next();
+        for (Object o : components.keySet()) {
+            Component controller = (Component) o;
             Component component = components.get(controller);
             Rectangle r = controller.getBounds();
             int x = Math.round(r.x / ratio);

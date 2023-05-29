@@ -8,7 +8,6 @@ package vavi.swing.layout;
 
 import java.awt.CardLayout;
 import java.awt.Component;
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.logging.Level;
 
@@ -18,7 +17,7 @@ import vavi.util.Debug;
 /**
  * CardLayoutConstraintEditor.
  *
- * @todo get constraint when initializing components in the container.
+ * TODO get constraint when initializing components in the container.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020528 nsano initial version <br>
@@ -34,15 +33,13 @@ public class CardLayoutConstraintsEditor
     //-------------------------------------------------------------------------
 
     /** for table model setter */
-    private PropertyChangeListener pcl = new PropertyChangeListener() {
-        public void propertyChange(PropertyChangeEvent ev) {
-            Component component = container.getComponent(index);
+    private PropertyChangeListener pcl = ev -> {
+        Component component = container.getComponent(index);
 Debug.println(Level.FINE, index);
-            layout.removeLayoutComponent(component);
-            layout.addLayoutComponent(component, ev.getNewValue());
+        layout.removeLayoutComponent(component);
+        layout.addLayoutComponent(component, ev.getNewValue());
 
-            layout.layoutContainer(container);
-        }
+        layout.layoutContainer(container);
     };
 
     /** sets target constraint */

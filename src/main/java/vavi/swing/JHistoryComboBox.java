@@ -72,7 +72,7 @@ public class JHistoryComboBox extends JComboBox<String> {
     }
 
     /**
-     * @param applicationId identity for prefs
+     * @param applicationId identity for prefs.
      */
     public void restoreHistory(String applicationId) {
         try {
@@ -92,7 +92,8 @@ Debug.println(Level.FINE, "prefs <<: " + ("item" + i) + ": " + value);
     }
 
     /**
-     * @param applicationId identity for prefs
+     * @param applicationId identity for prefs.
+     * TODO duplication
      */
     public void saveHistory(String applicationId) {
         Preferences prefs = Preferences.userRoot().node(applicationId);

@@ -13,12 +13,10 @@ import java.awt.LayoutManager;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Iterator;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.border.TitledBorder;
-import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
 
@@ -54,11 +52,7 @@ public class CardLayoutCustomizer extends BasicLayoutManagerCustomizer {
     }
 
     /** */
-    private TableModelListener tml = new TableModelListener() {
-        public void tableChanged(TableModelEvent ev) {
-            updateLayout();
-        }
-    };
+    private TableModelListener tml = ev -> updateLayout();
 
     /** */
     private void updateLayout() {
@@ -104,9 +98,8 @@ public class CardLayoutCustomizer extends BasicLayoutManagerCustomizer {
 
     /** called last, to set layout to your container */
     public void layoutContainer() {
-        Iterator<Object> e = components.keySet().iterator();
-        while (e.hasNext()) {
-            JLabel controller = (JLabel) e.next();
+        for (Object o : components.keySet()) {
+            JLabel controller = (JLabel) o;
             String constraints = controller.getText();
             Component component = components.get(controller);
             layout.removeLayoutComponent(component);
@@ -135,7 +128,7 @@ public class CardLayoutCustomizer extends BasicLayoutManagerCustomizer {
             }
             constraintsEditor.setCurrentIndex(index);
 
-            card.show(layoutPanel, "" + index);
+            card.show(layoutPanel, String.valueOf(index));
 
             TitledBorder b = (TitledBorder) lcPanel.getBorder();
             b.setTitle("Component Constraints: " + index);

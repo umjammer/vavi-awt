@@ -6,8 +6,6 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.DateFormat;
@@ -153,22 +151,18 @@ public class TransClock implements Updatable {
         colorChooser = new JColorChooser(color);
         colorChooser.addChooserPanel(new ARGBChooserPanel());
 
-        JDialog dialog = JColorChooser.createDialog(frame, "Font Color", true, colorChooser, new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                color = colorChooser.getColor();
+        JDialog dialog = JColorChooser.createDialog(frame, "Font Color", true, colorChooser, e -> {
+            color = colorChooser.getColor();
 
-                prefs.putInt(COLOR, color.getRGB());
-                try {
-                    prefs.flush();
-                } catch (BackingStoreException ex) {
-                    ex.printStackTrace();
-                }
+            prefs.putInt(COLOR, color.getRGB());
+            try {
+                prefs.flush();
+            } catch (BackingStoreException ex) {
+                ex.printStackTrace();
+            }
 
-                clockLabel.setForeground(color);
-            }
-        }, new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            }
+            clockLabel.setForeground(color);
+        }, e -> {
         });
         dialog.setVisible(true);
     }

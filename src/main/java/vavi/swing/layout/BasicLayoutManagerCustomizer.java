@@ -27,7 +27,6 @@ import javax.swing.UIManager;
 
 import vavi.swing.propertyeditor.JPropertyEditorTable;
 import vavi.util.Debug;
-import vavi.util.StringUtil;
 
 
 /**

@@ -6,6 +6,7 @@
 
 package vavi.awt;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -55,8 +56,8 @@ Debug.println(Level.INFO, "Warning: be careful to use this method.");
      * すべての Selectable を非選択状態にします．
      */
     public void deselectAll() {
-        for (int i = 0; i < selected.size(); i++) {
-            selected.get(i).setSelected(false);
+        for (Selectable selectable : selected) {
+            selectable.setSelected(false);
         }
 
         selected.clear();
@@ -73,8 +74,8 @@ Debug.println(Level.INFO, "Warning: be careful to use this method.");
 
         deselectAll();
 
-        for (int i = 0; i < selectables.length; i++) {
-            select(selectables[i], true);
+        for (Selectable selectable : selectables) {
+            select(selectable, true);
         }
     }
 
@@ -89,13 +90,15 @@ Debug.println(Level.INFO, "Warning: be careful to use this method.");
 Debug.println(Level.FINER, selectable);
         boolean isOldSelection = false;
 
-        for (int i = 0; i < selected.size(); i++) {
-            if (selectable == selected.get(i)) {
+        Iterator<Selectable> i = selected.iterator();
+        while (i.hasNext()) {
+            Selectable s = i.next();
+            if (selectable == s) {
                 if (isMultiSelection) {
                     // 新しい選択が，すでに選択済みの場合，
                     // その選択状態を解除する
-                    selected.get(i).setSelected(false);
-                    selected.remove(i);
+                    s.setSelected(false);
+                    i.remove();
                     isOldSelection = true;
                 }
             }
@@ -105,16 +108,16 @@ Debug.println(Level.FINER, selectable);
             // 新しいものが選択されたとき
             if (!isMultiSelection) {
                 // すべてを非選択状態に
-                for (int i = 0; i < selected.size(); i++) {
-                    selected.get(i).setSelected(false);
+                for (Selectable value : selected) {
+                    value.setSelected(false);
                 }
                 selected.clear();
             }
             selected.add(selectable);
 
             // 選択されているすべてを選択状態にする
-            for (int i = 0; i < selected.size(); i++) {
-                selected.get(i).setSelected(true);
+            for (Selectable value : selected) {
+                value.setSelected(true);
             }
         }
 

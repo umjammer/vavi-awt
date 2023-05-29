@@ -48,10 +48,10 @@ import vavi.swing.plaf.VolumeUI;
  * @version 0.00 020507 nsano initial version <br>
  */
 public class BasicVolumeUI extends VolumeUI {
-    public static final int POSITIVE_SCROLL = +1;
+    public static final int POSITIVE_SCROLL = 1;
     public static final int NEGATIVE_SCROLL = -1;
     public static final int MIN_SCROLL = -2;
-    public static final int MAX_SCROLL = +2;
+    public static final int MAX_SCROLL = 2;
 
     protected Timer scrollTimer;
     protected JVolume volume;
@@ -89,9 +89,9 @@ public class BasicVolumeUI extends VolumeUI {
         return focusColor;
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    //
     // ComponentUI Interface Implementation methods
-    ///////////////////////////////////////////////////////////////////////////
+    //
 
     public static ComponentUI createUI(JComponent b) {
         return new BasicVolumeUI((JVolume) b);
@@ -338,9 +338,9 @@ public class BasicVolumeUI extends VolumeUI {
         return value;
     }
 
-    /////////////////////////////////////////////////////////////////////////
-    /// Model Listener Class
-    /////////////////////////////////////////////////////////////////////////
+    //
+    // Model Listener Class
+    //
 
     /**
      * Data model listener.
@@ -357,9 +357,9 @@ public class BasicVolumeUI extends VolumeUI {
         }
     }
 
-    /////////////////////////////////////////////////////////////////////////
-    /// Track Listener Class
-    /////////////////////////////////////////////////////////////////////////
+    //
+    // Track Listener Class
+    //
 
     /**
      * Track mouse movements.
@@ -392,12 +392,12 @@ public class BasicVolumeUI extends VolumeUI {
         }
 
         /**
-        * If the mouse is pressed above the "thumb" component
-        * then reduce the scrollbars value by one page ("page up"),
-        * otherwise increase it by one page.  If there is no
-        * thumb then page up if the mouse is in the upper half
-        * of the track.
-        */
+         * If the mouse is pressed above the "thumb" component
+         * then reduce the scrollbars value by one page ("page up"),
+         * otherwise increase it by one page.  If there is no
+         * thumb then page up if the mouse is in the upper half
+         * of the track.
+         */
         public void mousePressed(MouseEvent e) {
 
             if (!volume.isEnabled()) {
@@ -430,9 +430,9 @@ public class BasicVolumeUI extends VolumeUI {
         }
 
         /**
-        * Set the models value to the position of the top/left
-        * of the thumb relative to the origin of the track.
-        */
+         * Set the models value to the position of the top/left
+         * of the thumb relative to the origin of the track.
+         */
         public void mouseDragged(MouseEvent e) {
 //          BasicScrollBarUI ui;
 
@@ -461,8 +461,8 @@ public class BasicVolumeUI extends VolumeUI {
      * This class should be treated as a &quot;protected&quot; inner class.
      * Instantiate it only within subclasses of <Foo>.
      */
-    protected class RollListener implements ActionListener {
-        // changed this class to public to avoid bogus IllegalAccessException bug i
+    protected static class RollListener implements ActionListener {
+        // changed this class too public to avoid bogus IllegalAccessException bug i
         // InternetExplorer browser.  It was protected.  Work around for 4109432
         int direction = POSITIVE_SCROLL;
 

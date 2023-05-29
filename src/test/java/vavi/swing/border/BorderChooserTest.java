@@ -6,13 +6,11 @@
 
 package vavi.swing.border;
 
+import java.util.concurrent.CountDownLatch;
 import javax.swing.JFrame;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
-
-import static org.junit.jupiter.api.Assertions.fail;
 
 
 /**
@@ -25,14 +23,14 @@ public class BorderChooserTest {
 
     @Test
     @EnabledIfSystemProperty(named = "vav.test", matches = "ide")
-    public void test() {
+    public void test() throws Exception {
         main(new String[] {});
-        while (true) Thread.yield();
+        // using cdl cause junit stops awt thread suddenly
+        CountDownLatch cdl = new CountDownLatch(1);
+        cdl.await(); // depends on main frame's exit on close
     }
 
-    // ----
-
-    /** Tests this class. */
+    /** */
     public static void main(String[] args) {
         JFrame frame = new JFrame("BorderChooser");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -15,7 +15,6 @@ import java.util.logging.Level;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
-import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
 import vavi.util.Debug;
@@ -50,11 +49,7 @@ public class FlowLayoutCustomizer extends BasicLayoutManagerCustomizer {
     }
 
     /** */
-    private TableModelListener tml = new TableModelListener() {
-        public void tableChanged(TableModelEvent ev) {
-            updateLayout();
-        }
-    };
+    private TableModelListener tml = ev -> updateLayout();
 
     /** */
     private void updateLayout() {
@@ -99,12 +94,12 @@ Debug.println(Level.FINER, component.getMinimumSize().width + ", " + component.g
 Debug.println(Level.FINER, component.getPreferredSize().width + ", " + component.getPreferredSize().height);
 Debug.println(Level.FINER, component.getMaximumSize().width + ", " + component.getMaximumSize().height);
 
-            JLabel controller = new JLabel("" + i);
+            JLabel controller = new JLabel(String.valueOf(i));
             controller.setHorizontalAlignment(JLabel.CENTER);
             controller.setOpaque(true);
             controller.setBorder(BorderFactory.createRaisedBevelBorder());
             Dimension size = component.getPreferredSize();
-            controller.setPreferredSize(ajustRatio(size));
+            controller.setPreferredSize(adjustRatio(size));
 Debug.println(Level.FINER, "----");
 Debug.println(Level.FINER, controller.getSize().width + ", " + controller.getSize().height);
 Debug.println(Level.FINER, controller.getMinimumSize().width + ", " + controller.getMinimumSize().height);
@@ -121,12 +116,12 @@ Debug.println(Level.FINER, controller.getMaximumSize().width + ", " + controller
     }
 
     /** */
-    private Dimension ajustRatio(Dimension size) {
+    private Dimension adjustRatio(Dimension size) {
         Dimension newSize = new Dimension();
         int w = Math.round(size.width  * ratio);
         int h = Math.round(size.height * ratio);
-        newSize.width  = w > 32767 ? 32767 : w;
-        newSize.height = h > 32767 ? 32767 : h;
+        newSize.width  = Math.min(w, 32767);
+        newSize.height = Math.min(h, 32767);
         return newSize;
     }
 }

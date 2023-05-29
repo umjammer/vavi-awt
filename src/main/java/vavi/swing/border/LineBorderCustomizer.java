@@ -42,9 +42,9 @@ public class LineBorderCustomizer extends BasicBorderCustomizer {
             if ("lineColor".equals(name)) {
                 c = (Color) ev.getNewValue();
             } else if ("thickness".equals(name)) {
-                t = ((Integer) ev.getNewValue()).intValue();
+                t = (Integer) ev.getNewValue();
             } else if ("roundedCorners".equals(name)) {
-                rc = ((Boolean) ev.getNewValue()).booleanValue();
+                rc = (Boolean) ev.getNewValue();
             }
 
             line = new LineBorder(c, t, rc);

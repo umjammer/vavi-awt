@@ -20,7 +20,7 @@ import vavi.util.Debug;
  * @version 0.00 010829 nsano initial version <br>
  *          0.10 010903 nsano repackage <br>
  *          0.10 010904 nsano fix specifications??? <br>
- *          0.20 020509 nsano separate RubberBundSupport <br>
+ *          0.20 020509 nsano separate RubberBandSupport <br>
  *          0.30 020603 nsano make simple <br>
  *          0.21 020605 nsano fix specifications <br>
  */
@@ -64,7 +64,7 @@ public class RubberBand {
     /** 領域選択をしているかどうか (ドラッグ時 true, 離した時 false) */
     private boolean isSelecting;
 
-    /** RubberBand を扱うコンテナ */
+//    /** RubberBand を扱うコンテナ */
 //  private Container container;
 
     /**

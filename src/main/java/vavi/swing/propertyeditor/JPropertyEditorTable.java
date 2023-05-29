@@ -58,7 +58,7 @@ public class JPropertyEditorTable extends JTable {
      */
     private TableModelListener tml = new TableModelListener() {
         public void tableChanged(TableModelEvent evt)  {
-            // Adjust the preferred height of the row to the the same as
+            // Adjust the preferred height of the row to the same as
             // the property editor.
             setRowHeight(ROW_HEIGHT);
 
@@ -127,26 +127,37 @@ Debug.println(Level.FINE, "no property for: clazz." + i);
 
                 Class<?> clazz;
 
-                if ("boolean".equals(value)) {
+                switch (value) {
+                case "boolean":
                     clazz = Boolean.TYPE;
-                } else if ("byte".equals(value)) {
+                    break;
+                case "byte":
                     clazz = Byte.TYPE;
-                } else if ("char".equals(value)) {
+                    break;
+                case "char":
                     clazz = Character.TYPE;
-                } else if ("double".equals(value)) {
+                    break;
+                case "double":
                     clazz = Double.TYPE;
-                } else if ("float".equals(value)) {
+                    break;
+                case "float":
                     clazz = Float.TYPE;
-                } else if ("int".equals(value)) {
+                    break;
+                case "int":
                     clazz = Integer.TYPE;
-                } else if ("long".equals(value)) {
+                    break;
+                case "long":
                     clazz = Long.TYPE;
-                } else if ("short".equals(value)) {
+                    break;
+                case "short":
                     clazz = Short.TYPE;
-                } else if ("void".equals(value)) {
+                    break;
+                case "void":
                     clazz = Void.TYPE;
-                } else {
+                    break;
+                default:
                     clazz = Class.forName(value);
+                    break;
                 }
 
                 key = "editor." + i;

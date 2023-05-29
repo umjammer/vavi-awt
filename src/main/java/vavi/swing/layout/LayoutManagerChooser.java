@@ -45,7 +45,7 @@ public class LayoutManagerChooser extends JTabbedPane {
     /** */
     private LayoutManager layout;
 
-    /** */
+//    /** */
 //  private Container container;
 
     /** */

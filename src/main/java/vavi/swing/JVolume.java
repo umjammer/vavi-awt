@@ -96,7 +96,7 @@ public class JVolume extends JComponent {
 
     /**
      * We pass Change events along to the listeners with the
-     * the volume (instead of the model itself) as the event source.
+     * volume (instead of the model itself) as the event source.
      */
     private class ModelListener implements ChangeListener, Serializable {
         public void stateChanged(ChangeEvent e) {

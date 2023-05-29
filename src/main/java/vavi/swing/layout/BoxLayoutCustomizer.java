@@ -80,7 +80,7 @@ public class BoxLayoutCustomizer extends BasicLayoutManagerCustomizer {
         axis.add(yAxis);
 
         glue   = new JButton("createGlue");
-        vGlue  = new JButton("createVirticalGlue");
+        vGlue  = new JButton("createVerticalGlue");
         hGlue  = new JButton("createHorizontalGlue");
         rigid  = new JButton("createRigidArea");
         filler = new JButton("createFiller");
@@ -107,7 +107,7 @@ public class BoxLayoutCustomizer extends BasicLayoutManagerCustomizer {
         p3.add(hGlue );
         p3.add(rigid );
         p3.add(filler);
-//      p.add(new JButton("createVirticalStrut"));
+//      p.add(new JButton("createVerticalStrut"));
 //      p.add(new JButton("createHorizontalStrut"));
         GridBagConstraints gc = new GridBagConstraints();
         gc.weightx = 1.0;
@@ -140,7 +140,7 @@ public class BoxLayoutCustomizer extends BasicLayoutManagerCustomizer {
         layoutPanel.setLayout(box);
     }
 
-    /** TODO list から BoxLayout 作成 */
+//    /** TODO list から BoxLayout 作成 */
 //  public LayoutManager getObject() {
 //      return new BoxLayout(container, BoxLayout.Y_AXIS);
 //  }
@@ -180,7 +180,7 @@ Debug.println(Level.FINER, controller.getMaximumSize().width + ", " + controller
             components.put(String.valueOf(i), controller);
 
             // operation
-            JToggleButton button = new JToggleButton("" + i);
+            JToggleButton button = new JToggleButton(String.valueOf(i));
             buttons.add(button);
 
             button.addActionListener(al);
@@ -191,8 +191,8 @@ Debug.println(Level.FINER, controller.getMaximumSize().width + ", " + controller
     private Dimension ajustRatio(Dimension size) {
         int w = Math.round(size.width  * ratio);
         int h = Math.round(size.height * ratio);
-        size.width  = w > 32767 ? 32767 : w;
-        size.height = h > 32767 ? 32767 : h;
+        size.width  = Math.min(w, 32767);
+        size.height = Math.min(h, 32767);
         return size;
     }
 
@@ -208,7 +208,7 @@ Debug.println(Level.FINER, controller.getMaximumSize().width + ", " + controller
             JToggleButton button = (JToggleButton) ev.getSource();
             if (button.isSelected()) {
                 int index = Integer.parseInt(button.getText());
-                JLabel controller = (JLabel) components.get("" + index);
+                JLabel controller = (JLabel) components.get(String.valueOf(index));
 
                 layoutPanel.add(controller);
                 layoutPanel.validate();

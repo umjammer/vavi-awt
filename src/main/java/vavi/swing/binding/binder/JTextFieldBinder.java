@@ -8,10 +8,8 @@ package vavi.swing.binding.binder;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.lang.reflect.Field;
 import java.util.Arrays;
-import java.util.EventObject;
 import java.util.function.Consumer;
 import java.util.logging.Level;
 import javax.swing.JTextField;
@@ -20,7 +18,6 @@ import javax.swing.event.DocumentListener;
 
 import vavi.beans.BeanUtil;
 import vavi.swing.binding.Component;
-import vavi.swing.binding.Components;
 import vavi.util.Debug;
 
 

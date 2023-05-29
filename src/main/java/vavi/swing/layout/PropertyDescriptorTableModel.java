@@ -130,7 +130,7 @@ Debug.println(Level.INFO, "LayoutManager: " + bean.toString());
         Method setter = getPropertyDescriptor(row).getWriteMethod();
         if (setter != null) {
             try {
-                setter.invoke(bean, new Object[] { value });
+                setter.invoke(bean, value);
             } catch (Exception e) {
 Debug.println(Level.INFO, e);
 Debug.println(Level.INFO, descriptors[row].getShortDescription());

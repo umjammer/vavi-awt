@@ -9,7 +9,6 @@ package vavi.swing;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -31,8 +30,8 @@ import vavi.util.Debug;
  * 入力フィールドに"参照"ボタンがついています．
  * 現在のところファイルチューザとテキストフィールドの拡張とみなしています．
  *
- * @event PropetyChangeEvent("text",,String)
- * @event PropetyChangeEvent("selectedFile",,File)
+ * @event PropertyChangeEvent("text",,String)
+ * @event PropertyChangeEvent("selectedFile",,File)
  *
  * @depends /vavi/swing/resource${I18N}.properties
  *
@@ -203,7 +202,7 @@ Debug.println(Level.FINER, defaultPath);
         chooser.setCurrentDirectory(defaultPath);
     }
 
-    /** ファイルチューザのカレントディレクトリを取得します． */
+//    /** ファイルチューザのカレントディレクトリを取得します． */
 //    private File getCurrentDirectory() {
 //        return chooser.getCurrentDirectory();
 //    }

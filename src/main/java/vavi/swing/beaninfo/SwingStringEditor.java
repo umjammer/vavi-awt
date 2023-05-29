@@ -22,7 +22,7 @@ import javax.swing.JTextField;
  *
  * @author Mark Davidson
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
- * @version 1.20 991105       orginal version <br>
+ * @version 1.20 991105       original version <br>
  *          1.21 020527 nsano enum'able <br>
  */
 public class SwingStringEditor extends SwingEditorSupport {

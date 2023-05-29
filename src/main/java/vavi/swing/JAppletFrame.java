@@ -196,9 +196,7 @@ public class JAppletFrame extends JFrame implements Runnable, AppletStub, Applet
                 public void actionPerformed(ActionEvent ev) {
                     try {
                         build(JAppletFrame.this.applet.getClass().newInstance(), JAppletFrame.this.args, appletSize.width, appletSize.height);
-                    } catch (IllegalAccessException e) {
-                        showStatus(e.getMessage());
-                    } catch (InstantiationException e) {
+                    } catch (IllegalAccessException | InstantiationException e) {
                         showStatus(e.getMessage());
                     }
                 }
@@ -267,8 +265,7 @@ Debug.println(Level.FINER, "applet: " + appletSize.width + ", " + appletSize.hei
      * Turn command-line arguments into Applet parameters, by way of the properties list.
      */
     private static void parseArgs(String[] args, Properties props) {
-        for (int i = 0; i < args.length; ++i) {
-            String arg = args[i];
+        for (String arg : args) {
             int ind = arg.indexOf('=');
             if (ind == -1) {
                 props.put(PARAM_PROP_PREFIX + arg.toLowerCase(), "");
@@ -388,11 +385,11 @@ Debug.println(Level.FINER, "applet: " + appletSize.width + ", " + appletSize.hei
     public Image getImage(URL url) {
         try {
             Object content = url.getContent();
-            if (ImageProducer.class.isInstance(content)) {
-                ImageProducer ip = ImageProducer.class.cast(content);
+            if (content instanceof ImageProducer) {
+                ImageProducer ip = (ImageProducer) content;
                 return toolkit.createImage(ip);
-            } else if (InputStream.class.isInstance(content)) { // for ikvm
-                InputStream is = InputStream.class.cast(content);
+            } else if (content instanceof InputStream) { // for ikvm
+                InputStream is = (InputStream) content;
 //int i = 0;
 //while (is.available() > 0) {
 // int c = is.read();

@@ -49,6 +49,7 @@ public @interface Components {
          *             which contains {@link Updater} specified by {@link Components#updater()}
          * @return new instance
          */
+        @SuppressWarnings("unchecked")
         public static <T> Updater<T> getUpdater(Object bean) {
             Components components = bean.getClass().getAnnotation(Components.class);
             if (components == null) {
@@ -95,31 +96,29 @@ public @interface Components {
         }
 
         /** binders */
-        private static ServiceLoader<Binder> binders = ServiceLoader.load(Binder.class);
+        @SuppressWarnings("rawtypes")
+        private static final ServiceLoader<Binder> binders = ServiceLoader.load(Binder.class);
 
-        /** Sets all binders sabled or not */
+        /** Sets all binders enabled or not */
         private static void setEnabled(boolean enabled) {
             binders.forEach(b -> b.setEnabled(enabled));
         }
 
         /** <class deal by the binder, the binder class> */
-        private static Map<Class<?>, Binder<?>> binderMap = new HashMap<>();
+        private static final Map<Class<?>, Binder<?>> binderMap = new HashMap<>();
 
-        /** creates binders map */
+        /* creates binders map */
         static {
-            binders.forEach(binder -> {
-                binderMap.put(binder.acceptable(), binder);
-            });
+            binders.forEach(binder -> binderMap.put(binder.acceptable(), binder));
         }
 
         /**
          * @param bean an object annotated by @{@link Components}
          *             which contains {@link Updater} specified by {@link Components#updater()}
          */
+        @SuppressWarnings("unchecked")
         private static <T> void setUpdater(T bean) {
-            binders.forEach(binder -> {
-                binder.setUpdater(getUpdater(bean));
-            });
+            binders.forEach(binder -> binder.setUpdater(getUpdater(bean)));
         }
 
         /**
@@ -163,6 +162,7 @@ public @interface Components {
                         Object swing = BeanUtil.getFieldValue(swingField, swings);
                         setUpdater(bean);
                         if (swing instanceof JComponent) {
+                            @SuppressWarnings("unchecked")
                             Binder<T> binder = (Binder<T>) binderMap.get(swing.getClass());
 Debug.println(Level.FINER, "binder: " + swing.getClass().getSimpleName() + ", " + binder.getClass().getSimpleName());
                             if (binder != null) {

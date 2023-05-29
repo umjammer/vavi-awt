@@ -10,8 +10,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.LayoutManager;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -63,11 +61,9 @@ public class SwingLayoutManagerEditorTest {
         }
         editor.setValue(panel.getLayout());
         editor.setBean(panel);
-        editor.addPropertyChangeListener(new PropertyChangeListener() {
-            public void propertyChange(PropertyChangeEvent ev) {
+        editor.addPropertyChangeListener(ev -> {
 //Debug.println(editor.getValue());
-                panel.setLayout((LayoutManager) editor.getValue());
-            }
+            panel.setLayout((LayoutManager) editor.getValue());
         });
 
         f.pack();

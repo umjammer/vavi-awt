@@ -12,7 +12,6 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.LayoutManager;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.logging.Level;
@@ -90,7 +89,7 @@ public class SwingLayoutManagerEditor extends SwingEditorSupport {
 
     /** super.setValue しないと多分 firePropertyChange されない */
     public void setValue(Object value) {
-Debug.println(Level.FINER, value == null ? "" + null : "" + value.hashCode());
+Debug.println(Level.FINER, value == null ? String.valueOf((Object) null) : String.valueOf(value.hashCode()));
         super.setValue(value);
 
         if (value != null && bean != null) {

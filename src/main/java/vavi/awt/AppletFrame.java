@@ -20,8 +20,6 @@ import java.awt.MenuBar;
 import java.awt.MenuItem;
 import java.awt.Panel;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.ImageProducer;
@@ -89,9 +87,9 @@ public class AppletFrame extends Frame implements Runnable, AppletStub, AppletCo
     // コンテキストのパラメータ
     private static final String VERSION = "0.01";
 
-    private static final String VENDOR = "Vavisoft";
+    private static final String VENDOR = "vavi";
 
-    private static final String VENDOR_URL = "http://www.vavisoft.com/";
+    private static final String VENDOR_URL = "https://www.vavi.com/";
 
     /** メニューバーとステータスバーを表示しないかどうか */
     private boolean barebones = false;
@@ -177,56 +175,44 @@ public class AppletFrame extends Frame implements Runnable, AppletStub, AppletCo
             Menu m = new Menu("Applet");
 
             MenuItem mi = new MenuItem("Restart");
-            mi.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent ev) {
-                    AppletFrame.this.applet.stop();
-                    AppletFrame.this.applet.destroy();
-                    Thread thread = new Thread(AppletFrame.this);
-                    thread.start();
-                }
+            mi.addActionListener(ev -> {
+                AppletFrame.this.applet.stop();
+                AppletFrame.this.applet.destroy();
+                Thread thread = new Thread(AppletFrame.this);
+                thread.start();
             });
             m.add(mi);
 
             mi = new MenuItem("Clone");
-            mi.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent ev) {
-                    try {
-                        new AppletFrame(AppletFrame.this.applet.getClass().newInstance(),
-                                        AppletFrame.this.args,
-                                        appletSize.width,
-                                        appletSize.height);
-                    } catch (IllegalAccessException e) {
-                        showStatus(e.getMessage());
-                    } catch (InstantiationException e) {
-                        showStatus(e.getMessage());
-                    }
+            mi.addActionListener(ev -> {
+                try {
+                    new AppletFrame(AppletFrame.this.applet.getClass().newInstance(),
+                                    AppletFrame.this.args,
+                                    appletSize.width,
+                                    appletSize.height);
+                } catch (IllegalAccessException | InstantiationException e) {
+                    showStatus(e.getMessage());
                 }
             });
             m.add(mi);
 
             mi = new MenuItem("Close");
-            mi.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent ev) {
-                    setVisible(false);
-                    remove(AppletFrame.this.applet);
-                    AppletFrame.this.applet.stop();
-                    AppletFrame.this.applet.destroy();
-                    if (label != null)
-                        remove(label);
-                    dispose();
-                    --instances;
-                    if (instances == 0)
-                        System.exit(0);
-                }
+            mi.addActionListener(ev -> {
+                setVisible(false);
+                remove(AppletFrame.this.applet);
+                AppletFrame.this.applet.stop();
+                AppletFrame.this.applet.destroy();
+                if (label != null)
+                    remove(label);
+                dispose();
+                --instances;
+                if (instances == 0)
+                    System.exit(0);
             });
             m.add(mi);
 
             mi = new MenuItem("Quit");
-            mi.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent ev) {
-                    AppletFrame.this.dispatchEvent(new WindowEvent(AppletFrame.this, WindowEvent.WINDOW_CLOSING));
-                }
-            });
+            mi.addActionListener(ev -> AppletFrame.this.dispatchEvent(new WindowEvent(AppletFrame.this, WindowEvent.WINDOW_CLOSING)));
             m.add(mi);
             mb.add(m);
             setMenuBar(mb);
@@ -264,8 +250,7 @@ public class AppletFrame extends Frame implements Runnable, AppletStub, AppletCo
      * properties list.
      */
     private static void parseArgs(String[] args, Properties props) {
-        for (int i = 0; i < args.length; ++i) {
-            String arg = args[i];
+        for (String arg : args) {
             int ind = arg.indexOf('=');
             if (ind == -1)
                 props.put(PARAM_PROP_PREFIX + arg.toLowerCase(), "");

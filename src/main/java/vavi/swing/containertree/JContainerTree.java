@@ -32,7 +32,7 @@ import vavi.util.Debug;
  */
 public class JContainerTree extends JTree {
 
-    /** */
+//    /** */
 //  private Container container;
 
     /** */
@@ -92,9 +92,9 @@ Debug.println(Level.SEVERE, e);
                 }
 
             if (selected)
-            setForeground(getTextSelectionColor());
+                setForeground(getTextSelectionColor());
             else
-            setForeground(getTextNonSelectionColor());
+                setForeground(getTextNonSelectionColor());
 
             setComponentOrientation(tree.getComponentOrientation());
 

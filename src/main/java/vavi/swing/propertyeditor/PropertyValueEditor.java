@@ -7,7 +7,6 @@
 package vavi.swing.propertyeditor;
 
 import java.awt.Component;
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyEditor;
 import java.util.HashMap;
@@ -146,11 +145,7 @@ Debug.println(Level.SEVERE, e);
     //
     // Property Change handler.
     //
-    private PropertyChangeListener pcl = new PropertyChangeListener() {
-        public void propertyChange(PropertyChangeEvent ev) {
-            stopCellEditing();
-        }
-    };
+    private PropertyChangeListener pcl = ev -> stopCellEditing();
 }
 
 /* */

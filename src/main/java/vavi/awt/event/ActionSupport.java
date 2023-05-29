@@ -19,7 +19,7 @@ import java.util.Vector;
  * @caution JDK 1.1 用に書かれているので swing は使っちゃいかん！
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020503 nsano initial version <br>
- *          0.01 020914 nsano TODO sychronized <br>
+ *          0.01 020914 nsano TODO synchronized <br>
  */
 public class ActionSupport implements Serializable {
 

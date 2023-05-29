@@ -21,10 +21,10 @@ import java.util.EventListener;
  */
 public interface EditorListener extends EventListener {
 
-    /**
-     * エディタがオープンしたとき呼ばれます．
-     * @param ev エディタイベント
-     */
+//    /**
+//     * エディタがオープンしたとき呼ばれます．
+//     * @param ev エディタイベント
+//     */
 //    void editorOpened(EditorEvent ev);
 
     /**
@@ -33,10 +33,10 @@ public interface EditorListener extends EventListener {
      */
     void editorUpdated(EditorEvent ev);
 
-    /**
-     * エディタが終了したとき呼ばれます．
-     * @param ev エディタイベント
-     */
+//    /**
+//     * エディタが終了したとき呼ばれます．
+//     * @param ev エディタイベント
+//     */
 //    void editorClosed(EditorEvent ev);
 }
 

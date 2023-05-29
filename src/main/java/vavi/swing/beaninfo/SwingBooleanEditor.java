@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 
 /**
  * An editor which represents a boolean value. This editor is implemented
- * as a checkbox with the text of the check box reflecting the state of the
+ * as a checkbox with the text of the checkbox reflecting the state of the
  * checkbox.
  *
  * @author Mark Davidson

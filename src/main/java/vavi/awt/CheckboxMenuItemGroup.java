@@ -9,7 +9,6 @@ package vavi.awt;
 import java.awt.CheckboxMenuItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Vector;
 
@@ -62,22 +61,18 @@ public class CheckboxMenuItemGroup {
     }
 
     /** */
-    private ItemListener itemListener = new ItemListener() {
-        public void itemStateChanged(ItemEvent ev) {
-            CheckboxMenuItem source = (CheckboxMenuItem) ev.getSource();
-            int id = ev.getID();
-            String command = source.getActionCommand();
-            fireActionPerformed(new ActionEvent(source, id, command));
-        }
+    private ItemListener itemListener = ev -> {
+        CheckboxMenuItem source = (CheckboxMenuItem) ev.getSource();
+        int id = ev.getID();
+        String command = source.getActionCommand();
+        fireActionPerformed(new ActionEvent(source, id, command));
     };
 
     /** */
-    private ActionListener actionListener = new ActionListener() {
-        public void actionPerformed(ActionEvent ev) {
-            int index = group.indexOf(ev.getSource());
-            for (int i = 0; i < group.size(); i++) {
-                group.elementAt(i).setState(i == index);
-            }
+    private ActionListener actionListener = ev -> {
+        int index = group.indexOf(ev.getSource());
+        for (int i = 0; i < group.size(); i++) {
+            group.elementAt(i).setState(i == index);
         }
     };
 

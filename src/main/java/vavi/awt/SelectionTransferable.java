@@ -34,7 +34,7 @@ public class SelectionTransferable extends BasicTransferable {
     /** this class's flavor */
     public static final DataFlavor selectionFlavor = new DataFlavor(SelectionTransferable.class, SelectionTransferable.class.getName());
 
-    /** Flavors */
+    /* Flavors */
     {
         DataFlavor[] flavors = new DataFlavor[] {
             DataFlavor.stringFlavor,

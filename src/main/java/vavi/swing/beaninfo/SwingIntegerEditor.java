@@ -27,7 +27,7 @@ import vavi.util.Debug;
  * @author Mark Davidson
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 1.90 991111 original version <br>
- *          1.91 020524 nsano be genaric <br>
+ *          1.91 020524 nsano be generic <br>
  */
 public class SwingIntegerEditor extends SwingEditorSupport {
 
@@ -111,7 +111,7 @@ Debug.println(Level.FINER, "normal");
         }
     }
 
-    /** */
+//    /** */
 //    private ComboBoxEditor ce = new BasicComboBoxEditor() {
 //        public Component getEditorComponent() {
 //            return intSpinner;
@@ -130,14 +130,14 @@ Debug.println(Level.FINER, "normal");
 //        }
 //    };
 
-    /** */
+//    /** */
 //    private ChangeListener cl = new ChangeListener() {
 //        public void stateChanged(ChangeEvent ev) {
 //            SwingIntegerEditor.super.setValue(intSpinner.getValue());
 //        }
 //    };
 
-    /** */
+//    /** */
 //    private PropertyChangeListener al = new PropertyChangeListener() {
 //        public void propertyChange(PropertyChangeEvent ev) {
 //            SwingIntegerEditor.super.setValue(intSpinner.getValue());

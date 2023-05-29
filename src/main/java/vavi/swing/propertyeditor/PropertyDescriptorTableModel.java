@@ -248,8 +248,8 @@ Debug.println(Level.INFO, "Row: " + row + " Column: " + column);
 
         List<FeatureDescriptor> list = new ArrayList<>();
 
-        for (int i = 0; i < descriptors.length; i++) {
-            PropertyDescriptor desc = (PropertyDescriptor) descriptors[i];
+        for (FeatureDescriptor descriptor : descriptors) {
+            PropertyDescriptor desc = (PropertyDescriptor) descriptor;
 
             switch (view) {
             case VIEW_ALL:
@@ -259,21 +259,21 @@ Debug.println(Level.INFO, "Row: " + row + " Column: " + column);
                 break;
             case VIEW_STANDARD:
                 if (desc.getWriteMethod() != null &&
-                    !desc.isExpert() &&
-                    !desc.isHidden()) {
+                        !desc.isExpert() &&
+                        !desc.isHidden()) {
                     list.add(desc);
                 }
                 break;
             case VIEW_EXPERT:
                 if (desc.getWriteMethod() != null &&
-                    desc.isExpert() &&
-                    !desc.isHidden()) {
+                        desc.isExpert() &&
+                        !desc.isHidden()) {
                     list.add(desc);
                 }
                 break;
             case VIEW_READ_ONLY:
                 if (desc.getWriteMethod() == null &&
-                    !desc.isHidden()) {
+                        !desc.isHidden()) {
                     list.add(desc);
                 }
                 break;
@@ -300,7 +300,7 @@ Debug.println(Level.INFO, "Row: " + row + " Column: " + column);
             }
         }
 
-        descriptors = list.toArray(new PropertyDescriptor[list.size()]);
+        descriptors = list.toArray(new FeatureDescriptor[0]);
         sortTable(SORT_NAME);
     }
 }

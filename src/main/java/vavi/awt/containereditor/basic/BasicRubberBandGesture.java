@@ -60,19 +60,19 @@ public class BasicRubberBandGesture extends RubberBandGesture {
         public void selected(RubberBandEvent ev) {
             renderer.drawSelected(ev.getBounds());
         }
-        /** */
+//        /** */
 //        public void moving(RubberBandEvent ev) {
 //            renderer.drawMoving(ev.getBounds());
 //        }
-        /** */
+//        /** */
 //        public void moved(RubberBandEvent ev) {
 //            renderer.drawMoved(ev.getBounds());
 //        }
-        /** */
+//        /** */
 //        public void resizing(RubberBandEvent ev) {
 //            renderer.drawResizing(ev.getBounds());
 //        }
-        /** */
+//        /** */
 //        public void resized(RubberBandEvent ev) {
 //            renderer.drawResized(ev.getBounds());
 //        }

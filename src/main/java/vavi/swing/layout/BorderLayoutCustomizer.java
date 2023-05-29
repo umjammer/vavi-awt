@@ -10,17 +10,14 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.LayoutManager;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Iterator;
 import java.util.logging.Level;
 
 import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
-import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
 import vavi.util.Debug;
@@ -29,7 +26,7 @@ import vavi.util.Debug;
 /**
  * BorderLayoutCustomizer.
  *
- * @todo get constraint when initializing components in the container.
+ * TODO get constraint when initializing components in the container.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020527 nsano initial version <br>
@@ -58,11 +55,7 @@ public class BorderLayoutCustomizer extends BasicLayoutManagerCustomizer {
     }
 
     /** called when layout property changed */
-    private TableModelListener tml = new TableModelListener() {
-        public void tableChanged(TableModelEvent ev) {
-            updateLayout();
-        }
-    };
+    private TableModelListener tml = ev -> updateLayout();
 
     /** */
     private void updateLayout() {
@@ -95,7 +88,7 @@ public class BorderLayoutCustomizer extends BasicLayoutManagerCustomizer {
         for (int i = 0; i < container.getComponentCount(); i++) {
             Component component = container.getComponent(i);
 
-            JButton controller = new JButton("" + i);
+            JButton controller = new JButton(String.valueOf(i));
             controller.addActionListener(al);
 
             Object constraints = constraintsEditor.associateConstraints(i);
@@ -114,9 +107,8 @@ Debug.println(Level.FINER, i + ": " + constraints);
 
     /** called last, to set layout to your container */
     public void layoutContainer() {
-        Iterator<Object> e = components.keySet().iterator();
-        while (e.hasNext()) {
-            JButton controller = (JButton) e.next();
+        for (Object o : components.keySet()) {
+            JButton controller = (JButton) o;
             int i = Integer.parseInt(controller.getText());
             LayoutConstraints lc = constraintsEditor.getLayoutConstraints(i);
             if (lc != null) {
@@ -152,11 +144,9 @@ Debug.println(Level.FINER, i + ": " + constraints);
     };
 
     /** button click means to select a component */
-    private ActionListener al = new ActionListener() {
-        public void actionPerformed(ActionEvent ev) {
-            int index = Integer.parseInt(((JButton) ev.getSource()).getText());
-            setCurrentConstraints(index);
-        }
+    private ActionListener al = ev -> {
+        int index = Integer.parseInt(((JButton) ev.getSource()).getText());
+        setCurrentConstraints(index);
     };
 
     /** */

@@ -17,7 +17,7 @@ import vavi.util.Debug;
 
 
 /**
- * An PropertyEdtitor for editing numbers.
+ * An PropertyEditor for editing numbers.
  *
  * @author Mark Davidson
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)

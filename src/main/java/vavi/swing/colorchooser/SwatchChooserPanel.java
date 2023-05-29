@@ -293,7 +293,7 @@ class MainSwatchPanel extends SwatchPanel {
         100, 100, 100, 255, 175, 175, 255, 200, 0, 255, 255, 0, 0, 255, 0, 255, 0, 255, 0, 255, 255, 0, 0, 255,
     };
 
-    /** */
+    /* */
     static {
         int numColors = rawValues.length / 3;
 

@@ -37,7 +37,7 @@ public class EtchedBorderCustomizer extends BasicBorderCustomizer {
 
             String name = ev.getPropertyName();
             if ("etchType".equals(name)) {
-                type = ((Integer) ev.getNewValue()).intValue();
+                type = (Integer) ev.getNewValue();
             }
             else if ("highlightColor".equals(name)) {
                 h = (Color) ev.getNewValue();
