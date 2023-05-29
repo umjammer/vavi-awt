@@ -27,6 +27,9 @@ public @interface Component {
     String name();
 
     /** */
+    String[] args() default "";
+
+    /** */
     class Util {
 
         private Util() {
@@ -43,6 +46,19 @@ public @interface Component {
             }
 
             return target.name();
+        }
+
+        /**
+         * @param field {@link Component} annotated
+         * @return {@link Component#args()}
+         */
+        public static String[] getArgs(Field field) {
+            Component target = field.getAnnotation(Component.class);
+            if (target == null) {
+                throw new IllegalArgumentException("bean is not annotated with @Component");
+            }
+
+            return target.args();
         }
     }
 }
