@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 
 import javax.swing.AbstractButton;
 import javax.swing.Box;
@@ -28,6 +29,8 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
+
+import vavi.util.Debug;
 
 
 /**
@@ -285,7 +288,7 @@ public class SmallFontEditor extends JComponent implements FontEditor {
     public void setSelectedFont(Font font) {
         this.font = font;
 
-//Debug.println(font);
+Debug.println(Level.FINER, font);
         if (font == null)
             return;
 

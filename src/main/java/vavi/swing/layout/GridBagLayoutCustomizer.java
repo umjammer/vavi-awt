@@ -20,6 +20,7 @@ import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Iterator;
+import java.util.logging.Level;
 
 import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
@@ -46,9 +47,9 @@ public class GridBagLayoutCustomizer extends BasicLayoutManagerCustomizer {
     public GridBagLayoutCustomizer() {
         // UI
         Container c1 = (Container) getComponent(1); // right base panel
-//Debug.println(c1.getName());
+Debug.println(Level.FINER, c1.getName());
         Component c2 = c1.getComponent(0); // upper titled border panel
-//Debug.println(c2.getName());
+Debug.println(Level.FINER, c2.getName());
         c1.remove(c2);
         ((GridLayout) c1.getLayout()).setRows(1);
         c1.doLayout();
@@ -85,31 +86,29 @@ public class GridBagLayoutCustomizer extends BasicLayoutManagerCustomizer {
 
         for (int i = 0; i < container.getComponentCount(); i++) {
             Component component = container.getComponent(i);
-//  Component c = component;
-//  Debug.println("---- " + i + " ----");
-//  Debug.println(c.getSize().width+", "+c.getSize().height);
-//  Debug.println(c.getMinimumSize().width+", "+c.getMinimumSize().height);
-//  Debug.println(c.getPreferredSize().width+", "+c.getPreferredSize().height);
-//  Debug.println(c.getMaximumSize().width+", "+c.getMaximumSize().height);
+Debug.println(Level.FINER, "---- " + i + " ----");
+Debug.println(Level.FINER, component.getSize().width + ", " + component.getSize().height);
+Debug.println(Level.FINER, component.getMinimumSize().width + ", " + component.getMinimumSize().height);
+Debug.println(Level.FINER, component.getPreferredSize().width + ", " + component.getPreferredSize().height);
+Debug.println(Level.FINER, component.getMaximumSize().width + ", " + component.getMaximumSize().height);
 
             JButton controller = new JButton("" + i);
             controller.setMargin(new Insets(0, 0, 0, 0));
-//  controller.setMinimumSize(ajustRatio(component.getMinimumSize()));
-//  controller.setPreferredSize(ajustRatio(component.getPreferredSize()));
-//  controller.setMaximumSize(ajustRatio(component.getMaximumSize()));
-//  controller.setSize(ajustRatio(component.getSize()));
+//controller.setMinimumSize(ajustRatio(component.getMinimumSize()));
+//controller.setPreferredSize(ajustRatio(component.getPreferredSize()));
+//controller.setMaximumSize(ajustRatio(component.getMaximumSize()));
+//controller.setSize(ajustRatio(component.getSize()));
             controller.addActionListener(al);
 
             LayoutConstraints lc = constraintsEditor.getLayoutConstraints(i);
             GridBagConstraints cs = (GridBagConstraints) lc.getConstraints();
 
             layoutPanel.add(controller, ajustRatio(cs));
-//  c = controller;
-//  Debug.println("----");
-//  Debug.println(c.getSize().width+", "+c.getSize().height);
-//  Debug.println(c.getMinimumSize().width+", "+c.getMinimumSize().height);
-//  Debug.println(c.getPreferredSize().width+", "+c.getPreferredSize().height);
-//  Debug.println(c.getMaximumSize().width+", "+c.getMaximumSize().height);
+Debug.println(Level.FINER, "----");
+Debug.println(Level.FINER, controller.getSize().width + ", " + controller.getSize().height);
+Debug.println(Level.FINER, controller.getMinimumSize().width + ", " + controller.getMinimumSize().height);
+Debug.println(Level.FINER, controller.getPreferredSize().width + ", " + controller.getPreferredSize().height);
+Debug.println(Level.FINER, controller.getMaximumSize().width + ", " + controller.getMaximumSize().height);
 
             components.put(controller, component);
         }
@@ -202,7 +201,7 @@ public class GridBagLayoutCustomizer extends BasicLayoutManagerCustomizer {
             gridbag.addLayoutComponent(component, ajustRatio(cs));
 
             gridbag.layoutContainer(layoutPanel);
-Debug.println(index);
+Debug.println(Level.FINE, index);
         }
     };
 
@@ -224,7 +223,7 @@ Debug.println(index);
         newGc.weightx       =            gc.weightx;
         newGc.weighty       =            gc.weighty;
 
-//Debug.println(ratio);
+Debug.println(Level.FINER, ratio);
         return newGc;
     }
 }

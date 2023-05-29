@@ -68,7 +68,7 @@ Debug.println(Level.WARNING, "no flavors chosen");
         // the docs on DropTargetDragEvent rejectDrag says that
         // the dropAction should be examined
         int da = ev.getDropAction();
-//Debug.println(Level.FINE, "drop action: " + da + " my acceptable actions " + dragAction);
+Debug.println(Level.FINER, "drop action: " + da + " my acceptable actions " + dragAction);
 
         // we're saying that these actions are necessary
         return (da & dragAction) != 0;
@@ -81,13 +81,13 @@ Debug.println(Level.WARNING, "no flavors chosen");
      * @callsuper
      */
     public void dragEnter(DropTargetDragEvent ev) {
-//Debug.println(Level.FINEST, ev);
+Debug.println(Level.FINEST, ev);
         if (!isDragOk(ev)) {
 Debug.println(Level.WARNING, "not ok");
             ev.rejectDrag();
             return;
         }
-//Debug.println(Level.FINE, "accepting: " + ev.getDropAction());
+Debug.println(Level.FINER, "accepting: " + ev.getDropAction());
         ev.acceptDrag(ev.getDropAction());
     }
 
@@ -104,7 +104,7 @@ Debug.println(Level.WARNING, "not ok");
             ev.rejectDrag();
             return;
         }
-//Debug.println(Level.FINE, "accepting");
+Debug.println(Level.FINER, "accepting");
         ev.acceptDrag(ev.getDropAction());
     }
 
@@ -119,7 +119,7 @@ Debug.println(Level.WARNING, "not ok");
             ev.rejectDrag();
             return;
         }
-//Debug.println(Level.FINE, "accepting: " + ev.getDropAction());
+Debug.println(Level.FINER, "accepting: " + ev.getDropAction());
         ev.acceptDrag(ev.getDropAction());
     }
 
@@ -128,7 +128,7 @@ Debug.println(Level.WARNING, "not ok");
      * オーバーライドするときは <code>super.dragExit(ev)</code> 特にしなくていいです．
      */
     public void dragExit(DropTargetEvent ev) {
-//Debug.println(Level.FINEST, ev);
+Debug.println(Level.FINEST, ev);
     }
 
     /**
@@ -139,7 +139,7 @@ Debug.println(Level.WARNING, "not ok");
      * flavor do the transfer
      */
     public void drop(DropTargetDropEvent ev) {
-//Debug.println(Level.FINEST, ev);
+Debug.println(Level.FINEST, ev);
 
         DataFlavor chosen = chooseDropFlavor(ev);
         if (chosen == null) {
@@ -147,15 +147,15 @@ Debug.println(Level.WARNING, "No flavor match found");
             ev.rejectDrop();
             return;
         }
-//Debug.println(Level.FINE, "data flavor is " + chosen.getMimeType());
+Debug.println(Level.FINER, "data flavor is " + chosen.getMimeType());
 
         // the actual operation
         // int da = ev.getDropAction();
         // the actions that the source has specified with
         // DragGestureRecognizer
         int sa = ev.getSourceActions();
-//Debug.println(Level.FINE, "sourceActions: " + sa);
-//Debug.println(Level.FINE, "dropAction: " + da);
+Debug.println(Level.FINER, "sourceActions: " + sa);
+Debug.println(Level.FINER, "dropAction: " + ev.getDropAction());
 
         if ((sa & dragAction) == 0) {
 Debug.println(Level.WARNING, "No action match found");

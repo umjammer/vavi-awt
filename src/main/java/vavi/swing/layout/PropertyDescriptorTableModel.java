@@ -11,6 +11,7 @@ import java.beans.PropertyDescriptor;
 import java.beans.PropertyEditor;
 import java.lang.reflect.Method;
 import java.util.NoSuchElementException;
+import java.util.logging.Level;
 
 import javax.swing.event.TableModelEvent;
 
@@ -97,18 +98,18 @@ public class PropertyDescriptorTableModel
                     value = getter.invoke(bean, args);
                 } catch (NoSuchMethodError e) {
                     // XXX - handle better
-Debug.println(e);
-Debug.println(descriptors[row].getShortDescription());
-Debug.println("LayoutManager: " + bean.toString());
-Debug.println("Getter: " + getter.getName());
-Debug.println("Getter args: ");
+Debug.println(Level.INFO, e);
+Debug.println(Level.INFO, descriptors[row].getShortDescription());
+Debug.println(Level.INFO, "LayoutManager: " + bean.toString());
+Debug.println(Level.INFO, "Getter: " + getter.getName());
+Debug.println(Level.INFO, "Getter args: ");
 for (int i = 0; i < args.length; i++) {
-  Debug.println("\t" + "type: " + paramTypes[i] + " value: " + args[i]);
+  Debug.println(Level.INFO, "\t" + "type: " + paramTypes[i] + " value: " + args[i]);
 }
                 } catch (Exception e) {
-Debug.println(e);
-Debug.println(descriptors[row].getShortDescription());
-Debug.println("LayoutManager: " + bean.toString());
+Debug.println(Level.INFO, e);
+Debug.println(Level.INFO, descriptors[row].getShortDescription());
+Debug.println(Level.INFO, "LayoutManager: " + bean.toString());
                 }
             }
         }
@@ -131,11 +132,11 @@ Debug.println("LayoutManager: " + bean.toString());
             try {
                 setter.invoke(bean, new Object[] { value });
             } catch (Exception e) {
-Debug.println(e);
-Debug.println(descriptors[row].getShortDescription());
-Debug.println("Setter: " + setter);
-Debug.println("Argument: " + value.getClass().toString());
-Debug.println("Row: " + row + " Column: " + column);
+Debug.println(Level.INFO, e);
+Debug.println(Level.INFO, descriptors[row].getShortDescription());
+Debug.println(Level.INFO, "Setter: " + setter);
+Debug.println(Level.INFO, "Argument: " + value.getClass().toString());
+Debug.println(Level.INFO, "Row: " + row + " Column: " + column);
             }
         }
 

@@ -366,7 +366,7 @@ Debug.println(Level.SEVERE, e);
                 try {
                     customizer = (Component) clazz.newInstance();
                 } catch (Exception e) {
-Debug.println("Instantiation exception creating Customizer: " + e);
+Debug.println(Level.FINE, "Instantiation exception creating Customizer: " + e);
                 }
             }
         }

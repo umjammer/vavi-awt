@@ -59,11 +59,11 @@ public class BorderChooser extends JTabbedPane {
                 String key = "editor." + i;
                 String value = props.getProperty(key);
                 if (value == null) {
-Debug.println("no property for: editor." + i);
+Debug.println(Level.FINE, "no property for: editor." + i);
                     break;
                 }
 
-//Debug.println(value);
+Debug.println(Level.FINER, value);
                 Class<?> clazz = Class.forName(value);
 
                 BorderInfo bi = BorderInfoFactory.getBorderInfo(clazz);
@@ -103,7 +103,7 @@ Debug.printStackTrace(e);
             int i = getSelectedIndex();
             BorderCustomizer bc = (BorderCustomizer) getComponentAt(i);
             border = bc.getObject();
-//Debug.println(border);
+Debug.println(Level.FINER, border);
         }
     };
 
@@ -128,7 +128,7 @@ Debug.printStackTrace(e);
         if (p != -1)
             name = name.substring(p + 1);
         for (int i = 1; i < this.getTabCount(); i++) {
-//Debug.println(name + ", " + this.getTitleAt(i));
+//Debug.println(Level.INFO, name + ", " + this.getTitleAt(i));
             if (name.equals(this.getTitleAt(i))) {
                 BorderCustomizer bc = (BorderCustomizer) this.getComponentAt(i);
                 bc.setObject(border);

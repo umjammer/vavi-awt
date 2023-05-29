@@ -164,7 +164,7 @@ public @interface Components {
                         setUpdater(bean);
                         if (swing instanceof JComponent) {
                             Binder<T> binder = (Binder<T>) binderMap.get(swing.getClass());
-//Debug.println(Level.FINE, "binder: " + swing.getClass().getSimpleName() + ", " + binder.getClass().getSimpleName());
+Debug.println(Level.FINER, "binder: " + swing.getClass().getSimpleName() + ", " + binder.getClass().getSimpleName());
                             if (binder != null) {
                                 binder.bind(bean, field, swing);
                             } else {

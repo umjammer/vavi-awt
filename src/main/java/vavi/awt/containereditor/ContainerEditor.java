@@ -212,11 +212,11 @@ public abstract class ContainerEditor implements Editable {
         /** Called when lost the ownership. */
         public void lostOwnership(Clipboard clipboard, Transferable contents) {
             if (clipboard == systemClipboard) {
-Debug.println(clipboard.getName());
+Debug.println(Level.FINE, clipboard.getName());
                 localClipboard.setContents(contents, this);
                 currentClipboard = localClipboard;
             } else {
-Debug.println("???: " + clipboard.getName());
+Debug.println(Level.INFO, "???: " + clipboard.getName());
                 fireEditorUpdated(new EditorEvent(ContainerEditor.this, "lostOwnership"));
             }
         }

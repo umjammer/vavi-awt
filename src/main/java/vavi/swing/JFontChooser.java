@@ -209,7 +209,7 @@ Debug.println(Level.SEVERE, e);
             String args = props.getProperty("font");
             defaultFont = (Font) ClassUtil.newInstance("javax.swing.plaf.FontUIResource",
                                                        "java.lang.String, int, int", args);
-            // Debug.println(defaultFont + ", " + args);
+Debug.println(Level.FINER, defaultFont + ", " + args);
         } catch (Exception e) {
 Debug.println(Level.SEVERE, e);
             defaultFont = new FontUIResource("Dialog", Font.BOLD, 12);

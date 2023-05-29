@@ -8,6 +8,7 @@ package vavi.awt.event;
 
 import java.lang.reflect.Method;
 import java.util.EventListener;
+import java.util.logging.Level;
 
 import vavi.util.Debug;
 
@@ -92,7 +93,7 @@ public class EventPlug {
         String className = clazz.getName();
         if (!className.endsWith("Listener")) {
             Class<?>[] classes = clazz.getInterfaces();
-//Debug.println(classes.length);
+Debug.println(Level.FINER, classes.length);
 //for (int i = 0; i < classes.length; i++) {
 // System.err.println(classes[i]);
 //}

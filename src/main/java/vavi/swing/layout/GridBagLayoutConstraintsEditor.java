@@ -12,6 +12,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.beans.PropertyChangeListener;
 import java.util.Arrays;
+import java.util.logging.Level;
 
 import vavi.util.Debug;
 
@@ -61,7 +62,7 @@ public class GridBagLayoutConstraintsEditor
 
         Component[] components = container.getComponents();
         if (components.length == 0) {
-Debug.println(components.length);
+Debug.println(Level.FINE, components.length);
             return;
         }
 

@@ -76,7 +76,7 @@ public abstract class BaseImageComponent<T extends Image> extends JComponent {
             Droppable.makeComponentSinglePathDroppable(this, p -> {
                 try {
                     T image = (T) ImageIO.read(Files.newInputStream(p));
-Debug.println(p + ", " + image);
+Debug.println(Level.FINE, p + ", " + image);
                     if (image != null) {
                         firePropertyChange("droppedImage", this.image, image);
                         setImage(image);

@@ -11,6 +11,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.LayoutManager;
 import java.awt.Point;
+import java.util.logging.Level;
 
 import vavi.util.Debug;
 
@@ -33,10 +34,10 @@ public class GlassPaneLayout implements LayoutManager {
      * 指定されたパネルにコンテナを配置します。
      */
     public void layoutContainer(Container parent) {
-//Debug.println(Debug.getCallerMethod());
-//Debug.println(parent.getPreferredSize().width + ", " + parent.getPreferredSize().height);
-//Debug.println(parent);
-//Debug.println(parent.getSize().width + ", " + parent.getSize().height);
+Debug.println(Level.FINER, Debug.getCallerMethod());
+Debug.println(Level.FINER, parent.getPreferredSize().width + ", " + parent.getPreferredSize().height);
+Debug.println(Level.FINER, parent);
+Debug.println(Level.FINER, parent.getSize().width + ", " + parent.getSize().height);
         for (int i = 0; i < parent.getComponentCount(); i++) {
             Component component = parent.getComponent(i);
             component.setLocation(new Point(0, 0));
@@ -49,7 +50,7 @@ public class GlassPaneLayout implements LayoutManager {
      * パネルの最小サイズを計算します。
      */
     public Dimension minimumLayoutSize(Container parent) {
-Debug.println(parent.getSize().width + ", " + parent.getSize().height);
+Debug.println(Level.FINE, parent.getSize().width + ", " + parent.getSize().height);
         return parent.getSize();
     }
 
@@ -58,7 +59,7 @@ Debug.println(parent.getSize().width + ", " + parent.getSize().height);
      * パネルの推奨サイズを計算します。
      */
     public Dimension preferredLayoutSize(Container parent) {
-Debug.println(parent.getSize().width + ", " + parent.getSize().height);
+Debug.println(Level.FINE, parent.getSize().width + ", " + parent.getSize().height);
         return parent.getSize();
     }
 

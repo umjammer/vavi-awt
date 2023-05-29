@@ -10,6 +10,7 @@ import java.awt.CardLayout;
 import java.awt.Component;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.logging.Level;
 
 import vavi.util.Debug;
 
@@ -36,7 +37,7 @@ public class CardLayoutConstraintsEditor
     private PropertyChangeListener pcl = new PropertyChangeListener() {
         public void propertyChange(PropertyChangeEvent ev) {
             Component component = container.getComponent(index);
-Debug.println(index);
+Debug.println(Level.FINE, index);
             layout.removeLayoutComponent(component);
             layout.addLayoutComponent(component, ev.getNewValue());
 

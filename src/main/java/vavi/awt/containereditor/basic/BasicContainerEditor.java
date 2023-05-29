@@ -14,6 +14,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 import javax.swing.event.MouseInputListener;
 
@@ -25,6 +26,7 @@ import vavi.awt.rubberband.RubberBandEvent;
 import vavi.awt.rubberband.RubberBandListener;
 import vavi.swing.event.EditorEvent;
 import vavi.swing.event.EditorListener;
+import vavi.util.Debug;
 
 
 /**
@@ -58,7 +60,7 @@ public class BasicContainerEditor extends ContainerEditor {
 
         parent = container.getParent();
 
-// Debug.println(container.getSize());
+Debug.println(Level.FINER, container.getSize());
 //      container.setLayout(null);
 //      container.setSize(container.getPreferredSize());
 
@@ -84,7 +86,7 @@ public class BasicContainerEditor extends ContainerEditor {
 
     /** コンテナが編集可能かどうかを設定します． */
     public void setEditable(boolean isEditable) {
-// Debug.println(isEditable + ": " + container.hashCode());
+Debug.println(Level.FINER, isEditable + ": " + container.hashCode());
         super.setEditable(isEditable);
         if (isEditable) {
             parent.remove(container);
@@ -92,7 +94,7 @@ public class BasicContainerEditor extends ContainerEditor {
             parent.add(glassPane);
             glassPane.setBounds(container.getBounds());
             glassPane.doLayout();
-// Debug.println(container.getSize());
+Debug.println(Level.FINER, container.getSize());
         } else {
             parent.remove(glassPane);
             glassPane.disableContainer();
@@ -108,11 +110,12 @@ public class BasicContainerEditor extends ContainerEditor {
         public void editorUpdated(EditorEvent ev) {
             String name = ev.getName();
             if ("clicked".equals(name)) {
-                if (ev.getArgument() == null) { // Container
+                if (ev.getArguments() == null) { // Container
                     // container を選択したことにする．
                     select(container, false);
                 } else { // BasicController
-                    Object[] args = (Object[]) ev.getArgument();
+                    Object[] args = ev.getArguments();
+Debug.println(Level.FINER, args[0]);
                     Selectable selectable = (Selectable) args[0];
                     boolean isMultiSelect = (Boolean) args[1];
                     selectionModel.select(selectable, isMultiSelect);

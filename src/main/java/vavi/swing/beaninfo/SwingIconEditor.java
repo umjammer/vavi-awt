@@ -64,7 +64,7 @@ public class SwingIconEditor extends SwingEditorSupport {
         }
 
         if (path == null) {
-//Debug.println("null image");
+Debug.println(Level.FINER, "null image");
             return;
         }
 
@@ -75,7 +75,7 @@ public class SwingIconEditor extends SwingEditorSupport {
             tracker.waitForAll();
             setValue(new ImageIcon(image));
         } catch (Exception e) {
-//Debug.printStackTrace(e);
+Debug.printStackTrace(Level.FINER, e);
 Debug.println(Level.SEVERE, e);
         }
     };

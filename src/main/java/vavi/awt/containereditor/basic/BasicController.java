@@ -38,7 +38,7 @@ public class BasicController extends AbstractController {
 //  private PropertyChangeListener pcl = new PropertyChangeListener() {
 //      public void propertyChange(PropertyChangeEvent ev) {
 //          String name = ev.getPropertyName();
-//Debug.println(name);
+//Debug.println(Level.FINER, name);
 //      }
 //  };
 

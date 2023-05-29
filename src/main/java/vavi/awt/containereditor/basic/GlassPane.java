@@ -15,7 +15,7 @@ import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
 import java.util.HashMap;
 import java.util.Map;
-
+import java.util.logging.Level;
 import javax.swing.JComponent;
 import javax.swing.event.MouseInputListener;
 
@@ -45,13 +45,13 @@ public class GlassPane extends JComponent {
                 Component component = ev.getChild();
                 component.addMouseListener(rbg);
                 component.addMouseMotionListener(rbg);
-//Debug.println("add gesture to: " + ((Controller) component).getView().getName());
+Debug.println(Level.FINER, "add gesture to: " + ((vavi.awt.Controller) component).getView().getName());
             }
             public void componentRemoved(ContainerEvent ev) {
                 Component component = ev.getChild();
                 component.removeMouseListener(rbg);
                 component.removeMouseMotionListener(rbg);
-//Debug.println("remove gesture to: " + ((Controller) component).getView().getName());
+Debug.println(Level.FINER, "remove gesture to: " + ((vavi.awt.Controller) component).getView().getName());
             }
         };
         {
@@ -175,7 +175,7 @@ public class GlassPane extends JComponent {
         if (controller == null) {
             controller = new BasicController(component);
             glassPane.add(controller, 0);
-//Debug.println("add controller to: " + component.getName());
+Debug.println(Level.FINER, "add controller to: " + component.getName());
             controllers.put(component, controller);
         }
     }
@@ -185,7 +185,7 @@ public class GlassPane extends JComponent {
         LocatableController controller = (LocatableController) controllers.get(component);
         if (controller != null && controller.getView() == component) {
             glassPane.remove((Component) controller);
-//Debug.println("remove controller for: " + component.getName());
+Debug.println(Level.FINER, "remove controller for: " + component.getName());
             controllers.remove(component);
         }
     }
@@ -194,7 +194,7 @@ public class GlassPane extends JComponent {
 
     /** すべてのコンポーネントに Controller を作成 */
     private void addAllControllers() {
-//Debug.println(container.getComponentCount());
+Debug.println(Level.FINER, container.getComponentCount());
         for (int i = 0; i < container.getComponentCount(); i++) {
             Component component = container.getComponent(i);
             addController(component);
@@ -208,7 +208,7 @@ public class GlassPane extends JComponent {
             removeController(component);
         }
 if (controllers.size() != 0) {
-Debug.println("TODO " + controllers.size() + "controller(s) still alive");
+ Debug.println(Level.INFO, "TODO " + controllers.size() + "controller(s) still alive");
 }
     }
 

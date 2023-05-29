@@ -15,6 +15,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -28,6 +29,8 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JToggleButton;
+
+import vavi.util.Debug;
 
 
 /**
@@ -159,21 +162,20 @@ public class BoxLayoutCustomizer extends BasicLayoutManagerCustomizer {
 
         for (int i = 0; i < container.getComponentCount(); i++) {
             Component c = container.getComponent(i);
-//Debug.println(c.getMinimumSize().width+", "+c.getMinimumSize().height);
-//Debug.println(c.getPreferredSize().width+", "+c.getPreferredSize().height);
-//Debug.println(c.getMaximumSize().width+", "+c.getMaximumSize().height);
+Debug.println(Level.FINER, c.getMinimumSize().width + ", " + c.getMinimumSize().height);
+Debug.println(Level.FINER, c.getPreferredSize().width + ", " + c.getPreferredSize().height);
+Debug.println(Level.FINER, c.getMaximumSize().width + ", " + c.getMaximumSize().height);
             // controller
-            JLabel controller = new JLabel("" + i);
+            JLabel controller = new JLabel(String.valueOf(i));
             controller.setHorizontalAlignment(JLabel.CENTER);
             controller.setOpaque(true);
             controller.setBorder(BorderFactory.createRaisedBevelBorder());
             controller.setMinimumSize(ajustRatio(c.getMinimumSize()));
             controller.setPreferredSize(ajustRatio(c.getPreferredSize()));
             controller.setMaximumSize(ajustRatio(c.getMaximumSize()));
-//c = controller;
-//Debug.println(c.getMinimumSize().width+", "+c.getMinimumSize().height);
-//Debug.println(c.getPreferredSize().width+", "+c.getPreferredSize().height);
-//Debug.println(c.getMaximumSize().width+", "+c.getMaximumSize().height);
+Debug.println(Level.FINER, controller.getMinimumSize().width + ", " + controller.getMinimumSize().height);
+Debug.println(Level.FINER, controller.getPreferredSize().width + ", " + controller.getPreferredSize().height);
+Debug.println(Level.FINER, controller.getMaximumSize().width + ", " + controller.getMaximumSize().height);
 
             components.put(String.valueOf(i), controller);
 

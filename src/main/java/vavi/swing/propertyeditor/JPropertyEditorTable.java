@@ -154,7 +154,7 @@ Debug.println(Level.FINE, "no property for: clazz." + i);
 
                 Class<?> editorClass = Class.forName(value);
 
-//Debug.println(i + ": " + clazz + ": " + editorClass);
+Debug.println(Level.FINER, i + ": " + clazz + ": " + editorClass);
                 PropertyEditorManager.registerEditor(clazz, editorClass);
 
                 i++;

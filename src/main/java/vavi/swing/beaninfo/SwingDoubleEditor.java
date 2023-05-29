@@ -8,6 +8,7 @@ package vavi.swing.beaninfo;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
+import java.util.logging.Level;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -32,7 +33,7 @@ public class SwingDoubleEditor extends SwingEditorSupport {
         textfield.addKeyListener(new KeyAdapter()  {
             public void keyPressed(KeyEvent evt)  {
                 if (evt.getKeyCode() == KeyEvent.VK_ENTER)  {
-Debug.println(textfield.getText());
+Debug.println(Level.FINE, textfield.getText());
                     setValue(new Double(textfield.getText()));
                 }
             }

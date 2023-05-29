@@ -19,6 +19,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.logging.Level;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -35,6 +36,7 @@ import javax.swing.UIManager;
 import javax.swing.plaf.metal.MetalComboBoxIcon;
 
 import vavi.swing.colorchooser.SmallColorChooserPopupMenu;
+import vavi.util.Debug;
 
 
 /**
@@ -191,8 +193,8 @@ public class SwingColorEditor extends SwingEditorSupport {
     /** */
     public void setValue(Object value) {
         super.setValue(value);
-//Debug.println(value);
-//Debug.printStackTrace(new Exception());
+Debug.println(Level.FINER, value);
+Debug.printStackTrace(Level.FINER, new Exception());
         Color color = (Color) value;
         if (color == null) {
             rgbValue.setText("                  ");

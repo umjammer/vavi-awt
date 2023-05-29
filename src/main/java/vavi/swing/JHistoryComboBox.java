@@ -121,7 +121,7 @@ Debug.println(Level.FINE, ("prefs >>: item" + (i + 1)) + ": " + getItemAt(i));
             if (item.equals(getItemAt(i)))
                 return;
         }
-//Debug.println(Debug.getCallerMethod() + ": " + item);
+Debug.println(Level.FINER, Debug.getCallerMethod() + ": " + item);
         insertItemAt(item, 0);
     };
 

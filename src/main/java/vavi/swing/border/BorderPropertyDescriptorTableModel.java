@@ -11,6 +11,7 @@ import java.beans.PropertyChangeSupport;
 import java.beans.PropertyEditor;
 import java.lang.reflect.Method;
 import java.util.NoSuchElementException;
+import java.util.logging.Level;
 
 import vavi.swing.beaninfo.SwingEditorSupport;
 import vavi.swing.propertyeditor.AbstractDescriptorTableModel;
@@ -95,18 +96,18 @@ public class BorderPropertyDescriptorTableModel
                     value = getter.invoke(bean, args);
                 } catch (NoSuchMethodError e) {
                     // XXX - handle better
-Debug.println(e);
-Debug.println(descriptors[row].getShortDescription());
-Debug.println("Border: " + bean.toString());
-Debug.println("Getter: " + getter.getName());
-Debug.println("Getter args: ");
+Debug.println(Level.INFO, e);
+Debug.println(Level.INFO, descriptors[row].getShortDescription());
+Debug.println(Level.INFO, "Border: " + bean.toString());
+Debug.println(Level.INFO, "Getter: " + getter.getName());
+Debug.println(Level.INFO, "Getter args: ");
 for (int i = 0; i < args.length; i++) {
-  Debug.println("\t" + "type: " + paramTypes[i] + " value: " + args[i]);
+  Debug.println(Level.INFO, "\t" + "type: " + paramTypes[i] + " value: " + args[i]);
 }
                 } catch (Exception e) {
-Debug.println(e);
-Debug.println(descriptors[row].getShortDescription());
-Debug.println("Border: " + bean.toString());
+Debug.println(Level.INFO, e);
+Debug.println(Level.INFO, descriptors[row].getShortDescription());
+Debug.println(Level.INFO, "Border: " + bean.toString());
                 }
             }
         }

@@ -202,7 +202,7 @@ Debug.println(Level.SEVERE, "wrong resize mode: " + mode);
             break;
         case MOVE_MODE:
             move = point;
-// Debug.println(move.x + ", " + move.y);
+Debug.println(Level.FINER, move.x + ", " + move.y);
             break;
         default:
             resize = point;
@@ -223,7 +223,7 @@ Debug.println(Level.SEVERE, "wrong resize mode: " + mode);
         case MOVE_MODE: { // 移動モード
             isSelecting = false;
             Point p = getMovedPoint(point);
-// Debug.println(p.x + ", " + p.y);
+Debug.println(Level.FINER, p.x + ", " + p.y);
             fireMoving(new RubberBandEvent(this, p));
             move = point;
             break;

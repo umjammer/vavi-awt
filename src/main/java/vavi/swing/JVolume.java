@@ -15,6 +15,7 @@ import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Arc2D;
 import java.io.Serializable;
+import java.util.logging.Level;
 import javax.swing.BoundedRangeModel;
 import javax.swing.DefaultBoundedRangeModel;
 import javax.swing.JComponent;
@@ -23,6 +24,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.MouseInputAdapter;
 import javax.swing.event.MouseInputListener;
+
+import vavi.util.Debug;
 
 
 /**
@@ -304,7 +307,7 @@ public class JVolume extends JComponent {
         /** マウスが押されたときに呼ばれます．*/
         public void mousePressed(MouseEvent ev) {
             setValueIsAdjusting(true);
-//Debug.println(ev.getX() + ", " + ev.getY());
+Debug.println(Level.FINER, ev.getX() + ", " + ev.getY());
         }
         /** マウスがドラッグしたときに呼ばれます． */
         public void mouseDragged(MouseEvent ev) {
@@ -312,7 +315,7 @@ public class JVolume extends JComponent {
                 x = ev.getX() - getWidth() / 2;
                 y = getHeight() / 2 - ev.getY();
                 repaint();
-//Debug.println(x + ", " + y);
+Debug.println(Level.FINER, x + ", " + y);
             }
         }
         /** マウスが放されたときに呼ばれます． */
@@ -321,13 +324,13 @@ public class JVolume extends JComponent {
                 x = ev.getX() - getWidth() / 2;
                 y = getHeight() / 2 - ev.getY();
                 setValueIsAdjusting(false);
-//Debug.println(x + ", " + y);
+Debug.println(Level.FINER, x + ", " + y);
                 double theta = StrictMath.atan2(x, y);
                 if (theta < 0) theta = 2 * Math.PI + theta;
                 setValue((int) (getMinimum() +
                         theta / (2 * Math.PI) *
                         (getMaximum() - getMinimum())));
-//Debug.println(getValue());
+Debug.println(Level.FINER, getValue());
                 repaint();
             }
         }
@@ -379,7 +382,7 @@ public class JVolume extends JComponent {
         double b = H * (1 - r / 2 * 1.2);
 
         if (getValueIsAdjusting()) {
-//Debug.println("(x, y) = (" + x + ", " + y + ")");
+Debug.println(Level.FINER, "(x, y) = (" + x + ", " + y + ")");
             // X, Y は正規座標
             X = Math.sqrt((a * a * b * b * x * x) / (b * b * x * x + a * a * y * y));
             Y = Math.sqrt((a * a * b * b * y * y) / (b * b * x * x + a * a * y * y));
@@ -387,15 +390,15 @@ public class JVolume extends JComponent {
             if (x < 0) X *= -1;
             if (y < 0) Y *= -1;
 
-//Debug.println("(X, Y) = (" + X + ", " + Y + ")");
+Debug.println(Level.FINER, "(X, Y) = (" + X + ", " + Y + ")");
             // Java 座標への変換
             X = W + X;
             Y = H - Y;
         } else {
             // TODO theta の座標は正しくない
             double theta = (double) (getValue() - getMinimum()) / (double) (getMaximum() - getMinimum()) * (Math.PI * 2) - Math.PI / 2;
-// Debug.println(getValue());
-//Debug.println(theta);
+Debug.println(Level.FINER, getValue());
+Debug.println(Level.FINER, theta);
             // X, Y は正規座標
             X = Math.sqrt((a * a * b * b) / (b * b + a * a * Math.pow(Math.tan(theta), 2)));
             Y = Math.sqrt((a * a * b * b) / (b * b / Math.pow(Math.tan(theta), 2) + a * a));
@@ -404,7 +407,7 @@ public class JVolume extends JComponent {
             if (theta > Math.PI / 2 && theta < Math.PI * 1.5) X *= -1;
             if (theta < Math.PI     && theta > 0)             Y *= -1;
 
-//Debug.println("(X, Y) = (" + X + ", " + Y + ")");
+Debug.println(Level.FINER, "(X, Y) = (" + X + ", " + Y + ")");
             // Java 座標への変換
             X = W + X;
             Y = H - Y;
@@ -426,7 +429,7 @@ public class JVolume extends JComponent {
         g.setColor(new Color(0x99, 0x99, 0xcc));
 //      g.setColor(Color.pink);
         g.fillOval(nx, ny, nr, nr);
-//Debug.println(X + ", " + Y);
+Debug.println(Level.FINER, X + ", " + Y);
     }
 
     //-------------------------------------------------------------------------

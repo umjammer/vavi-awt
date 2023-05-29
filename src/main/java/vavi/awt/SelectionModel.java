@@ -8,6 +8,7 @@ package vavi.awt;
 
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Level;
 
 import vavi.awt.event.SelectionEvent;
 import vavi.awt.event.SelectionListener;
@@ -44,7 +45,7 @@ public class SelectionModel {
      * 指定した Selectable のベクタを選択状態にします．
      */
     public void setSelected(List<Selectable> selected) {
-Debug.println("Warnning: be careful to use this method.");
+Debug.println(Level.INFO, "Warning: be careful to use this method.");
         this.selected = selected;
 
         fireValueChanged(new SelectionEvent(this, selected));
@@ -85,7 +86,7 @@ Debug.println("Warnning: be careful to use this method.");
      */
     public void select(Selectable selectable, boolean isMultiSelection) {
 
-        // Debug.println(selectable);
+Debug.println(Level.FINER, selectable);
         boolean isOldSelection = false;
 
         for (int i = 0; i < selected.size(); i++) {

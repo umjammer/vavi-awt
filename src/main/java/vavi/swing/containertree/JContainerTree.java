@@ -78,7 +78,7 @@ public class JContainerTree extends JTree {
 
                 try {
                     Class<?> beanClass = component.getClass();
-//Debug.println(beanClass);
+Debug.println(Level.FINER, beanClass);
                     BeanInfo info = Introspector.getBeanInfo(beanClass);
                     /* Set the image. */
                     Image image = info.getIcon(BeanInfo.ICON_COLOR_16x16);

@@ -15,6 +15,7 @@ import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.logging.Level;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -89,11 +90,11 @@ public class SwingLayoutManagerEditor extends SwingEditorSupport {
 
     /** super.setValue しないと多分 firePropertyChange されない */
     public void setValue(Object value) {
-//Debug.println(value == null ? "" + null : "" + value.hashCode());
+Debug.println(Level.FINER, value == null ? "" + null : "" + value.hashCode());
         super.setValue(value);
 
         if (value != null && bean != null) {
-//Debug.println(value);
+Debug.println(Level.FINER, value);
             ((LayoutManager) value).layoutContainer(bean);
             bean.validate();
             bean.repaint();
@@ -110,7 +111,7 @@ public class SwingLayoutManagerEditor extends SwingEditorSupport {
                 SampleLayoutManagerInfo li =
                     (SampleLayoutManagerInfo) layoutCombo.getItemAt(i);
                 LayoutManager layout = li.layout;
-//Debug.println(li.desc);
+Debug.println(Level.FINER, li.desc);
                 if (layout.getClass().isInstance(value)) {
                     layoutCombo.setSelectedIndex(i);
                     plug();
@@ -129,9 +130,9 @@ public class SwingLayoutManagerEditor extends SwingEditorSupport {
     public void setBean(Object bean) {
         if (bean instanceof Container) {
             this.bean = (Container) bean;
-//Debug.println("bean is Container: " + bean.getClass().getName());
+Debug.println(Level.FINER, "bean is Container: " + bean.getClass().getName());
         } else {
-Debug.println("bean is not Container: " + bean);
+Debug.println(Level.FINE, "bean is not Container: " + bean);
             this.bean = null;
         }
     }

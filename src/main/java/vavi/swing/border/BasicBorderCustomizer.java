@@ -8,6 +8,7 @@ package vavi.swing.border;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.util.logging.Level;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
@@ -19,6 +20,7 @@ import javax.swing.UIManager;
 import javax.swing.border.Border;
 
 import vavi.swing.propertyeditor.JPropertyEditorTable;
+import vavi.util.Debug;
 
 
 /**
@@ -76,12 +78,12 @@ public class BasicBorderCustomizer extends JComponent
         tableModel.fireTableDataChanged();
 
         firePropertyChange("border", oldBorder, border);
-//Debug.println(this.border);
+Debug.println(Level.FINER, this.border);
     }
 
     /** TODO TabbedPane の ChangeEvent のためだけ */
     public Border getObject() {
-//Debug.println(border);
+Debug.println(Level.FINER, border);
         return border;
     }
 }

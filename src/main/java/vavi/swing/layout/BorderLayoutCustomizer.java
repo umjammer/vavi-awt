@@ -16,11 +16,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Iterator;
+import java.util.logging.Level;
 
 import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+
+import vavi.util.Debug;
 
 
 /**
@@ -96,7 +99,7 @@ public class BorderLayoutCustomizer extends BasicLayoutManagerCustomizer {
             controller.addActionListener(al);
 
             Object constraints = constraintsEditor.associateConstraints(i);
-//Debug.println(i + ": " + constraints);
+Debug.println(Level.FINER, i + ": " + constraints);
             LayoutConstraints lc = new BorderLayoutConstraints();
             lc.setConstraints(constraints);
             constraintsEditor.setLayoutConstraints(i, lc);

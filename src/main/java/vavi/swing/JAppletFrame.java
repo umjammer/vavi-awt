@@ -13,6 +13,7 @@ import java.applet.AudioClip;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
@@ -27,7 +28,7 @@ import java.util.Iterator;
 import java.util.Properties;
 import java.util.StringTokenizer;
 import java.util.Vector;
-
+import java.util.logging.Level;
 import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
 import javax.swing.JFrame;
@@ -35,6 +36,8 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
+
+import vavi.util.Debug;
 
 
 /**
@@ -230,9 +233,9 @@ public class JAppletFrame extends JFrame implements Runnable, AppletStub, Applet
 //                System.exit(0);
 //            }
 //        });
-// Debug.println(Debug.DEBUG, width + ", " + height);
+Debug.println(Level.FINER, width + ", " + height);
         appletSize = new Dimension(width, height);
-// Debug.println(Debug.DEBUG, "applet: "+appletSize.width+", "+appletSize.height);
+Debug.println(Level.FINER, "applet: " + appletSize.width + ", " + appletSize.height);
 
         // Layout components.
 
@@ -343,26 +346,28 @@ public class JAppletFrame extends JFrame implements Runnable, AppletStub, Applet
      * Change the frame's size by the same amount that the applet's size is changing.
      */
     public void appletResize(int width, int height) {
-        // Debug.println(Debug.DEBUG, Debug.getTopCallerMethod("vavi"));
+Debug.println(Level.FINER, Debug.getTopCallerMethod("vavi"));
 
         appletPanel.setPreferredSize(new Dimension(width, height));
-//Debug.println(Debug.DEBUG, "resize: " + width + ", " + height); Dimension frameSize = getSize();
-//Debug.println(Debug.DEBUG, "frame: "+frameSize.width+", "+frameSize.height); Insets insets = getInsets();
+Debug.println(Level.FINER, "resize: " + width + ", " + height);
+        Dimension frameSize = getSize();
+Debug.println(Level.FINER, "frame: " + frameSize.width + ", " + frameSize.height);
+        Insets insets = getInsets();
 
 //        if (!barebones) {
 //            insets.bottom += label.getHeight();
 //        }
 
-//Debug.println(Debug.DEBUG, "insets: " + insets.top + ", " + insets.bottom);
-//Debug.println(Debug.DEBUG, "insets: " + insets.left + ", " + insets.right);
+Debug.println(Level.FINER, "insets: " + insets.top + ", " + insets.bottom);
+Debug.println(Level.FINER, "insets: " + insets.left + ", " + insets.right);
 
 //        frameSize.width = width + insets.left + insets.right; frameSize.height = height + insets.top + insets.bottom;
 
-//Debug.println(Debug.DEBUG, "frame: " + frameSize.width + ", " + frameSize.height);
+Debug.println(Level.FINER, "frame: " + frameSize.width + ", " + frameSize.height);
 //        setSize(frameSize);
 
         appletSize = applet.getSize();
-//Debug.println(Debug.DEBUG, "applet: " + appletSize.width + ", " + appletSize.height);
+Debug.println(Level.FINER, "applet: " + appletSize.width + ", " + appletSize.height);
     }
 
     public AppletContext getAppletContext() {

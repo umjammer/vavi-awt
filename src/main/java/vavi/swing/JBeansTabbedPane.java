@@ -81,7 +81,7 @@ public class JBeansTabbedPane extends JTabbedPane {
             String key = "tab." + i + ".title";
             String value = props.getProperty(key);
             if (value == null) {
-Debug.println("no property for: " + key);
+Debug.println(Level.FINE, "no property for: " + key);
                 break;
             }
 
@@ -95,7 +95,7 @@ Debug.println("no property for: " + key);
                 key = "tab." + i + "." + j;
                 value = props.getProperty(key);
                 if (value == null) {
-Debug.println("no property for: " + key);
+Debug.println(Level.FINE, "no property for: " + key);
                     break;
                 }
 
@@ -119,7 +119,7 @@ Debug.println("no property for: " + key);
                     group.add(button);
                     tab.add(button);
                 } catch (Exception e) {
-Debug.println(value);
+Debug.println(Level.FINE, value);
 Debug.printStackTrace(e);
                 }
                 j++;
