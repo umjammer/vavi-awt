@@ -58,7 +58,7 @@ public class EntryTableModel extends AbstractTableModel {
         list.toArray(this.entries);
     }
 
-    // -------------------------------------------------------------------------
+    // ----
 
     @Override
     public int getColumnCount() {

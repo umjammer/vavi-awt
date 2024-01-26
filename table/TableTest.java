@@ -6,6 +6,11 @@
 
 package vavi.swing.binding.table;
 
+import java.awt.image.BufferedImage;
+
+import org.w3c.dom.Document;
+
+
 /**
  * TableTest.
  *
@@ -14,4 +19,23 @@ package vavi.swing.binding.table;
  */
 class TableTest {
 
+    @Table(row = TestTable.TestRow.class, iterable = "entries")
+    public static class TestTable {
+
+        @Row(setter = "setEntry")
+        public static class TestRow {
+            Document document;
+            public void setEntry(Document document) {
+                this.document = document;
+            }
+            @Column(sequence = 1)
+            public String getName() {
+                return null;
+            }
+            @Column(sequence = 2)
+            public BufferedImage getImage() {
+                return null;
+            }
+        }
+    }
 }

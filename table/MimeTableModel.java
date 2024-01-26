@@ -43,7 +43,7 @@ public class MimeTableModel extends AbstractTableModel {
         entries = mimeTable.entries();
     }
 
-    //-------------------------------------------------------------------------
+    // ----
 
     @Override
     public int getColumnCount() {
