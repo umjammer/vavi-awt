@@ -15,6 +15,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.function.Function;
 
 
 /**
@@ -69,6 +70,20 @@ public @interface Row {
          * @see Column#width()
          */
         public static int getWidth(Class<?> row, int columnIndex) {
+            return getColumnMethod(row, columnIndex, Column::width);
+        }
+
+        /**
+         * @see Column#align()
+         */
+        public static Column.Align getAlign(Class<?> row, int columnIndex) {
+            return getColumnMethod(row, columnIndex, Column::align);
+        }
+
+        /**
+         * @see Column
+         */
+        public static <T> T getColumnMethod(Class<?> row, int columnIndex, Function<Column, T> supplier) {
             //
             Row annotation = row.getAnnotation(Row.class);
             if (annotation == null) {
@@ -81,8 +96,9 @@ public @interface Row {
                 for (Method method : clazz.getDeclaredMethods()) {
                     Column column = method.getAnnotation(Column.class);
                     if (column != null) {
-                        if (method.getName().startsWith("get") || method.getName().startsWith("is")) {
-                            return column.width();
+                        if (column.sequence() == columnIndex &&
+                                (method.getName().startsWith("get") || method.getName().startsWith("is"))) {
+                            return supplier.apply(column);
                         }
                     }
                 }

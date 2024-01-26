@@ -10,6 +10,7 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import javax.swing.SwingConstants;
 
 
 /**
@@ -22,14 +23,27 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Column {
 
-    /** */
+    enum Align {
+        left(SwingConstants.LEFT),
+        center(SwingConstants.CENTER),
+        right(SwingConstants.RIGHT);
+        final int value;
+        Align(int value) {
+            this.value = value;
+        }
+    }
+
+    /** column number 0 origin */
     int sequence();
 
-    /** */
+    /** table column header name */
     String name() default "";
 
-    /** */
+    /** table column width */
     int width() default 0;
+
+    /** table column align */
+    Align align() default Align.center;
 
     /**
      * TODO when annotated to method
