@@ -34,10 +34,10 @@ import vavi.swing.event.EditorEvent;
 public class BasicRubberBandGesture extends RubberBandGesture {
 
     /** */
-    private Container glassPane;
+    private final Container glassPane;
 
-    /** ラバーバンドレンダラ */
-    private RubberBandRenderer renderer;
+    /** A rubber band renderer */
+    private final RubberBandRenderer renderer;
 
     /** */
     public BasicRubberBandGesture(Container glassPane) {
@@ -50,48 +50,42 @@ public class BasicRubberBandGesture extends RubberBandGesture {
 
     //-------------------------------------------------------------------------
 
-    /** rubberband listener for rubberband  */
-    private RubberBandListener rbl = new RubberBandAdapter() {
-        /** */
-        public void selecting(RubberBandEvent ev) {
+    /** A rubber band listener for a rubber band  */
+    private final RubberBandListener rbl = new RubberBandAdapter() {
+        @Override public void selecting(RubberBandEvent ev) {
             renderer.drawSelecting(ev.getBounds());
         }
-        /** */
-        public void selected(RubberBandEvent ev) {
+        @Override public void selected(RubberBandEvent ev) {
             renderer.drawSelected(ev.getBounds());
         }
-//        /** */
-//        public void moving(RubberBandEvent ev) {
+//        @Override public void moving(RubberBandEvent ev) {
 //            renderer.drawMoving(ev.getBounds());
 //        }
-//        /** */
-//        public void moved(RubberBandEvent ev) {
+//        @Override public void moved(RubberBandEvent ev) {
 //            renderer.drawMoved(ev.getBounds());
 //        }
-//        /** */
-//        public void resizing(RubberBandEvent ev) {
+//        @Override public void resizing(RubberBandEvent ev) {
 //            renderer.drawResizing(ev.getBounds());
 //        }
-//        /** */
-//        public void resized(RubberBandEvent ev) {
+//        @Override public void resized(RubberBandEvent ev) {
 //            renderer.drawResized(ev.getBounds());
 //        }
     };
 
     //-------------------------------------------------------------------------
 
-    /** */
+    @Override
     public void mouseClicked(MouseEvent ev) {
         Component component = ev.getComponent();
         Object args;
         if (component == glassPane) {
             args = null;
         } else { // Controller
-            // Shift キーを押していたら複数選択にする
+            // enable multiple selection w/ shift key
             boolean isMultiSelect = ev.isShiftDown();
             args = new Object[] { component, isMultiSelect };
 
-            // GlassController を最前に
+            // let GlassController front
             glassPane.remove(component);
             glassPane.add(component, 0);
         }
@@ -99,22 +93,22 @@ public class BasicRubberBandGesture extends RubberBandGesture {
         fireEditorUpdated(new EditorEvent(this, "clicked", (Object[]) args));
     }
 
-    /** */
+    @Override
     public void mousePressed(MouseEvent ev) {
         rubberBand.start(getLocationAtContainer(ev));
     }
 
-    /** */
+    @Override
     public void mouseMoved(MouseEvent ev) {
         setMode(ev);
     }
 
-    /** マウスがドラッグされたときに呼ばれます． */
+    @Override
     public void mouseDragged(MouseEvent ev) {
         rubberBand.doing(getLocationAtContainer(ev));
     }
 
-    /** マウスがリリースされたときに呼ばれます． */
+    @Override
     public void mouseReleased(MouseEvent ev) {
         rubberBand.done(getLocationAtContainer(ev));
     }
@@ -122,7 +116,7 @@ public class BasicRubberBandGesture extends RubberBandGesture {
     //-------------------------------------------------------------------------
 
     /**
-     * マウスの位置によってリサイズか移動かを設定します．
+     * Determines resizing or moving by mouse position.
      */
     private void setMode(MouseEvent ev) {
     Component component = ev.getComponent();
@@ -142,7 +136,7 @@ public class BasicRubberBandGesture extends RubberBandGesture {
     }
 
     /**
-     * コンテナ上のポイントを返します．
+     * Get a local point on a container.
      */
     private Point getLocationAtContainer(MouseEvent ev) {
         Component component = ev.getComponent();

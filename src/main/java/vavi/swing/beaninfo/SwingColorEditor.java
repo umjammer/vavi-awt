@@ -141,7 +141,7 @@ public class SwingColorEditor extends SwingEditorSupport {
         }
     };
 
-    // PropertyEditorSupport --------------------------------------------------
+    // PropertyEditorSupport ----
 
     /** */
     public boolean isPaintable() {
@@ -207,7 +207,7 @@ Debug.printStackTrace(Level.FINER, new Exception());
         colorChooserCombo.setBackground(color);
     }
 
-    //-------------------------------------------------------------------------
+    //----
 
     // for testing
 

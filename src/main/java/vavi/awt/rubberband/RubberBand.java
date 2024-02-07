@@ -14,7 +14,7 @@ import vavi.util.Debug;
 
 
 /**
- * ラバーバンドのモデルです．
+ * Represents rubber band model.．
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010829 nsano initial version <br>
@@ -26,28 +26,32 @@ import vavi.util.Debug;
  */
 public class RubberBand {
 
-    /** 上にリサイズすることをあらわす定数 */
+    /** resizing to north */
     public static final int RESIZE_N  = 1;
-    /** 下にリサイズすることをあらわす定数 */
+    /** resizing to south */
     public static final int RESIZE_S  = 2;
-    /** 右にリサイズすることをあらわす定数 */
+    /** resizing to east */
     public static final int RESIZE_E  = 4;
-    /** 左にリサイズすることをあらわす定数 */
+    /** resizing to west */
     public static final int RESIZE_W  = 8;
-    /** 右上にリサイズすることをあらわす定数 */
+    /** resizing to northeast */
     public static final int RESIZE_NE = 5;
-    /** 左上にリサイズすることをあらわす定数 */
+    /** resizing to northwest */
     public static final int RESIZE_NW = 9;
-    /** 右下にリサイズすることをあらわす定数 */
+    /** resizing to southeast */
     public static final int RESIZE_SE = 6;
-    /** 左下にリサイズすることをあらわす定数 */
+    /** resizing to southwest */
     public static final int RESIZE_SW = 10;
-    /** 通常を表すの定数 */
+    /** normal */
     public static final int NORMAL_MODE = 0;
-    /** 移動を表す定数 */
+    /** moving */
     public static final int MOVE_MODE = 3;
 
-    /** RubberBand のモード */
+    /**
+     * mode of RubberBand
+     * @see #NORMAL_MODE
+     * @see #MOVE_MODE
+     */
     protected int mode;
 
     /** リサイズするコンポーネント上におけるマウスが押されたときの座標 */
@@ -76,13 +80,13 @@ public class RubberBand {
     }
 
     /**
-     * ラバーバンドのモードを設定します．
+     * Sets rubber band mode.．
      */
     public void setMode(int mode) {
         this.mode = mode;
     }
 
-    /** ラバーバンドのモードを取得します． */
+    /** Gets rubber band mode */
     public int getMode() {
         return mode;
     }
@@ -90,7 +94,7 @@ public class RubberBand {
     //-------------------------------------------------------------------------
 
     /**
-     * 選択中の Bounds を返します．
+     * Gets Bounds selecting．
      */
     protected Rectangle getSelectionBounds(Point point) {
         isSelecting = true;
@@ -106,8 +110,7 @@ public class RubberBand {
     }
 
     /**
-     * 選択確定時の Bounds を返します．
-     * TODO w, h が x2, y2 になってる...
+     * Gets bounds selected.
      */
     protected Rectangle getSelectedBounds(Point point) {
 
@@ -122,8 +125,8 @@ public class RubberBand {
     }
 
     /**
-     * リサイズ中の相対 Bounds を返します．
-     * TODO 大きさの制限
+     * Gets relative bounds when resizing.
+     * TODO size limit
      */
     protected Rectangle getResizedBounds(Point point) {
 
@@ -179,7 +182,7 @@ Debug.println(Level.SEVERE, "wrong resize mode: " + mode);
     }
 
     /**
-     * 移動中の相対 Point を返します．
+     * Gets relative Point.
      */
     protected Point getMovedPoint(Point point) {
 
@@ -192,7 +195,7 @@ Debug.println(Level.SEVERE, "wrong resize mode: " + mode);
     //-------------------------------------------------------------------------
 
     /**
-     * ラバーバンドの開始を実行します．
+     * Rubber band starts processing.
      */
     public void start(Point point) {
 
@@ -211,7 +214,7 @@ Debug.println(Level.FINER, move.x + ", " + move.y);
     }
 
     /**
-     * ラバーバンドの途中経過を実行します．
+     * Rubber band is now processing.
      */
     public void doing(Point point) {
         switch (mode) {
@@ -238,11 +241,11 @@ Debug.println(Level.FINER, p.x + ", " + p.y);
     }
 
     /**
-     * ラバーバンドの終了を実行します．
+     * Rubber band processing is done.
      */
     public void done(Point point) {
         switch (mode) {
-        case NORMAL_MODE: { // 領域選択
+        case NORMAL_MODE: { // selecting area
             if (isSelecting) {
                 Rectangle r = getSelectedBounds(point);
                 fireSelected(new RubberBandEvent(this, r));
@@ -250,12 +253,12 @@ Debug.println(Level.FINER, p.x + ", " + p.y);
             isSelecting = false;
             break;
         }
-        case MOVE_MODE: { // 移動モードの処理
+        case MOVE_MODE: { // moving mode
             Point p = getMovedPoint(point);
             fireMoved(new RubberBandEvent(this, p));
             break;
         }
-        default: { // リサイズ処理
+        default: { // resizing
             Rectangle r = getResizedBounds(point);
             fireResized(new RubberBandEvent(this, r));
             break;
@@ -264,45 +267,45 @@ Debug.println(Level.FINER, p.x + ", " + p.y);
 
     //-------------------------------------------------------------------------
 
-    /** RubberBand イベント機構のサポート */
-    private RubberBandSupport rbs = new RubberBandSupport();
+    /** RubberBand event support */
+    private final RubberBandSupport rbs = new RubberBandSupport();
 
-    /** RubberBand リスナーを追加します． */
+    /** Adds a RubberBand listener. */
     public void addRubberBandListener(RubberBandListener l) {
         rbs.addRubberBandListener(l);
     }
 
-    /** RubberBand リスナーを削除します． */
+    /** Removes a RubberBand listener/ */
     public void removeRubberBandListener(RubberBandListener l) {
         rbs.removeRubberBandListener(l);
     }
 
-    /** 選択中のイベントを発行します． */
+    /** Fires a selecting event. */
     public void fireSelecting(RubberBandEvent ev) {
         rbs.fireSelecting(ev);
     }
 
-    /** 選択確定のイベントを発行します． */
+    /** Fires a selected event. */
     public void fireSelected(RubberBandEvent ev) {
         rbs.fireSelected(ev);
     }
 
-    /** 選択対象が移動中のイベントを発行します． */
+    /** Fires a moving event. */
     public void fireMoving(RubberBandEvent ev) {
         rbs.fireMoving(ev);
     }
 
-    /** 選択対象が移動確定のイベントを発行します． */
+    /** Fires a moved event. */
     public void fireMoved(RubberBandEvent ev) {
         rbs.fireMoved(ev);
     }
 
-    /** 選択対象がリサイズ中のイベントを発行します． */
+    /** Fires a resizing event. */
     public void fireResizing(RubberBandEvent ev) {
         rbs.fireResizing(ev);
     }
 
-    /** 選択対象がリサイズ確定のイベントを発行します． */
+    /** Fires a resized event. */
     public void fireResized(RubberBandEvent ev) {
         rbs.fireResized(ev);
     }

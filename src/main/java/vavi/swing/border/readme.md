@@ -1,7 +1,7 @@
-# vavi.awt.swing.barder
+# vavi.awt.swing.border
 
 provides about Border classes
 
 ## TODO
 
- * クラスの見極めちゃんとやる(名前じゃなく)
+ *  get to the bottom of classes properly (not naming)

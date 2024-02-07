@@ -25,7 +25,7 @@ import vavi.util.Debug;
 public class GlassPaneLayout implements LayoutManager {
 
     /**
-     * このクラスでは使用しません。
+     * this class doesn't use this method.
      */
     public void addLayoutComponent(String name, Component comp) {
     }
@@ -64,7 +64,7 @@ Debug.println(Level.FINE, parent.getSize().width + ", " + parent.getSize().heigh
     }
 
     /**
-     * このクラスでは使用しません。
+     * this class doesn't use this method.
      */
     public void removeLayoutComponent(Component comp) {
     }

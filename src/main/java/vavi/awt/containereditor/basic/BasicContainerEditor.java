@@ -44,11 +44,8 @@ import vavi.util.Debug;
  */
 public class BasicContainerEditor extends ContainerEditor {
 
-    //
-    private final Object thiz = this;
-
     /** */
-    private GlassPane glassPane;
+    private final GlassPane glassPane;
 
     /** */
     public BasicContainerEditor(Container container) throws HeadlessException {
@@ -69,7 +66,7 @@ Debug.println(Level.FINER, container.getSize());
         glassPane.addRubberBandListener(rbl);
     }
 
-    /** */
+    @Override
     public void setContainer(Container container) {
         glassPane.disableContainer();
 
@@ -82,9 +79,9 @@ Debug.println(Level.FINER, container.getSize());
     }
 
     /** */
-    private Container parent;
+    private final Container parent;
 
-    /** コンテナが編集可能かどうかを設定します． */
+    @Override
     public void setEditable(boolean isEditable) {
 Debug.println(Level.FINER, isEditable + ": " + container.hashCode());
         super.setEditable(isEditable);
@@ -106,8 +103,8 @@ Debug.println(Level.FINER, container.getSize());
     // ---------------------------------------------------------------------
 
     /** editor listener for rubberband gesture */
-    private EditorListener el = new EditorListener() {
-        public void editorUpdated(EditorEvent ev) {
+    private final EditorListener el = new EditorListener() {
+        @Override public void editorUpdated(EditorEvent ev) {
             String name = ev.getName();
             if ("clicked".equals(name)) {
                 if (ev.getArguments() == null) { // Container
@@ -125,16 +122,16 @@ Debug.println(Level.FINER, args[0]);
         }
     };
 
-    /** rubberband listener for rubberband gesture */
-    private RubberBandListener rbl = new RubberBandAdapter() {
-        /** 選択 */
+    /** A rubber band listener for a rubber band gesture */
+    private final RubberBandListener rbl = new RubberBandAdapter() {
+        @Override
         public void selected(RubberBandEvent ev) {
             List<LocatableController> selected = getControllersIn(ev.getBounds());
             selectionModel.select(selected.toArray(new Selectable[0]));
             glassPane.repaint();
         }
 
-        /** 移動中 */
+        @Override
         public void moving(RubberBandEvent ev) {
             List<Selectable> selected = selectionModel.getSelected();
             for (Selectable selectable : selected) {
@@ -143,7 +140,7 @@ Debug.println(Level.FINER, args[0]);
             }
         }
 
-        /** 移動終了 */
+        @Override
         public void moved(RubberBandEvent ev) {
             List<Selectable> selected = selectionModel.getSelected();
             for (Selectable selectable : selected) {
@@ -151,12 +148,12 @@ Debug.println(Level.FINER, args[0]);
                 bc.setLocation(getLocationFor(bc, ev.getLocation()));
 
                 Component c = bc.getView();
-                fireEditorUpdated(new EditorEvent(thiz, "location", c));
+                fireEditorUpdated(new EditorEvent(BasicContainerEditor.this, "location", c));
             }
             glassPane.repaint();
         }
 
-        /** リサイズ中 */
+        @Override
         public void resizing(RubberBandEvent ev) {
             List<Selectable> selected = selectionModel.getSelected();
             for (Selectable selectable : selected) {
@@ -166,6 +163,7 @@ Debug.println(Level.FINER, args[0]);
         }
 
         /** リサイズ中 */
+        @Override
         public void resized(RubberBandEvent ev) {
             List<Selectable> selected = selectionModel.getSelected();
             for (Selectable selectable : selected) {
@@ -173,14 +171,14 @@ Debug.println(Level.FINER, args[0]);
                 bc.setBounds(getBoundsFor(bc, ev.getBounds()));
 
                 Component c = bc.getView();
-                fireEditorUpdated(new EditorEvent(thiz, "bounds", c));
+                fireEditorUpdated(new EditorEvent(BasicContainerEditor.this, "bounds", c));
             }
             glassPane.repaint();
         }
     };
 
     /**
-     * 領域内の Controller 返します．
+     * Returns controllers inside bounds.
      */
     private List<LocatableController> getControllersIn(Rectangle r) {
 
@@ -199,7 +197,7 @@ Debug.println(Level.FINER, args[0]);
         return selected;
     }
 
-    /** 差をコンポーネントに適用 */
+    /** Apply difference to a component */
     private Point getLocationFor(Component component, Point dp) {
         Point tp = component.getLocation();
         tp.x += dp.x;
@@ -207,7 +205,7 @@ Debug.println(Level.FINER, args[0]);
         return tp;
     }
 
-    /** 差をコンポーネントに適用 */
+    /** Apply difference to a component */
     private Rectangle getBoundsFor(Component component, Rectangle dr) {
         Rectangle tr = component.getBounds();
         tr.x += dr.x;
@@ -220,13 +218,15 @@ Debug.println(Level.FINER, args[0]);
     // -------------------------------------------------------------------------
 
     /**
-     * 将来 InputMap が対応してくれんじゃないの？
+     * InputMap supports this in the future?
      */
+    @Override
     public void setMouseInputAction(MouseInputListener mil) {
         glassPane.setMouseInputAction(mil);
     }
 
-    /** TODO 気に入らん */
+    /** TODO i don't like it */
+    @Override
     protected LocatableController getControllerFor(Component component) {
         return glassPane.getControllerFor(component);
     }

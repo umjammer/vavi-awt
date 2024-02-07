@@ -29,8 +29,8 @@ import vavi.util.Debug;
 /**
  * GlassPane
  *
- * container に setSize すること．
- * TODO container editor が混ざっている, pure rubber band と分離
+ * must setSize for container
+ * TODO still remaining container editor elements, separate pure rubber band
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020613 nsano initial version <br>
@@ -45,13 +45,13 @@ public class GlassPane extends JComponent {
                 Component component = ev.getChild();
                 component.addMouseListener(rbg);
                 component.addMouseMotionListener(rbg);
-Debug.println(Level.FINER, "add gesture to: " + ((vavi.awt.Controller) component).getView().getName());
+Debug.println(Level.FINER, "add gesture to: " + component.getName());
             }
             public void componentRemoved(ContainerEvent ev) {
                 Component component = ev.getChild();
                 component.removeMouseListener(rbg);
                 component.removeMouseMotionListener(rbg);
-Debug.println(Level.FINER, "remove gesture to: " + ((vavi.awt.Controller) component).getView().getName());
+Debug.println(Level.FINER, "remove gesture to: " + component.getName());
             }
         };
         {
@@ -144,7 +144,7 @@ Debug.println(Level.FINER, "remove gesture to: " + ((vavi.awt.Controller) compon
     }
 
     /**
-     * 将来 InputMap が対応してくれんじゃないの？
+     * InputMap might resolve everything in the future
      */
     public void setMouseInputAction(MouseInputListener mil) {
         glassPane.addMouseListener(mil);
@@ -153,7 +153,7 @@ Debug.println(Level.FINER, "remove gesture to: " + ((vavi.awt.Controller) compon
 
     //-------------------------------------------------------------------------
 
-    /** コンテナのリスナ */
+    /** listener for container */
     private ContainerListener cl1 = new ContainerListener() {
         /** の追加はコントローラを発生 */
         public void componentAdded(ContainerEvent ev) {
@@ -214,8 +214,8 @@ if (controllers.size() != 0) {
 
     //-------------------------------------------------------------------------
 
-    /** Component と Controller のペア */
-    private Map<Component,Component> controllers = new HashMap<>();
+    /** pairs for Component and Controller */
+    private Map<Component, Component> controllers = new HashMap<>();
 
     /** */
     public LocatableController getControllerFor(Component component) {

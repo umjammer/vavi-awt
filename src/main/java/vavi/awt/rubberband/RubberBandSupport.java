@@ -12,7 +12,7 @@ import java.util.List;
 
 
 /**
- * RubberBand イベント機構のユーティリティです．
+ * A utility class for a RubberBand event.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010904 nsano initial version <br>
@@ -21,11 +21,11 @@ import java.util.List;
  */
 public class RubberBandSupport implements Serializable {
 
-    /** RubberBand のリスナー */
-    private List<RubberBandListener> listeners = new ArrayList<>();
+    /** RubberBand listeners */
+    private final List<RubberBandListener> listeners = new ArrayList<>();
 
     /**
-     * RubberBand リスナーを追加します．
+     * Adds a RubberBand listener.
      * @param l RubberBandListener
      */
     public void addRubberBandListener(RubberBandListener l) {
@@ -33,7 +33,7 @@ public class RubberBandSupport implements Serializable {
     }
 
     /**
-     * RubberBand リスナーを削除します．
+     * Removes a RubberBand listener.
      * @param l RubberBandListener
      */
     public void removeRubberBandListener(RubberBandListener l) {
@@ -41,7 +41,7 @@ public class RubberBandSupport implements Serializable {
     }
 
     /**
-     * 選択中のイベントを発行します．
+     * Fires a selecting event.
      */
     public void fireSelecting(RubberBandEvent ev) {
         for (RubberBandListener listener : listeners) {
@@ -50,7 +50,7 @@ public class RubberBandSupport implements Serializable {
     }
 
     /**
-     * 選択確定のイベントを発行します．
+     * Fires a selected event.
      */
     public void fireSelected(RubberBandEvent ev) {
         for (RubberBandListener listener : listeners) {
@@ -59,7 +59,7 @@ public class RubberBandSupport implements Serializable {
     }
 
     /**
-     * 選択対象が移動中のイベントを発行します．
+     * Fires a moving event.
      */
     public void fireMoving(RubberBandEvent ev) {
         for (RubberBandListener listener : listeners) {
@@ -68,7 +68,7 @@ public class RubberBandSupport implements Serializable {
     }
 
     /**
-     * 選択対象が移動確定のイベントを発行します．
+     * Fires a moved event.
      */
     public void fireMoved(RubberBandEvent ev) {
         for (RubberBandListener listener : listeners) {
@@ -77,7 +77,7 @@ public class RubberBandSupport implements Serializable {
     }
 
     /**
-     * 選択対象がリサイズ中のイベントを発行します．
+     * Fires a resizing event.
      */
     public void fireResizing(RubberBandEvent ev) {
         for (RubberBandListener listener : listeners) {
@@ -86,7 +86,7 @@ public class RubberBandSupport implements Serializable {
     }
 
     /**
-     * 選択対象がリサイズ確定のイベントを発行します．
+     * Fires a resized event.
      */
     public void fireResized(RubberBandEvent ev) {
         for (RubberBandListener listener : listeners) {

@@ -10,40 +10,36 @@ import java.util.EventListener;
 
 
 /**
- * RubberBand のリスナーインターフェースです．
+ * A RubberBand event listener.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010904 nsano initial version <br>
  */
 public interface RubberBandListener extends EventListener {
 
-    /**
-     * 選択中に呼ばれます．
-     */
+    /** when selecting */
     void selecting(RubberBandEvent ev);
 
-    /**
-     * 選択確定時に呼ばれます．
-     */
+    /** when selecting finished */
     void selected(RubberBandEvent ev);
 
     /**
-     * 選択対象の移動中に呼ばれます．
+     * when moving.
      */
     void moving(RubberBandEvent ev);
 
     /**
-     * 選択対象の移動確定時に呼ばれます．
+     * when moving finished.
      */
     void moved(RubberBandEvent ev);
 
     /**
-     * 選択対象のリサイズ中に呼ばれます．
+     * when resizing.
      */
     void resizing(RubberBandEvent ev);
 
     /**
-     * 選択対象のリサイズ確定時に呼ばれます．
+     * when resizing finished.
      */
     void resized(RubberBandEvent ev);
 }
