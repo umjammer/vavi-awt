@@ -17,6 +17,8 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -138,17 +140,15 @@ public abstract class ContainerEditor implements Editable {
     /**
      * Make specified components selected.
      *
-     * @param selection List<Selectable>
+     * @param selection List<Component>
      */
-    public void select(List<Selectable> selection) {
-        List<Selectable> selected = new ArrayList<>();
+    public void select(List<Component> selection) {
         if (selection.size() == 1 && selection.get(0) == container) {
             selectionModel.deselectAll();
-            selected.add((Selectable) container);
-            fireEditorUpdated(new EditorEvent(ContainerEditor.this, "select", selected));
+            fireEditorUpdated(new EditorEvent(ContainerEditor.this, "select", Collections.singletonList(container)));
         } else {
-            for (Selectable selectable : selection) {
-                Component component = (Component) selectable;
+            List<Selectable> selected = new ArrayList<>();
+            for (Component component : selection) {
                 Controller controller = getControllerFor(component);
                 selected.add(controller);
             }
