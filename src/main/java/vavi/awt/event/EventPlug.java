@@ -122,15 +122,9 @@ Debug.println(Level.FINER, classes.length);
     private void plugImpl(String type) {
         try {
             Class<?> clazz = invoker.getClass();
-            Class<?>[] argTypes = {
-                getEventListenerClass()
-            };
             String methodName = type + getEventListenerName();
-            Method method = clazz.getMethod(methodName, argTypes);
-            Object[] args = {
-                listener
-            };
-            method.invoke(invoker, args);
+            Method method = clazz.getMethod(methodName, getEventListenerClass());
+            method.invoke(invoker, listener);
         } catch (Exception e) {
 Debug.printStackTrace(e);
             throw new IllegalStateException(getClassName(invoker.getClass().getName()) + "." + type + getEventListenerName() + "(" + getEventListenerClass() + ")");

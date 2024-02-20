@@ -191,8 +191,8 @@ public class SwingColorEditor extends SwingEditorSupport {
     /** */
     public void setValue(Object value) {
         super.setValue(value);
-Debug.println(Level.FINER, value);
-Debug.printStackTrace(Level.FINER, new Exception());
+Debug.println(Level.FINEST, value);
+Debug.printStackTrace(Level.FINEST, new Exception("***DUMMY***"));
         Color color = (Color) value;
         if (color == null) {
             rgbValue.setText("                  ");

@@ -238,7 +238,7 @@ public class AppletFrame extends Frame implements Runnable, AppletStub, AppletCo
         appletSize = applet.getSize();
         applet.setSize(width, height);
 
-        show();
+        setVisible(true);
 
         // Start a separate thread to call the applet's init() and start()
         // methods, in case they take a long time.

@@ -98,6 +98,7 @@ public class FileRenamer {
         tool.add(replacer);
         tool.add(bar);
 
+//Arrays.stream(GraphicsEnvironment.getLocalGraphicsEnvironment().getAllFonts()).forEach(System.err::println);
         table.setFillsViewportHeight(true);
         table.addMouseListener(new MouseAdapter() {
             @Override public void mouseClicked(MouseEvent event) {
