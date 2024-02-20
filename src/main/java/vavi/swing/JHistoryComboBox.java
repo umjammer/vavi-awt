@@ -10,7 +10,9 @@ import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
@@ -80,32 +82,45 @@ public class JHistoryComboBox extends JComboBox<String> {
 Debug.println(Level.FINE, "prefs <<: " + prefs.name());
             for (int i = 0; i < prefs.keys().length; i++) {
                 String value = prefs.get("item" + i, null);
-Debug.println(Level.FINE, "prefs <<: " + ("item" + i) + ": " + value);
+Debug.println(Level.FINER, "prefs <<: " + ("item" + i) + ": " + value);
                 addItem(value);
             }
-            if (prefs.keys().length > 0) {
+            if (prefs.keys().length >0) {
                 setSelectedIndex(0);
             }
         } catch (BackingStoreException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.err);
         }
     }
 
     /**
      * @param applicationId identity for prefs.
-     * TODO duplication
      */
     public void saveHistory(String applicationId) {
         Preferences prefs = Preferences.userRoot().node(applicationId);
 Debug.println(Level.FINE, "prefs >>: " + prefs.name());
-        if (getSelectedIndex() > 0) {
-            prefs.put("item0", getItemAt(getSelectedIndex()));
+        try {
+            prefs.clear();
+        } catch (BackingStoreException e) {
+            e.printStackTrace(System.err);
         }
+        int c = 0;
+        if (getSelectedIndex() >= 0) {
+            prefs.put("item0", getItemAt(getSelectedIndex()));
+            c++;
+        }
+        Set<String> set = new HashSet<>();
         for (int i = 0; i < getItemCount(); i++) {
-            if (i != getSelectedIndex()) {
-Debug.println(Level.FINE, ("prefs >>: item" + (i + 1)) + ": " + getItemAt(i));
-                prefs.put("item" + (i + 1), getItemAt(i));
+            if (!(getSelectedIndex() >= 0 && i == getSelectedIndex())) {
+                if (getItemAt(i) != null) {
+                    set.add(getItemAt(i));
+                }
             }
+        }
+        for (String s : set) {
+Debug.println(Level.FINE, "prefs >>: item" + c + ": " + s);
+            prefs.put("item" + c, s);
+            c++;
         }
     }
 
