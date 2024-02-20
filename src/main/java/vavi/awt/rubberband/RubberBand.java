@@ -118,8 +118,8 @@ public class RubberBand {
 
         int x = Math.min(pressed.x, released.x);
         int y = Math.min(pressed.y, released.y);
-        int w = x + Math.abs(released.x - pressed.x);
-        int h = y + Math.abs(released.y - pressed.y);
+        int w = Math.abs(released.x - pressed.x);
+        int h = Math.abs(released.y - pressed.y);
 
         return new Rectangle(x, y, w, h);
     }

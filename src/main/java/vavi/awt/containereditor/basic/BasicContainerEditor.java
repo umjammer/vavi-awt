@@ -187,7 +187,8 @@ Debug.println(Level.FINER, args[0]);
         for (int i = 0; i < container.getComponentCount(); i++) {
             Component c = container.getComponent(i);
 
-            if (!(c instanceof LocatableController) && r.x < c.getLocation().x && r.y < c.getLocation().y && r.width > c.getLocation().x + c.getSize().width && r.height > c.getLocation().y + c.getSize().height) {
+            // TODO check RubberBandListener#selected(Rectangle) specs. change
+            if (!(c instanceof LocatableController) && r.x < c.getLocation().x && r.y < c.getLocation().y && r.x + r.width > c.getLocation().x + c.getSize().width && r.y + r.height > c.getLocation().y + c.getSize().height) {
 
                 LocatableController controller = glassPane.getControllerFor(c);
                 selected.add(controller);
