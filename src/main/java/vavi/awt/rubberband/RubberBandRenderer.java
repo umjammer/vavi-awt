@@ -13,7 +13,7 @@ import java.awt.Rectangle;
 
 
 /**
- * ラバーバンドレンダラのインターフェースです．
+ * Represents a rubber band renderer.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010829 nsano initial version <br>
@@ -26,39 +26,42 @@ import java.awt.Rectangle;
 public interface RubberBandRenderer {
 
     /**
-     * 選択時のラバーバンドを描きます．
+     * Draws rubber band when selecting.
      */
     void drawSelecting(Rectangle bounds);
 
     /**
-     * 選択後のラバーバンドを描画します．
+     * Draws rubber band when selected.
      */
     void drawSelected(Rectangle bounds);
 
     /**
-     * 移動時のラバーバンドを描画します．
+     * Draws rubber band when moving.
      */
     void drawMoving(Rectangle bounds);
 
     /**
-     * 移動後のラバーバンドを描画します．
+     * Draws rubber band when moved.
      */
     void drawMoved(Rectangle bounds);
 
     /**
-     * リサイズ時のラバーバンドを描画します．
+     * Draws rubber band when resizing.
      */
     void drawResizing(Rectangle bounds);
 
     /**
-     * リサイズ後のラバーバンドを描画します．
+     * Draws rubber band when resized.
      */
     void drawResized(Rectangle bounds);
 
-    /** */
+    /** Gets mode */
     int getMode(Component component, Point point);
 
-    /** */
+    /**
+     * @see RubberBand#getMode()
+     * @param mode RubberBand#MOVE_MODE
+     */
     Cursor getCursor(int mode);
 }
 

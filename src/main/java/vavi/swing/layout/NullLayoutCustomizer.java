@@ -13,7 +13,7 @@ import java.awt.GridLayout;
 import java.awt.Rectangle;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.Iterator;
+import java.util.logging.Level;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
@@ -23,6 +23,7 @@ import vavi.awt.containereditor.ContainerEditor;
 import vavi.awt.containereditor.basic.BasicContainerEditor;
 import vavi.swing.event.EditorEvent;
 import vavi.swing.event.EditorListener;
+import vavi.util.Debug;
 
 
 /**
@@ -69,10 +70,10 @@ public class NullLayoutCustomizer extends BasicLayoutManagerCustomizer {
     private EditorListener el = new EditorListener() {
         public void editorUpdated(EditorEvent ev) {
             String name = ev.getName();
-//Debug.println(name);
+Debug.println(Level.FINER, name);
             if ("location".equals(name) || "bounds".equals(name)) {
                 if (converter.isJustifyGrid()) {
-                    Component component = (Component) ev.getArgument();
+                    Component component = (Component) ev.getArguments()[0];
                     ajustComponent(component);
                 }
             }
@@ -83,7 +84,7 @@ public class NullLayoutCustomizer extends BasicLayoutManagerCustomizer {
     private PropertyChangeListener pcl = new PropertyChangeListener() {
         public void propertyChange(PropertyChangeEvent ev) {
             String name = ev.getPropertyName();
-//Debug.println(name);
+Debug.println(Level.FINER, name);
             if ("overlaid".equals(name)) {
             }
             else if ("justifyGrid".equals(name)) {
@@ -93,9 +94,9 @@ public class NullLayoutCustomizer extends BasicLayoutManagerCustomizer {
                 dispSize.height = Math.round(size.height * ratio);
                 ((BasicContainerEditor) containerEditor).setGridSize(dispSize);
 
-                boolean b = ((Boolean) ev.getNewValue()).booleanValue();
+                boolean b = (Boolean) ev.getNewValue();
                 ((BasicContainerEditor) containerEditor).setGridEnabled(b);
-//Debug.println(b);
+Debug.println(Level.FINER, b);
                 if (b) {
                     for (int i = 0; i < layoutPanel.getComponentCount(); i++) {
                         Component component = layoutPanel.getComponent(i);
@@ -145,7 +146,7 @@ public class NullLayoutCustomizer extends BasicLayoutManagerCustomizer {
         r.y = ty1;
         r.width  = tx1 == tx2 ? W : tx2 - tx1;
         r.height = ty1 == ty2 ? H : ty2 - ty1;
-//Debug.println(r.x + ", " + r.y + ", " + r.width + ", " + r.height);
+Debug.println(Level.FINER, r.x + ", " + r.y + ", " + r.width + ", " + r.height);
         ((BasicContainerEditor) containerEditor).setComponentBounds(component, r);
     }
 
@@ -175,7 +176,7 @@ public class NullLayoutCustomizer extends BasicLayoutManagerCustomizer {
             int y = Math.round(r.y * ratio);
             int w = Math.round(r.width * ratio);
             int h = Math.round(r.height * ratio);
-//Debug.println(x + ", " + y);
+Debug.println(Level.FINER, x + ", " + y);
             controller.setBounds(new Rectangle(x, y, w, h));
 
             layoutPanel.add(controller);
@@ -186,9 +187,8 @@ public class NullLayoutCustomizer extends BasicLayoutManagerCustomizer {
 
     /** called last, to set layout to your container */
     public void layoutContainer() {
-        Iterator<Object> e = components.keySet().iterator();
-        while (e.hasNext()) {
-            Component controller = (Component) e.next();
+        for (Object o : components.keySet()) {
+            Component controller = (Component) o;
             Component component = components.get(controller);
             Rectangle r = controller.getBounds();
             int x = Math.round(r.x / ratio);

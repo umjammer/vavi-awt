@@ -12,6 +12,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.beans.PropertyChangeListener;
 import java.util.Arrays;
+import java.util.logging.Level;
 
 import vavi.util.Debug;
 
@@ -36,7 +37,7 @@ public class GridBagLayoutConstraintsEditor
     private PropertyChangeListener pcl;
 
     /** TODO */
-    public void setPropertyChangeListner(PropertyChangeListener pcl) {
+    public void setPropertyChangeListener(PropertyChangeListener pcl) {
         this.pcl = pcl;
     }
 
@@ -61,7 +62,7 @@ public class GridBagLayoutConstraintsEditor
 
         Component[] components = container.getComponents();
         if (components.length == 0) {
-Debug.println(components.length);
+Debug.println(Level.FINE, components.length);
             return;
         }
 
@@ -110,18 +111,18 @@ Debug.println(components.length);
                 maxY = y1;
             }
         }
-        // define basic axises, all right axises, but not if it's most right one...
+        // define basic axes, all right axises, but not if it's most right one...
         if (components.length > 1) {
             axisX[0] = MIN_VALUE;
             axisY[0] = MIN_VALUE;
-            for (int i = 0; i < components.length; i++) {
-                int x1 = components[i].getBounds().x + components[i].getBounds().width;
+            for (Component value : components) {
+                int x1 = value.getBounds().x + value.getBounds().width;
                 if (x1 != maxX) {
                     axisX[axisXnumber] = x1;
                     axisXnumber++;
                 }
-                int y1 = components[i].getBounds().y + components[i].getBounds().height;
-                if (y1!= maxY) {
+                int y1 = value.getBounds().y + value.getBounds().height;
+                if (y1 != maxY) {
                     axisY[axisYnumber] = y1;
                     axisYnumber++;
                 }
@@ -211,9 +212,9 @@ Debug.println(components.length);
             removedX = 0;
             for (int i=1; i < axisXnumber; i++) {
                 boolean removing = true;
-                for (int j=0; j < components.length; j++) {
-                    int x = components[j].getBounds().x;
-                    int x1 = x + components[j].getBounds().width;
+                for (Component component : components) {
+                    int x = component.getBounds().x;
+                    int x1 = x + component.getBounds().width;
                     if (x < axisX[i] && x >= last && x1 <= axisX[i]) {
                         removing = false;
                         break;
@@ -233,9 +234,9 @@ Debug.println(components.length);
             removedY = 0;
             for (int i = 1; i < axisYnumber; i++) {
                 boolean removing = true;
-                for (int j=0; j < components.length; j++) {
-                    int y = components[j].getBounds().y;
-                    int y1 = y + components[j].getBounds().height;
+                for (Component component : components) {
+                    int y = component.getBounds().y;
+                    int y1 = y + component.getBounds().height;
                     if (y < axisY[i] && y >= last && y1 <= axisY[i]) {
                         removing = false;
                         break;
@@ -251,14 +252,14 @@ Debug.println(components.length);
                 Arrays.sort(axisY);
                 axisYnumber = axisYnumber - removedY;
             }
-            // removing most right and bottom axises if they are invalid
+            // removing most right and bottom axes if they are invalid
             if (axisX[axisXnumber - 1] == maxX)
                 axisXnumber--;
             if (axisY[axisYnumber - 1] == maxY)
                 axisYnumber--;
         }
 
-        // seting first and last axis to proper values (i.e to form size)
+        // setting first and last axis to proper values (i.e. to form size)
         axisX[0] = 0;
         axisX[axisXnumber] = components[0].getParent().getSize().width;
         axisY[0] = 0;
@@ -299,7 +300,7 @@ Debug.println(components.length);
                     bottom = axisY[j] - y1;
                 }
             }
-            // checking whether the preffered size must be adjusted
+            // checking whether the preferred size must be adjusted
             cons.ipadx = 0;
             cons.ipady = 0;
             if (components[i].getWidth() > 0)
@@ -317,23 +318,23 @@ Debug.println(components.length);
             LayoutConstraints lc = new GridBagLayoutConstraints();
             lc.setConstraints(cons);
 
-            cache.put("" + i, lc);
+            cache.put(String.valueOf(i), lc);
         }
     }
 
     private static int getCrossings(Component[] components, int axis, int value) {
         int number = 0;
         if (axis == X_AXIS) {
-            for (int i = 0; i < components.length; i++) {
-                int x = components[i].getBounds().x;
-                int x1 = x + components[i].getBounds().width;
+            for (Component component : components) {
+                int x = component.getBounds().x;
+                int x1 = x + component.getBounds().width;
                 if (x < value && x1 > value)
                     number++;
             }
         } else {
-            for (int i = 0; i < components.length; i++) {
-                int y = components[i].getBounds().y;
-                int y1 = y + components[i].getBounds().height;
+            for (Component component : components) {
+                int y = component.getBounds().y;
+                int y1 = y + component.getBounds().height;
                 if (y < value && y1 > value)
                     number++;
             }

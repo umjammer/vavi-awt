@@ -57,7 +57,7 @@ public abstract class AbstractLayoutConstraintsEditor {
 
     /** gets target constraint */
     public LayoutConstraints getLayoutConstraints(int index) {
-        return cache.get("" + index);
+        return cache.get(String.valueOf(index));
     }
 
     /** sets target constraint */

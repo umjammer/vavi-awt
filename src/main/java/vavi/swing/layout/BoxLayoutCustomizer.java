@@ -15,6 +15,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -28,6 +29,8 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JToggleButton;
+
+import vavi.util.Debug;
 
 
 /**
@@ -77,7 +80,7 @@ public class BoxLayoutCustomizer extends BasicLayoutManagerCustomizer {
         axis.add(yAxis);
 
         glue   = new JButton("createGlue");
-        vGlue  = new JButton("createVirticalGlue");
+        vGlue  = new JButton("createVerticalGlue");
         hGlue  = new JButton("createHorizontalGlue");
         rigid  = new JButton("createRigidArea");
         filler = new JButton("createFiller");
@@ -104,7 +107,7 @@ public class BoxLayoutCustomizer extends BasicLayoutManagerCustomizer {
         p3.add(hGlue );
         p3.add(rigid );
         p3.add(filler);
-//      p.add(new JButton("createVirticalStrut"));
+//      p.add(new JButton("createVerticalStrut"));
 //      p.add(new JButton("createHorizontalStrut"));
         GridBagConstraints gc = new GridBagConstraints();
         gc.weightx = 1.0;
@@ -137,7 +140,7 @@ public class BoxLayoutCustomizer extends BasicLayoutManagerCustomizer {
         layoutPanel.setLayout(box);
     }
 
-    /** TODO list から BoxLayout 作成 */
+//    /** TODO list から BoxLayout 作成 */
 //  public LayoutManager getObject() {
 //      return new BoxLayout(container, BoxLayout.Y_AXIS);
 //  }
@@ -159,26 +162,25 @@ public class BoxLayoutCustomizer extends BasicLayoutManagerCustomizer {
 
         for (int i = 0; i < container.getComponentCount(); i++) {
             Component c = container.getComponent(i);
-//Debug.println(c.getMinimumSize().width+", "+c.getMinimumSize().height);
-//Debug.println(c.getPreferredSize().width+", "+c.getPreferredSize().height);
-//Debug.println(c.getMaximumSize().width+", "+c.getMaximumSize().height);
+Debug.println(Level.FINER, c.getMinimumSize().width + ", " + c.getMinimumSize().height);
+Debug.println(Level.FINER, c.getPreferredSize().width + ", " + c.getPreferredSize().height);
+Debug.println(Level.FINER, c.getMaximumSize().width + ", " + c.getMaximumSize().height);
             // controller
-            JLabel controller = new JLabel("" + i);
+            JLabel controller = new JLabel(String.valueOf(i));
             controller.setHorizontalAlignment(JLabel.CENTER);
             controller.setOpaque(true);
             controller.setBorder(BorderFactory.createRaisedBevelBorder());
             controller.setMinimumSize(ajustRatio(c.getMinimumSize()));
             controller.setPreferredSize(ajustRatio(c.getPreferredSize()));
             controller.setMaximumSize(ajustRatio(c.getMaximumSize()));
-//c = controller;
-//Debug.println(c.getMinimumSize().width+", "+c.getMinimumSize().height);
-//Debug.println(c.getPreferredSize().width+", "+c.getPreferredSize().height);
-//Debug.println(c.getMaximumSize().width+", "+c.getMaximumSize().height);
+Debug.println(Level.FINER, controller.getMinimumSize().width + ", " + controller.getMinimumSize().height);
+Debug.println(Level.FINER, controller.getPreferredSize().width + ", " + controller.getPreferredSize().height);
+Debug.println(Level.FINER, controller.getMaximumSize().width + ", " + controller.getMaximumSize().height);
 
             components.put(String.valueOf(i), controller);
 
             // operation
-            JToggleButton button = new JToggleButton("" + i);
+            JToggleButton button = new JToggleButton(String.valueOf(i));
             buttons.add(button);
 
             button.addActionListener(al);
@@ -189,8 +191,8 @@ public class BoxLayoutCustomizer extends BasicLayoutManagerCustomizer {
     private Dimension ajustRatio(Dimension size) {
         int w = Math.round(size.width  * ratio);
         int h = Math.round(size.height * ratio);
-        size.width  = w > 32767 ? 32767 : w;
-        size.height = h > 32767 ? 32767 : h;
+        size.width  = Math.min(w, 32767);
+        size.height = Math.min(h, 32767);
         return size;
     }
 
@@ -206,7 +208,7 @@ public class BoxLayoutCustomizer extends BasicLayoutManagerCustomizer {
             JToggleButton button = (JToggleButton) ev.getSource();
             if (button.isSelected()) {
                 int index = Integer.parseInt(button.getText());
-                JLabel controller = (JLabel) components.get("" + index);
+                JLabel controller = (JLabel) components.get(String.valueOf(index));
 
                 layoutPanel.add(controller);
                 layoutPanel.validate();

@@ -9,6 +9,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
@@ -18,7 +22,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.regex.Matcher;
@@ -27,9 +30,11 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
 import vavi.swing.JHistoryComboBox;
@@ -40,7 +45,11 @@ import vavi.util.DiffMatchPatch;
 
 /**
  * FileRenamer.
- * <p>
+ * <pre>
+ * Usage:
+ * - click before column for changing location to sub directory
+ * - -U for changing location to parent directory
+ * </pre>
  * TODO realtime regex colorize
  *      dirty status
  *      duplication check after replace
@@ -52,10 +61,10 @@ import vavi.util.DiffMatchPatch;
 public class FileRenamer {
 
     public static void main(String[] args) throws Exception {
+        Path dir = Paths.get(args[0]);
         FileRenamer app = new FileRenamer();
-        app.dir = Paths.get(args[0]);
         app.gui();
-        app.init();
+        app.init(dir);
     }
 
     JHistoryComboBox searcher = new JHistoryComboBox();
@@ -89,22 +98,51 @@ public class FileRenamer {
         tool.add(replacer);
         tool.add(bar);
 
+//Arrays.stream(GraphicsEnvironment.getLocalGraphicsEnvironment().getAllFonts()).forEach(System.err::println);
+        table.setFillsViewportHeight(true);
+        table.addMouseListener(new MouseAdapter() {
+            @Override public void mouseClicked(MouseEvent event) {
+                try {
+                    int row = table.rowAtPoint(event.getPoint());
+                    int col = table.columnAtPoint(event.getPoint());
+                    if (event.getClickCount() == 2 && col == 0) {
+                        Path path = FileRenamer.this.dir.resolve((String) model.getValueAt(row, col));
+                        if (Files.isDirectory(path)) {
+                            init(path);
+                        }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        table.addKeyListener(new KeyAdapter() {
+            @Override public void keyTyped(KeyEvent event) {
+                if ((event.getModifiers() & KeyEvent.CTRL_MASK) != 0 && event.getKeyChar() == '\u0015') { // ^U
+                    try {
+                        init(dir.getParent());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
         panel.add(tool, BorderLayout.NORTH);
-        panel.add(table, BorderLayout.CENTER);
+        JScrollPane sp = new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        sp.setViewportView(table);
+        panel.add(sp, BorderLayout.CENTER);
 
         commitButton.addActionListener(this::commitAction);
         executeButton.addActionListener(this::executeAction);
         undoButton.addActionListener(this::undoAction);
-        normalize.addChangeListener(ev -> {
-            replacer.setEditable(!normalize.isSelected());
-        });
+        normalize.addChangeListener(ev -> replacer.setEditable(!normalize.isSelected()));
 
         searcher.restoreHistory(FileRenamer.class.getName() + ".searcher");
         replacer.restoreHistory(FileRenamer.class.getName() + ".replacer");
 
         frame.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
+            @Override public void windowClosing(WindowEvent e) {
                 searcher.saveHistory(FileRenamer.class.getName() + ".searcher");
                 replacer.saveHistory(FileRenamer.class.getName() + ".replacer");
             }
@@ -124,11 +162,19 @@ public class FileRenamer {
     private Path dir;
 
     /** initialize model */
-    private void init() throws IOException {
+    private void init(Path dir) throws IOException {
+        this.dir = dir;
         sources.clear();
 Debug.println(dir + ": " + Files.exists(dir));
-        model = new DefaultTableModel(new String[] {"Before", "After"}, 0);
-        Files.list(dir).sorted().forEach(path -> {
+        model = new DefaultTableModel(new String[] {"Before", "After"}, 0) {
+            @Override public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return columnIndex == 1;
+            }
+        };
+        Files.list(dir)
+                .sorted()
+                .filter(p -> !p.getFileName().toString().equals(".DS_Store"))
+                .forEach(path -> {
 Debug.println(path.getFileName());
             sources.add(path);
             model.addRow(new Object[] { path.getFileName().toString(), path.getFileName().toString() });
@@ -176,7 +222,7 @@ Debug.println(path.getFileName());
             for (String part : parts) {
                 Color c = part.charAt(0) == '0' ? ColorSchema.C0 : part.charAt(0) == '1' ? ColorSchema.C1 : schema.next();
                 sb.append(String.format("<span style='color:#%02x%02x%02x'>", c.getRed(), c.getGreen(), c.getBlue()));
-                sb.append(target.substring(s, s + part.length()));
+                sb.append(target, s, s + part.length());
                 sb.append("</span>");
                 s += part.length();
             }
@@ -306,7 +352,7 @@ Debug.println("rename: " + filename + " -> " + replaceWith);
             }
         }
         try {
-            init();
+            init(dir);
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }

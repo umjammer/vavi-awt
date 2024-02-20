@@ -32,7 +32,7 @@ class JHistoryComboBoxTest {
 
     /** */
     public static void main(String[] args) {
-        JFrame frame = new JFrame("JHistiryComboBox Demo");
+        JFrame frame = new JFrame("JHistoryComboBox Demo");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(640, 480);
         frame.getContentPane().setLayout(new BorderLayout());

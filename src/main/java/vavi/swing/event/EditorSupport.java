@@ -21,11 +21,10 @@ import java.util.List;
  *          0.12 020510 nsano repackage <br>
  *          0.20 020510 nsano deprecate open/close <br>
  */
-public class EditorSupport
-    implements Serializable {
+public class EditorSupport implements Serializable {
 
     /** The editor listeners */
-    private List<EditorListener> listeners = new ArrayList<>();
+    private final List<EditorListener> listeners = new ArrayList<>();
 
     /** EditorListener を追加します． */
     public void addEditorListener(EditorListener l) {
@@ -37,26 +36,14 @@ public class EditorSupport
         listeners.remove(l);
     }
 
-    /** エディタがオープンされたイベントを発行します． */
-//    public void fireEditorOpened(EditorEvent ev) {
-//        for (EditorListener listener : listeners) {
-//            listener.editorOpened(ev);
-//        }
-//    }
-
     /** エディタがアップデートされたイベントを発行します． */
+    @SuppressWarnings("ForLoopReplaceableByForEach")
     public void fireEditorUpdated(EditorEvent ev) {
-        for (EditorListener listener : listeners) {
-            listener.editorUpdated(ev);
+        // TODO enhanced for causes java.util.ConcurrentModificationException
+        for (int i = 0; i < listeners.size(); i++) {
+            listeners.get(i).editorUpdated(ev);
         }
     }
-
-    /** エディタがクローズされたイベントを発行します． */
-//    public void fireEditorClosed(EditorEvent ev) {
-//        for (EditorListener listener : listeners) {
-//            listener.editorClosed(ev);
-//        }
-//    }
 }
 
 /* */

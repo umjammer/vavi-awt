@@ -7,7 +7,6 @@
 package vavi.swing.propertyeditor;
 
 import java.awt.Component;
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyEditor;
 import java.util.HashMap;
@@ -79,7 +78,7 @@ public class PropertyValueEditor extends AbstractCellEditor
                         editor.addPropertyChangeListener(pcl);
                         editors.put(type, editor);
                     } catch (Exception e) {
-Debug.println("Couldn't instantiate type editor: " + editorClass.getName());
+Debug.println(Level.FINE, "Couldn't instantiate type editor: " + editorClass.getName());
                     }
                 }
             }
@@ -131,7 +130,7 @@ Debug.println("Couldn't instantiate type editor: " + editorClass.getName());
             !type.isPrimitive() &&
             !type.isAssignableFrom(obj.getClass())) {
 
-Debug.println("Type mismatch: " + obj.getClass() + " type = " + type);
+Debug.println(Level.FINE, "Type mismatch: " + obj.getClass() + " type = " + type);
 
             try {
                 obj = type.newInstance();
@@ -146,11 +145,7 @@ Debug.println(Level.SEVERE, e);
     //
     // Property Change handler.
     //
-    private PropertyChangeListener pcl = new PropertyChangeListener() {
-        public void propertyChange(PropertyChangeEvent ev) {
-            stopCellEditing();
-        }
-    };
+    private PropertyChangeListener pcl = ev -> stopCellEditing();
 }
 
 /* */

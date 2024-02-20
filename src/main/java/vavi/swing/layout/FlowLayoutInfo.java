@@ -46,11 +46,11 @@ public class FlowLayoutInfo extends SimpleBeanInfo {
             pds[1] = new PropertyDescriptor("vgap", clazz);
             pds[2] = new PropertyDescriptor("alignment", clazz);
             Object[] value = new Object[] {
-                "LEADING", new Integer(FlowLayout.LEADING), null,
-                "CENTER", new Integer(FlowLayout.CENTER), null,
-                "RIGHT", new Integer(FlowLayout.RIGHT), null,
-                "LEFT", new Integer(FlowLayout.LEFT), null,
-                "TRAILING", new Integer(FlowLayout.TRAILING), null,
+                "LEADING", FlowLayout.LEADING, null,
+                "CENTER", FlowLayout.CENTER, null,
+                "RIGHT", FlowLayout.RIGHT, null,
+                "LEFT", FlowLayout.LEFT, null,
+                "TRAILING", FlowLayout.TRAILING, null,
             };
             pds[2].setValue("enumerationValues", value);
 

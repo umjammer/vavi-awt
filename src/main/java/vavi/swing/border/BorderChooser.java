@@ -10,7 +10,6 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.beans.BeanDescriptor;
 import java.beans.BeanInfo;
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -22,7 +21,6 @@ import javax.swing.LookAndFeel;
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
-import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import vavi.util.Debug;
@@ -59,11 +57,11 @@ public class BorderChooser extends JTabbedPane {
                 String key = "editor." + i;
                 String value = props.getProperty(key);
                 if (value == null) {
-Debug.println("no property for: editor." + i);
+Debug.println(Level.FINE, "no property for: editor." + i);
                     break;
                 }
 
-//Debug.println(value);
+Debug.println(Level.FINER, value);
                 Class<?> clazz = Class.forName(value);
 
                 BorderInfo bi = BorderInfoFactory.getBorderInfo(clazz);
@@ -89,22 +87,18 @@ Debug.printStackTrace(e);
     }
 
     /** listener for customizers */
-    private PropertyChangeListener pcl = new PropertyChangeListener() {
-        public void propertyChange(PropertyChangeEvent ev) {
-            if ("border".equals(ev.getPropertyName())) {
-                border = (Border) ev.getNewValue();
-            }
+    private PropertyChangeListener pcl = ev -> {
+        if ("border".equals(ev.getPropertyName())) {
+            border = (Border) ev.getNewValue();
         }
     };
 
     /** listener for this (tabbed pane) */
-    private ChangeListener cl = new ChangeListener() {
-        public void stateChanged(ChangeEvent ev) {
-            int i = getSelectedIndex();
-            BorderCustomizer bc = (BorderCustomizer) getComponentAt(i);
-            border = bc.getObject();
-//Debug.println(border);
-        }
+    private ChangeListener cl = ev -> {
+        int i = getSelectedIndex();
+        BorderCustomizer bc = (BorderCustomizer) getComponentAt(i);
+        border = bc.getObject();
+Debug.println(Level.FINER, border);
     };
 
     /** Gets selected border. */
@@ -128,7 +122,7 @@ Debug.printStackTrace(e);
         if (p != -1)
             name = name.substring(p + 1);
         for (int i = 1; i < this.getTabCount(); i++) {
-//Debug.println(name + ", " + this.getTitleAt(i));
+//Debug.println(Level.INFO, name + ", " + this.getTitleAt(i));
             if (name.equals(this.getTitleAt(i))) {
                 BorderCustomizer bc = (BorderCustomizer) this.getComponentAt(i);
                 bc.setObject(border);

@@ -12,14 +12,13 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.Iterator;
+import java.util.logging.Level;
 
 import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
@@ -39,16 +38,16 @@ public class GridBagLayoutCustomizer extends BasicLayoutManagerCustomizer {
     /** layout for virtual screen */
     private GridBagLayout gridbag;
 
-    /** constrints editor */
+    /** constraints editor */
     private GridBagLayoutConstraintsEditor constraintsEditor;
 
     /** Creates customizer for GridBagLayout */
     public GridBagLayoutCustomizer() {
         // UI
         Container c1 = (Container) getComponent(1); // right base panel
-//Debug.println(c1.getName());
+Debug.println(Level.FINER, c1.getName());
         Component c2 = c1.getComponent(0); // upper titled border panel
-//Debug.println(c2.getName());
+Debug.println(Level.FINER, c2.getName());
         c1.remove(c2);
         ((GridLayout) c1.getLayout()).setRows(1);
         c1.doLayout();
@@ -60,12 +59,12 @@ public class GridBagLayoutCustomizer extends BasicLayoutManagerCustomizer {
         layoutPanel.setLayout(gridbag);
 
         constraintsEditor = new GridBagLayoutConstraintsEditor(gridbag);
-        constraintsEditor.setPropertyChangeListner(pcl);
+        constraintsEditor.setPropertyChangeListener(pcl);
 
         lcPanel.addMouseListener(ml);
     }
 
-    /** TODO */
+//    /** TODO */
 //      public LayoutManager getObject() {
 //          layoutPanel.validate();
 //          layoutPanel.repaint();
@@ -85,31 +84,29 @@ public class GridBagLayoutCustomizer extends BasicLayoutManagerCustomizer {
 
         for (int i = 0; i < container.getComponentCount(); i++) {
             Component component = container.getComponent(i);
-//  Component c = component;
-//  Debug.println("---- " + i + " ----");
-//  Debug.println(c.getSize().width+", "+c.getSize().height);
-//  Debug.println(c.getMinimumSize().width+", "+c.getMinimumSize().height);
-//  Debug.println(c.getPreferredSize().width+", "+c.getPreferredSize().height);
-//  Debug.println(c.getMaximumSize().width+", "+c.getMaximumSize().height);
+Debug.println(Level.FINER, "---- " + i + " ----");
+Debug.println(Level.FINER, component.getSize().width + ", " + component.getSize().height);
+Debug.println(Level.FINER, component.getMinimumSize().width + ", " + component.getMinimumSize().height);
+Debug.println(Level.FINER, component.getPreferredSize().width + ", " + component.getPreferredSize().height);
+Debug.println(Level.FINER, component.getMaximumSize().width + ", " + component.getMaximumSize().height);
 
-            JButton controller = new JButton("" + i);
+            JButton controller = new JButton(String.valueOf(i));
             controller.setMargin(new Insets(0, 0, 0, 0));
-//  controller.setMinimumSize(ajustRatio(component.getMinimumSize()));
-//  controller.setPreferredSize(ajustRatio(component.getPreferredSize()));
-//  controller.setMaximumSize(ajustRatio(component.getMaximumSize()));
-//  controller.setSize(ajustRatio(component.getSize()));
+//controller.setMinimumSize(adjustRatio(component.getMinimumSize()));
+//controller.setPreferredSize(adjustRatio(component.getPreferredSize()));
+//controller.setMaximumSize(adjustRatio(component.getMaximumSize()));
+//controller.setSize(adjustRatio(component.getSize()));
             controller.addActionListener(al);
 
             LayoutConstraints lc = constraintsEditor.getLayoutConstraints(i);
             GridBagConstraints cs = (GridBagConstraints) lc.getConstraints();
 
-            layoutPanel.add(controller, ajustRatio(cs));
-//  c = controller;
-//  Debug.println("----");
-//  Debug.println(c.getSize().width+", "+c.getSize().height);
-//  Debug.println(c.getMinimumSize().width+", "+c.getMinimumSize().height);
-//  Debug.println(c.getPreferredSize().width+", "+c.getPreferredSize().height);
-//  Debug.println(c.getMaximumSize().width+", "+c.getMaximumSize().height);
+            layoutPanel.add(controller, adjustRatio(cs));
+Debug.println(Level.FINER, "----");
+Debug.println(Level.FINER, controller.getSize().width + ", " + controller.getSize().height);
+Debug.println(Level.FINER, controller.getMinimumSize().width + ", " + controller.getMinimumSize().height);
+Debug.println(Level.FINER, controller.getPreferredSize().width + ", " + controller.getPreferredSize().height);
+Debug.println(Level.FINER, controller.getMaximumSize().width + ", " + controller.getMaximumSize().height);
 
             components.put(controller, component);
         }
@@ -120,8 +117,8 @@ public class GridBagLayoutCustomizer extends BasicLayoutManagerCustomizer {
         constraintsEditor.setContainer(layoutPanel);
     }
 
-    /** TODO */
-//    private Dimension ajustRatio(Dimension size) {
+//    /** TODO */
+//    private Dimension adjustRatio(Dimension size) {
 //        Dimension newSize = new Dimension();
 //        int w = Math.round(size.width  * ratio);
 //        int h = Math.round(size.height * ratio);
@@ -132,9 +129,8 @@ public class GridBagLayoutCustomizer extends BasicLayoutManagerCustomizer {
 
     /** called last, to set layout to your container */
     public void layoutContainer() {
-        Iterator<Object> e = components.keySet().iterator();
-        while (e.hasNext()) {
-            JButton controller = (JButton) e.next();
+        for (Object o : components.keySet()) {
+            JButton controller = (JButton) o;
             int i = Integer.parseInt(controller.getText());
             LayoutConstraints lc = constraintsEditor.getLayoutConstraints(i);
             if (lc != null) {
@@ -148,7 +144,7 @@ public class GridBagLayoutCustomizer extends BasicLayoutManagerCustomizer {
 
     // constraints editor -----------------------------------------------------
 
-    /** mouse ckick on constraint panel means to count up component no. */
+    /** mouse click on constraint panel means to count up component no. */
     private MouseListener ml = new MouseAdapter() {
         public void mouseClicked(MouseEvent ev) {
             int index = constraintsEditor.getCurrentIndex();
@@ -170,11 +166,9 @@ public class GridBagLayoutCustomizer extends BasicLayoutManagerCustomizer {
     };
 
     /** button click means to select a component */
-    private ActionListener al = new ActionListener() {
-        public void actionPerformed(ActionEvent ev) {
-            int index = Integer.parseInt(((JButton) ev.getSource()).getText());
-            setCurrentConstraints(index);
-        }
+    private ActionListener al = ev -> {
+        int index = Integer.parseInt(((JButton) ev.getSource()).getText());
+        setCurrentConstraints(index);
     };
 
     /** */
@@ -199,15 +193,15 @@ public class GridBagLayoutCustomizer extends BasicLayoutManagerCustomizer {
             GridBagConstraints cs = (GridBagConstraints) lc.getConstraints();
 
             gridbag.removeLayoutComponent(component);
-            gridbag.addLayoutComponent(component, ajustRatio(cs));
+            gridbag.addLayoutComponent(component, adjustRatio(cs));
 
             gridbag.layoutContainer(layoutPanel);
-Debug.println(index);
+Debug.println(Level.FINE, index);
         }
     };
 
     /** */
-    private GridBagConstraints ajustRatio(GridBagConstraints gc) {
+    private GridBagConstraints adjustRatio(GridBagConstraints gc) {
         GridBagConstraints newGc = new GridBagConstraints();
         newGc.anchor        =            gc.anchor;
         newGc.fill          =            gc.fill;
@@ -224,7 +218,7 @@ Debug.println(index);
         newGc.weightx       =            gc.weightx;
         newGc.weighty       =            gc.weighty;
 
-//Debug.println(ratio);
+Debug.println(Level.FINER, ratio);
         return newGc;
     }
 }

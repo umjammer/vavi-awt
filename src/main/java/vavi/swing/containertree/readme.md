@@ -1,5 +1,5 @@
-コンテナツリー関連のクラスを提供します．
+Provides about container tree classes.
 
 ## TODO
 
- * JComponent RootPane からのツリー
+ * tree for JComponent RootPane

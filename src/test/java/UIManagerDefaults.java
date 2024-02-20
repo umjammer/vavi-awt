@@ -303,7 +303,7 @@ public class UIManagerDefaults implements ActionListener, ItemListener {
             return "InputMap";
         else if (key.endsWith("RightToLeft"))
             return "InputMap";
-        else if (key.endsWith("radient"))
+        else if (key.endsWith("Gradient"))
             return "Gradient";
         else {
             return "The Rest";
@@ -397,7 +397,7 @@ Debug.println("current: " + name);
     }
 
     /*
-     * Change the TabelModel in the table for the selected item
+     * Change the TableModel in the table for the selected item
      */
     private void changeTableModel(String itemName) {
         //  The model has been created previously so just use it

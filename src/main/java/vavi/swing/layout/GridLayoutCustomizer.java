@@ -13,7 +13,6 @@ import java.awt.LayoutManager;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
-import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
 
@@ -46,11 +45,7 @@ public class GridLayoutCustomizer extends BasicLayoutManagerCustomizer {
     }
 
     /** */
-    private TableModelListener tml = new TableModelListener() {
-        public void tableChanged(TableModelEvent ev) {
-            updateLayout();
-        }
-    };
+    private TableModelListener tml = ev -> updateLayout();
 
     /** */
     private void updateLayout() {

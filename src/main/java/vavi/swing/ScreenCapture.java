@@ -34,7 +34,6 @@ class ScreenCapture {
             robot = new Robot();
         } catch (AWTException ex) {
             ex.printStackTrace();
-            return;
         }
     }
 
@@ -52,11 +51,7 @@ class ScreenCapture {
         dirtyFlag = true;
         moveFlagOld = true;
 
-        thread = new Thread(new Runnable() {
-                public void run() {
-                    watchDirtyRegeon();
-                }
-            });
+        thread = new Thread(this::watchDirtyRegion);
         thread.start();
 
         timer = new Timer();
@@ -112,7 +107,7 @@ class ScreenCapture {
         }
     }
 
-    private void watchDirtyRegeon() {
+    private void watchDirtyRegion() {
         Thread current = Thread.currentThread();
         while(current == thread) {
             if (!dirtyFlag) {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009 by Naohide Sano, All rights rserved.
+ * Copyright (c) 2009 by Naohide Sano, All rights reserved.
  *
  * Programmed by Naohide Sano
  */

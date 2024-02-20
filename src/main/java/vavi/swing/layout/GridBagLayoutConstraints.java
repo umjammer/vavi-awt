@@ -127,15 +127,15 @@ public class GridBagLayoutConstraints extends LayoutConstraints {
     }
 
     public void setWeightx(double weightx) {
-        Double oldValue = new Double(constraints.weightx);
+        Double oldValue = constraints.weightx;
         constraints.weightx = weightx;
-        firePropertyChange("weightx", oldValue, new Double(weightx));
+        firePropertyChange("weightx", oldValue, weightx);
     }
 
     public void setWeighty(double weighty) {
-        Double oldValue = new Double(constraints.weighty);
+        Double oldValue = constraints.weighty;
         constraints.weighty = weighty;
-        firePropertyChange("weighty", oldValue, new Double(weighty));
+        firePropertyChange("weighty", oldValue, weighty);
     }
 
     // LayoutConstraints ------------------------------------------------------

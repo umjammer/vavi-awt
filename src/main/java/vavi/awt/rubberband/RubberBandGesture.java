@@ -46,7 +46,7 @@ public class RubberBandGesture extends MouseInputAdapter {
     //-------------------------------------------------------------------------
 
     /** The editor support */
-    private EditorSupport editorSupport = new EditorSupport();
+    private final EditorSupport editorSupport = new EditorSupport();
 
     /** Adds an editor listener. */
     public void addEditorListener(EditorListener l) {

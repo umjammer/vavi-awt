@@ -50,23 +50,23 @@ public class TitledBorderInfo extends SimpleBorderInfo {
         bpds[1] = new BorderPropertyDescriptor("title", clazz);
         bpds[2] = new BorderPropertyDescriptor("titleJustification", clazz);
         Object[] value = new Object[] {
-            "DEFAULT_JUSTIFICATION", new Integer(TitledBorder.DEFAULT_JUSTIFICATION), null,
-            "LEFT", new Integer(TitledBorder.LEFT), null,
-            "CENTER", new Integer(TitledBorder.CENTER), null,
-            "RIGHT", new Integer(TitledBorder.RIGHT), null,
-            "LEADING", new Integer(TitledBorder.LEADING), null,
-            "TRAILING", new Integer(TitledBorder.TRAILING), null,
+            "DEFAULT_JUSTIFICATION", TitledBorder.DEFAULT_JUSTIFICATION, null,
+            "LEFT", TitledBorder.LEFT, null,
+            "CENTER", TitledBorder.CENTER, null,
+            "RIGHT", TitledBorder.RIGHT, null,
+            "LEADING", TitledBorder.LEADING, null,
+            "TRAILING", TitledBorder.TRAILING, null,
         };
         bpds[2].setValue("enumerationValues", value);
         bpds[3] = new BorderPropertyDescriptor("titlePosition", clazz);
         value = new Object[] {
-            "DEFAULT_POSITION", new Integer(TitledBorder.DEFAULT_POSITION), null,
-            "ABOVE_TOP", new Integer(TitledBorder.ABOVE_TOP), null,
-            "TOP", new Integer(TitledBorder.TOP), null,
-            "BELOW_TOP", new Integer(TitledBorder.BELOW_TOP), null,
-            "ABOVE_BOTTOM", new Integer(TitledBorder.ABOVE_BOTTOM), null,
-            "BOTTOM", new Integer(TitledBorder.BOTTOM), null,
-            "BELOW_BOTTOM", new Integer(TitledBorder.BELOW_BOTTOM), null,
+            "DEFAULT_POSITION", TitledBorder.DEFAULT_POSITION, null,
+            "ABOVE_TOP", TitledBorder.ABOVE_TOP, null,
+            "TOP", TitledBorder.TOP, null,
+            "BELOW_TOP", TitledBorder.BELOW_TOP, null,
+            "ABOVE_BOTTOM", TitledBorder.ABOVE_BOTTOM, null,
+            "BOTTOM", TitledBorder.BOTTOM, null,
+            "BELOW_BOTTOM", TitledBorder.BELOW_BOTTOM, null,
         };
         bpds[3].setValue("enumerationValues", value);
         bpds[4] = new BorderPropertyDescriptor("titleFont", clazz);

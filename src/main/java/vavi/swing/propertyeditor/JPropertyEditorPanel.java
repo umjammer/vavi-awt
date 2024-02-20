@@ -272,11 +272,7 @@ public class JPropertyEditorPanel extends JPanel {
         }
 
         /** OK means only closing the dialog. */
-        private ActionListener okActionListener = new ActionListener() {
-            public void actionPerformed(ActionEvent ev)  {
-                dispose();
-            }
-        };
+        private ActionListener okActionListener = ev -> dispose();
     }
 
     /**
@@ -366,7 +362,7 @@ Debug.println(Level.SEVERE, e);
                 try {
                     customizer = (Component) clazz.newInstance();
                 } catch (Exception e) {
-Debug.println("Instantiation exception creating Customizer: " + e);
+Debug.println(Level.FINE, "Instantiation exception creating Customizer: " + e);
                 }
             }
         }

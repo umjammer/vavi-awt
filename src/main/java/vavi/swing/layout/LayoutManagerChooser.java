@@ -45,7 +45,7 @@ public class LayoutManagerChooser extends JTabbedPane {
     /** */
     private LayoutManager layout;
 
-    /** */
+//    /** */
 //  private Container container;
 
     /** */
@@ -65,11 +65,11 @@ public class LayoutManagerChooser extends JTabbedPane {
                 String key = "editor." + i;
                 String value = props.getProperty(key);
                 if (value == null) {
-Debug.println("no property for: editor." + i);
+Debug.println(Level.FINE, "no property for: editor." + i);
                     break;
                 }
 
-//Debug.println(value);
+Debug.println(Level.FINER, value);
                 Class<?> clazz = Class.forName(value);
 
                 BeanInfo bi = LayoutManagerInfoFactory.getBeanInfo(clazz);
@@ -98,10 +98,10 @@ Debug.printStackTrace(e);
     private PropertyChangeListener pcl = new PropertyChangeListener() {
         public void propertyChange(PropertyChangeEvent ev) {
             String name = ev.getPropertyName();
-//Debug.println(name);
+Debug.println(Level.FINER, name);
             if ("layout".equals(name)) {
                 layout = (LayoutManager) ev.getNewValue();
-//Debug.println(layout == null ? null : Debug.getClassName(layout.getClass().getName()));
+Debug.println(Level.FINER, layout == null ? null : layout.getClass().getSimpleName());
 //              firePropertyChange("layout", null, layout);
             }
         }
@@ -114,7 +114,7 @@ Debug.printStackTrace(e);
             LayoutManagerCustomizer lmc = (LayoutManagerCustomizer) getComponentAt(i);
 //          lmc.setContainer(container);
             layout = lmc.getObject();
-//Debug.println(layout == null ? null : Debug.getClassName(layout.getClass().getName()));
+Debug.println(Level.FINER, layout == null ? null : layout.getClass().getSimpleName());
         }
     };
 

@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 
 import javax.swing.AbstractButton;
 import javax.swing.Box;
@@ -28,6 +29,8 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
+
+import vavi.util.Debug;
 
 
 /**
@@ -52,7 +55,7 @@ public class SmallFontEditor extends JComponent implements FontEditor {
     private static final Dimension buttonSize =
         new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT);
 
-    private String fonts[];
+    private String[] fonts;
     private static final int[] pointSizes =
         { 3, 5, 8, 10, 12, 14, 18, 24, 36, 48 };
 
@@ -153,8 +156,8 @@ public class SmallFontEditor extends JComponent implements FontEditor {
         familyNameCombo.setAlignmentX(Component.CENTER_ALIGNMENT);
         familyNameCombo.setAlignmentY(Component.CENTER_ALIGNMENT);
 
-        for (int i = 0; i < pointSizes.length; i++) {
-            fontSizeCombo.addItem("" + pointSizes[i]);
+        for (int pointSize : pointSizes) {
+            fontSizeCombo.addItem(String.valueOf(pointSize));
         }
 
         fontSizeCombo.setPreferredSize(SMALL_DIMENSION);
@@ -173,7 +176,7 @@ public class SmallFontEditor extends JComponent implements FontEditor {
         fontSizeCombo.addActionListener(al);
     }
 
-    /** */
+//    /** */
 //      private void unplugActionListener() {
 //          pButton.removeActionListener(al);
 //          iButton.removeActionListener(al);
@@ -218,7 +221,7 @@ public class SmallFontEditor extends JComponent implements FontEditor {
     //-------------------------------------------------------------------------
 
     /**
-     * Implementation of a Icon button.
+     * Implementation of an Icon button.
      */
     private static class FontDisplay implements Icon {
         private Font font;
@@ -285,7 +288,7 @@ public class SmallFontEditor extends JComponent implements FontEditor {
     public void setSelectedFont(Font font) {
         this.font = font;
 
-//Debug.println(font);
+Debug.println(Level.FINER, font);
         if (font == null)
             return;
 

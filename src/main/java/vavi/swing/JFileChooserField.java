@@ -9,13 +9,13 @@ package vavi.swing;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.io.File;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -30,8 +30,8 @@ import vavi.util.Debug;
  * 入力フィールドに"参照"ボタンがついています．
  * 現在のところファイルチューザとテキストフィールドの拡張とみなしています．
  *
- * @event PropetyChangeEvent("text",,String)
- * @event PropetyChangeEvent("selectedFile",,File)
+ * @event PropertyChangeEvent("text",,String)
+ * @event PropertyChangeEvent("selectedFile",,File)
  *
  * @depends /vavi/swing/resource${I18N}.properties
  *
@@ -106,13 +106,13 @@ public abstract class JFileChooserField extends JComponent {
 
     /** フィールドの処理 TODO text only でいいのか？ */
     protected ActionListener pathFieldActionListener = ev -> {
-        // Debug.println(ev.getSource().getClass().getName());
+Debug.println(Level.FINER, ev.getSource().getClass().getName());
         setText(getText());
     };
 
     /** 選択ボタンの処理 */
     private final ActionListener selectButtonActionListener = ev -> {
-        // Debug.println(ev.getSource().getClass().getName());
+Debug.println(Level.FINER, ev.getSource().getClass().getName());
         int returnValue = chooser.showDialog(getParent(), title);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             setSelectedFile(chooser.getSelectedFile());
@@ -198,11 +198,11 @@ public abstract class JFileChooserField extends JComponent {
         } else {
             defaultPath = new File(System.getProperty("user.home"));
         }
-Debug.println(defaultPath);
+Debug.println(Level.FINER, defaultPath);
         chooser.setCurrentDirectory(defaultPath);
     }
 
-    /** ファイルチューザのカレントディレクトリを取得します． */
+//    /** ファイルチューザのカレントディレクトリを取得します． */
 //    private File getCurrentDirectory() {
 //        return chooser.getCurrentDirectory();
 //    }

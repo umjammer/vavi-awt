@@ -57,16 +57,16 @@ public class BasicRubberBandRenderer implements RubberBandRenderer {
         Cursor.getPredefinedCursor(Cursor.SW_RESIZE_CURSOR)  // 10
     };
 
-    /** ラバーバンドセレクタ */
-    private JComponent selector = new JComponent() {
-        /** 赤い選択用ラバーバンド描画 */
-        public void paintComponent(Graphics g) {
+    /** A rubber band selector. */
+    private final JComponent selector = new JComponent() {
+        /** Draws red rubber band. */
+        @Override public void paintComponent(Graphics g) {
             g.setColor(Color.red);
             g.drawRect(0, 0, getSize().width - 1, getSize().height - 1);
         }
     };
 
-    /** ラバーバンドセレクタ表示，追加，サイズ変更． */
+    @Override
     public void drawSelecting(Rectangle bounds) {
         if (selector.getParent() == null) {
             container.add(selector, 0);
@@ -75,31 +75,29 @@ public class BasicRubberBandRenderer implements RubberBandRenderer {
         selector.setBounds(bounds);
     }
 
-    /** ラバーバンドセレクタ非表示，削除． */
+    @Override
     public void drawSelected(Rectangle bounds) {
         selector.setVisible(false);
         container.remove(selector);
     }
 
-    /** 移動時のラバーバンドを描画します． */
+    @Override
     public void drawMoving(Rectangle r) {
     }
 
-    /** 移動後のラバーバンドを描画します． */
+    @Override
     public void drawMoved(Rectangle r) {
     }
 
-    /** リサイズ時のラバーバンドを描画します． */
+    @Override
     public void drawResizing(Rectangle r) {
     }
 
-    /** リサイズ後のラバーバンドを描画します． */
+    @Override
     public void drawResized(Rectangle r) {
     }
 
-    /**
-     * マウスの位置によってリサイズか移動かを取得します．
-     */
+    @Override
     public int getMode(Component component, Point point) {
         int mode;
 
@@ -113,33 +111,30 @@ public class BasicRubberBandRenderer implements RubberBandRenderer {
         int minY = ri.top;
         int maxY = -ri.bottom + component.getSize().height;
 
-        if (x < minX && y < minY) { // 左上にリサイズ
+        if (x < minX && y < minY) { // resize northwest
             mode = RubberBand.RESIZE_NW;
-        } else if (x < minX && y > maxY) { // 左下にリサイズ
+        } else if (x < minX && y > maxY) { // resize southwest
             mode = RubberBand.RESIZE_SW;
-        } else if (x > maxX && y < minY) { // 右上にリサイズ
+        } else if (x > maxX && y < minY) { // resize northeast
             mode = RubberBand.RESIZE_NE;
-        } else if (x > maxX && y > maxY) { // 右下にリサイズ
+        } else if (x > maxX && y > maxY) { // resize southeast
             mode = RubberBand.RESIZE_SE;
-        } else if ((x > minX && x < maxX) && y < minY) { // 上にリサイズ
+        } else if ((x > minX && x < maxX) && y < minY) { // resize north
             mode = RubberBand.RESIZE_N;
-        } else if ((x > minX && x < maxX) && y > maxY) { // 下にリサイズ
+        } else if ((x > minX && x < maxX) && y > maxY) { // resize south
             mode = RubberBand.RESIZE_S;
-        } else if (x < minX && (y > minY && y < maxY)) { // 左にリサイズ
+        } else if (x < minX && (y > minY && y < maxY)) { // resize west
             mode = RubberBand.RESIZE_W;
-        } else if (x > maxX && (y > minY && y < maxY)) { // 右にリサイズ
+        } else if (x > maxX && (y > minY && y < maxY)) { // resize east
             mode = RubberBand.RESIZE_E;
-        } else { // 移動モード
+        } else { // moving mode
             mode = RubberBand.MOVE_MODE;
         }
 
         return mode;
     }
 
-    /**
-     * @see RubberBand#getMode()
-     * @param mode
-     */
+    @Override
     public Cursor getCursor(int mode) {
         return cursors[mode];
     }

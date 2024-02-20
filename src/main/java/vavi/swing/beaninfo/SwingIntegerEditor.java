@@ -9,10 +9,13 @@ package vavi.swing.beaninfo;
 import java.awt.Component;
 import java.beans.FeatureDescriptor;
 import java.beans.PropertyChangeListener;
+import java.util.logging.Level;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
+
+import vavi.util.Debug;
 
 
 /**
@@ -24,7 +27,7 @@ import javax.swing.JSpinner;
  * @author Mark Davidson
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 1.90 991111 original version <br>
- *          1.91 020524 nsano be genaric <br>
+ *          1.91 020524 nsano be generic <br>
  */
 public class SwingIntegerEditor extends SwingEditorSupport {
 
@@ -91,7 +94,7 @@ public class SwingIntegerEditor extends SwingEditorSupport {
 
             enumEditor.init(descriptor);
             enumEditor.setEditor(null);
-//Debug.println("enum");
+Debug.println(Level.FINER, "enum");
 //        } else if (enumplus != null) {
             // enhanced enum
 
@@ -104,11 +107,11 @@ public class SwingIntegerEditor extends SwingEditorSupport {
             // This is an integer item
             isEnumeration = false;
             enumEditor.setEditor(null);
-//Debug.println("normal");
+Debug.println(Level.FINER, "normal");
         }
     }
 
-    /** */
+//    /** */
 //    private ComboBoxEditor ce = new BasicComboBoxEditor() {
 //        public Component getEditorComponent() {
 //            return intSpinner;
@@ -127,14 +130,14 @@ public class SwingIntegerEditor extends SwingEditorSupport {
 //        }
 //    };
 
-    /** */
+//    /** */
 //    private ChangeListener cl = new ChangeListener() {
 //        public void stateChanged(ChangeEvent ev) {
 //            SwingIntegerEditor.super.setValue(intSpinner.getValue());
 //        }
 //    };
 
-    /** */
+//    /** */
 //    private PropertyChangeListener al = new PropertyChangeListener() {
 //        public void propertyChange(PropertyChangeEvent ev) {
 //            SwingIntegerEditor.super.setValue(intSpinner.getValue());

@@ -11,6 +11,9 @@ import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+
+import vavi.util.Debug;
 
 
 /**
@@ -35,7 +38,7 @@ public abstract class BasicTransferable implements Transferable {
      */
     public BasicTransferable(Object model) {
         this.model = model;
-//Debug.println(Level.FINE, model);
+Debug.println(Level.FINER, model);
     }
 
     /** Dumps flavors. */
@@ -61,13 +64,13 @@ public abstract class BasicTransferable implements Transferable {
 
     /** Tells if the specified flavor is supported or not. */
     public boolean isDataFlavorSupported(DataFlavor flavor) {
-//Debug.println(Level.FINE, flavorList.contains(flavor));
+Debug.println(Level.FINER, flavorList.contains(flavor));
         return flavorList.contains(flavor);
     }
 
     /** Gets the transferable data. */
     public synchronized Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
-//Debug.println(Level.FINE, toString());
+Debug.println(Level.FINER, toString());
 //        dumpFlavor(flavor);
 
         if (isDataFlavorSupported(flavor)) {

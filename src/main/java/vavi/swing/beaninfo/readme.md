@@ -1,6 +1,6 @@
-Swing コンポーネント用のプロパティエディタ関連のクラスを提供します．
+Provides property editor classes for swing components.
 
 ## TODO
 
- * ~~Layout のプロパティエディタ~~
- * ~~Icon のプロパティエディタ~~
+ * ~~property editor for Layout~~
+ * ~~property editor for Icon~~

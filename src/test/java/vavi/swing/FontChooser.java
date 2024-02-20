@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2018 by Naohide Sano, All rights reserved.
+ *
+ * Programmed by Naohide Sano
+ */
 
 package vavi.swing;
 

@@ -12,13 +12,12 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.Rectangle;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.logging.Level;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -35,6 +34,7 @@ import javax.swing.UIManager;
 import javax.swing.plaf.metal.MetalComboBoxIcon;
 
 import vavi.swing.colorchooser.SmallColorChooserPopupMenu;
+import vavi.util.Debug;
 
 
 /**
@@ -141,7 +141,7 @@ public class SwingColorEditor extends SwingEditorSupport {
         }
     };
 
-    // PropertyEditorSupport --------------------------------------------------
+    // PropertyEditorSupport ----
 
     /** */
     public boolean isPaintable() {
@@ -191,8 +191,8 @@ public class SwingColorEditor extends SwingEditorSupport {
     /** */
     public void setValue(Object value) {
         super.setValue(value);
-//Debug.println(value);
-//Debug.printStackTrace(new Exception());
+Debug.println(Level.FINEST, value);
+Debug.printStackTrace(Level.FINEST, new Exception("***DUMMY***"));
         Color color = (Color) value;
         if (color == null) {
             rgbValue.setText("                  ");
@@ -201,13 +201,13 @@ public class SwingColorEditor extends SwingEditorSupport {
         }
         // set the combo rect foreground color
         // and the textfield to the rgb value
-        rgbValue.setText("" + color.getRed  () + "," +
+        rgbValue.setText(color.getRed  () + "," +
                               color.getGreen() + "," +
                               color.getBlue ());
         colorChooserCombo.setBackground(color);
     }
 
-    //-------------------------------------------------------------------------
+    //----
 
     // for testing
 

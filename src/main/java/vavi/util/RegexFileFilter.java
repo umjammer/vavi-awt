@@ -80,7 +80,7 @@ public class RegexFileFilter extends javax.swing.filechooser.FileFilter implemen
         }
 
         if (regexs.size() == 0) {
-Debug.println("no pattern");
+Debug.println(Level.FINE, "no pattern");
             return true;
         }
 
@@ -106,7 +106,7 @@ Debug.println(Level.FINE, e);
         }
 
         if (regexs.size() == 0) {
-Debug.println("no pattern");
+Debug.println(Level.FINE, "no pattern");
             return true;
         }
 

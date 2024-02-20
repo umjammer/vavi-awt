@@ -25,7 +25,6 @@ import javax.swing.JToolBar;
 import javax.swing.table.DefaultTableModel;
 
 import vavi.swing.JHistoryComboBox;
-import vavi.util.CharNormalizerJa;
 import vavi.util.Debug;
 
 

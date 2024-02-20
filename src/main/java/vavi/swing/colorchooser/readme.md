@@ -1,5 +1,5 @@
-カラーチューザのクラスを提供します．
+Provides color chooser related classes.
 
 ## TODO
 
- * 一ちゃん最初効かない (firePropertyChange あたり)
+ * doesn't work the first time (see around firePropertyChange)

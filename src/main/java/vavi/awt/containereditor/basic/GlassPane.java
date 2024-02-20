@@ -15,7 +15,7 @@ import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
 import java.util.HashMap;
 import java.util.Map;
-
+import java.util.logging.Level;
 import javax.swing.JComponent;
 import javax.swing.event.MouseInputListener;
 
@@ -29,8 +29,8 @@ import vavi.util.Debug;
 /**
  * GlassPane
  *
- * container に setSize すること．
- * TODO container editor が混ざっている, pure rubber band と分離
+ * must setSize for container
+ * TODO still remaining container editor elements, separate pure rubber band
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020613 nsano initial version <br>
@@ -45,13 +45,13 @@ public class GlassPane extends JComponent {
                 Component component = ev.getChild();
                 component.addMouseListener(rbg);
                 component.addMouseMotionListener(rbg);
-//Debug.println("add gesture to: " + ((Controller) component).getView().getName());
+Debug.println(Level.FINER, "add gesture to: " + component.getName());
             }
             public void componentRemoved(ContainerEvent ev) {
                 Component component = ev.getChild();
                 component.removeMouseListener(rbg);
                 component.removeMouseMotionListener(rbg);
-//Debug.println("remove gesture to: " + ((Controller) component).getView().getName());
+Debug.println(Level.FINER, "remove gesture to: " + component.getName());
             }
         };
         {
@@ -144,7 +144,7 @@ public class GlassPane extends JComponent {
     }
 
     /**
-     * 将来 InputMap が対応してくれんじゃないの？
+     * InputMap might resolve everything in the future
      */
     public void setMouseInputAction(MouseInputListener mil) {
         glassPane.addMouseListener(mil);
@@ -153,7 +153,7 @@ public class GlassPane extends JComponent {
 
     //-------------------------------------------------------------------------
 
-    /** コンテナのリスナ */
+    /** listener for container */
     private ContainerListener cl1 = new ContainerListener() {
         /** の追加はコントローラを発生 */
         public void componentAdded(ContainerEvent ev) {
@@ -175,7 +175,7 @@ public class GlassPane extends JComponent {
         if (controller == null) {
             controller = new BasicController(component);
             glassPane.add(controller, 0);
-//Debug.println("add controller to: " + component.getName());
+Debug.println(Level.FINER, "add controller to: " + component.getName());
             controllers.put(component, controller);
         }
     }
@@ -185,7 +185,7 @@ public class GlassPane extends JComponent {
         LocatableController controller = (LocatableController) controllers.get(component);
         if (controller != null && controller.getView() == component) {
             glassPane.remove((Component) controller);
-//Debug.println("remove controller for: " + component.getName());
+Debug.println(Level.FINER, "remove controller for: " + component.getName());
             controllers.remove(component);
         }
     }
@@ -194,7 +194,7 @@ public class GlassPane extends JComponent {
 
     /** すべてのコンポーネントに Controller を作成 */
     private void addAllControllers() {
-//Debug.println(container.getComponentCount());
+Debug.println(Level.FINER, container.getComponentCount());
         for (int i = 0; i < container.getComponentCount(); i++) {
             Component component = container.getComponent(i);
             addController(component);
@@ -208,14 +208,14 @@ public class GlassPane extends JComponent {
             removeController(component);
         }
 if (controllers.size() != 0) {
-Debug.println("TODO " + controllers.size() + "controller(s) still alive");
+ Debug.println(Level.INFO, "TODO " + controllers.size() + "controller(s) still alive");
 }
     }
 
     //-------------------------------------------------------------------------
 
-    /** Component と Controller のペア */
-    private Map<Component,Component> controllers = new HashMap<>();
+    /** pairs for Component and Controller */
+    private Map<Component, Component> controllers = new HashMap<>();
 
     /** */
     public LocatableController getControllerFor(Component component) {

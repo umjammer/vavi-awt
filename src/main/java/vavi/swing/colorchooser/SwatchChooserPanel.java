@@ -26,6 +26,8 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.colorchooser.AbstractColorChooserPanel;
 
+import vavi.util.Debug;
+
 import static vavi.swing.colorchooser.MainSwatchPanel.colors;
 
 
@@ -223,6 +225,10 @@ class SwatchPanel extends JPanel {
 
     /** */
     private Color getColorForCell(int column, int row) {
+Debug.printf("@@@ OVERFLOW: %d, %d", column, row);
+if (colors.length <= (row * numSwatches.width) + column) {
+    return Color.black;
+}
         return colors[(row * numSwatches.width) + column];
         // (STEVE) - change data orientation here
     }
@@ -234,8 +240,7 @@ class SwatchPanel extends JPanel {
 class RecentSwatchPanel extends SwatchPanel {
     /** */
     protected void initValues() {
-        // swatchSize =
-        // UIManager.getDimension("ColorChooser.swatchesRecentSwatchSize");
+        // swatchSize = UIManager.getDimension("ColorChooser.swatchesRecentSwatchSize");
         swatchSize = new Dimension(13, 13);
         numSwatches = new Dimension(6, 1);
         gap = new Dimension(1, 1);
@@ -245,7 +250,7 @@ class RecentSwatchPanel extends SwatchPanel {
     protected void initColors() {
         Color defaultRecentColor = UIManager.getColor("ColorChooser.swatchesDefaultRecentColor");
         int numColors = numSwatches.width * numSwatches.height;
-
+Debug.println("@@@ numColors: " + numColors);
         colors = new Color[numColors];
         for (int i = 0; i < numColors; i++) {
             colors[i] = defaultRecentColor;
@@ -254,7 +259,7 @@ class RecentSwatchPanel extends SwatchPanel {
 
     /** */
     public void setMostRecentColor(Color c) {
-        if (!colors[0].equals(c)) {
+        if (!colors[0].equals(c)) { // TODO NPE
             System.arraycopy(colors, 0, colors, 1, colors.length - 1);
             colors[0] = c;
             repaint();
@@ -273,8 +278,7 @@ class RecentSwatchPanel extends SwatchPanel {
 class MainSwatchPanel extends SwatchPanel {
     /** */
     protected void initValues() {
-        // swatchSize =
-        // UIManager.getDimension("ColorChooser.swatchesSwatchSize");
+        // swatchSize = UIManager.getDimension("ColorChooser.swatchesSwatchSize");
         swatchSize = new Dimension(13, 13);
         // numSwatches = new Dimension(31, 10);
         numSwatches = new Dimension(6, 6);
@@ -293,7 +297,7 @@ class MainSwatchPanel extends SwatchPanel {
         100, 100, 100, 255, 175, 175, 255, 200, 0, 255, 255, 0, 0, 255, 0, 255, 0, 255, 0, 255, 255, 0, 0, 255,
     };
 
-    /** */
+    /* */
     static {
         int numColors = rawValues.length / 3;
 

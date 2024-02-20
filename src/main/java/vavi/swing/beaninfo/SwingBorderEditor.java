@@ -14,6 +14,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.logging.Level;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -35,6 +36,7 @@ import javax.swing.border.Border;
 import vavi.swing.border.BorderChooser;
 import vavi.swing.border.BorderInfoFactory;
 import vavi.swing.border.SampleBorderInfo;
+import vavi.util.Debug;
 
 
 /**
@@ -101,7 +103,7 @@ public class SwingBorderEditor extends SwingEditorSupport {
                 SampleBorderInfo bi =
                     (SampleBorderInfo) borderCombo.getItemAt(i);
                 Border border = bi.border;
-//Debug.println(bi.desc);
+Debug.println(Level.FINER, bi.desc);
                 if (value == border) {
                     borderCombo.setSelectedIndex(i);
                     plug();

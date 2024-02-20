@@ -9,11 +9,14 @@ package vavi.swing.beaninfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.FeatureDescriptor;
+import java.util.logging.Level;
 
 import javax.swing.BoxLayout;
 import javax.swing.ComboBoxEditor;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+
+import vavi.util.Debug;
 
 
 /**
@@ -25,8 +28,8 @@ import javax.swing.JPanel;
  * @author Mark Davidson
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version                   original version <br>
- *          0.01 020524 nsano be genaric #init <br>
- *          0.01 020527 nsano be genaric EnumeratedItem <br>
+ *          0.01 020524 nsano be generic #init <br>
+ *          0.01 020527 nsano be generic EnumeratedItem <br>
  */
 public class SwingEnumEditor extends SwingEditorSupport {
 
@@ -115,7 +118,7 @@ public class SwingEnumEditor extends SwingEditorSupport {
 
             for (int i = 0; i < enumeration.length; i += 3) {
               combobox.addItem(new EnumeratedItem((String) enumeration[i], enumeration[i+1]));
-//Debug.println(enum[i+2]); // et. "SwingConstants.LEADING"
+//Debug.println(Level.FINER, enum[i + 2]); // et. "SwingConstants.LEADING"
             }
 
             combobox.addActionListener(al);
@@ -150,7 +153,7 @@ class EnumeratedItem  {
     public EnumeratedItem(String name, Object value) {
         this.name = name;
         this.value = value;
-//Debug.println(name + ", " + value);
+Debug.println(Level.FINER, name + ", " + value);
     }
 
     public String getName() {

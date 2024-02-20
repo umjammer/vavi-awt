@@ -17,6 +17,8 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -36,13 +38,13 @@ import vavi.util.Debug;
 
 
 /**
- * SelectinModel を用いる Container のエディタです．
+ * The Container editor using a SelectionModel.
  *
  * @event EditorEvent("copy", Vector<Component>)
  * @event EditorEvent("lostOwnership")
  * @event EditorEvent("select", Vector<Component>)
  *
- * TODO ComponentSelectionModel をつくるべきか
+ * TODO Is ComponentSelectionModel needed or not?
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020604 nsano initial version <br>
@@ -55,10 +57,10 @@ import vavi.util.Debug;
  */
 public abstract class ContainerEditor implements Editable {
 
-    /** コンテナ内のコンポーネントの選択モデル */
+    /** the selection model for components in the container */
     protected SelectionModel selectionModel;
 
-    /** 編集対象のコンテナ */
+    /** the container to edit. */
     protected Container container;
 
     /**
@@ -77,14 +79,14 @@ public abstract class ContainerEditor implements Editable {
         this.container = container;
     }
 
-    // -------------------------------------------------------------------------
+    // ----
 
     /**
      * 将来 InputMap が対応してくれんじゃないの？
      */
     public abstract void setMouseInputAction(MouseInputListener mil);
 
-    // -------------------------------------------------------------------------
+    // ----
 
     /** listener for selection model */
     private SelectionListener sl = new SelectionListener() {
@@ -100,24 +102,24 @@ public abstract class ContainerEditor implements Editable {
         }
     };
 
-    // -------------------------------------------------------------------------
+    // ----
 
-    /** コンテナが編集可能かどうか */
+    /** is the container editable? */
     private boolean isEditable = true;
 
-    /** コンテナが編集可能かどうかを返します． */
+    /** Returns the container is editable? */
     public boolean isEditable() {
         return isEditable;
     }
 
-    /** コンテナが編集可能かどうかを設定します． */
+    /** Sets the container is editable? */
     public void setEditable(boolean isEditable) {
         this.isEditable = isEditable;
 
         selectionModel.deselectAll();
     }
 
-    // for outer editor -------------------------------------------------------
+    // for outer editor ----
 
     /** */
     protected abstract Controller getControllerFor(Component component);
@@ -136,19 +138,17 @@ public abstract class ContainerEditor implements Editable {
     }
 
     /**
-     * 指定した Component のベクタを選択状態にします．
+     * Make specified components selected.
      *
-     * @param selection List<Selectable>
+     * @param selection List<Component>
      */
-    public void select(List<Selectable> selection) {
-        List<Selectable> selected = new ArrayList<>();
+    public void select(List<Component> selection) {
         if (selection.size() == 1 && selection.get(0) == container) {
             selectionModel.deselectAll();
-            selected.add((Selectable) container);
-            fireEditorUpdated(new EditorEvent(ContainerEditor.this, "select", selected));
+            fireEditorUpdated(new EditorEvent(ContainerEditor.this, "select", Collections.singletonList(container)));
         } else {
-            for (Selectable selectable : selection) {
-                Component component = (Component) selectable;
+            List<Selectable> selected = new ArrayList<>();
+            for (Component component : selection) {
                 Controller controller = getControllerFor(component);
                 selected.add(controller);
             }
@@ -157,7 +157,7 @@ public abstract class ContainerEditor implements Editable {
     }
 
     /**
-     * Component を選択状態にします．
+     * Make a specified component selected.
      */
     public void select(Component component, boolean isMultiSelection) {
         if (component == container) {
@@ -174,7 +174,7 @@ public abstract class ContainerEditor implements Editable {
     private final List<Selectable> selected = new ArrayList<>();
 
     /**
-     * Component をすべて選択します．
+     * Select all components.
      */
     public void selectAll() {
         selected.clear();
@@ -188,7 +188,7 @@ public abstract class ContainerEditor implements Editable {
     }
 
     /**
-     * Component をすべて非選択にします．
+     * Deselect all components.
      */
     public void deselectAll() {
         selectionModel.deselectAll();
@@ -212,21 +212,21 @@ public abstract class ContainerEditor implements Editable {
         /** Called when lost the ownership. */
         public void lostOwnership(Clipboard clipboard, Transferable contents) {
             if (clipboard == systemClipboard) {
-Debug.println(clipboard.getName());
+Debug.println(Level.FINE, clipboard.getName());
                 localClipboard.setContents(contents, this);
                 currentClipboard = localClipboard;
             } else {
-Debug.println("???: " + clipboard.getName());
+Debug.println(Level.INFO, "???: " + clipboard.getName());
                 fireEditorUpdated(new EditorEvent(ContainerEditor.this, "lostOwnership"));
             }
         }
     };
 
-    /** 同じ部品をペーストした回数 */
+    /** Number of pasting the same component. */
     private int pasteCount;
 
     /**
-     * "カット"の処理を行います．
+     * Processes "cut".
      */
     public void cut() {
         copy();
@@ -234,7 +234,7 @@ Debug.println("???: " + clipboard.getName());
     }
 
     /**
-     * "コピー"の処理を行います．
+     * Processes "copy".
      */
     public synchronized void copy() {
 
@@ -254,7 +254,7 @@ Debug.println(Level.SEVERE, e);
     }
 
     /**
-     * "貼りつけ"の処理を行います．
+     * Processes "past".
      */
     public synchronized void paste() {
 
@@ -284,7 +284,7 @@ Debug.printStackTrace(e);
     }
 
     /**
-     * "削除"の処理を行います．
+     * Processes "delete".
      */
     public void delete() {
         List<Selectable> selected = selectionModel.getSelected();
@@ -313,10 +313,10 @@ Debug.printStackTrace(e);
         container.repaint();
     }
 
-    // -------------------------------------------------------------------------
+    // ----
 
     /**
-     * "上にそろえる"メニューの処理を行います．
+     * Processes "align upper".
      */
     public void alignTop() {
 
@@ -336,7 +336,7 @@ Debug.printStackTrace(e);
     }
 
     /**
-     * "左にそろえる"のメニュー処理を行います．
+     * Processes "align left".
      */
     public void alignLeft() {
 

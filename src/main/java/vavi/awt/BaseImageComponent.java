@@ -39,6 +39,7 @@ import static javax.swing.SwingConstants.TOP;
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 220920 nsano initial version <br>
  */
+@SuppressWarnings("unchecked")
 public abstract class BaseImageComponent<T extends Image> extends JComponent {
 
     /** image to render */
@@ -75,8 +76,9 @@ public abstract class BaseImageComponent<T extends Image> extends JComponent {
         if (droppable) {
             Droppable.makeComponentSinglePathDroppable(this, p -> {
                 try {
+                    @SuppressWarnings("unchecked")
                     T image = (T) ImageIO.read(Files.newInputStream(p));
-Debug.println(p + ", " + image);
+Debug.println(Level.FINE, p + ", " + image);
                     if (image != null) {
                         firePropertyChange("droppedImage", this.image, image);
                         setImage(image);
@@ -294,7 +296,7 @@ Debug.printf(Level.FINE, "crop: %d, %d %d, %d", cr.x, cr.y, cr.width, cr.height)
     }
 
     /** default image */
-    private T noImage;
+    private final T noImage;
 
     /* load default image */
     {

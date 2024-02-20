@@ -41,7 +41,7 @@ public class BorderPropertyDescriptor extends FeatureDescriptor {
         try {
             char c = Character.toUpperCase(propertyName.charAt(0));
             String name = "get" + c + propertyName.substring(1);
-//Debug.println(name);
+Debug.println(Level.FINER, name);
             Class<?>[] paramTypes = new Class[0];
             Method method = borderClass.getDeclaredMethod(name, paramTypes);
             return method;
@@ -53,7 +53,7 @@ Debug.println(Level.SEVERE, e);
 
     /** */
     public Class<?> getPropertyType() {
-//Debug.println(getReadMethod().getReturnType());
+Debug.println(Level.FINER, getReadMethod().getReturnType());
         return getReadMethod().getReturnType();
     }
 

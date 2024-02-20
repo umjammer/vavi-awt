@@ -54,10 +54,10 @@ public class TitledBorderCustomizer extends BasicBorderCustomizer {
             } else if ("title".equals(name)) {
                 titled.setTitle((String) ev.getNewValue());
             } else if ("titleJustification".equals(name)) {
-                int tj = ((Integer) ev.getNewValue()).intValue();
+                int tj = (Integer) ev.getNewValue();
                 titled.setTitleJustification(tj);
             } else if ("titlePosition".equals(name)) {
-                int tp = ((Integer) ev.getNewValue()).intValue();
+                int tp = (Integer) ev.getNewValue();
                 titled.setTitlePosition(tp);
             } else if ("titleFont".equals(name)) {
                 titled.setTitleFont((Font) ev.getNewValue());

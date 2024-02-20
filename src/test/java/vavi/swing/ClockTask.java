@@ -13,7 +13,7 @@ public class ClockTask extends TimerTask {
         clock.update(scheduledExecutionTime());
     }
 
-    public static interface Updatable {
+    public interface Updatable {
         void update(long time);
     }
 }

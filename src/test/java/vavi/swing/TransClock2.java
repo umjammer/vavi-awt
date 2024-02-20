@@ -6,8 +6,6 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.DateFormat;
@@ -134,27 +132,15 @@ public class TransClock2 implements Updatable {
     private JPopupMenu initPopupMenu() {
         JPopupMenu menu = new JPopupMenu();
         JMenuItem item = new JMenuItem("色の変更...");
-        item.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent event) {
-                    changeColor();
-                }
-            });
+        item.addActionListener(event -> changeColor());
         menu.add(item);
 
         item = new JMenuItem("フォントの変更...");
-        item.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent event) {
-                    changeFont();
-                }
-            });
+        item.addActionListener(event -> changeFont());
         menu.add(item);
 
         item = new JMenuItem("終了");
-        item.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent event) {
-                    System.exit(0);
-                }
-            });
+        item.addActionListener(event -> System.exit(0));
         menu.add(item);
 
         return menu;
@@ -172,22 +158,18 @@ public class TransClock2 implements Updatable {
         colorChooser = new JColorChooser(color);
         colorChooser.addChooserPanel(new ARGBChooserPanel());
 
-        JDialog dialog = JColorChooser.createDialog(frame, "Font Color", true, colorChooser, new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                color = colorChooser.getColor();
+        JDialog dialog = JColorChooser.createDialog(frame, "Font Color", true, colorChooser, e -> {
+            color = colorChooser.getColor();
 
-                prefs.putInt(COLOR, color.getRGB());
-                try {
-                    prefs.flush();
-                } catch (BackingStoreException ex) {
-                    ex.printStackTrace();
-                }
+            prefs.putInt(COLOR, color.getRGB());
+            try {
+                prefs.flush();
+            } catch (BackingStoreException ex) {
+                ex.printStackTrace();
+            }
 
-                clockLabel.setForeground(color);
-            }
-        }, new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            }
+            clockLabel.setForeground(color);
+        }, e -> {
         });
         dialog.setVisible(true);
     }

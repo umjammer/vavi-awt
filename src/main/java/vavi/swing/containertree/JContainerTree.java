@@ -32,7 +32,7 @@ import vavi.util.Debug;
  */
 public class JContainerTree extends JTree {
 
-    /** */
+//    /** */
 //  private Container container;
 
     /** */
@@ -78,7 +78,7 @@ public class JContainerTree extends JTree {
 
                 try {
                     Class<?> beanClass = component.getClass();
-//Debug.println(beanClass);
+Debug.println(Level.FINER, beanClass);
                     BeanInfo info = Introspector.getBeanInfo(beanClass);
                     /* Set the image. */
                     Image image = info.getIcon(BeanInfo.ICON_COLOR_16x16);
@@ -92,9 +92,9 @@ Debug.println(Level.SEVERE, e);
                 }
 
             if (selected)
-            setForeground(getTextSelectionColor());
+                setForeground(getTextSelectionColor());
             else
-            setForeground(getTextNonSelectionColor());
+                setForeground(getTextNonSelectionColor());
 
             setComponentOrientation(tree.getComponentOrientation());
 

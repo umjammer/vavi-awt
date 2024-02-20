@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 by Naohide Sano, All rights rserved.
+ * Copyright (c) 2022 by Naohide Sano, All rights reserved.
  *
  * Programmed by Naohide Sano
  */
@@ -14,7 +14,6 @@ import javax.swing.JFrame;
 import javax.swing.SwingConstants;
 
 import vavi.awt.ImageComponent;
-import vavi.swing.JImageComponent;
 import vavi.util.Debug;
 
 

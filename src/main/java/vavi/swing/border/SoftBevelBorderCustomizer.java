@@ -42,7 +42,7 @@ public class SoftBevelBorderCustomizer extends BasicBorderCustomizer {
 
             String name = ev.getPropertyName();
             if ("bevelType".equals(name)) {
-                type = ((Integer) ev.getNewValue()).intValue();
+                type = (Integer) ev.getNewValue();
             } else if ("highlightInnerColor".equals(name)) {
                 hi = (Color) ev.getNewValue();
             } else if ("highlightOuterColor".equals(name)) {

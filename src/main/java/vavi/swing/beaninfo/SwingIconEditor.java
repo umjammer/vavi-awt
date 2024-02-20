@@ -9,7 +9,6 @@ package vavi.swing.beaninfo;
 import java.awt.Image;
 import java.awt.MediaTracker;
 import java.awt.Toolkit;
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.logging.Level;
 
@@ -64,7 +63,7 @@ public class SwingIconEditor extends SwingEditorSupport {
         }
 
         if (path == null) {
-//Debug.println("null image");
+Debug.println(Level.FINER, "null image");
             return;
         }
 
@@ -75,7 +74,7 @@ public class SwingIconEditor extends SwingEditorSupport {
             tracker.waitForAll();
             setValue(new ImageIcon(image));
         } catch (Exception e) {
-//Debug.printStackTrace(e);
+Debug.printStackTrace(Level.FINER, e);
 Debug.println(Level.SEVERE, e);
         }
     };

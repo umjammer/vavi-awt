@@ -10,10 +10,10 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Insets;
 import java.awt.Point;
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 import vavi.util.Debug;
 
@@ -21,7 +21,7 @@ import vavi.util.Debug;
 /**
  * BorderLayoutConstraintEditor.
  *
- * @todo get constraint when initializing components in the container.
+ * TODO get constraint when initializing components in the container.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020528 nsano initial version <br>
@@ -37,15 +37,13 @@ public class BorderLayoutConstraintsEditor
     //-------------------------------------------------------------------------
 
     /** when constraints updated */
-    private PropertyChangeListener pcl = new PropertyChangeListener() {
-        public void propertyChange(PropertyChangeEvent ev) {
-            Component component = container.getComponent(index);
-Debug.println(index);
-            layout.removeLayoutComponent(component);
-            layout.addLayoutComponent(component, ev.getNewValue());
+    private PropertyChangeListener pcl = ev -> {
+        Component component = container.getComponent(index);
+Debug.println(Level.FINE, index);
+        layout.removeLayoutComponent(component);
+        layout.addLayoutComponent(component, ev.getNewValue());
 
-            layout.layoutContainer(container);
-        }
+        layout.layoutContainer(container);
     };
 
     /** sets target constraint */
@@ -116,14 +114,13 @@ Debug.println(index);
         String[] suggested = new String[] { primary, alternateY, alternateX };
         String[] free = findFreePositions();
 
-        for (int i = 0; i < suggested.length; i++) {
-            String str = suggested[i];
+        for (String str : suggested) {
             if (str == null) {
                 continue;
             }
 
-            for (int j = 0; j < free.length; j++) {
-                if (free[j].equals(str)) {
+            for (String s : free) {
+                if (s.equals(str)) {
                     return str;
                 }
             }

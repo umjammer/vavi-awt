@@ -108,8 +108,7 @@ public abstract class EditorManager implements EditorListener {
         @SuppressWarnings("unchecked")
         List<Editor> clones = (List<Editor>) ((ArrayList<Editor>) editors).clone();
 
-        for (int i = 0; i < clones.size(); i++) {
-            Editor editor = clones.get(i);
+        for (Editor editor : clones) {
             closeEditor(editor);
         }
 

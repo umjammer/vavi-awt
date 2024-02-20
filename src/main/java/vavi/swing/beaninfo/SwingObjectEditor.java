@@ -14,8 +14,6 @@
 
 package vavi.swing.beaninfo;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 
@@ -75,7 +73,7 @@ public class SwingObjectEditor extends SwingEditorSupport {
 
             // XXX javax.swing.AccessibleRelationSet.toString() has a bug in which
             // null is returned. Intercept this and other cases so that the tool
-            // doens't get hosed.
+            // doesn't get hosed.
             if (text == null) text = "";
 
             int index = text.indexOf('@');

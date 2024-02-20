@@ -203,7 +203,7 @@ Debug.printStackTrace(e);
              * the dropAction should be what the drop target specified
              * in acceptDrop
              */
-//Debug.println(Level.FINE, "action: " + ev.getDropAction());
+Debug.println(Level.FINER, "action: " + ev.getDropAction());
             Draggable.this.dragDropEnd(ev);
         }
 
@@ -212,7 +212,7 @@ Debug.printStackTrace(e);
          * @param ev the event
          */
         public void dragEnter(DragSourceDragEvent ev) {
-//Debug.println(Level.FINE, ev);
+Debug.println(Level.FINER, ev);
             DragSourceContext context = ev.getDragSourceContext();
             // intersection of the users selected action,
             // and the source and target actions
@@ -233,23 +233,23 @@ Debug.println(Level.FINE, "my action: " + ev.getDropAction() + ": " +
          * @param ev the event
          */
         public void dragOver(DragSourceDragEvent ev) {
-//            DragSourceContext context = ev.getDragSourceContext();
-//            int sa = context.getSourceActions();
-//            int ua = ev.getUserAction();
-//            int da = ev.getDropAction();
-//            int ta = ev.getTargetActions();
-//Debug.println(Level.FINE, "dl dragOver source actions: " + sa);
-//Debug.println(Level.FINE, "user action: " + ua);
-//Debug.println(Level.FINE, "drop actions: " + da);
-//Debug.println(Level.FINE, "target actions: " + ta);
+            DragSourceContext context = ev.getDragSourceContext();
+            int sa = context.getSourceActions();
+            int ua = ev.getUserAction();
+            int da = ev.getDropAction();
+            int ta = ev.getTargetActions();
+Debug.println(Level.FINER, "dl dragOver source actions: " + sa);
+Debug.println(Level.FINER, "user action: " + ua);
+Debug.println(Level.FINER, "drop actions: " + da);
+Debug.println(Level.FINER, "target actions: " + ta);
         }
 
         /**
          * @param ev the event
          */
         public void dragExit(DragSourceEvent ev) {
-//Debug.println(Level.FINE, "exit: " + ev);
-//            DragSourceContext context = ev.getDragSourceContext();
+Debug.println(Level.FINER, "exit: " + ev);
+            DragSourceContext context = ev.getDragSourceContext();
         }
 
         /**

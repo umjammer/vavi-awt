@@ -13,6 +13,7 @@ import java.applet.AudioClip;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
@@ -27,7 +28,7 @@ import java.util.Iterator;
 import java.util.Properties;
 import java.util.StringTokenizer;
 import java.util.Vector;
-
+import java.util.logging.Level;
 import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
 import javax.swing.JFrame;
@@ -35,6 +36,8 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
+
+import vavi.util.Debug;
 
 
 /**
@@ -193,9 +196,7 @@ public class JAppletFrame extends JFrame implements Runnable, AppletStub, Applet
                 public void actionPerformed(ActionEvent ev) {
                     try {
                         build(JAppletFrame.this.applet.getClass().newInstance(), JAppletFrame.this.args, appletSize.width, appletSize.height);
-                    } catch (IllegalAccessException e) {
-                        showStatus(e.getMessage());
-                    } catch (InstantiationException e) {
+                    } catch (IllegalAccessException | InstantiationException e) {
                         showStatus(e.getMessage());
                     }
                 }
@@ -230,9 +231,9 @@ public class JAppletFrame extends JFrame implements Runnable, AppletStub, Applet
 //                System.exit(0);
 //            }
 //        });
-// Debug.println(Debug.DEBUG, width + ", " + height);
+Debug.println(Level.FINER, width + ", " + height);
         appletSize = new Dimension(width, height);
-// Debug.println(Debug.DEBUG, "applet: "+appletSize.width+", "+appletSize.height);
+Debug.println(Level.FINER, "applet: " + appletSize.width + ", " + appletSize.height);
 
         // Layout components.
 
@@ -264,8 +265,7 @@ public class JAppletFrame extends JFrame implements Runnable, AppletStub, Applet
      * Turn command-line arguments into Applet parameters, by way of the properties list.
      */
     private static void parseArgs(String[] args, Properties props) {
-        for (int i = 0; i < args.length; ++i) {
-            String arg = args[i];
+        for (String arg : args) {
             int ind = arg.indexOf('=');
             if (ind == -1) {
                 props.put(PARAM_PROP_PREFIX + arg.toLowerCase(), "");
@@ -343,26 +343,28 @@ public class JAppletFrame extends JFrame implements Runnable, AppletStub, Applet
      * Change the frame's size by the same amount that the applet's size is changing.
      */
     public void appletResize(int width, int height) {
-        // Debug.println(Debug.DEBUG, Debug.getTopCallerMethod("vavi"));
+Debug.println(Level.FINER, Debug.getTopCallerMethod("vavi"));
 
         appletPanel.setPreferredSize(new Dimension(width, height));
-//Debug.println(Debug.DEBUG, "resize: " + width + ", " + height); Dimension frameSize = getSize();
-//Debug.println(Debug.DEBUG, "frame: "+frameSize.width+", "+frameSize.height); Insets insets = getInsets();
+Debug.println(Level.FINER, "resize: " + width + ", " + height);
+        Dimension frameSize = getSize();
+Debug.println(Level.FINER, "frame: " + frameSize.width + ", " + frameSize.height);
+        Insets insets = getInsets();
 
 //        if (!barebones) {
 //            insets.bottom += label.getHeight();
 //        }
 
-//Debug.println(Debug.DEBUG, "insets: " + insets.top + ", " + insets.bottom);
-//Debug.println(Debug.DEBUG, "insets: " + insets.left + ", " + insets.right);
+Debug.println(Level.FINER, "insets: " + insets.top + ", " + insets.bottom);
+Debug.println(Level.FINER, "insets: " + insets.left + ", " + insets.right);
 
 //        frameSize.width = width + insets.left + insets.right; frameSize.height = height + insets.top + insets.bottom;
 
-//Debug.println(Debug.DEBUG, "frame: " + frameSize.width + ", " + frameSize.height);
+Debug.println(Level.FINER, "frame: " + frameSize.width + ", " + frameSize.height);
 //        setSize(frameSize);
 
         appletSize = applet.getSize();
-//Debug.println(Debug.DEBUG, "applet: " + appletSize.width + ", " + appletSize.height);
+Debug.println(Level.FINER, "applet: " + appletSize.width + ", " + appletSize.height);
     }
 
     public AppletContext getAppletContext() {
@@ -383,11 +385,11 @@ public class JAppletFrame extends JFrame implements Runnable, AppletStub, Applet
     public Image getImage(URL url) {
         try {
             Object content = url.getContent();
-            if (ImageProducer.class.isInstance(content)) {
-                ImageProducer ip = ImageProducer.class.cast(content);
+            if (content instanceof ImageProducer) {
+                ImageProducer ip = (ImageProducer) content;
                 return toolkit.createImage(ip);
-            } else if (InputStream.class.isInstance(content)) { // for ikvm
-                InputStream is = InputStream.class.cast(content);
+            } else if (content instanceof InputStream) { // for ikvm
+                InputStream is = (InputStream) content;
 //int i = 0;
 //while (is.available() > 0) {
 // int c = is.read();

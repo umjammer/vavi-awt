@@ -6,15 +6,10 @@
 
 package vavi.util;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
-import java.util.stream.Stream;
 
 import javax.swing.JFileChooser;
 
@@ -34,11 +29,12 @@ public class RegexFileFilterTest {
     @Test
     public void test() throws IOException {
         System.err.println(".*\\.xml");
-        Files.list(Paths.get("src/test/resources/vavi/util")).filter(new RegexFileFilter(".*\\.xml")).forEach(System.err::println);
-        assertEquals(Files.list(Paths.get("src/test/resources/vavi/util")).filter(new RegexFileFilter(".*\\.xml")).count(), 3);
+        Path resources = Paths.get("src/test/resources/vavi/util");
+        Files.list(resources).filter(new RegexFileFilter(".*\\.xml")).forEach(System.err::println);
+        assertEquals(Files.list(resources).filter(new RegexFileFilter(".*\\.xml")).count(), 3);
         System.err.println("regex_file_filter_0[14]\\..+");
-        Files.list(Paths.get("src/test/resources/vavi/util")).filter(new RegexFileFilter("regex_file_filter_0[14]\\..+")).forEach(System.err::println);
-        assertEquals(Files.list(Paths.get("src/test/resources/vavi/util")).filter(new RegexFileFilter("regex_file_filter_0[14]\\..+")).count(), 2);
+        Files.list(resources).filter(new RegexFileFilter("regex_file_filter_0[14]\\..+")).forEach(System.err::println);
+        assertEquals(Files.list(resources).filter(new RegexFileFilter("regex_file_filter_0[14]\\..+")).count(), 2);
     }
 
     /** Tests this class. */

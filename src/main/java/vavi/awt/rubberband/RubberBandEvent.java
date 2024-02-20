@@ -24,7 +24,7 @@ public class RubberBandEvent extends EventObject {
 
     /** コンポーネントの相対 location */
     private Point location;
-    /** コンポーネントの相対 size */
+//    /** コンポーネントの相対 size */
 //  private Dimension size;
     /** 選択された領域 */
     private Rectangle bounds;
@@ -50,12 +50,12 @@ public class RubberBandEvent extends EventObject {
         this.location = location;
     }
 
-    /**
-     * RubberBand イベントを構築します．
-     * @see RubberBandListener#resizing
-     * @see RubberBandListener#resized
-     * @param size コンポーネントの相対 size
-     */
+//    /**
+//     * RubberBand イベントを構築します．
+//     * @see RubberBandListener#resizing
+//     * @see RubberBandListener#resized
+//     * @param size コンポーネントの相対 size
+//     */
 //  public RubberBandEvent(Object source, Dimension size) {
 //      super(source);
 //      this.size = size;
@@ -71,7 +71,7 @@ public class RubberBandEvent extends EventObject {
         return location;
     }
 
-    /** コンポーネントの相対 size を取得します． */
+//    /** コンポーネントの相対 size を取得します． */
 //  public Dimension getDimension() {
 //      return size;
 //  }

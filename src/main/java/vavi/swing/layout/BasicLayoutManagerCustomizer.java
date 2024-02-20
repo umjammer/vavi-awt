@@ -16,6 +16,7 @@ import java.awt.LayoutManager;
 import java.awt.Point;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
@@ -25,6 +26,7 @@ import javax.swing.JTable;
 import javax.swing.UIManager;
 
 import vavi.swing.propertyeditor.JPropertyEditorTable;
+import vavi.util.Debug;
 
 
 /**
@@ -105,8 +107,8 @@ public class BasicLayoutManagerCustomizer extends JComponent
         LayoutManager oldLayout = this.layout;
         this.layout = layout;
 
-//Debug.println("old: " + (oldLayout == null ? null : Debug.getClassName(oldLayout.getClass().getName())));
-//Debug.println("new: " + (layout == null ? null : Debug.getClassName(layout.getClass().getName())));
+Debug.println(Level.FINER, "old: " + (oldLayout == null ? null : oldLayout.getClass().getSimpleName()));
+Debug.println(Level.FINER, "new: " + (layout == null ? null : layout.getClass().getSimpleName()));
         firePropertyChange("layout", oldLayout, layout);
     }
 
@@ -132,15 +134,15 @@ public class BasicLayoutManagerCustomizer extends JComponent
 
         Dimension ss = screenPanel.getSize();
         Dimension cs = container.getSize();
-//Debug.println(cs.width + ", " + cs.height);
-//Debug.println(ss.width + ", " + ss.height);
+Debug.println(Level.FINER, cs.width + ", " + cs.height);
+Debug.println(Level.FINER, ss.width + ", " + ss.height);
 //screenPanel.setPreferredSize(ss);
         if (ss.width < ss.height) {
             ratio = (float) ss.width / cs.width * 0.9f;
         } else {
             ratio = (float) ss.height / cs.height * 0.9f;
         }
-//Debug.println(ratio);
+Debug.println(Level.FINER, ratio);
         int w = Math.round(cs.width * ratio);
         int h = Math.round(cs.height * ratio);
         layoutPanel.setSize(new Dimension(w, h));

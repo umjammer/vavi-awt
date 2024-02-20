@@ -8,6 +8,7 @@ package vavi.swing.beaninfo;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
+import java.util.logging.Level;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -16,7 +17,7 @@ import vavi.util.Debug;
 
 
 /**
- * An PropertyEdtitor for editing numbers.
+ * An PropertyEditor for editing numbers.
  *
  * @author Mark Davidson
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
@@ -34,7 +35,7 @@ public class SwingFloatEditor extends SwingEditorSupport {
         textfield.addKeyListener(new KeyAdapter()  {
             public void keyPressed(KeyEvent evt)  {
                 if (evt.getKeyCode() == KeyEvent.VK_ENTER)  {
-Debug.println(textfield.getText());
+Debug.println(Level.FINER, textfield.getText());
                     setValue(new Float(textfield.getText()));
                 }
             }
