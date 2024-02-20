@@ -1,7 +1,7 @@
 [![Release](https://jitpack.io/v/umjammer/vavi-awt.svg)](https://jitpack.io/#umjammer/vavi-awt)
-[![Java CI with Maven](https://github.com/umjammer/vavi-awt/workflows/Java%20CI/badge.svg)](https://github.com/umjammer/vavi-awt/actions)
+[![Java CI](https://github.com/umjammer/vavi-awt/actions/workflows/maven.yml/badge.svg)](https://github.com/umjammer/vavi-awt/actions)
 [![CodeQL](https://github.com/umjammer/vavi-awt/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/umjammer/vavi-awt/actions/workflows/codeql-analysis.yml)
-![Java](https://img.shields.io/badge/Java-8-b07219)
+![Java](https://img.shields.io/badge/Java-17-b07219)
 
 # vavi-awt
 
@@ -25,24 +25,38 @@ make a component droppable by one liner
 
 ### 🖌️ rubber band selection
 
-the ordinary gui bound selector
+an ordinary gui bound selector
 
 [sample](https://github.com/umjammer/vavi-image-sandbox/tree/master/src/test/java/Test32.java)
 
 ### 🖌️ JImageComponent
 
-the image component which has auto size adjustment
+an image component which has auto size adjustment
 
 [sample](src/test/java/JImageComponentTest.java)
 
 ### 🖌 JHistoryComboBox
 
-the text field with history dropdown
+a text field with history dropdown
 
 [sample](src/test/java/FileRenamer.java)
 
 ### 🖌 JFileChooserHistoryComboBox
 
-the file name field with history dropdown and the file chooser button
+a file name field with history dropdown and the file chooser button
 
 [sample](https://github.com/umjammer/vavi-apps-jwindiff)
+
+## Install
+
+ * [maven](https://jitpack.io/#umjammer/vavi-awt)
+
+## TODO
+
+ * renamer
+   * regex match global
+   * history saving is not stable
+   * history duplication
+ * on macos 13.5.2 on `renamer` period '.' is not rendered with Oracle (8) and Open JDK (21).
+   * with Jetbrain's JDK (17) is OK
+   * [reproducer](src/test/java/IdeTest.java#period) couldn't reproduce now

@@ -15,10 +15,7 @@
     <name>vavi</name>
   </organization>
   <url>https://github.com/umjammer/vavi-awt</url>
-  <description>
-TODO
-
-    separate compiler version in maven</description>
+  <description/>
   <scm>
     <url>https://github.com/umjammer/vavi-awt</url>
   </scm>
@@ -42,9 +39,9 @@ TODO
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-antrun-plugin</artifactId>
             <version>3.1.0</version>
-                <goals>
+            <goals>
               <goal>run</goal>
-                </goals>
+            </goals>
             <configuration>
               <target>
                 <java classname="FileRenamer" fork="true">
@@ -71,33 +68,9 @@ TODO
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.10.1</version>
-        <executions>
-          <execution>
-            <id>8</id>
-            <configuration>
-              <source>1.8</source>
-              <target>1.8</target>
-              <excludes>
-                <exclude>vavi/awt/AppletFrame.java</exclude>
-              </excludes>
-            </configuration>
-          </execution>
-          <execution>
-            <id>1.3</id>
-            <configuration>
-              <source>1.1</source>
-              <target>1.1</target>
-              <includes>
-                <include>vavi/awt/AppletFrame.java</include>
-              </includes>
-            </configuration>
-          </execution>
-        </executions>
+        <version>3.11.0</version>
         <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-          <encoding>UTF-8</encoding>
+          <release>17</release>
         </configuration>
       </plugin>
       <plugin>
@@ -119,13 +92,25 @@ TODO
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.2.1</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.0.0-M7</version>
+        <version>3.2.2</version>
         <configuration>
-          <forkMode>once</forkMode>
           <argLine>
             -Djava.util.logging.config.file=${project.build.testOutputDirectory}/logging.properties
-            -Dvavi.util.logging.VaviFormatter.extraClassMethod=sun\.util\.logging\.LoggingSupport#log
+            -Dvavi.util.logging.VaviFormatter.extraClassMethod=sun\\.util\\.logging\\.LoggingSupport#log
           </argLine>
         </configuration>
       </plugin>
@@ -144,7 +129,7 @@ TODO
       <dependency>
         <groupId>org.junit</groupId>
         <artifactId>junit-bom</artifactId>
-        <version>5.9.3</version>
+        <version>5.10.1</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -153,9 +138,9 @@ TODO
 
   <dependencies>
     <dependency>
-      <groupId>com.github.umjammer</groupId> <!-- com.github.umjammer -->
+      <groupId>com.github.umjammer</groupId> <!-- vavi / com.github.umjammer -->
       <artifactId>vavi-commons-sandbox</artifactId>
-      <version>0.4.2</version>
+      <version>0.4.4</version>
     </dependency>
 
     <dependency>
@@ -168,7 +153,7 @@ TODO
     <dependency>
       <groupId>com.formdev</groupId>
       <artifactId>flatlaf</artifactId>
-      <version>3.0</version>
+      <version>3.3</version>
       <scope>runtime</scope>
     </dependency>
 
