@@ -7,19 +7,35 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.Rectangle;
-import javax.swing.BorderFactory;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.concurrent.CountDownLatch;
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
 import vavi.swing.FontChooser;
 import vavi.util.Debug;
+import vavi.util.properties.annotation.Property;
+import vavi.util.properties.annotation.PropsEntity;
 
 
 /**
@@ -28,23 +44,45 @@ import vavi.util.Debug;
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 2022-08-10 nsano initial version <br>
  */
+@PropsEntity(url = "file:local.properties")
 @EnabledIfSystemProperty(named = "vavi.test", matches = "ide")
 public class IdeTest {
 
-    @AfterEach
-    void teardown() {
-        while (true)
-            Thread.yield();
+    static boolean localPropertiesExists() {
+        return Files.exists(Paths.get("local.properties"));
     }
+
+    @Property(name = "foo.bar")
+    String dir = "src/test/resources";
+
+    /** using cdl cause junit stops awt thread suddenly */
+    CountDownLatch cdl;
+
+    @BeforeEach
+    void setup() throws Exception {
+        cdl = new CountDownLatch(1);
+
+        if (localPropertiesExists()) {
+            PropsEntity.Util.bind(this);
+        }
+    }
+
+    @AfterEach
+    void teardown() throws Exception {
+        cdl.await(); // depends on each test frame's exit on close
+    }
+
+    @Property(name = "rename.dir")
+    String renameDir;
 
     @Test
     void testFileRenamer() throws Exception {
-        FileRenamer.main(new String[] { System.getProperty("user.home") + "/Downloads/JDownloader/wip3" });
+        FileRenamer.main(new String[] { renameDir });
     }
 
     @Test
     void testIntersection() throws Exception {
-        JFrame frame = new JFrame();
+        JFrame frame = new JFrame("Intersection");
         frame.setLocation(300, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -83,9 +121,43 @@ public class IdeTest {
 
     @Test
     void testFontChooser() throws Exception {
-        FontChooser fontChooser = new FontChooser(new Font("Dialog", 16, Font.PLAIN));
+        FontChooser fontChooser = new FontChooser(new Font("Dialog", Font.PLAIN, 16));
         fontChooser.showDialog(null);
         Font font = fontChooser.getFont();
 Debug.println(font.getFamily() + ", " + font.getName() + ", " + font.getSize() + ", " + font.getStyle());
+    }
+
+    @Test
+    void period() throws Exception {
+        JFrame frame = new JFrame("Period");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        DefaultTableModel tableModel = new DefaultTableModel(new String[] {"Before", "After"}, 0);
+        tableModel.addRow(new Object[] { "sample.ext", "日本語.ext" });
+        tableModel.addRow(new Object[] { "aaa.epub", "bbb.pdf" });
+
+        JTable table = new JTable(tableModel);
+        table.setFillsViewportHeight(true);
+        Font font = table.getFont();
+
+//System.getProperties().forEach((k, v) -> System.err.println(k + ": " + v));
+        JPanel panel = new JPanel();
+        panel.setBorder(new EmptyBorder(10, 10, 10, 10));
+        panel.setPreferredSize(new Dimension(320, 480));
+        panel.setLayout(new GridLayout(3, 1));
+        String text = "<html>" + System.getProperty("java.vendor") + "<br/>" +
+                System.getProperty("java.runtime.version") + "</html>";
+                panel.add(new JLabel(text));
+        panel.add(new JLabel(font.getFamily()));
+        JScrollPane sp = new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        sp.setViewportView(table);
+        panel.add(sp);
+
+        frame.getContentPane().add(panel, BorderLayout.CENTER);
+        frame.setSize(320, 480);
+//        frame.pack();
+        frame.setVisible(true);
+        frame.getContentPane().repaint();
+        Thread.sleep(10000000);
     }
 }

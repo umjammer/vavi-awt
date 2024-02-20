@@ -6,9 +6,13 @@
 
 package vavi.swing.layout;
 
-import java.awt.GridBagLayout;
+import java.awt.Dimension;
+import java.util.Arrays;
+import java.util.concurrent.CountDownLatch;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
@@ -24,18 +28,28 @@ class LayoutManagerChooserTest {
 
     @Test
     @EnabledIfSystemProperty(named = "vav.test", matches = "ide")
-    public void test() {
+    public void test() throws Exception {
         main(new String[] {});
-        while (true) Thread.yield();
+        // using cdl cause junit stops awt thread suddenly
+        CountDownLatch cdl = new CountDownLatch(1);
+        cdl.await(); // depends on main frame's exit on close
     }
 
-    // ----
-
-    /** Tests this class. */
+    /** */
     public static void main(String[] args) {
         JFrame frame = new JFrame("LayoutManagerChooser");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(new LayoutManagerChooser());
+        LayoutManagerChooser lmc = new LayoutManagerChooser();
+        JPanel p = new JPanel();
+        p.setPreferredSize(new Dimension(600, 600));
+        String[] nn = new String[] {"A", "B", "C", "D"};
+        Arrays.stream(nn).forEach(n -> {
+            JButton b = new JButton(n);
+            b.setPreferredSize(new Dimension(40, 20));
+            p.add(b);
+        });
+        lmc.setSelectedContainer(p);
+        frame.getContentPane().add(lmc);
         frame.pack();
         frame.setVisible(true);
     }
