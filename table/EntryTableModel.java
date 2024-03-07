@@ -27,6 +27,7 @@ import vavi.util.archive.Entry;
  * @version 0.00 021103 nsano initial version <br>
  *          0.01 030211 nsano exclude directory <br>
  */
+@Deprecated
 public class EntryTableModel extends AbstractTableModel {
 
     /** column names */

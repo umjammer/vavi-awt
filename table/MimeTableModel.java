@@ -20,6 +20,7 @@ import vavi.net.www.MimeTable;
  * @author <a href="mailto:vavivavi@yahoo.co.jp">Naohide Sano</a> (nsano)
  * @version 0.00 021103 nsano initial version <br>
  */
+@Deprecated
 public class MimeTableModel extends AbstractTableModel {
 
     /** column names */
