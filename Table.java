@@ -17,7 +17,9 @@ import java.util.NoSuchElementException;
 
 /**
  * Table.
- *
+ * <ul>
+ *  <li>{@link #iterable()} method's generic type is {@link #row()} class</li>
+ * </ul>
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 2022/11/26 nsano initial version <br>
  */

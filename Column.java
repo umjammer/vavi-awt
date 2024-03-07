@@ -14,12 +14,15 @@ import javax.swing.SwingConstants;
 
 
 /**
- * Column.
- *
+ * Set {@link javax.swing.JTable} column information.
+ * <ul>
+ *  <li>getter must starts with <code>get</code> or <code>is</code></li>
+ *  <li>setter must starts with <code>set</code></li>
+ * </ul>
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 2022/11/26 nsano initial version <br>
  */
-@Target({ ElementType.FIELD, ElementType.METHOD })
+@Target({ /* ElementType.FIELD, */ ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Column {
 
@@ -41,6 +44,9 @@ public @interface Column {
 
     /** table column width */
     int width() default 0;
+
+    /** is the table column editable */
+    boolean editable() default false;
 
     /** table column align */
     Align align() default Align.center;
