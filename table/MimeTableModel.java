@@ -6,7 +6,6 @@
 
 package vavi.swing.binding.table;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.table.AbstractTableModel;
@@ -37,7 +36,7 @@ public class MimeTableModel extends AbstractTableModel {
     public static final int[] widths = { 80, 40, 40, 180, 180, 320 };
 
     /** */
-    private Map<?, ?> entries;
+    private final Map<?, ?> entries;
 
     /** Creates table model */
     public MimeTableModel(MimeTable mimeTable) {
@@ -77,5 +76,3 @@ public class MimeTableModel extends AbstractTableModel {
         }
     }
 }
-
-/* */

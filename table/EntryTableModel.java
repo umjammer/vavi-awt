@@ -41,10 +41,10 @@ public class EntryTableModel extends AbstractTableModel {
     };
 
     /** */
-    private MimeTable mimeTable = new MimeTable();
+    private final MimeTable mimeTable = new MimeTable();
 
     /** model */
-    private Entry[] entries;
+    private final Entry[] entries;
 
     /** Creates a table model */
     public EntryTableModel(Archive archive) {
@@ -112,5 +112,3 @@ public class EntryTableModel extends AbstractTableModel {
         return path == null ? "" : path + File.separator;
     }
 }
-
-/* */
