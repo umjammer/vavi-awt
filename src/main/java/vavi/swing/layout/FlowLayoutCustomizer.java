@@ -30,7 +30,7 @@ import vavi.util.Debug;
 public class FlowLayoutCustomizer extends BasicLayoutManagerCustomizer {
 
     /** layout for layoutPanel */
-    private FlowLayout flow;
+    private final FlowLayout flow;
 
     /** */
     public FlowLayoutCustomizer() {
@@ -49,7 +49,7 @@ public class FlowLayoutCustomizer extends BasicLayoutManagerCustomizer {
     }
 
     /** */
-    private TableModelListener tml = ev -> updateLayout();
+    private final TableModelListener tml = ev -> updateLayout();
 
     /** */
     private void updateLayout() {
@@ -60,7 +60,7 @@ public class FlowLayoutCustomizer extends BasicLayoutManagerCustomizer {
         flow.layoutContainer(layoutPanel);
     }
 
-    /** */
+    @Override
     public void setObject(LayoutManager layout) {
         updateLayout();
 
@@ -73,13 +73,14 @@ Debug.println(Level.FINER, "layout: " + layout.hashCode());
     }
 
     /** TODO */
+    @Override
     public LayoutManager getObject() {
         layoutPanel.validate();
         layoutPanel.repaint();
         return super.getObject();
     }
 
-    /** */
+    @Override
     public void setContainer(Container container) {
         super.setContainer(container);
 

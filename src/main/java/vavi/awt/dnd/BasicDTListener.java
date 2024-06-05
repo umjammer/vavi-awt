@@ -80,6 +80,7 @@ Debug.println(Level.FINER, "drop action: " + da + " my acceptable actions " + dr
      * オーバーライドするときは <code>super.dragEnter(ev)</code> を忘れずに．
      * @callsuper
      */
+    @Override
     public void dragEnter(DropTargetDragEvent ev) {
 Debug.println(Level.FINEST, ev);
         if (!isDragOk(ev)) {
@@ -97,6 +98,7 @@ Debug.println(Level.FINER, "accepting: " + ev.getDropAction());
      * オーバーライドするときは <code>super.dragOver(ev)</code> を忘れずに．
      * @callsuper
      */
+    @Override
     public void dragOver(DropTargetDragEvent ev) {
 
         if (!isDragOk(ev)) {
@@ -112,6 +114,7 @@ Debug.println(Level.FINER, "accepting");
      * オーバーライドするときは <code>super.dropActionChanged(ev)</code> を忘れずに．
      * @callsuper
      */
+    @Override
     public void dropActionChanged(DropTargetDragEvent ev) {
 
         if (!isDragOk(ev)) {
@@ -127,6 +130,7 @@ Debug.println(Level.FINER, "accepting: " + ev.getDropAction());
      * ドラッグ動作が終了したときに呼ばれます．
      * オーバーライドするときは <code>super.dragExit(ev)</code> 特にしなくていいです．
      */
+    @Override
     public void dragExit(DropTargetEvent ev) {
 Debug.println(Level.FINEST, ev);
     }
@@ -138,6 +142,7 @@ Debug.println(Level.FINEST, ev);
      * flavor check the operation get the transferable according to the chosen
      * flavor do the transfer
      */
+    @Override
     public void drop(DropTargetDropEvent ev) {
 Debug.println(Level.FINEST, ev);
 

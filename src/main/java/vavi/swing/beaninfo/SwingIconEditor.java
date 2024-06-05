@@ -53,7 +53,7 @@ public class SwingIconEditor extends SwingEditorSupport {
     }
 
     /** */
-    private PropertyChangeListener pcl = ev -> {
+    private final PropertyChangeListener pcl = ev -> {
         String name = ev.getPropertyName();
         String path = null;
         if ("text".equals(name)) {

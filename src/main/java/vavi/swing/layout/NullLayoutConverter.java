@@ -82,7 +82,7 @@ public class NullLayoutConverter {
     // -------------------------------------------------------------------------
 
     /** */
-    private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     /** */
     public void addPropertyChangeListener(PropertyChangeListener l) {

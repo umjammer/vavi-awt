@@ -69,7 +69,7 @@ Debug.println(Level.FINER, value);
                 @SuppressWarnings("unchecked")
                 Class<BorderCustomizer> cc = (Class<BorderCustomizer>) bd.getCustomizerClass();
                 if (cc != null) {
-                    BorderCustomizer c = cc.newInstance();
+                    BorderCustomizer c = cc.getDeclaredConstructor().newInstance();
                     c.addPropertyChangeListener(pcl);
                     Icon icon = new ImageIcon(bi.getIcon(BeanInfo.ICON_COLOR_16x16));
                     String desc = bd.getShortDescription();
@@ -87,14 +87,14 @@ Debug.printStackTrace(e);
     }
 
     /** listener for customizers */
-    private PropertyChangeListener pcl = ev -> {
+    private final PropertyChangeListener pcl = ev -> {
         if ("border".equals(ev.getPropertyName())) {
             border = (Border) ev.getNewValue();
         }
     };
 
     /** listener for this (tabbed pane) */
-    private ChangeListener cl = ev -> {
+    private final ChangeListener cl = ev -> {
         int i = getSelectedIndex();
         BorderCustomizer bc = (BorderCustomizer) getComponentAt(i);
         border = bc.getObject();

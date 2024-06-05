@@ -32,9 +32,9 @@ import vavi.util.Debug;
 public class SwingIntegerEditor extends SwingEditorSupport {
 
     // Property editor to use if the Integer represents an Enumerated type.
-    private SwingEnumEditor enumEditor = new SwingEnumEditor();
+    private final SwingEnumEditor enumEditor = new SwingEnumEditor();
 
-    private JSpinner intSpinner;
+    private final JSpinner intSpinner;
 
     private boolean isEnumeration = false;
 
@@ -47,7 +47,7 @@ public class SwingIntegerEditor extends SwingEditorSupport {
         panel.add(intSpinner);
     }
 
-    /** */
+    @Override
     public void setValue(Object value) {
         if (isEnumeration) {
             enumEditor.setValue(value);
@@ -60,6 +60,7 @@ public class SwingIntegerEditor extends SwingEditorSupport {
         }
     }
 
+    @Override
     public Object getValue() {
         if (isEnumeration) {
             return enumEditor.getValue();
@@ -72,11 +73,13 @@ public class SwingIntegerEditor extends SwingEditorSupport {
      * Must overload the PropertyChangeListener registration because this class
      * is the only interface to the SwingEnumEditor.
      */
+    @Override
     public void addPropertyChangeListener(PropertyChangeListener l) {
         enumEditor.addPropertyChangeListener(l);
         super.addPropertyChangeListener(l);
     }
 
+    @Override
     public void removePropertyChangeListener(PropertyChangeListener l) {
         enumEditor.removePropertyChangeListener(l);
         super.removePropertyChangeListener(l);
@@ -85,6 +88,7 @@ public class SwingIntegerEditor extends SwingEditorSupport {
     /**
      * Initializes this property editor with the enumerated items.
      */
+    @Override
     public void init(FeatureDescriptor descriptor) {
         Object[] enumeration = (Object[]) descriptor.getValue("enumerationValues");
 //        Object[] enumplus = (Object[])descriptor.getValue("enumerationValuesPlus");
@@ -147,6 +151,7 @@ Debug.println(Level.FINER, "normal");
     /**
      * Return the custom editor for the enumeration or the integer.
      */
+    @Override
     public Component getCustomEditor() {
         if (isEnumeration) {
             return enumEditor.getCustomEditor();

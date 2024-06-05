@@ -27,12 +27,14 @@ public class GlassPaneLayout implements LayoutManager {
     /**
      * this class doesn't use this method.
      */
+    @Override
     public void addLayoutComponent(String name, Component comp) {
     }
 
     /**
      * 指定されたパネルにコンテナを配置します。
      */
+    @Override
     public void layoutContainer(Container parent) {
 Debug.println(Level.FINER, Debug.getCallerMethod());
 Debug.println(Level.FINER, parent.getPreferredSize().width + ", " + parent.getPreferredSize().height);
@@ -49,6 +51,7 @@ Debug.println(Level.FINER, parent.getSize().width + ", " + parent.getSize().heig
      * 指定された親コンテナにコンポーネントを配置した時の
      * パネルの最小サイズを計算します。
      */
+    @Override
     public Dimension minimumLayoutSize(Container parent) {
 Debug.println(Level.FINE, parent.getSize().width + ", " + parent.getSize().height);
         return parent.getSize();
@@ -58,6 +61,7 @@ Debug.println(Level.FINE, parent.getSize().width + ", " + parent.getSize().heigh
      * 指定された親コンテナにコンポーネントを配置した時の
      * パネルの推奨サイズを計算します。
      */
+    @Override
     public Dimension preferredLayoutSize(Container parent) {
 Debug.println(Level.FINE, parent.getSize().width + ", " + parent.getSize().height);
         return parent.getSize();
@@ -66,6 +70,7 @@ Debug.println(Level.FINE, parent.getSize().width + ", " + parent.getSize().heigh
     /**
      * this class doesn't use this method.
      */
+    @Override
     public void removeLayoutComponent(Component comp) {
     }
 }

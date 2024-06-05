@@ -40,7 +40,7 @@ public class DefaultFontEditor extends JComponent implements FontEditor {
         ResourceBundle.getBundle("vavi.swing.resource", Locale.getDefault());
 
     /** */
-    private JLabel sample;
+    private final JLabel sample;
 
     private static final int MAX_SIZE = 48;
 
@@ -50,11 +50,11 @@ public class DefaultFontEditor extends JComponent implements FontEditor {
         rb.getString("jFontChooser.style.italic"),
     };
 
-    private String[] sizes = new String[MAX_SIZE];
+    private final String[] sizes = new String[MAX_SIZE];
 
-    private JList<String> nameList;
-    private JList<String> styleList;
-    private JList<String> sizeList;
+    private final JList<String> nameList;
+    private final JList<String> styleList;
+    private final JList<String> sizeList;
 
     /** */
     private Font font;
@@ -121,7 +121,8 @@ public class DefaultFontEditor extends JComponent implements FontEditor {
     }
 
     /** */
-    private ListSelectionListener nameListener = new ListSelectionListener() {
+    private final ListSelectionListener nameListener = new ListSelectionListener() {
+        @Override
         public void valueChanged(ListSelectionEvent e) {
             String name = nameList.getSelectedValue();
             font = new Font(name, font.getStyle(), font.getSize());
@@ -130,9 +131,10 @@ public class DefaultFontEditor extends JComponent implements FontEditor {
     };
 
     /** */
-    private ListSelectionListener styleListener = new ListSelectionListener() {
+    private final ListSelectionListener styleListener = new ListSelectionListener() {
         final String I = rb.getString("jFontChooser.style.italic");
         final String B = rb.getString("jFontChooser.style.bold");
+        @Override
         public void valueChanged(ListSelectionEvent e) {
             String style = styleList.getSelectedValue();
             int s = I.equalsIgnoreCase(style) ? Font.ITALIC :
@@ -144,7 +146,8 @@ public class DefaultFontEditor extends JComponent implements FontEditor {
     };
 
     /** */
-    private ListSelectionListener sizeListener = new ListSelectionListener() {
+    private final ListSelectionListener sizeListener = new ListSelectionListener() {
+        @Override
         public void valueChanged(ListSelectionEvent e) {
             String size = sizeList.getSelectedValue();
             int i = Integer.parseInt(size);
@@ -153,12 +156,12 @@ public class DefaultFontEditor extends JComponent implements FontEditor {
         }
     };
 
-    /** */
+    @Override
     public Component getFontEditorComponent() {
         return this;
     }
 
-    /** */
+    @Override
     public void setSelectedFont(Font font) {
         this.font = font;
 
@@ -170,7 +173,7 @@ public class DefaultFontEditor extends JComponent implements FontEditor {
         sizeList .setSelectedValue(String.valueOf(font.getSize()), true);
     }
 
-    /** */
+    @Override
     public Font getSelectedFont() {
         return font;
     }

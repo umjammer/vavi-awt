@@ -29,8 +29,8 @@ public class SwingDimensionEditor extends SwingEditorSupport {
 //    private static final ResourceBundle rb =
 //        ResourceBundle.getBundle("vavi.swing.resource", Locale.getDefault());
 
-    private JSpinner widthSpinner;
-    private JSpinner heightSpinner;
+    private final JSpinner widthSpinner;
+    private final JSpinner heightSpinner;
 
     public SwingDimensionEditor() {
         widthSpinner  = new JSpinner();
@@ -48,6 +48,7 @@ public class SwingDimensionEditor extends SwingEditorSupport {
         panel.add(heightSpinner);
     }
 
+    @Override
     public void setValue(Object value)  {
         super.setValue(value);
 
@@ -57,6 +58,7 @@ public class SwingDimensionEditor extends SwingEditorSupport {
         heightSpinner.setValue(dim.height);
     }
 
+    @Override
     public Object getValue()  {
         int width  = (Integer) widthSpinner.getValue();
         int height = (Integer) heightSpinner.getValue();

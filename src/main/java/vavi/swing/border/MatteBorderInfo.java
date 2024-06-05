@@ -31,17 +31,17 @@ public class MatteBorderInfo extends SimpleBorderInfo {
     private final Class<?> clazz = MatteBorder.class;
     private final Class<?> customizerClass = MatteBorderCustomizer.class;
 
-    /** */
+    @Override
     public BeanDescriptor getBeanDescriptor() {
         return new BeanDescriptor(clazz, customizerClass);
     }
 
-    /** */
+    @Override
     public Image getIcon(int iconKind) {
         return loadImage("resources/matteColorBorder.gif");
     }
 
-    /** */
+    @Override
     public BorderPropertyDescriptor[] getBorderPropertyDescriptors() {
         BorderPropertyDescriptor[] bpds = new BorderPropertyDescriptor[3];
         bpds[0] = new BorderPropertyDescriptor("borderInsets", clazz);

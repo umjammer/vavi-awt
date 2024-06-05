@@ -32,10 +32,10 @@ import javax.swing.event.TableModelListener;
 public class CardLayoutCustomizer extends BasicLayoutManagerCustomizer {
 
     /** */
-    private CardLayout card;
+    private final CardLayout card;
 
     /** constraints editor */
-    private CardLayoutConstraintsEditor constraintsEditor;
+    private final CardLayoutConstraintsEditor constraintsEditor;
 
     /** */
     public CardLayoutCustomizer() {
@@ -52,7 +52,7 @@ public class CardLayoutCustomizer extends BasicLayoutManagerCustomizer {
     }
 
     /** */
-    private TableModelListener tml = ev -> updateLayout();
+    private final TableModelListener tml = ev -> updateLayout();
 
     /** */
     private void updateLayout() {
@@ -62,7 +62,7 @@ public class CardLayoutCustomizer extends BasicLayoutManagerCustomizer {
         card.layoutContainer(layoutPanel);
     }
 
-    /** */
+    @Override
     public void setObject(LayoutManager layout) {
         updateLayout();
 
@@ -72,7 +72,7 @@ public class CardLayoutCustomizer extends BasicLayoutManagerCustomizer {
         tableModel.fireTableDataChanged();
     }
 
-    /** */
+    @Override
     public void setContainer(Container container) {
         super.setContainer(container);
 
@@ -97,6 +97,7 @@ public class CardLayoutCustomizer extends BasicLayoutManagerCustomizer {
     }
 
     /** called last, to set layout to your container */
+    @Override
     public void layoutContainer() {
         for (Object o : components.keySet()) {
             JLabel controller = (JLabel) o;
@@ -110,7 +111,8 @@ public class CardLayoutCustomizer extends BasicLayoutManagerCustomizer {
     // constraints editor -----------------------------------------------------
 
     /** mouse click on constraint panel means to count up component no. */
-    private MouseListener ml = new MouseAdapter() {
+    private final MouseListener ml = new MouseAdapter() {
+        @Override
         public void mouseClicked(MouseEvent ev) {
             int index = constraintsEditor.getCurrentIndex();
             if (index != -1) {

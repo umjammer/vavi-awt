@@ -24,7 +24,7 @@ import javax.swing.JPanel;
  */
 public class SwingBooleanEditor extends SwingEditorSupport {
 
-    private JCheckBox checkbox;
+    private final JCheckBox checkbox;
 
     /** */
     public SwingBooleanEditor() {
@@ -36,7 +36,7 @@ public class SwingBooleanEditor extends SwingEditorSupport {
     }
 
     /** */
-    private ItemListener il = ev -> {
+    private final ItemListener il = ev -> {
         if (ev.getStateChange() == ItemEvent.SELECTED) {
             setValue(true);
         } else {
@@ -44,7 +44,7 @@ public class SwingBooleanEditor extends SwingEditorSupport {
         }
     };
 
-    /** */
+    @Override
     public void setValue(Object value) {
         super.setValue(value);
         if (value != null) {
@@ -61,7 +61,7 @@ e.printStackTrace();
         }
     }
 
-    /** */
+    @Override
     public Object getValue() {
         return checkbox.isSelected();
     }

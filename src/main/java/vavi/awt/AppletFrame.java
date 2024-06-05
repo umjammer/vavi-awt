@@ -26,6 +26,7 @@ import java.awt.image.ImageProducer;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Enumeration;
@@ -186,11 +187,12 @@ public class AppletFrame extends Frame implements Runnable, AppletStub, AppletCo
             mi = new MenuItem("Clone");
             mi.addActionListener(ev -> {
                 try {
-                    new AppletFrame(AppletFrame.this.applet.getClass().newInstance(),
+                    new AppletFrame(AppletFrame.this.applet.getClass().getDeclaredConstructor().newInstance(),
                                     AppletFrame.this.args,
                                     appletSize.width,
                                     appletSize.height);
-                } catch (IllegalAccessException | InstantiationException e) {
+                } catch (IllegalAccessException | InstantiationException | RuntimeException | NoSuchMethodException |
+                         InvocationTargetException e) {
                     showStatus(e.getMessage());
                 }
             });
@@ -259,6 +261,7 @@ public class AppletFrame extends Frame implements Runnable, AppletStub, AppletCo
         }
     }
 
+    @Override
     public void showStatus(String status) {
         if (label != null)
             label.setText(status);
@@ -267,6 +270,7 @@ public class AppletFrame extends Frame implements Runnable, AppletStub, AppletCo
     // Methods from Runnable.
 
     /** Separate thread to call the applet's init() and start() methods. */
+    @Override
     public void run() {
         showStatus(name + " initializing...");
         applet.init();
@@ -278,11 +282,13 @@ public class AppletFrame extends Frame implements Runnable, AppletStub, AppletCo
     }
 
     // Methods from AppletStub.
+    @Override
     public boolean isActive() {
         return active;
     }
 
     /** Returns the current directory. */
+    @Override
     public URL getDocumentBase() {
         String dir = System.getProperty("user.dir");
         String urlDir = dir.replace(File.separatorChar, '/');
@@ -298,6 +304,7 @@ public class AppletFrame extends Frame implements Runnable, AppletStub, AppletCo
      * the appropriately named .class file exists there. But
      * this doesn't account for .zip files.
      */
+    @Override
     public URL getCodeBase() {
         String path = System.getProperty("java.class.path");
         Enumeration<?> st = new StringTokenizer(path, ":");
@@ -318,6 +325,7 @@ public class AppletFrame extends Frame implements Runnable, AppletStub, AppletCo
     }
 
     /** Return a parameter via the munged names in the properties list. */
+    @Override
     public String getParameter(String name) {
         return System.getProperty(PARAM_PROP_PREFIX + name.toLowerCase());
     }
@@ -326,6 +334,7 @@ public class AppletFrame extends Frame implements Runnable, AppletStub, AppletCo
      * Change the frame's size by the same amount that the applet's
      * size is changing.
      */
+    @Override
     public void appletResize(int width, int height) {
         Dimension dimension = getSize();
         dimension.width += width - appletSize.width;
@@ -334,6 +343,7 @@ public class AppletFrame extends Frame implements Runnable, AppletStub, AppletCo
         appletSize = applet.getSize();
     }
 
+    @Override
     public AppletContext getAppletContext() {
         return this;
     }
@@ -347,10 +357,12 @@ public class AppletFrame extends Frame implements Runnable, AppletStub, AppletCo
      * audio content handler which encapsulates this, and then
      * we can just do a getContent just like for images.
      */
+    @Override
     public AudioClip getAudioClip(URL url) {
         return null;
     }
 
+    @Override
     public Image getImage(URL url) {
         Toolkit tk = Toolkit.getDefaultToolkit();
         try {
@@ -362,6 +374,7 @@ public class AppletFrame extends Frame implements Runnable, AppletStub, AppletCo
     }
 
     /** Returns this Applet or nothing. */
+    @Override
     public Applet getApplet(String name) {
         if (name.equals(this.name))
             return applet;
@@ -369,6 +382,7 @@ public class AppletFrame extends Frame implements Runnable, AppletStub, AppletCo
     }
 
     /** Just yields this applet. */
+    @Override
     public Enumeration<Applet> getApplets() {
         Vector<Applet> v = new Vector<>();
         v.addElement(applet);
@@ -376,22 +390,26 @@ public class AppletFrame extends Frame implements Runnable, AppletStub, AppletCo
     }
 
     /** Ignore. */
+    @Override
     public void showDocument(URL url) {
     }
 
     /** Ignore. */
+    @Override
     public void showDocument(URL url, String target) {
     }
 
     /** */
-    private WindowAdapter windowAdapter = new WindowAdapter() {
+    private final WindowAdapter windowAdapter = new WindowAdapter() {
 
+        @Override
         public synchronized void windowOpened(WindowEvent ev) {
             applet.init();
             applet.start();
             active = true;
         }
 
+        @Override
         public synchronized void windowIconified(WindowEvent ev) {
             if (active) {
                 active = false;
@@ -399,6 +417,7 @@ public class AppletFrame extends Frame implements Runnable, AppletStub, AppletCo
             }
         }
 
+        @Override
         public synchronized void windowDeiconified(WindowEvent ev) {
             if (!active) {
                 applet.start();
@@ -406,6 +425,7 @@ public class AppletFrame extends Frame implements Runnable, AppletStub, AppletCo
             }
         }
 
+        @Override
         public synchronized void windowClosing(WindowEvent ev) {
             if (active) {
                 active = false;
@@ -414,6 +434,7 @@ public class AppletFrame extends Frame implements Runnable, AppletStub, AppletCo
             dispose();
         }
 
+        @Override
         public synchronized void windowClosed(WindowEvent ev) {
             applet.destroy();
             System.exit(0);
@@ -423,15 +444,18 @@ public class AppletFrame extends Frame implements Runnable, AppletStub, AppletCo
     //----
 
     /** @retroweave 1.1 */
+    @Override
     public void setStream(String string, InputStream is) {
     }
 
     /** @retroweave 1.1 */
+    @Override
     public InputStream getStream(String string) {
         return null;
     }
 
     /** @retroweave 1.1 */
+    @Override
     public Iterator<String> getStreamKeys() {
         return null;
     }

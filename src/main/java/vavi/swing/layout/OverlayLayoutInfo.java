@@ -24,12 +24,12 @@ public class OverlayLayoutInfo extends SimpleBeanInfo {
     private final Class<?> clazz = OverlayLayout.class;
     private final Class<?> customizerClass = OverlayLayoutCustomizer.class;
 
-    /** */
+    @Override
     public BeanDescriptor getBeanDescriptor() {
         return new BeanDescriptor(clazz, customizerClass);
     }
 
-    /** */
+    @Override
     public Image getIcon(int iconKind) {
         return loadImage("resources/AbstractLayout.gif");
     }

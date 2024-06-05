@@ -20,7 +20,7 @@ import java.util.List;
 public class SelectionSupport implements Serializable {
 
     /** Selection のリスナー */
-    private List<SelectionListener> listenerList = new ArrayList<>();
+    private final List<SelectionListener> listenerList = new ArrayList<>();
 
     /**
      * Selection リスナーをアタッチします．

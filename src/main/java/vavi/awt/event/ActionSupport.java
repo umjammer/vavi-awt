@@ -24,7 +24,7 @@ import java.util.Vector;
 public class ActionSupport implements Serializable {
 
     /** Action のリスナー */
-    private Vector<ActionListener> listeners = new Vector<>();
+    private final Vector<ActionListener> listeners = new Vector<>();
 
     /**
      * Action リスナーをアタッチします．

@@ -50,26 +50,26 @@ public class JContainerTree extends JTree {
      * ツリーのセルレンダラのクラスです．
      * TODO 非表示のとき薄くする
      */
-    private DefaultTreeCellRenderer tcr = new DefaultTreeCellRenderer() {
+    private final DefaultTreeCellRenderer tcr = new DefaultTreeCellRenderer() {
         /** */
+        @Override
         public Component getTreeCellRendererComponent(JTree tree,
-                                  Object value,
-                                  boolean selected,
-                                  boolean expanded,
-                                  boolean leaf,
-                                  int row,
-                                  boolean hasFocus) {
+                                                      Object value,
+                                                      boolean selected,
+                                                      boolean expanded,
+                                                      boolean leaf,
+                                                      int row,
+                                                      boolean hasFocus) {
 
 //              String stringValue = tree.convertValueToText(
 //                  value, selected, expanded, leaf, row, hasFocus);
 
-                if (! (value instanceof ComponentTreeNode))
+                if (! (value instanceof ComponentTreeNode node))
                     return this;
 
                 this.hasFocus = hasFocus;
 
-                ComponentTreeNode node = (ComponentTreeNode) value;
-                Component component = (Component) node.getUserObject();
+            Component component = (Component) node.getUserObject();
 
                 /* Set the text. */
                 setText(node.getName());

@@ -20,7 +20,7 @@ import javax.swing.text.PlainDocument;
  *          1.11 020516 nsano repackage <br>
  */
 public class NumberDocument extends PlainDocument {
-    /** */
+    @Override
     public void insertString(int offs, String str, AttributeSet atts)
         throws BadLocationException {
         if (!Character.isDigit(str.charAt(0))) {

@@ -34,7 +34,7 @@ import javax.swing.JPopupMenu;
 public class SmallColorChooserPopupMenu extends JPopupMenu {
 
     /** */
-    private SwatchChooserPanel swatchPanel;
+    private final SwatchChooserPanel swatchPanel;
 
     /** */
     public SmallColorChooserPopupMenu() {
@@ -60,7 +60,8 @@ public class SmallColorChooserPopupMenu extends JPopupMenu {
     }
 
     /** for Button */
-    private ActionListener al = new ActionListener() {
+    private final ActionListener al = new ActionListener() {
+        @Override
         public void actionPerformed(ActionEvent ev) {
             Color oldColor = swatchPanel.getMostRecentColor();
             Color color = JColorChooser.showDialog(getParent(), "Color Chooser", oldColor);
@@ -71,14 +72,15 @@ public class SmallColorChooserPopupMenu extends JPopupMenu {
     };
 
     /** for PopupMenu */
-    private MouseListener popupListener = new MouseAdapter() {
+    private final MouseListener popupListener = new MouseAdapter() {
+        @Override
         public void mouseReleased(MouseEvent ev) {
             setVisible(false);
         }
     };
 
     /** for SwatchChooserPanel */
-    private PropertyChangeListener pcl = ev -> {
+    private final PropertyChangeListener pcl = ev -> {
         if ("color".equals(ev.getPropertyName())) {
             Color oldColor = (Color) ev.getOldValue();
             Color color = (Color) ev.getNewValue();

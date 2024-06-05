@@ -70,12 +70,14 @@ public class JTransFrame extends JFrame implements Translucentable {
         return backImage;
     }
 
+    @Override
     public synchronized boolean getIgnoreRepaint() {
         capture.notifyPaint();
 
         return super.getIgnoreRepaint();
     }
 
+    @Override
     public void addNotify() {
         if (!capture.isCapturing()) {
             capture.startCapturing();
@@ -85,6 +87,7 @@ public class JTransFrame extends JFrame implements Translucentable {
         super.addNotify();
     }
 
+    @Override
     public void copyScreen() {
         Rectangle bounds = getBounds();
         Insets insets = getInsets();
@@ -106,6 +109,7 @@ public class JTransFrame extends JFrame implements Translucentable {
         }
     }
 
+    @Override
     protected void processComponentEvent(ComponentEvent e) {
         if (capture.isCapturing()) {
             if (e.getID() == ComponentEvent.COMPONENT_MOVED
@@ -118,6 +122,7 @@ public class JTransFrame extends JFrame implements Translucentable {
     }
 
     class TransGlassPane extends JRootPane {
+        @Override
         public final void paintComponent(Graphics g) {
             if (capture.isCapturing()) {
                 if (getBackImage() != null) {

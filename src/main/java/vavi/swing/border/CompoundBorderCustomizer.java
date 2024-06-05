@@ -31,7 +31,8 @@ public class CompoundBorderCustomizer extends BasicBorderCustomizer {
     }
 
     /** */
-    private PropertyChangeListener pcl = new PropertyChangeListener() {
+    private final PropertyChangeListener pcl = new PropertyChangeListener() {
+        @Override
         public void propertyChange(PropertyChangeEvent ev) {
             Border inside  = compound.getInsideBorder();
             Border outside = compound.getOutsideBorder();
@@ -50,7 +51,7 @@ public class CompoundBorderCustomizer extends BasicBorderCustomizer {
         }
     };
 
-    /** */
+    @Override
     public void setObject(Border border) {
         Border inside  = ((CompoundBorder) border).getInsideBorder();
         Border outside = ((CompoundBorder) border).getOutsideBorder();

@@ -52,19 +52,19 @@ public class SwatchChooserPanel extends AbstractColorChooserPanel implements Ser
 
     private RecentSwatchPanel recentSwatchPanel;
 
-    private static String recentStr = UIManager.getString("ColorChooser.swatchesRecentText");
+    private static final String recentStr = UIManager.getString("ColorChooser.swatchesRecentText");
 
-    /** */
+    @Override
     public String getDisplayName() {
         return UIManager.getString("ColorChooser.swatchesNameText");
     }
 
-    /** */
+    @Override
     public Icon getSmallDisplayIcon() {
         return null;
     }
 
-    /** */
+    @Override
     public Icon getLargeDisplayIcon() {
         return null;
     }
@@ -73,11 +73,12 @@ public class SwatchChooserPanel extends AbstractColorChooserPanel implements Ser
      * The background color, foreground color, and font are already set to the
      * defaults from the defaults table before this method is called.
      */
+    @Override
     public void installChooserPanel(JColorChooser enclosingChooser) {
         super.installChooserPanel(enclosingChooser);
     }
 
-    /** */
+    @Override
     protected void buildChooser() {
 
         JPanel superHolder = new JPanel();
@@ -108,7 +109,7 @@ public class SwatchChooserPanel extends AbstractColorChooserPanel implements Ser
         add(superHolder);
     }
 
-    /** */
+    @Override
     public void uninstallChooserPanel(JColorChooser enclosingChooser) {
         super.uninstallChooserPanel(enclosingChooser);
 
@@ -119,7 +120,7 @@ public class SwatchChooserPanel extends AbstractColorChooserPanel implements Ser
         removeAll(); // strip out all the sub-components
     }
 
-    /** */
+    @Override
     public void updateChooser() {
     }
 
@@ -134,7 +135,8 @@ public class SwatchChooserPanel extends AbstractColorChooserPanel implements Ser
     }
 
     /** */
-    private MouseListener recentSwatchListener = new MouseAdapter() {
+    private final MouseListener recentSwatchListener = new MouseAdapter() {
+        @Override
         public void mousePressed(MouseEvent ev) {
             // Color oldColor = recentSwatchPanel.getMostRecentColor();
             Color color = recentSwatchPanel.getColorForLocation(ev.getX(), ev.getY());
@@ -144,6 +146,7 @@ public class SwatchChooserPanel extends AbstractColorChooserPanel implements Ser
 
     /** */
     private MouseListener mainSwatchListener = new MouseAdapter() {
+        @Override
         public void mousePressed(MouseEvent ev) {
             // Color oldColor = recentSwatchPanel.getMostRecentColor();
             Color color = swatchPanel.getColorForLocation(ev.getX(), ev.getY());
@@ -173,7 +176,7 @@ class SwatchPanel extends JPanel {
         setRequestFocusEnabled(false);
     }
 
-    /** */
+    @Override
     public boolean isFocusable() {
         return false;
     }
@@ -182,7 +185,7 @@ class SwatchPanel extends JPanel {
     protected void initValues() {
     }
 
-    /** */
+    @Override
     public void paintComponent(Graphics g) {
         g.setColor(getBackground());
         g.fillRect(0, 0, getWidth(), getHeight());
@@ -199,7 +202,7 @@ class SwatchPanel extends JPanel {
         }
     }
 
-    /** */
+    @Override
     public Dimension getPreferredSize() {
         int x = numSwatches.width * (swatchSize.width + gap.width) - 1;
         int y = numSwatches.height * (swatchSize.height + gap.height) - 1;
@@ -210,7 +213,7 @@ class SwatchPanel extends JPanel {
     protected void initColors() {
     }
 
-    /** */
+    @Override
     public String getToolTipText(MouseEvent e) {
         Color color = getColorForLocation(e.getX(), e.getY());
         return color.getRed() + ", " + color.getGreen() + ", " + color.getBlue();
@@ -238,7 +241,7 @@ if (colors.length <= (row * numSwatches.width) + column) {
  * show recent colors
  */
 class RecentSwatchPanel extends SwatchPanel {
-    /** */
+    @Override
     protected void initValues() {
         // swatchSize = UIManager.getDimension("ColorChooser.swatchesRecentSwatchSize");
         swatchSize = new Dimension(13, 13);
@@ -246,7 +249,7 @@ class RecentSwatchPanel extends SwatchPanel {
         gap = new Dimension(1, 1);
     }
 
-    /** */
+    @Override
     protected void initColors() {
         Color defaultRecentColor = UIManager.getColor("ColorChooser.swatchesDefaultRecentColor");
         int numColors = numSwatches.width * numSwatches.height;
@@ -276,7 +279,7 @@ Debug.println("@@@ numColors: " + numColors);
  * show sample colors
  */
 class MainSwatchPanel extends SwatchPanel {
-    /** */
+    @Override
     protected void initValues() {
         // swatchSize = UIManager.getDimension("ColorChooser.swatchesSwatchSize");
         swatchSize = new Dimension(13, 13);

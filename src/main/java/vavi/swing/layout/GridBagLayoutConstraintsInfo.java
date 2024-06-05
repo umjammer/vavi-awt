@@ -27,12 +27,12 @@ public class GridBagLayoutConstraintsInfo extends SimpleBeanInfo {
 
     private final Class<?> clazz = GridBagLayoutConstraints.class;
 
-    /** */
+    @Override
     public BeanDescriptor getBeanDescriptor() {
         return new BeanDescriptor(clazz, null);
     }
 
-    /** */
+    @Override
     public PropertyDescriptor[] getPropertyDescriptors() {
         try {
             PropertyDescriptor[] pds = new PropertyDescriptor[11];

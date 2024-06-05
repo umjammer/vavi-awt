@@ -32,7 +32,8 @@ public class SoftBevelBorderCustomizer extends BasicBorderCustomizer {
     }
 
     /** */
-    private PropertyChangeListener pcl = new PropertyChangeListener() {
+    private final PropertyChangeListener pcl = new PropertyChangeListener() {
+        @Override
         public void propertyChange(PropertyChangeEvent ev) {
             int type = softBevel.getBevelType();
             Color hi = softBevel.getHighlightInnerColor();
@@ -60,7 +61,7 @@ public class SoftBevelBorderCustomizer extends BasicBorderCustomizer {
         }
     };
 
-    /** */
+    @Override
     public void setObject(Border border) {
         int type = ((SoftBevelBorder) border).getBevelType();
         Color hi = ((SoftBevelBorder) border).getHighlightInnerColor();

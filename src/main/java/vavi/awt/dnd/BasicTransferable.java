@@ -56,6 +56,7 @@ Debug.println(Level.FINER, model);
     }
 
     /** Gets transferable flavors. */
+    @Override
     public synchronized DataFlavor[] getTransferDataFlavors() {
         DataFlavor[] flavors = new DataFlavor[flavorList.size()];
         flavorList.toArray(flavors);
@@ -63,12 +64,14 @@ Debug.println(Level.FINER, model);
     }
 
     /** Tells if the specified flavor is supported or not. */
+    @Override
     public boolean isDataFlavorSupported(DataFlavor flavor) {
 Debug.println(Level.FINER, flavorList.contains(flavor));
         return flavorList.contains(flavor);
     }
 
     /** Gets the transferable data. */
+    @Override
     public synchronized Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
 Debug.println(Level.FINER, toString());
 //        dumpFlavor(flavor);

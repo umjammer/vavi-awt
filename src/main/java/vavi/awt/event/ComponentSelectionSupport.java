@@ -20,7 +20,7 @@ import java.util.List;
 public class ComponentSelectionSupport implements Serializable {
 
     /** ComponentSelection のリスナー */
-    private List<ComponentSelectionListener> listeners = new ArrayList<>();
+    private final List<ComponentSelectionListener> listeners = new ArrayList<>();
 
     /**
      * ComponentSelection リスナーをアタッチします．

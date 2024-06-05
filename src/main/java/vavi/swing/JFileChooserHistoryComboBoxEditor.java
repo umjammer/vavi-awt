@@ -23,6 +23,7 @@ public class JFileChooserHistoryComboBoxEditor extends PropertyEditorSupport imp
     /**
      * カスタムエディタをサポートします．
      */
+    @Override
     public boolean supportsCustomEditor() {
         return false;
     }

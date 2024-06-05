@@ -39,14 +39,16 @@ import vavi.util.Debug;
 public class GlassPane extends JComponent {
 
     /** */
-    private JComponent glassPane = new JComponent() {
-        private ContainerListener cl = new ContainerListener() {
+    private final JComponent glassPane = new JComponent() {
+        private final ContainerListener cl = new ContainerListener() {
+            @Override
             public void componentAdded(ContainerEvent ev) {
                 Component component = ev.getChild();
                 component.addMouseListener(rbg);
                 component.addMouseMotionListener(rbg);
 Debug.println(Level.FINER, "add gesture to: " + component.getName());
             }
+            @Override
             public void componentRemoved(ContainerEvent ev) {
                 Component component = ev.getChild();
                 component.removeMouseListener(rbg);
@@ -60,6 +62,7 @@ Debug.println(Level.FINER, "remove gesture to: " + component.getName());
             setDoubleBuffered(true);
             addContainerListener(cl);
         }
+        @Override
         public void paintComponent(Graphics g) {
             if (gridEnabled) {
                 g.setColor(Color.yellow);
@@ -80,7 +83,7 @@ Debug.println(Level.FINER, "remove gesture to: " + component.getName());
     private Container container;
 
     /** */
-    private RubberBandGesture rbg;
+    private final RubberBandGesture rbg;
 
     /** */
     private Dimension gridSize;
@@ -154,13 +157,15 @@ Debug.println(Level.FINER, "remove gesture to: " + component.getName());
     //-------------------------------------------------------------------------
 
     /** listener for container */
-    private ContainerListener cl1 = new ContainerListener() {
+    private final ContainerListener cl1 = new ContainerListener() {
         /** の追加はコントローラを発生 */
+        @Override
         public void componentAdded(ContainerEvent ev) {
             Component component = ev.getChild();
             addController(component);
         }
         /** の削除はコントローラを削除 */
+        @Override
         public void componentRemoved(ContainerEvent ev) {
             Component component = ev.getChild();
             removeController(component);
@@ -207,7 +212,7 @@ Debug.println(Level.FINER, container.getComponentCount());
             Component component = container.getComponent(i);
             removeController(component);
         }
-if (controllers.size() != 0) {
+if (!controllers.isEmpty()) {
  Debug.println(Level.INFO, "TODO " + controllers.size() + "controller(s) still alive");
 }
     }
@@ -215,7 +220,7 @@ if (controllers.size() != 0) {
     //-------------------------------------------------------------------------
 
     /** pairs for Component and Controller */
-    private Map<Component, Component> controllers = new HashMap<>();
+    private final Map<Component, Component> controllers = new HashMap<>();
 
     /** */
     public LocatableController getControllerFor(Component component) {

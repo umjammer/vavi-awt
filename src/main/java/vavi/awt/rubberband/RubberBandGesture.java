@@ -22,7 +22,7 @@ import vavi.swing.event.EditorSupport;
 public class RubberBandGesture extends MouseInputAdapter {
 
     /** */
-    protected RubberBand rubberBand;
+    protected final RubberBand rubberBand;
 
     /**
      * !!! You need to set renderer in your constructor.

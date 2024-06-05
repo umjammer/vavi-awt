@@ -53,18 +53,23 @@ public class JEditorPopupMenu extends JPopupMenu {
         rb.getString("common.menuItem.selectAll.text");
 
     /** */
-    private Editable editor;
+    private final Editable editor;
 
     /** TODO ここもいまいち */
     static class JEditorComponent implements Editable {
-        JTextComponent tc;
+        final JTextComponent tc;
         JEditorComponent(JTextComponent tc) {
             this.tc = tc;
         }
+        @Override
         public void cut()       { tc.cut();                  }
+        @Override
         public void copy()      { tc.copy();                 }
+        @Override
         public void paste()     { tc.paste();                }
+        @Override
         public void delete()    { tc.replaceSelection(null); }
+        @Override
         public void selectAll() { tc.selectAll();            }
     }
 
@@ -94,7 +99,8 @@ public class JEditorPopupMenu extends JPopupMenu {
     }
 
     /** うーん，いまいち．．． */
-    private MouseInputListener mouseListener = new MouseInputAdapter() {
+    private final MouseInputListener mouseListener = new MouseInputAdapter() {
+        @Override
         public void mouseClicked(MouseEvent ev) {
             if (editor instanceof JEditorComponent) {
 //                  if (ev.getClickCount() == 2) {
@@ -127,31 +133,36 @@ public class JEditorPopupMenu extends JPopupMenu {
 //        }
 //    };
 
-    private Action cutAction = new AbstractAction(CUT) {
+    private final Action cutAction = new AbstractAction(CUT) {
+        @Override
         public void actionPerformed(ActionEvent ev) {
             editor.cut();
         }
     };
 
-    private Action copyAction = new AbstractAction(COPY) {
+    private final Action copyAction = new AbstractAction(COPY) {
+        @Override
         public void actionPerformed(ActionEvent ev) {
             editor.copy();
         }
     };
 
-    private Action pasteAction = new AbstractAction(PASTE) {
+    private final Action pasteAction = new AbstractAction(PASTE) {
+        @Override
         public void actionPerformed(ActionEvent ev) {
             editor.paste();
         }
     };
 
-    private Action deleteAction = new AbstractAction(DELETE) {
+    private final Action deleteAction = new AbstractAction(DELETE) {
+        @Override
         public void actionPerformed(ActionEvent ev) {
             editor.delete();
         }
     };
 
-    private Action selectAllAction = new AbstractAction(SELECT_ALL) {
+    private final Action selectAllAction = new AbstractAction(SELECT_ALL) {
+        @Override
         public void actionPerformed(ActionEvent ev) {
             editor.selectAll();
         }

@@ -28,17 +28,17 @@ public class FlowLayoutInfo extends SimpleBeanInfo {
     private final Class<?> clazz = FlowLayout.class;
     private final Class<?> customizerClass = FlowLayoutCustomizer.class;
 
-    /** */
+    @Override
     public BeanDescriptor getBeanDescriptor() {
         return new BeanDescriptor(clazz, customizerClass);
     }
 
-    /** */
+    @Override
     public Image getIcon(int iconKind) {
         return loadImage("resources/flowLayout.gif");
     }
 
-    /** */
+    @Override
     public PropertyDescriptor[] getPropertyDescriptors() {
         try {
             PropertyDescriptor[] pds = new PropertyDescriptor[3];

@@ -26,17 +26,17 @@ public class CompoundBorderInfo extends SimpleBorderInfo {
     private final Class<?> clazz = CompoundBorder.class;
     private final Class<?> customizerClass = CompoundBorderCustomizer.class;
 
-    /** */
+    @Override
     public BeanDescriptor getBeanDescriptor() {
         return new BeanDescriptor(clazz, customizerClass);
     }
 
-    /** */
+    @Override
     public Image getIcon(int iconKind) {
         return loadImage("resources/compoundBorder.gif");
     }
 
-    /** */
+    @Override
     public BorderPropertyDescriptor[] getBorderPropertyDescriptors() {
         BorderPropertyDescriptor[] bpds = new BorderPropertyDescriptor[2];
         bpds[0] = new BorderPropertyDescriptor("insideBorder", clazz);

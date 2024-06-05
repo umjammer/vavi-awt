@@ -22,10 +22,10 @@ import vavi.text.NumberDocument;
  */
 public class SwingRectangleEditor extends SwingEditorSupport {
 
-    private JTextField xTF;
-    private JTextField yTF;
-    private JTextField widthTF;
-    private JTextField heightTF;
+    private final JTextField xTF;
+    private final JTextField yTF;
+    private final JTextField widthTF;
+    private final JTextField heightTF;
 
     public SwingRectangleEditor() {
         xTF = new JTextField();
@@ -49,6 +49,7 @@ public class SwingRectangleEditor extends SwingEditorSupport {
         panel.add(heightTF);
     }
 
+    @Override
     public void setValue(Object value)  {
         super.setValue(value);
 
@@ -60,6 +61,7 @@ public class SwingRectangleEditor extends SwingEditorSupport {
         heightTF.setText(Integer.toString(rect.height));
     }
 
+    @Override
     public Object getValue()  {
         int x = Integer.parseInt(xTF.getText());
         int y = Integer.parseInt(yTF.getText());

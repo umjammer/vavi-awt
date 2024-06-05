@@ -38,20 +38,20 @@ import vavi.util.Debug;
 public abstract class Draggable {
 
     /** The drag source */
-    private DragSource dragSource;
+    private final DragSource dragSource;
     /** The drag gesture listener */
-    private DragGestureListener dgListener;
+    private final DragGestureListener dgListener;
     /** the drag source listener */
-    private DragSourceListener dsListener;
+    private final DragSourceListener dsListener;
     /** the drag gesture recognizer */
-    private DragGestureRecognizer dsRecognizer;
+    private final DragGestureRecognizer dsRecognizer;
     /** The data */
-    protected Object data;
+    protected final Object data;
     /** The image for dragging */
     protected Image image;
     /** The component to drag */
     @SuppressWarnings("unused")
-    private Component source;
+    private final Component source;
     /** The point for cursor */
     private static final Point point0 = new Point(0, 0);
 
@@ -140,6 +140,7 @@ return Toolkit.getDefaultToolkit().createCustomCursor(image, point0, "my cursor"
          * Start the drag if the operation is ok.
          * @param ev the event object
          */
+        @Override
         public void dragGestureRecognized(DragGestureEvent ev) {
 
 Debug.println(Level.FINE, "-------------------------");
@@ -194,6 +195,7 @@ Debug.printStackTrace(e);
         /**
          * @param ev the event
          */
+        @Override
         public void dragDropEnd(DragSourceDropEvent ev) {
 //            if (ev.getDropSuccess() == false) {
 //                return;
@@ -211,6 +213,7 @@ Debug.println(Level.FINER, "action: " + ev.getDropAction());
          * ドラッグ状態になったときに呼ばれます．
          * @param ev the event
          */
+        @Override
         public void dragEnter(DragSourceDragEvent ev) {
 Debug.println(Level.FINER, ev);
             DragSourceContext context = ev.getDragSourceContext();
@@ -232,6 +235,7 @@ Debug.println(Level.FINE, "my action: " + ev.getDropAction() + ": " +
         /**
          * @param ev the event
          */
+        @Override
         public void dragOver(DragSourceDragEvent ev) {
             DragSourceContext context = ev.getDragSourceContext();
             int sa = context.getSourceActions();
@@ -247,6 +251,7 @@ Debug.println(Level.FINER, "target actions: " + ta);
         /**
          * @param ev the event
          */
+        @Override
         public void dragExit(DragSourceEvent ev) {
 Debug.println(Level.FINER, "exit: " + ev);
             DragSourceContext context = ev.getDragSourceContext();
@@ -256,6 +261,7 @@ Debug.println(Level.FINER, "exit: " + ev);
          * ドロップアクションが変更されたときに呼ばれます．
          * @param ev the event
          */
+        @Override
         public void dropActionChanged(DragSourceDragEvent ev) {
             DragSourceContext context = ev.getDragSourceContext();
 Debug.println(Level.FINE, "my action: " + ev.getUserAction() + ": " +

@@ -127,7 +127,7 @@ Debug.println(Level.FINER, selectable);
     // -------------------------------------------------------------------------
 
     /** SelectionEvent 機構のユーティリティ */
-    private SelectionSupport ss = new SelectionSupport();
+    private final SelectionSupport ss = new SelectionSupport();
 
     /** Selection リスナーをアタッチします． */
     public void addSelectionListener(SelectionListener l) {

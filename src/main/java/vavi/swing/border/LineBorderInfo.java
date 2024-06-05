@@ -27,17 +27,17 @@ public class LineBorderInfo extends SimpleBorderInfo {
     private final Class<?> clazz = LineBorder.class;
     private final Class<?> customizerClass = LineBorderCustomizer.class;
 
-    /** */
+    @Override
     public BeanDescriptor getBeanDescriptor() {
         return new BeanDescriptor(clazz, customizerClass);
     }
 
-    /** */
+    @Override
     public Image getIcon(int iconKind) {
         return loadImage("resources/lineBorder.gif");
     }
 
-    /** */
+    @Override
     public BorderPropertyDescriptor[] getBorderPropertyDescriptors() {
         BorderPropertyDescriptor[] bpds = new BorderPropertyDescriptor[3];
         bpds[0] = new BorderPropertyDescriptor("lineColor", clazz);

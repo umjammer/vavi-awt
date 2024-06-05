@@ -26,13 +26,14 @@ import vavi.util.Debug;
  */
 public class SwingFloatEditor extends SwingEditorSupport {
 
-    private JTextField textfield;
+    private final JTextField textfield;
 
     public SwingFloatEditor() {
         textfield = new JTextField();
         textfield.setDocument(new NumberDocument());
         // XXX - testing
         textfield.addKeyListener(new KeyAdapter()  {
+            @Override
             public void keyPressed(KeyEvent evt)  {
                 if (evt.getKeyCode() == KeyEvent.VK_ENTER)  {
 Debug.println(Level.FINER, textfield.getText());
@@ -46,6 +47,7 @@ Debug.println(Level.FINER, textfield.getText());
         panel.add(textfield);
     }
 
+    @Override
     public void setValue(Object value)  {
         super.setValue(value);
 

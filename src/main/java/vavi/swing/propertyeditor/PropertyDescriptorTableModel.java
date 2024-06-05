@@ -39,7 +39,7 @@ public class PropertyDescriptorTableModel
     private BeanInfo info;
 
     // Shared instance of a comparator
-    private static DescriptorComparator<FeatureDescriptor> comparator = new DescriptorComparator<>();
+    private static final DescriptorComparator<FeatureDescriptor> comparator = new DescriptorComparator<>();
 
     // View options
     public static final int VIEW_ALL         = 0;
@@ -68,6 +68,7 @@ public class PropertyDescriptorTableModel
     /**
      * Set the table model to represents the properties of the object.
      */
+    @Override
     public void setObject(Object bean) {
         super.setObject(bean);
 
@@ -87,6 +88,7 @@ Debug.println(Level.SEVERE, e);
      * @param row table row
      * @param col table column
      */
+    @Override
     public boolean isCellEditable(int row, int col) {
         if (col == JPropertyEditorTable.COL_VALUE && descriptors != null) {
             if (getPropertyDescriptor(row).getWriteMethod() == null) {
@@ -104,6 +106,7 @@ Debug.println(Level.SEVERE, e);
      * @param row table row
      * @param col table column
      */
+    @Override
     public Object getValueAt(int row, int col) {
 
         Object value = null;
@@ -121,7 +124,7 @@ Debug.println(Level.SEVERE, e);
                 try {
                     for (int i = 0; i < paramTypes.length; i++) {
                         // XXX - debug
-                        args[i] = paramTypes[i].newInstance();
+                        args[i] = paramTypes[i].getDeclaredConstructor().newInstance();
                         throw new IllegalStateException("getValueAt getter = " + getter + " parameter = " + paramTypes[i]);
                     }
                 } catch (Exception e) {
@@ -153,6 +156,7 @@ Debug.println(Level.INFO, "Bean: " + bean.toString());
     /**
      * Set the value of the Values column.
      */
+    @Override
     public void setValueAt(Object value, int row, int column) {
 
         if (column != JPropertyEditorTable.COL_VALUE ||
@@ -169,7 +173,7 @@ Debug.println(Level.INFO, "Bean: " + bean.toString());
 Debug.println(Level.INFO, e);
 Debug.println(Level.INFO, descriptors[row].getShortDescription());
 Debug.println(Level.INFO, "Setter: " + setter);
-Debug.println(Level.INFO, "Argument: " + value.getClass().toString());
+Debug.println(Level.INFO, "Argument: " + value.getClass());
 Debug.println(Level.INFO, "Row: " + row + " Column: " + column);
             }
         }
@@ -185,6 +189,7 @@ Debug.println(Level.INFO, "Row: " + row + " Column: " + column);
     /**
      * Returns the Java type info for the property at the given row.
      */
+    @Override
     public Class<?> getPropertyType(int row) {
         return getPropertyDescriptor(row).getPropertyType();
     }
@@ -194,6 +199,7 @@ Debug.println(Level.INFO, "Row: " + row + " Column: " + column);
      * editor is not specified in the property descriptor then it is looked up
      * in the PropertyEditorManager.
      */
+    @Override
     @SuppressWarnings("unchecked")
     protected Class<PropertyEditor> getPropertyEditorClass(int row) {
         return (Class<PropertyEditor>) getPropertyDescriptor(row).getPropertyEditorClass();
@@ -203,6 +209,7 @@ Debug.println(Level.INFO, "Row: " + row + " Column: " + column);
      * Special case for the enumerated properties.
      * Must reinitialize to reset the combo box values. TODO
      */
+    @Override
     public void initPropertyEditor(PropertyEditor editor, int row) {
         if (editor instanceof SwingEditorSupport)  {
             ((SwingEditorSupport) editor).init(getPropertyDescriptor(row));

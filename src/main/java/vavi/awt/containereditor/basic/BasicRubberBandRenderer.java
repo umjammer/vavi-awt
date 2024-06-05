@@ -32,7 +32,7 @@ import vavi.awt.rubberband.RubberBandRenderer;
 public class BasicRubberBandRenderer implements RubberBandRenderer {
 
     /** */
-    private Container container;
+    private final Container container;
 
     /** */
     public BasicRubberBandRenderer(Container container) {
@@ -40,7 +40,7 @@ public class BasicRubberBandRenderer implements RubberBandRenderer {
     }
 
     /** リサイズの幅 */
-    private Insets resizingInsets = new Insets(5, 5, 5, 5);
+    private final Insets resizingInsets = new Insets(5, 5, 5, 5);
 
     /** カーソルのテーブル TODO */
     private static final Cursor[] cursors = {

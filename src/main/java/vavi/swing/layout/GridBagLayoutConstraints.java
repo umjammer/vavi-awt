@@ -143,6 +143,7 @@ public class GridBagLayoutConstraints extends LayoutConstraints {
     /**
      * gets constraints.
      */
+    @Override
     public Object getConstraints() {
         return constraints;
     }
@@ -150,6 +151,7 @@ public class GridBagLayoutConstraints extends LayoutConstraints {
     /**
      * gets constraints.
      */
+    @Override
     public void setConstraints(Object constraints) {
         this.constraints = (GridBagConstraints) constraints;
     }

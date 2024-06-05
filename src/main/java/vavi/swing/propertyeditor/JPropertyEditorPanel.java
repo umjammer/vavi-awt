@@ -67,9 +67,9 @@ public class JPropertyEditorPanel extends JPanel {
     private Stack<Object> beanStack;
 
     /** */
-    private JPropertyEditorTable table;
+    private final JPropertyEditorTable table;
     /** */
-    private PropertyDescriptorTableModel tableModel;
+    private final PropertyDescriptorTableModel tableModel;
 
     // UI for the property control panel.
     private JLabel nameLabel;
@@ -107,7 +107,8 @@ public class JPropertyEditorPanel extends JPanel {
      * Double clicking on the first column will call the down
      * action on the current object.
      */
-    private MouseListener ml = new MouseAdapter()  {
+    private final MouseListener ml = new MouseAdapter()  {
+        @Override
         public void mouseClicked(MouseEvent ev)  {
             if (ev.getClickCount() == 2 && table.getSelectedColumn() == 0) {
                 downAction.actionPerformed(null);
@@ -164,7 +165,8 @@ public class JPropertyEditorPanel extends JPanel {
     /**
      * Handler for UI interactions.
      */
-    private ActionListener viewActionListener = new ActionListener() {
+    private final ActionListener viewActionListener = new ActionListener() {
+        @Override
         public void actionPerformed(ActionEvent evt)  {
             tableModel.filterTable(viewCombo.getSelectedIndex());
         }
@@ -173,9 +175,10 @@ public class JPropertyEditorPanel extends JPanel {
     /**
      * View lower level properties of the selected property.
      */
-    private Action downAction = new AbstractAction(
+    private final Action downAction = new AbstractAction(
         rb.getString("common.button.down.text"),
         (ImageIcon) UIManager.get("jPropertyEditorPanel.upIcon")) {
+        @Override
         public void actionPerformed(ActionEvent ev)  {
             final int col = JPropertyEditorTable.COL_VALUE;
             int row = table.getSelectedRow();
@@ -195,9 +198,10 @@ public class JPropertyEditorPanel extends JPanel {
     /**
      * View upper level properties.
      */
-    private Action upAction = new AbstractAction(
+    private final Action upAction = new AbstractAction(
         rb.getString("common.button.up.text"),
         (ImageIcon) UIManager.get("jPropertyEditorPanel.downIcon")) {
+        @Override
         public void actionPerformed(ActionEvent ev)  {
             if (beanStack != null && !beanStack.empty())  {
                 setBean(beanStack.pop());
@@ -210,9 +214,10 @@ public class JPropertyEditorPanel extends JPanel {
      * Handle the add gesture. Informs prop change listener to add the selected
      * current property sheet component.
      */
-    private Action addAction = new AbstractAction(
+    private final Action addAction = new AbstractAction(
         rb.getString("common.button.add.text"),
         (ImageIcon) UIManager.get("jPropertyEditorPanel.addIcon")) {
+        @Override
         public void actionPerformed(ActionEvent ev)  {
             final int col = JPropertyEditorTable.COL_VALUE;
             int row = table.getSelectedRow();
@@ -232,9 +237,10 @@ public class JPropertyEditorPanel extends JPanel {
     /**
      * Will display a customizer in a dialog
      */
-    private Action custAction = new AbstractAction(
+    private final Action custAction = new AbstractAction(
         rb.getString("common.button.customizer.text"),
         (ImageIcon) UIManager.get("jPropertyEditorPanel.custIcon")) {
+        @Override
         public void actionPerformed(ActionEvent ev)  {
             Component comp = getCustomizer();
 
@@ -272,7 +278,7 @@ public class JPropertyEditorPanel extends JPanel {
         }
 
         /** OK means only closing the dialog. */
-        private ActionListener okActionListener = ev -> dispose();
+        private final ActionListener okActionListener = ev -> dispose();
     }
 
     /**
@@ -360,7 +366,7 @@ Debug.println(Level.SEVERE, e);
 
             if (clazz != null) {
                 try {
-                    customizer = (Component) clazz.newInstance();
+                    customizer = (Component) clazz.getDeclaredConstructor().newInstance();
                 } catch (Exception e) {
 Debug.println(Level.FINE, "Instantiation exception creating Customizer: " + e);
                 }

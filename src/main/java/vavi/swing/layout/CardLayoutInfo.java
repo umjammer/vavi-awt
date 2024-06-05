@@ -28,17 +28,17 @@ public class CardLayoutInfo extends SimpleBeanInfo {
     private final Class<?> clazz = CardLayout.class;
     private final Class<?> customizerClass = CardLayoutCustomizer.class;
 
-    /** */
+    @Override
     public BeanDescriptor getBeanDescriptor() {
         return new BeanDescriptor(clazz, customizerClass);
     }
 
-    /** */
+    @Override
     public Image getIcon(int iconKind) {
         return loadImage("resources/cardLayout.gif");
     }
 
-    /** */
+    @Override
     public PropertyDescriptor[] getPropertyDescriptors() {
         try {
             PropertyDescriptor[] pds = new PropertyDescriptor[2];

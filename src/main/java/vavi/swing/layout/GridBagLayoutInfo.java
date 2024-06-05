@@ -23,12 +23,12 @@ public class GridBagLayoutInfo extends SimpleBeanInfo {
     private final Class<?> clazz = GridBagLayout.class;
     private final Class<?> customizerClass = GridBagLayoutCustomizer.class;
 
-    /** */
+    @Override
     public BeanDescriptor getBeanDescriptor() {
         return new BeanDescriptor(clazz, customizerClass);
     }
 
-    /** */
+    @Override
     public Image getIcon(int iconKind) {
         return loadImage("resources/gridBagLayout.gif");
     }

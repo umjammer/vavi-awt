@@ -46,7 +46,7 @@ public class BorderInfoFactory {
             name = "vavi.swing.border." + name + "Info";
             @SuppressWarnings("unchecked")
             Class<BorderInfo> clazz = (Class<BorderInfo>) Class.forName(name);
-            return clazz.newInstance();
+            return clazz.getDeclaredConstructor().newInstance();
         } catch (Exception e) {
 Debug.println(Level.SEVERE, e);
 Debug.printStackTrace(e);
@@ -109,7 +109,7 @@ Debug.printStackTrace(e);
                 } else { // 引数あり
                     @SuppressWarnings("unchecked")
                     Class<Border> clazz = (Class<Border>) Class.forName(className);
-                    bi.border = clazz.newInstance();
+                    bi.border = clazz.getDeclaredConstructor().newInstance();
                 }
 
                 key = "icon";

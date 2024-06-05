@@ -13,6 +13,7 @@ package vavi.swing;
  * @version 0.00 020510 nsano initial version <br>
  */
 public interface Editable {
+
     /** */
     void cut();
 

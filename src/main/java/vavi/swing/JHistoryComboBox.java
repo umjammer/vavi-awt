@@ -42,7 +42,7 @@ import vavi.util.Debug;
  */
 public class JHistoryComboBox extends JComboBox<String> {
 
-    private JTextField editor;
+    private final JTextField editor;
 
     /** DnD enabled */
     public JHistoryComboBox() {
@@ -129,7 +129,7 @@ Debug.println(Level.FINE, "prefs >>: item" + c + ": " + s);
     /** */
     private final ActionListener actionListener = ev -> {
         String item = (String) getSelectedItem();
-        if (item == null || item.length() == 0) {
+        if (item == null || item.isEmpty()) {
             return;
         }
 
@@ -161,8 +161,7 @@ Debug.println(Level.FINER, Debug.getCallerMethod() + ": " + item);
         setEnabledMouseListeners(editor, isEnabled, editorMouseListeners);
 
         for (Component c : getComponents()) {
-            if (c instanceof AbstractButton) {
-                AbstractButton ab = (AbstractButton) c;
+            if (c instanceof AbstractButton ab) {
                 ab.setEnabled(isEnabled);
                 setEnabledMouseListeners(ab, isEnabled, buttonMouseListeners);
             }

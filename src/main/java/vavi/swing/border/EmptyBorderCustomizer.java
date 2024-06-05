@@ -32,7 +32,8 @@ public class EmptyBorderCustomizer extends BasicBorderCustomizer {
     }
 
     /** */
-    private PropertyChangeListener pcl = new PropertyChangeListener() {
+    private final PropertyChangeListener pcl = new PropertyChangeListener() {
+        @Override
         public void propertyChange(PropertyChangeEvent ev) {
             Insets i = ((EmptyBorder) empty).getBorderInsets();
 
@@ -49,7 +50,7 @@ public class EmptyBorderCustomizer extends BasicBorderCustomizer {
         }
     };
 
-    /** */
+    @Override
     public void setObject(Border border) {
         Insets i = ((EmptyBorder) border).getBorderInsets();
 

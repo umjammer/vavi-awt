@@ -25,12 +25,12 @@ public class CardLayoutConstraintsInfo extends SimpleBeanInfo {
 
     private final Class<?> clazz = CardLayoutConstraints.class;
 
-    /** */
+    @Override
     public BeanDescriptor getBeanDescriptor() {
         return new BeanDescriptor(clazz, null);
     }
 
-    /** */
+    @Override
     public PropertyDescriptor[] getPropertyDescriptors() {
         try {
             PropertyDescriptor[] pds = new PropertyDescriptor[1];

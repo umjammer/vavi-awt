@@ -77,7 +77,7 @@ Debug.println(Level.FINER, value);
                 @SuppressWarnings("unchecked")
                 Class<LayoutManagerCustomizer> cc = (Class<LayoutManagerCustomizer>) bd.getCustomizerClass();
                 if (cc != null) {
-                    c = cc.newInstance();
+                    c = cc.getDeclaredConstructor().newInstance();
                     c.addPropertyChangeListener(pcl);
                     Icon icon = new ImageIcon(bi.getIcon(BeanInfo.ICON_COLOR_16x16));
                     String desc = bd.getShortDescription();
@@ -95,7 +95,8 @@ Debug.printStackTrace(e);
     }
 
     /** */
-    private PropertyChangeListener pcl = new PropertyChangeListener() {
+    private final PropertyChangeListener pcl = new PropertyChangeListener() {
+        @Override
         public void propertyChange(PropertyChangeEvent ev) {
             String name = ev.getPropertyName();
 Debug.println(Level.FINER, name);
@@ -108,7 +109,8 @@ Debug.println(Level.FINER, layout == null ? null : layout.getClass().getSimpleNa
     };
 
     /** */
-    private ChangeListener cl = new ChangeListener() {
+    private final ChangeListener cl = new ChangeListener() {
+        @Override
         public void stateChanged(ChangeEvent ev) {
             int i = getSelectedIndex();
             LayoutManagerCustomizer lmc = (LayoutManagerCustomizer) getComponentAt(i);

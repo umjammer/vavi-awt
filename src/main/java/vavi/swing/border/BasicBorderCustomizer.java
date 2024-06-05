@@ -41,10 +41,10 @@ public class BasicBorderCustomizer extends JComponent
     protected Border border;
 
     /** the displayed sample for border */
-    protected JLabel borderSample;
+    protected final JLabel borderSample;
 
     /** table model for border properties */
-    protected BorderPropertyDescriptorTableModel tableModel;
+    protected final BorderPropertyDescriptorTableModel tableModel;
 
     /** */
     public BasicBorderCustomizer() {
@@ -69,7 +69,7 @@ public class BasicBorderCustomizer extends JComponent
         this.add(sp);
     }
 
-    /** */
+    @Override
     public void setObject(Border border) {
         Border oldBorder = this.border;
         this.border = border;
@@ -82,6 +82,7 @@ Debug.println(Level.FINER, this.border);
     }
 
     /** TODO TabbedPane の ChangeEvent のためだけ */
+    @Override
     public Border getObject() {
 Debug.println(Level.FINER, border);
         return border;

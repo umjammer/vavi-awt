@@ -25,10 +25,10 @@ import javax.swing.JPanel;
 public class FontChooser {
     private Font font;
 
-    private JPanel panel;
-    private JComboBox<?> family;
-    private JComboBox<String> style;
-    private JComboBox<?> size;
+    private final JPanel panel;
+    private final JComboBox<?> family;
+    private final JComboBox<String> style;
+    private final JComboBox<?> size;
     private JLabel example;
     private JDialog dialog;
 

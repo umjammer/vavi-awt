@@ -46,12 +46,12 @@ import vavi.util.Debug;
  */
 public class SwingLayoutManagerEditor extends SwingEditorSupport {
 
-    private JComboBox<?> layoutCombo;
-    private JButton layoutButton;
+    private final JComboBox<?> layoutCombo;
+    private final JButton layoutButton;
 //      private JLabel layoutLabel;
     private LayoutDialog layoutDialog;
 
-    private List<?> lmis =
+    private final List<?> lmis =
         LayoutManagerInfoFactory.getSampleLayoutManagerInfos();
 
     private Container bean;
@@ -88,6 +88,7 @@ public class SwingLayoutManagerEditor extends SwingEditorSupport {
     }
 
     /** super.setValue しないと多分 firePropertyChange されない */
+    @Override
     public void setValue(Object value) {
 Debug.println(Level.FINER, value == null ? String.valueOf((Object) null) : String.valueOf(value.hashCode()));
         super.setValue(value);
@@ -149,7 +150,7 @@ Debug.println(Level.FINE, "bean is not Container: " + bean);
     }
 
     /** Will show dialog. */
-    private ActionListener layoutButtonListener = ev -> {
+    private final ActionListener layoutButtonListener = ev -> {
         if (layoutDialog == null) {
             layoutDialog = new LayoutDialog(panel, "Layout Chooser");
         }
@@ -162,7 +163,7 @@ Debug.println(Level.FINE, "bean is not Container: " + bean);
     };
 
     /** */
-    private ActionListener layoutComboListener = ev -> {
+    private final ActionListener layoutComboListener = ev -> {
         @SuppressWarnings("unchecked")
         JComboBox<SampleLayoutManagerInfo> cb = (JComboBox<SampleLayoutManagerInfo>) ev.getSource();
         SampleLayoutManagerInfo lmi = (SampleLayoutManagerInfo) cb.getSelectedItem();
@@ -182,29 +183,28 @@ Debug.println(Level.FINE, "bean is not Container: " + bean);
     }
 
     /** */
-    private ListCellRenderer<Object> lcr = new DefaultListCellRenderer() {
+    private final ListCellRenderer<Object> lcr = new DefaultListCellRenderer() {
         {
             setOpaque(true);
         }
 
-        Color selectedFG = UIManager.getColor("ComboBox.selectionBackground");
-        Color selectedBG = UIManager.getColor("ComboBox.selectionForeground");
-        Color FG = UIManager.getColor("ComboBox.background");
-        Color BG = UIManager.getColor("ComboBox.foreground");
+        final Color selectedFG = UIManager.getColor("ComboBox.selectionBackground");
+        final Color selectedBG = UIManager.getColor("ComboBox.selectionForeground");
+        final Color FG = UIManager.getColor("ComboBox.background");
+        final Color BG = UIManager.getColor("ComboBox.foreground");
 
+        @Override
         public Component getListCellRendererComponent(JList<?> list,
                                                       Object value,
                                                       int modelIndex,
                                                       boolean isSelected,
                                                       boolean cellHasFocus) {
 
-            if (!(value instanceof SampleLayoutManagerInfo)) {
+            if (!(value instanceof SampleLayoutManagerInfo lmi)) {
                 setText("");
                 setIcon(null);
                 return this;
             }
-
-            SampleLayoutManagerInfo lmi = (SampleLayoutManagerInfo) value;
 
             setIcon(lmi.icon);
             setText(lmi.desc);
@@ -226,7 +226,7 @@ Debug.println(Level.FINE, "bean is not Container: " + bean);
 
         private int returnValue = CANCEL_OPTION;
 
-        private LayoutManagerChooser layoutChooser;
+        private final LayoutManagerChooser layoutChooser;
 
         public LayoutDialog(Component c, String title) {
             super(JOptionPane.getFrameForComponent(c), title, true);
@@ -254,7 +254,7 @@ Debug.println(Level.FINE, "bean is not Container: " + bean);
         }
 
         /** */
-        private ActionListener okListener = ev -> {
+        private final ActionListener okListener = ev -> {
             returnValue = APPROVE_OPTION;
             // get the Layout from the pane
             setVisible(false);
@@ -262,7 +262,7 @@ Debug.println(Level.FINE, "bean is not Container: " + bean);
         };
 
         /** */
-        private ActionListener cancelListener = ev -> {
+        private final ActionListener cancelListener = ev -> {
             returnValue = CANCEL_OPTION;
             setVisible(false);
 //              dispose();

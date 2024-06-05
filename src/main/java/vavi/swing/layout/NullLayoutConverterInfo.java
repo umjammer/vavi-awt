@@ -25,12 +25,12 @@ public class NullLayoutConverterInfo extends SimpleBeanInfo {
 
     private final Class<?> clazz = NullLayoutConverter.class;
 
-    /** */
+    @Override
     public BeanDescriptor getBeanDescriptor() {
         return new BeanDescriptor(clazz, null);
     }
 
-    /** */
+    @Override
     public PropertyDescriptor[] getPropertyDescriptors() {
         try {
             PropertyDescriptor[] pds = new PropertyDescriptor[3];

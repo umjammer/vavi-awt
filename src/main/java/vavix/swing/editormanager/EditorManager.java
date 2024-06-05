@@ -24,7 +24,7 @@ import vavi.swing.event.EditorListener;
 public abstract class EditorManager implements EditorListener {
 
     /** 複数のエディタ管理用ベクタ */
-    protected volatile List<Editor> editors = new ArrayList<>();
+    protected final List<Editor> editors = new ArrayList<>();
 
     /** カレントのエディタ */
     protected Editor current;
@@ -70,6 +70,7 @@ public abstract class EditorManager implements EditorListener {
     /**
      * エディタがアップデートされたときに呼ばれます．
      */
+    @Override
     public void editorUpdated(EditorEvent ev) {
         Editor editor = (Editor) ev.getSource();
         editorUpdatedImpl(editor);

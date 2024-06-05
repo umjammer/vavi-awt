@@ -23,7 +23,7 @@ public class OverlayLayoutCustomizer extends BasicLayoutManagerCustomizer {
     public OverlayLayoutCustomizer() {
     }
 
-    /** */
+    @Override
     public void setContainer(Container container) {
         super.setContainer(container);
         setObject(new OverlayLayout(container));

@@ -69,18 +69,22 @@ public class ARGBChooserPanel extends AbstractColorChooserPanel implements Chang
         }
     }
 
+    @Override
     public String getDisplayName() {
         return "ARGB";
     }
 
+    @Override
     public Icon getSmallDisplayIcon() {
         return null;
     }
 
+    @Override
     public Icon getLargeDisplayIcon() {
         return null;
     }
 
+    @Override
     protected void buildChooser() {
 
         setLayout(new BorderLayout());
@@ -183,6 +187,7 @@ public class ARGBChooserPanel extends AbstractColorChooserPanel implements Chang
         alphaSlider.addChangeListener(this);
     }
 
+    @Override
     public void updateChooser() {
         if (!isAdjusting) {
             isAdjusting = true;
@@ -193,6 +198,7 @@ public class ARGBChooserPanel extends AbstractColorChooserPanel implements Chang
         }
     }
 
+    @Override
     public void stateChanged(ChangeEvent e) {
         if (e.getSource() instanceof JSlider && !isAdjusting) {
 

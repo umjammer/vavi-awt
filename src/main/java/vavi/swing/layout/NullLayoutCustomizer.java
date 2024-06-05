@@ -38,10 +38,10 @@ import vavi.util.Debug;
 public class NullLayoutCustomizer extends BasicLayoutManagerCustomizer {
 
     /** */
-    private ContainerEditor containerEditor;
+    private final ContainerEditor containerEditor;
 
     /** */
-    private NullLayoutConverter converter;
+    private final NullLayoutConverter converter;
 
     /** */
     public NullLayoutCustomizer() {
@@ -67,7 +67,8 @@ public class NullLayoutCustomizer extends BasicLayoutManagerCustomizer {
     }
 
     /** */
-    private EditorListener el = new EditorListener() {
+    private final EditorListener el = new EditorListener() {
+        @Override
         public void editorUpdated(EditorEvent ev) {
             String name = ev.getName();
 Debug.println(Level.FINER, name);
@@ -81,7 +82,8 @@ Debug.println(Level.FINER, name);
     };
 
     /** */
-    private PropertyChangeListener pcl = new PropertyChangeListener() {
+    private final PropertyChangeListener pcl = new PropertyChangeListener() {
+        @Override
         public void propertyChange(PropertyChangeEvent ev) {
             String name = ev.getPropertyName();
 Debug.println(Level.FINER, name);
@@ -150,7 +152,7 @@ Debug.println(Level.FINER, r.x + ", " + r.y + ", " + r.width + ", " + r.height);
         ((BasicContainerEditor) containerEditor).setComponentBounds(component, r);
     }
 
-    /** */
+    @Override
     public void setContainer(Container container) {
         super.setContainer(container);
 
@@ -186,6 +188,7 @@ Debug.println(Level.FINER, x + ", " + y);
     }
 
     /** called last, to set layout to your container */
+    @Override
     public void layoutContainer() {
         for (Object o : components.keySet()) {
             Component controller = (Component) o;

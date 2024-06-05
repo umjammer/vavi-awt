@@ -109,7 +109,7 @@ public class JFontChooser extends JComponent {
     }
 
     /** */
-    private ActionListener okListener = ev -> {
+    private final ActionListener okListener = ev -> {
         returnValue = APPROVE_OPTION;
         if (dialog != null) {
             dialog.setVisible(false);
@@ -117,7 +117,7 @@ public class JFontChooser extends JComponent {
     };
 
     /** */
-    private ActionListener cancelListener = ev -> {
+    private final ActionListener cancelListener = ev -> {
         returnValue = CANCEL_OPTION;
         if (dialog != null) {
             dialog.setVisible(false);
@@ -139,6 +139,7 @@ public class JFontChooser extends JComponent {
 
         dialog = createDialog(parent);
         dialog.addWindowListener(new WindowAdapter() {
+            @Override
             public void windowClosing(WindowEvent e) {
                 returnValue = CANCEL_OPTION;
             }
@@ -187,7 +188,7 @@ public class JFontChooser extends JComponent {
         try {
             @SuppressWarnings("unchecked")
             Class<FontEditor> clazz = (Class<FontEditor>) Class.forName(props.getProperty("editorClass"));
-            fontEditor = clazz.newInstance();
+            fontEditor = clazz.getDeclaredConstructor().newInstance();
         } catch (Exception e) {
 Debug.println(Level.SEVERE, e);
             fontEditor = new DefaultFontEditor();
@@ -215,7 +216,7 @@ Debug.println(Level.SEVERE, e);
         }
     }
 
-    // -------------------------------------------------------------------------
+    // ----
 
     /** */
     public static void main(String[] args) {

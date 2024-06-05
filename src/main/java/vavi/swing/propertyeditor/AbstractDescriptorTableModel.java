@@ -32,7 +32,7 @@ public abstract class AbstractDescriptorTableModel extends AbstractTableModel {
     protected Object bean;
 
     /** Cached property editors. */
-    private Map<Class<?>, PropertyEditor> propEditors;
+    private final Map<Class<?>, PropertyEditor> propEditors;
 
     private static final int NUM_COLUMNS = 2;
 
@@ -59,6 +59,7 @@ public abstract class AbstractDescriptorTableModel extends AbstractTableModel {
     /**
      * Get row count (total number of properties shown)
      */
+    @Override
     public int getRowCount() {
         if (descriptors == null) {
             return 0;
@@ -70,6 +71,7 @@ public abstract class AbstractDescriptorTableModel extends AbstractTableModel {
     /**
      * Get column count (2: name, value)
      */
+    @Override
     public int getColumnCount() {
         return NUM_COLUMNS;
     }
@@ -104,7 +106,7 @@ public abstract class AbstractDescriptorTableModel extends AbstractTableModel {
 
         if (clazz != null) {
             try {
-                editor = (PropertyEditor) clazz.newInstance();
+                editor = (PropertyEditor) clazz.getDeclaredConstructor().newInstance();
             } catch (Exception e) {
 Debug.println(Level.SEVERE, "creating PropertyEditor: " + e);
             }

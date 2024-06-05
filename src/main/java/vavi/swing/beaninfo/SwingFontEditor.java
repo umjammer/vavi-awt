@@ -43,7 +43,7 @@ public class SwingFontEditor extends SwingEditorSupport {
         rb.getString("jFontChooser.sample.text");
 
     /** */
-    private SmallFontEditor fontEditor;
+    private final SmallFontEditor fontEditor;
 
     /** */
     public SwingFontEditor() {
@@ -56,7 +56,7 @@ public class SwingFontEditor extends SwingEditorSupport {
     }
 
     /** */
-    private PropertyChangeListener pcl = ev -> {
+    private final PropertyChangeListener pcl = ev -> {
         if ("font".equals(ev.getPropertyName())) {
             SwingFontEditor.super.setValue(ev.getNewValue());
         }
@@ -75,6 +75,7 @@ public class SwingFontEditor extends SwingEditorSupport {
     }
 
     /** TODO unplug 要るかどうか要検証 */
+    @Override
     public void setValue(Object value) {
         super.setValue(value);
         unplug();
@@ -82,10 +83,12 @@ public class SwingFontEditor extends SwingEditorSupport {
         plug();
     }
 
+    @Override
     public boolean isPaintable() {
         return true;
     }
 
+    @Override
     public void paintValue(Graphics g, Rectangle rect) {
     // Silent noop.
     Font oldFont = g.getFont();
@@ -96,6 +99,7 @@ public class SwingFontEditor extends SwingEditorSupport {
     g.setFont(oldFont);
     }
 
+    @Override
     public String getJavaInitializationString() {
         Font font = (Font) getValue();
 

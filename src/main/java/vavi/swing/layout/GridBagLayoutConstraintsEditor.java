@@ -42,7 +42,8 @@ public class GridBagLayoutConstraintsEditor
     }
 
     /** sets target constraint */
-    public void setLayoutConstraints(int index,LayoutConstraints constraints) {
+    @Override
+    public void setLayoutConstraints(int index, LayoutConstraints constraints) {
         super.setLayoutConstraints(index, constraints);
         constraints.addPropertyChangeListener(pcl);
     }

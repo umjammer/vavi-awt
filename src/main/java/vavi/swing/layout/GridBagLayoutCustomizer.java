@@ -36,10 +36,10 @@ import vavi.util.Debug;
 public class GridBagLayoutCustomizer extends BasicLayoutManagerCustomizer {
 
     /** layout for virtual screen */
-    private GridBagLayout gridbag;
+    private final GridBagLayout gridbag;
 
     /** constraints editor */
-    private GridBagLayoutConstraintsEditor constraintsEditor;
+    private final GridBagLayoutConstraintsEditor constraintsEditor;
 
     /** Creates customizer for GridBagLayout */
     public GridBagLayoutCustomizer() {
@@ -72,6 +72,7 @@ Debug.println(Level.FINER, c2.getName());
 //      }
 
     /** sets container that use layout editing */
+    @Override
     public void setContainer(Container container) {
         super.setContainer(container);
 
@@ -128,6 +129,7 @@ Debug.println(Level.FINER, controller.getMaximumSize().width + ", " + controller
 //    }
 
     /** called last, to set layout to your container */
+    @Override
     public void layoutContainer() {
         for (Object o : components.keySet()) {
             JButton controller = (JButton) o;
@@ -145,7 +147,8 @@ Debug.println(Level.FINER, controller.getMaximumSize().width + ", " + controller
     // constraints editor -----------------------------------------------------
 
     /** mouse click on constraint panel means to count up component no. */
-    private MouseListener ml = new MouseAdapter() {
+    private final MouseListener ml = new MouseAdapter() {
+        @Override
         public void mouseClicked(MouseEvent ev) {
             int index = constraintsEditor.getCurrentIndex();
             if (index != -1) {
@@ -166,7 +169,7 @@ Debug.println(Level.FINER, controller.getMaximumSize().width + ", " + controller
     };
 
     /** button click means to select a component */
-    private ActionListener al = ev -> {
+    private final ActionListener al = ev -> {
         int index = Integer.parseInt(((JButton) ev.getSource()).getText());
         setCurrentConstraints(index);
     };
@@ -185,7 +188,8 @@ Debug.println(Level.FINER, controller.getMaximumSize().width + ", " + controller
     //-------------------------------------------------------------------------
 
     /** when constraints updated */
-    private PropertyChangeListener pcl = new PropertyChangeListener() {
+    private final PropertyChangeListener pcl = new PropertyChangeListener() {
+        @Override
         public void propertyChange(PropertyChangeEvent ev) {
             int index = constraintsEditor.getCurrentIndex();
             Component component = container.getComponent(index);

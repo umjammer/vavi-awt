@@ -138,7 +138,7 @@ Debug.printStackTrace(e);
         return iconKind;
     }
 
-    /** */
+    @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
         for (int i = 0; i < this.getTabCount(); i++) {
@@ -163,6 +163,7 @@ Debug.printStackTrace(e);
 
     /** ボタンが選択されたとき． */
     private final ActionListener selectAction = new ActionListener() {
+        @Override
         public void actionPerformed(ActionEvent ev) {
             fireValueChanged(
                 new ComponentSelectionEvent(this, ev.getSource()));

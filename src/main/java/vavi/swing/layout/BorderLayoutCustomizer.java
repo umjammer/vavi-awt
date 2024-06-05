@@ -35,10 +35,10 @@ import vavi.util.Debug;
 public class BorderLayoutCustomizer extends BasicLayoutManagerCustomizer {
 
     /** layout for virtual screen */
-    private BorderLayout border;
+    private final BorderLayout border;
 
     /** constraints editor */
-    private BorderLayoutConstraintsEditor constraintsEditor;
+    private final BorderLayoutConstraintsEditor constraintsEditor;
 
     /** Creates a customizer for Borderlayout. */
     public BorderLayoutCustomizer() {
@@ -55,7 +55,7 @@ public class BorderLayoutCustomizer extends BasicLayoutManagerCustomizer {
     }
 
     /** called when layout property changed */
-    private TableModelListener tml = ev -> updateLayout();
+    private final TableModelListener tml = ev -> updateLayout();
 
     /** */
     private void updateLayout() {
@@ -66,6 +66,7 @@ public class BorderLayoutCustomizer extends BasicLayoutManagerCustomizer {
     }
 
     /** called once at first */
+    @Override
     public void setObject(LayoutManager layout) {
         updateLayout();
 
@@ -76,6 +77,7 @@ public class BorderLayoutCustomizer extends BasicLayoutManagerCustomizer {
     }
 
     /** called first */
+    @Override
     public void setContainer(Container container) {
         super.setContainer(container);
 
@@ -106,6 +108,7 @@ Debug.println(Level.FINER, i + ": " + constraints);
     }
 
     /** called last, to set layout to your container */
+    @Override
     public void layoutContainer() {
         for (Object o : components.keySet()) {
             JButton controller = (JButton) o;
@@ -123,7 +126,8 @@ Debug.println(Level.FINER, i + ": " + constraints);
     // constraints editor -----------------------------------------------------
 
     /** mouse click on constraint panel means to count up component no. */
-    private MouseListener ml = new MouseAdapter() {
+    private final MouseListener ml = new MouseAdapter() {
+        @Override
         public void mouseClicked(MouseEvent ev) {
             int index = constraintsEditor.getCurrentIndex();
             if (index != -1) {
@@ -144,7 +148,7 @@ Debug.println(Level.FINER, i + ": " + constraints);
     };
 
     /** button click means to select a component */
-    private ActionListener al = ev -> {
+    private final ActionListener al = ev -> {
         int index = Integer.parseInt(((JButton) ev.getSource()).getText());
         setCurrentConstraints(index);
     };
