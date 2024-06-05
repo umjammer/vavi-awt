@@ -178,5 +178,3 @@ Debug.println(Level.FINE, index);
         return margin;
     }
 }
-
-/* */

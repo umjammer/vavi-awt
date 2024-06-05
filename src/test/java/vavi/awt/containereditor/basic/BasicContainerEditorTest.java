@@ -119,5 +119,3 @@ public class BasicContainerEditorTest {
         f.setVisible(true);
     }
 }
-
-/* */

@@ -188,5 +188,3 @@ Debug.println(Level.INFO, "Border: " + bean.toString());
         pcs.firePropertyChange(name, oldValue, newValue);
     }
 }
-
-/* */

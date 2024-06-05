@@ -61,5 +61,3 @@ public class CompoundBorderCustomizer extends BasicBorderCustomizer {
         super.setObject(border);
     }
 }
-
-/* */

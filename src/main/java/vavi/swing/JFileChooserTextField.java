@@ -87,5 +87,3 @@ public class JFileChooserTextField extends JFileChooserField {
         return path == null ? null : new File(path);
     }
 }
-
-/* */

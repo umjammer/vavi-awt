@@ -39,5 +39,3 @@ public class EmptyBorderInfo extends SimpleBorderInfo {
         return bpds;
     }
 }
-
-/* */

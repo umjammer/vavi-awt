@@ -226,5 +226,3 @@ System.err.println(r + ": " + fc.getSelectedFont());
         System.exit(0);
     }
 }
-
-/* */

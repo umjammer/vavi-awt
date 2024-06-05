@@ -39,5 +39,3 @@ public interface EditorListener extends EventListener {
 //     */
 //    void editorClosed(EditorEvent ev);
 }
-
-/* */

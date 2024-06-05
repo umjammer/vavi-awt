@@ -57,5 +57,3 @@ public class SwingBorderEditorTest {
         f.setVisible(true);
     }
 }
-
-/* */

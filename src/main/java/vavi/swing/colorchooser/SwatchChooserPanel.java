@@ -307,5 +307,3 @@ class MainSwatchPanel extends SwatchPanel {
         }
     }
 }
-
-/* */

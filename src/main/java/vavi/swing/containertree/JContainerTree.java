@@ -112,5 +112,3 @@ Debug.println(Level.SEVERE, e);
             clazz, "/toolbarButtonGraphics/development/Bean16.gif"));
     }
 }
-
-/* */

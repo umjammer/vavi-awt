@@ -51,5 +51,3 @@ public class MatteBorderInfo extends SimpleBorderInfo {
         return bpds;
     }
 }
-
-/* */

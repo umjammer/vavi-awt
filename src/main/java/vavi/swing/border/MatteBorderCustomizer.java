@@ -83,5 +83,3 @@ public class MatteBorderCustomizer extends BasicBorderCustomizer {
         super.setObject(border);
     }
 }
-
-/* */

@@ -60,5 +60,3 @@ public class EmptyBorderCustomizer extends BasicBorderCustomizer {
         super.setObject(border);
     }
 }
-
-/* */

@@ -63,5 +63,3 @@ public class RubberBandGesture extends MouseInputAdapter {
         editorSupport.fireEditorUpdated(ev);
     }
 }
-
-/* */

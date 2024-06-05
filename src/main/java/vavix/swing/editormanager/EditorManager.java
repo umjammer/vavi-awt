@@ -136,5 +136,3 @@ public abstract class EditorManager implements EditorListener {
         return current;
     }
 }
-
-/* */

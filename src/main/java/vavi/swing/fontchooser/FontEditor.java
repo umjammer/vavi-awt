@@ -27,5 +27,3 @@ public interface FontEditor {
     /** TODO */
     Font getSelectedFont();
 }
-
-/* */

@@ -86,5 +86,3 @@ public class TitledBorderCustomizer extends BasicBorderCustomizer {
         super.setObject(border);
     }
 }
-
-/* */

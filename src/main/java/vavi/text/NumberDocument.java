@@ -29,5 +29,3 @@ public class NumberDocument extends PlainDocument {
         super.insertString(offs, str, atts);
     }
 }
-
-/* */

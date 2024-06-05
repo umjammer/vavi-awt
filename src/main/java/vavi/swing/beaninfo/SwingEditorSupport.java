@@ -60,5 +60,3 @@ public class SwingEditorSupport extends PropertyEditorSupport {
     public void init(FeatureDescriptor descriptor)  {
     }
 }
-
-/* */

@@ -56,5 +56,3 @@ public class BevelBorderInfo extends SimpleBorderInfo {
         return bpds;
     }
 }
-
-/* */

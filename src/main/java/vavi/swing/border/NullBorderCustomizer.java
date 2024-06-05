@@ -31,5 +31,3 @@ public class NullBorderCustomizer extends BasicBorderCustomizer {
         firePropertyChange("border", oldBorder, border);
     }
 }
-
-/* */

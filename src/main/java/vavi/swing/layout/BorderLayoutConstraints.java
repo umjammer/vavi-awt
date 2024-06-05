@@ -49,5 +49,3 @@ public class BorderLayoutConstraints extends LayoutConstraints {
         this.constraints = (String) constraints;
     }
 }
-
-/* */

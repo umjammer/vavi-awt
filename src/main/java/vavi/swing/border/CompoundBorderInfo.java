@@ -45,5 +45,3 @@ public class CompoundBorderInfo extends SimpleBorderInfo {
         return bpds;
     }
 }
-
-/* */

@@ -139,5 +139,3 @@ public class BasicRubberBandRenderer implements RubberBandRenderer {
         return cursors[mode];
     }
 }
-
-/* */

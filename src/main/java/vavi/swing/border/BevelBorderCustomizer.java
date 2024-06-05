@@ -78,5 +78,3 @@ public class BevelBorderCustomizer extends BasicBorderCustomizer {
         super.setObject(border);
     }
 }
-
-/* */

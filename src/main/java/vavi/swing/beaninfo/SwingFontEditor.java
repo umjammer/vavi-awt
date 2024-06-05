@@ -105,5 +105,3 @@ public class SwingFontEditor extends SwingEditorSupport {
             font.getSize() + ")";
     }
 }
-
-/* */

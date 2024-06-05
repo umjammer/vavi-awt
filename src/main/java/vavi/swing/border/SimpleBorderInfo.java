@@ -22,5 +22,3 @@ public class SimpleBorderInfo extends SimpleBeanInfo
         return null;
     }
 }
-
-/* */

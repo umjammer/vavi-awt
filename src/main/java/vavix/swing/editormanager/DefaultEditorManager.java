@@ -52,5 +52,3 @@ public class DefaultEditorManager extends EditorManager {
      */
     protected void closedAllEditorsImpl() {}
 }
-
-/* */

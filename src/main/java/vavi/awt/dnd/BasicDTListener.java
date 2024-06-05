@@ -192,5 +192,3 @@ Debug.printStackTrace(e);
      */
     protected abstract boolean dropImpl(DropTargetDropEvent ev, Object data);
 }
-
-/* */

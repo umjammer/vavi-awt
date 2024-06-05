@@ -139,5 +139,3 @@ public class CardLayoutCustomizer extends BasicLayoutManagerCustomizer {
         }
     };
 }
-
-/* */

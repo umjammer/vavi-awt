@@ -53,5 +53,3 @@ public class ActionSupport implements Serializable {
         }
     }
 }
-
-/* */

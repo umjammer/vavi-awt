@@ -387,5 +387,3 @@ Debug.println(Level.FINE, "Instantiation exception creating Customizer: " + e);
                 clazz.getResource(base + "general/Preferences16.gif"))));
     }
 }
-
-/* */

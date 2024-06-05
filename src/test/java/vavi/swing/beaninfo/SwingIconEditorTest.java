@@ -54,5 +54,3 @@ public class SwingIconEditorTest {
         f.setVisible(true);
     }
 }
-
-/* */

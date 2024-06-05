@@ -26,5 +26,3 @@ public class SampleLayoutManagerInfo /* extends SimpleBeanInfo */ {
     /** */
     public Icon icon;
 }
-
-/* */

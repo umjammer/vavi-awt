@@ -64,5 +64,3 @@ public class SwingDimensionEditor extends SwingEditorSupport {
         return new Dimension(width, height);
     }
 }
-
-/* */

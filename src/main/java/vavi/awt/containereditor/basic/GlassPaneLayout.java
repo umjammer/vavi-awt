@@ -69,5 +69,3 @@ Debug.println(Level.FINE, parent.getSize().width + ", " + parent.getSize().heigh
     public void removeLayoutComponent(Component comp) {
     }
 }
-
-/* */

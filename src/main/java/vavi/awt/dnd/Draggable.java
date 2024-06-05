@@ -268,5 +268,3 @@ Debug.println(Level.FINE, "my action: " + ev.getUserAction() + ": " +
         }
     }
 }
-
-/* */

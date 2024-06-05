@@ -34,5 +34,3 @@ public class OverlayLayoutInfo extends SimpleBeanInfo {
         return loadImage("resources/AbstractLayout.gif");
     }
 }
-
-/* */

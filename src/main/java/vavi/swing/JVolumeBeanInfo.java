@@ -31,5 +31,3 @@ public class JVolumeBeanInfo extends SimpleBeanInfo {
         return null;
     }
 }
-
-/* */

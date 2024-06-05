@@ -32,5 +32,3 @@ public class JFileChooserHistoryComboBoxBeanInfo extends SimpleBeanInfo {
         return null;
     }
 }
-
-/* */

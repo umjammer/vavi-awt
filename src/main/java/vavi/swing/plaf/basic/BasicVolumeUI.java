@@ -511,5 +511,3 @@ public class BasicVolumeUI extends VolumeUI {
         }
     }
 }
-
-/* */

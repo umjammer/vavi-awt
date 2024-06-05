@@ -182,5 +182,3 @@ public class PropertyColumnModel extends DefaultTableColumnModel  {
 //          }
     };
 }
-
-/* */

@@ -146,5 +146,3 @@ Debug.println(Level.FINER, border);
                   LookAndFeel.makeIcon(clazz, "resources/unknownBorder.gif"));
     }
 }
-
-/* */

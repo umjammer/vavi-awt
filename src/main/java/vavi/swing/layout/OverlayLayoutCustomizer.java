@@ -29,5 +29,3 @@ public class OverlayLayoutCustomizer extends BasicLayoutManagerCustomizer {
         setObject(new OverlayLayout(container));
     }
 }
-
-/* */

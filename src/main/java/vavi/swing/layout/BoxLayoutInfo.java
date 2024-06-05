@@ -35,5 +35,3 @@ public class BoxLayoutInfo extends SimpleBeanInfo {
         return loadImage("resources/boxLayout.gif");
     }
 }
-
-/* */

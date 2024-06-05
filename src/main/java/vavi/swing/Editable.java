@@ -28,6 +28,3 @@ public interface Editable {
     /** */
     void selectAll();
 }
-
-/* */
-

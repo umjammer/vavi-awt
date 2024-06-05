@@ -436,5 +436,3 @@ public class AppletFrame extends Frame implements Runnable, AppletStub, AppletCo
         return null;
     }
 }
-
-/* */

@@ -76,5 +76,3 @@ public class RubberBandEvent extends EventObject {
 //      return size;
 //  }
 }
-
-/* */

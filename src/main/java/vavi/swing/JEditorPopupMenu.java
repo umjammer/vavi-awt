@@ -157,5 +157,3 @@ public class JEditorPopupMenu extends JPopupMenu {
         }
     };
 }
-
-/* */

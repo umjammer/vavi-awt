@@ -64,5 +64,3 @@ Debug.println("sub: " + sub);
 Debug.println(image.getSize());
     }
 }
-
-/* */

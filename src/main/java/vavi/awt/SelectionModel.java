@@ -144,5 +144,3 @@ Debug.println(Level.FINER, selectable);
         ss.fireValueChanged(ev);
     }
 }
-
-/* */

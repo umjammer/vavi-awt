@@ -175,5 +175,3 @@ public class DefaultFontEditor extends JComponent implements FontEditor {
         return font;
     }
 }
-
-/* */

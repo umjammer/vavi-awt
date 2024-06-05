@@ -87,5 +87,3 @@ Debug.println(Level.FINER, border);
         return border;
     }
 }
-
-/* */

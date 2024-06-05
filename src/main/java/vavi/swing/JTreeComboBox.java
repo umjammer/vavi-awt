@@ -178,5 +178,3 @@ class ListEntry {
         return isNode;
     }
 }
-
-/* */

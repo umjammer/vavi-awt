@@ -25,6 +25,3 @@ public interface Selectable {
      */
     boolean isSelected();
 }
-
-/* */
-

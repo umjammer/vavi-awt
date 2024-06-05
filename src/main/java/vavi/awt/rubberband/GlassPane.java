@@ -53,5 +53,3 @@ public class GlassPane extends JComponent {
         addMouseMotionListener(mil);
     }
 }
-
-/* */

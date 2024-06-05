@@ -44,5 +44,3 @@ public interface Editor {
      */
     EditorManager getEditorManager();
 }
-
-/* */

@@ -101,5 +101,3 @@ public abstract class AbstractController extends JComponent implements Locatable
         return view.getBounds();
     }
 }
-
-/* */

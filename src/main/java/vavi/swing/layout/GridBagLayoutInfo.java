@@ -33,5 +33,3 @@ public class GridBagLayoutInfo extends SimpleBeanInfo {
         return loadImage("resources/gridBagLayout.gif");
     }
 }
-
-/* */

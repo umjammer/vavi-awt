@@ -41,5 +41,3 @@ Debug.println(fc.getUI().getClass());
 Debug.println(fc.getSelectedFile());
     }
 }
-
-/* */

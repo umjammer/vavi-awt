@@ -141,5 +141,3 @@ Debug.println(Level.FINE, e);
         return description;
     }
 }
-
-/* */

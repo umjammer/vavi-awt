@@ -298,5 +298,3 @@ Debug.println(Level.FINE, "bean is not Container: " + bean);
                   LookAndFeel.makeIcon(clazz, "resources/LayoutIcon.gif"));
     }
 }
-
-/* */

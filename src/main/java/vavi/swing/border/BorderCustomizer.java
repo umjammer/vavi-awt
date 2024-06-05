@@ -43,5 +43,3 @@ public interface BorderCustomizer /* extends Customizer */ {
     /** TODO TabbedPane の ChangeEvent のためだけ */
     Border getObject();
 }
-
-/* */

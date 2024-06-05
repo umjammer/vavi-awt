@@ -310,5 +310,3 @@ Debug.println(Level.FINER, p.x + ", " + p.y);
         rbs.fireResized(ev);
     }
 }
-
-/* */

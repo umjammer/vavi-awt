@@ -82,5 +82,3 @@ public class JFileChooserHistoryComboBox extends JFileChooserField {
         return path == null ? null : new File(path);
     }
 }
-
-/* */

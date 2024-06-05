@@ -27,5 +27,3 @@ public class JFileChooserHistoryComboBoxEditor extends PropertyEditorSupport imp
         return false;
     }
 }
-
-/* */

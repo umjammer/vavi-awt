@@ -17,5 +17,3 @@ import javax.swing.plaf.ComponentUI;
  */
 public abstract class VolumeUI extends ComponentUI {
 }
-
-/* */

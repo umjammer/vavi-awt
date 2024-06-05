@@ -447,5 +447,3 @@ System.err.println("unhandled content type: " + content);
         return null;
     }
 }
-
-/* */

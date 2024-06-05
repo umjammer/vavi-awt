@@ -125,5 +125,3 @@ Debug.println(Level.FINER, controller.getMaximumSize().width + ", " + controller
         return newSize;
     }
 }
-
-/* */

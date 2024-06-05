@@ -573,5 +573,3 @@ Debug.printStackTrace(e);
         editorSupport.fireEditorUpdated(ev);
     }
 }
-
-/* */

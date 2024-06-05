@@ -75,5 +75,3 @@ public class TitledBorderInfo extends SimpleBorderInfo {
         return bpds;
     }
 }
-
-/* */

@@ -154,5 +154,3 @@ public class GridBagLayoutConstraints extends LayoutConstraints {
         this.constraints = (GridBagConstraints) constraints;
     }
 }
-
-/* */

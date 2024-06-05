@@ -43,5 +43,3 @@ public interface RubberBandListener extends EventListener {
      */
     void resized(RubberBandEvent ev);
 }
-
-/* */

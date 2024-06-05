@@ -22,5 +22,3 @@ public interface ComponentSelectionListener extends EventListener {
      */
     void valueChanged(ComponentSelectionEvent ev);
 }
-
-/* */

@@ -46,5 +46,3 @@ public class RegexFileFilterTest {
         System.exit(0);
     }
 }
-
-/* */

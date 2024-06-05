@@ -116,5 +116,3 @@ e.printStackTrace(System.err);
         panel.play();
     }
 }
-
-/* */

@@ -271,5 +271,3 @@ Debug.println(Level.FINER, bi.desc);
                   LookAndFeel.makeIcon(clazz, "resources/BorderIcon.gif"));
     }
 }
-
-/* */

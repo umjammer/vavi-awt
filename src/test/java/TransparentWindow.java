@@ -97,5 +97,3 @@ e.printStackTrace(System.err);
         frame.setVisible(true);
     }
 }
-
-/* */

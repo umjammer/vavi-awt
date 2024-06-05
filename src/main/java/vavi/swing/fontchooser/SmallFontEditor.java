@@ -340,5 +340,3 @@ Debug.println(Level.FINER, font);
         return font;
     }
 }
-
-/* */

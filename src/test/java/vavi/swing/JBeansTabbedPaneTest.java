@@ -42,5 +42,3 @@ public class JBeansTabbedPaneTest {
         frame.setVisible(true);
     }
 }
-
-/* */

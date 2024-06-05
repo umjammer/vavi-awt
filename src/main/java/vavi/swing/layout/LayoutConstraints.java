@@ -58,5 +58,3 @@ public abstract class LayoutConstraints {
         pcs.firePropertyChange(name, oldValue, newValue);
     }
 }
-
-/* */

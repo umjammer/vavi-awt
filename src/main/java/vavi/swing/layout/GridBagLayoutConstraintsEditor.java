@@ -342,5 +342,3 @@ Debug.println(Level.FINE, components.length);
         return number;
     }
 }
-
-/* */

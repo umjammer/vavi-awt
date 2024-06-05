@@ -47,5 +47,3 @@ public class LineBorderInfo extends SimpleBorderInfo {
         return bpds;
     }
 }
-
-/* */

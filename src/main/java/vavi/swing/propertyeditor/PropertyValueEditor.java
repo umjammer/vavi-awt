@@ -147,5 +147,3 @@ Debug.println(Level.SEVERE, e);
     //
     private PropertyChangeListener pcl = ev -> stopCellEditing();
 }
-
-/* */

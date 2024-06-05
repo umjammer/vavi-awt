@@ -151,5 +151,3 @@ public class BasicRubberBandGesture extends RubberBandGesture {
         return point;
     }
 }
-
-/* */

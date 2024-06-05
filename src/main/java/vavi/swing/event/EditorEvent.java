@@ -59,5 +59,3 @@ public class EditorEvent extends EventObject {
         return arguments;
     }
 }
-
-/* */

@@ -145,5 +145,3 @@ Debug.println(Level.SEVERE, "creating PropertyEditor: " + e);
      */
     public abstract void initPropertyEditor(PropertyEditor editor, int row);
 }
-
-/* */

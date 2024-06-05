@@ -100,5 +100,3 @@ public class SwingObjectEditor extends SwingEditorSupport {
         }
     }
 }
-
-/* */

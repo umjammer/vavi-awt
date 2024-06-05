@@ -74,5 +74,3 @@ public class SoftBevelBorderCustomizer extends BasicBorderCustomizer {
         super.setObject(border);
     }
 }
-
-/* */

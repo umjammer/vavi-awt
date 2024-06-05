@@ -54,5 +54,3 @@ Debug.println(Level.FINER, textfield.getText());
         }
     }
 }
-
-/* */

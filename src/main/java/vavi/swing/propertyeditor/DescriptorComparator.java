@@ -27,5 +27,3 @@ public class DescriptorComparator<T extends FeatureDescriptor> implements Compar
         return o1.getDisplayName().compareTo(o2.getDisplayName());
     }
 }
-
-/* */

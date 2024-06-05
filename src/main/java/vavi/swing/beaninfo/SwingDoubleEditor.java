@@ -52,5 +52,3 @@ Debug.println(Level.FINE, textfield.getText());
         }
     }
 }
-
-/* */

@@ -65,5 +65,3 @@ public class EtchedBorderCustomizer extends BasicBorderCustomizer {
         super.setObject(border);
     }
 }
-
-/* */

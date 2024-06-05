@@ -79,5 +79,3 @@ Debug.println(Level.SEVERE, e);
         }
     };
 }
-
-/* */

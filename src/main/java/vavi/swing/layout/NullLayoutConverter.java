@@ -106,5 +106,3 @@ public class NullLayoutConverter {
         pcs.firePropertyChange(name, oldValue, newValue);
     }
 }
-
-/* */

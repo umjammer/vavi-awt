@@ -250,5 +250,3 @@ Debug.println(Level.FINER, args[0]);
         controller.setBounds(bounds);
     }
 }
-
-/* */

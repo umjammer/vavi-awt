@@ -59,5 +59,3 @@ public class SwingColorEditorTest {
         f.setVisible(true);
     }
 }
-
-/* */

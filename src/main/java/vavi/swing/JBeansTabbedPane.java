@@ -215,5 +215,3 @@ Debug.println(Level.SEVERE, "no properties file");
         }
     }
 }
-
-/* */

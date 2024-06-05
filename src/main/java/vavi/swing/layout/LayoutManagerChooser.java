@@ -176,5 +176,3 @@ Debug.println(Level.FINER, layout == null ? null : layout.getClass().getSimpleNa
         table.put("layoutManagerChooser.unknownLayoutIcon", LookAndFeel.makeIcon(clazz, "resources/AbstractLayout.gif"));
     }
 }
-
-/* */

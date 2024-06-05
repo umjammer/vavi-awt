@@ -99,5 +99,3 @@ public class CheckboxMenuItemGroup {
         actionSupport.fireActionPerformed(ev);
     }
 }
-
-/* */

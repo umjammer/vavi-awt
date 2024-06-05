@@ -222,5 +222,3 @@ Debug.println(Level.FINER, ratio);
         return newGc;
     }
 }
-
-/* */

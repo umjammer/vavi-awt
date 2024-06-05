@@ -66,5 +66,3 @@ public class LineBorderCustomizer extends BasicBorderCustomizer {
         super.setObject(border);
     }
 }
-
-/* */

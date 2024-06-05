@@ -40,5 +40,3 @@ public interface LocatableController extends Controller {
     /** */
     Rectangle getBounds();
 }
-
-/* */

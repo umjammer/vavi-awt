@@ -66,5 +66,3 @@ e.printStackTrace();
         return checkbox.isSelected();
     }
 }
-
-/* */

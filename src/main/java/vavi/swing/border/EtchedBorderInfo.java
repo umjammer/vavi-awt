@@ -52,5 +52,3 @@ public class EtchedBorderInfo extends SimpleBorderInfo {
         return bpds;
     }
 }
-
-/* */

@@ -49,5 +49,3 @@ public class SelectionSupport implements Serializable {
         }
     }
 }
-
-/* */

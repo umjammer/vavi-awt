@@ -78,5 +78,3 @@ public class DefaultTreeComboBoxCellRenderer<E> extends JLabel implements ListCe
         return this;
     }
 }
-
-/* */

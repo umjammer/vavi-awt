@@ -179,5 +179,3 @@ Debug.println(Level.WARNING, "field: " + swingFieldName + " is not a sub class o
         }
     }
 }
-
-/* */

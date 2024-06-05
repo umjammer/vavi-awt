@@ -304,5 +304,3 @@ Debug.println(Level.INFO, "Row: " + row + " Column: " + column);
         sortTable(SORT_NAME);
     }
 }
-
-/* */

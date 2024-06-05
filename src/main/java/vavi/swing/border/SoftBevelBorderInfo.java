@@ -39,5 +39,3 @@ public class SoftBevelBorderInfo extends BevelBorderInfo {
         return loadImage("resources/softBevelBorder.gif");
     }
 }
-
-/* */

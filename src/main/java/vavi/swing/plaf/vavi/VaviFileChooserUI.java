@@ -53,5 +53,3 @@ public class VaviFileChooserUI extends MetalFileChooserUI {
         }
     }
 }
-
-/* */

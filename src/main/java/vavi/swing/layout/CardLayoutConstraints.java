@@ -48,5 +48,3 @@ public class CardLayoutConstraints extends LayoutConstraints {
         this.constraints = (String) constraints;
     }
 }
-
-/* */

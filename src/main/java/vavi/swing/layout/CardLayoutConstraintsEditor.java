@@ -62,5 +62,3 @@ Debug.println(Level.FINE, index);
         }
     }
 }
-
-/* */

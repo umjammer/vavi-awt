@@ -39,5 +39,3 @@ public class BorderChooserTest {
         frame.setVisible(true);
     }
 }
-
-/* */

@@ -202,5 +202,3 @@ Debug.println(Level.FINER, x + ", " + y);
         }
     }
 }
-
-/* */

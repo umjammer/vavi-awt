@@ -308,5 +308,3 @@ Debug.println(Level.FINER, defaultPath);
         selectButton.removeMouseMotionListener(l);
     }
 }
-
-/* */

@@ -160,5 +160,3 @@ Debug.println(Level.FINER, i + ": " + constraints);
         lcTableModel.setObject(constraintsEditor.getLayoutConstraints(index));
     }
 }
-
-/* */

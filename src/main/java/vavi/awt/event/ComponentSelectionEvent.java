@@ -34,5 +34,3 @@ public class ComponentSelectionEvent extends EventObject {
         return selected;
     }
 }
-
-/* */
