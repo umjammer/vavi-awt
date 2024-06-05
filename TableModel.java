@@ -10,6 +10,8 @@ import java.awt.Component;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -17,7 +19,6 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -28,7 +29,7 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 
-import vavi.util.Debug;
+import static java.lang.System.getLogger;
 
 
 /**
@@ -39,13 +40,18 @@ import vavi.util.Debug;
  */
 public class TableModel<T> extends AbstractTableModel {
 
+    private static final Logger logger = getLogger(TableModel.class.getName());
+
     /** real row values {@link T} from {@link Table} annotated model */
     private final List<T> rowModels = new ArrayList<>();
 
-    /** {@link Row} annotated row value object getter methods */
+    /** {@link Column} annotated row value object getter methods */
     private final Map<Integer, Method> columnGetters;
 
-    /** {@link Row} annotated row value object setter methods */
+    /**
+     * {@link Column} annotated row value object setter methods (use only {@link Column#sequence()})
+     * w/o setter, column is assumed readonly.
+     */
     private final Map<Integer, Method> columnSetters = new HashMap<>();
 
     /** {@link Row} annotated row class */
@@ -66,9 +72,9 @@ public class TableModel<T> extends AbstractTableModel {
         this.tableModelBean = model;
         update();
         rowClass = Table.Util.getRowClass(model);
-Debug.println(Level.FINE, rowClass);
+logger.log(Level.DEBUG, rowClass);
         columnGetters = Row.Util.getGetterMethods(rowClass);
-Debug.println(Level.FINE, columnGetters);
+logger.log(Level.DEBUG, columnGetters);
     }
 
     /** mhh... */
@@ -78,12 +84,12 @@ Debug.println(Level.FINE, columnGetters);
             TableColumn column = table.getColumnModel().getColumn(i);
             if (Row.Util.getEditable(this.rowClass, i)) {
                 Method setter = Row.Util.getColumnSetterMethod(this.rowClass, i);
-Debug.println(Level.FINE, "setter: " + i + ", " + setter);
+logger.log(Level.DEBUG, "setter: " + i + ", " + setter);
                 columnSetters.put(1, setter);
             }
             int width = Row.Util.getWidth(this.rowClass, i);
             Column.Align align = Row.Util.getAlign(this.rowClass, i);
-Debug.println(Level.FINE, i + ": " + width + ", " + align);
+logger.log(Level.DEBUG, i + ": " + width + ", " + align);
             column.setPreferredWidth(width);
             if (align != Column.Align.center) {
                 DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
@@ -123,22 +129,24 @@ Debug.println(Level.FINE, i + ": " + width + ", " + align);
     public void setValueAt(Object value, int row, int col) {
         SwingUtilities.invokeLater(() -> {
             Method setter = columnSetters.get(col);
-            if (row < rowModels.size()) {
-                T o = rowModels.get(row);
-                if (o != null) {
-                    try {
-Debug.println("setter: " + setter.getName() + ", col: " + col + ", row: " + row + ", value: " + value);
-                        Object vo = getRowObject(row);
-                        Row.Util.setModel(vo, o);
-                        setter.invoke(vo, value);
-                        fireTableCellUpdated(row, col);
-                        return;
-                    } catch (IllegalAccessException | InvocationTargetException e) {
-                        Debug.printStackTrace(e);
+            if (setter != null) {
+                if (row < rowModels.size()) {
+                    T o = rowModels.get(row);
+                    if (o != null) {
+                        try {
+logger.log(Level.DEBUG, "setter: " + setter.getName() + ", col: " + col + ", row: " + row + ", value: " + value);
+                            Object vo = getRowObject(row);
+                            Row.Util.setModel(vo, o);
+                            setter.invoke(vo, value);
+                            fireTableCellUpdated(row, col);
+                            return;
+                        } catch (IllegalAccessException | InvocationTargetException e) {
+                            logger.log(Level.ERROR, e.getMessage(), e);
+                        }
                     }
                 }
             }
-Debug.println(Level.WARNING, "no setter for column: " + col + ", row: " + row);
+logger.log(Level.WARNING, "no setter for column: " + col + ", row: " + row);
         });
     }
 
@@ -150,7 +158,7 @@ Debug.println(Level.WARNING, "no setter for column: " + col + ", row: " + row);
             for (T entry : i) {
                 rowModels.add(entry);
             }
-Debug.println(Level.FINER, rowModels);
+logger.log(Level.TRACE, rowModels);
         }
     }
 
@@ -177,7 +185,7 @@ Debug.println(Level.FINER, rowModels);
     @Override
     public Class<?> getColumnClass(int columnIndex) {
         Method method = columnGetters.get(columnIndex);
-Debug.println(Level.FINER, columnIndex + ": " + method.getReturnType().getName());
+logger.log(Level.TRACE, columnIndex + ": " + method.getReturnType().getName());
         return method.getReturnType();
     }
 
@@ -205,7 +213,8 @@ Debug.println(Level.FINER, columnIndex + ": " + method.getReturnType().getName()
                 rowObjects.put(rowIndex, vo);
             }
             return vo;
-        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException | InstantiationException e) {
+        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException |
+                 InstantiationException e) {
             throw new IllegalStateException(e);
         }
     }
@@ -225,5 +234,3 @@ Debug.println(Level.FINER, columnIndex + ": " + method.getReturnType().getName()
         }
     }
 }
-
-/* */

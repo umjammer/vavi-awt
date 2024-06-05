@@ -33,7 +33,7 @@ import java.util.function.Function;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Row {
 
-    /** */
+    /** method to fill data initially */
     String setter();
 
     /** */
@@ -165,5 +165,3 @@ public @interface Row {
         }
     }
 }
-
-/* */

@@ -97,5 +97,3 @@ public @interface Table {
         }
     }
 }
-
-/* */

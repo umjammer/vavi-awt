@@ -15,6 +15,11 @@ import javax.swing.SwingConstants;
 
 /**
  * Set {@link javax.swing.JTable} column information.
+ * <p>
+ * if this annotation is set to getter method, getter method is used when a table column's value update.
+ * if this annotation is set to setter method, setter method is used when a table column's value change.
+ * table column without this annotation for setter method, the column will be un-editable.
+ * </p>
  * <ul>
  *  <li>getter must starts with <code>get</code> or <code>is</code></li>
  *  <li>setter must starts with <code>set</code></li>
@@ -61,5 +66,3 @@ public @interface Column {
 
     }
 }
-
-/* */
