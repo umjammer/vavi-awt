@@ -24,7 +24,7 @@ import vavi.swing.event.EditorListener;
 public class GlassPane extends JComponent {
 
     /** */
-    private RubberBandGesture rbg;
+    private final RubberBandGesture rbg;
 
     /** */
     public GlassPane() {
@@ -53,5 +53,3 @@ public class GlassPane extends JComponent {
         addMouseMotionListener(mil);
     }
 }
-
-/* */

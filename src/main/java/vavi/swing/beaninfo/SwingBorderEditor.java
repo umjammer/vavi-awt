@@ -51,12 +51,12 @@ import vavi.util.Debug;
  */
 public class SwingBorderEditor extends SwingEditorSupport {
 
-    private JComboBox<?> borderCombo;
-    private JButton borderButton;
+    private final JComboBox<?> borderCombo;
+    private final JButton borderButton;
 //  private JLabel borderLabel;
     private BorderDialog borderDialog;
 
-    private List<?> bis = BorderInfoFactory.getSampleBorderInfos();
+    private final List<?> bis = BorderInfoFactory.getSampleBorderInfos();
 
     /** */
     public SwingBorderEditor() {
@@ -89,7 +89,7 @@ public class SwingBorderEditor extends SwingEditorSupport {
         plug();
     }
 
-    /** */
+    @Override
     public void setValue(Object value) {
 
         super.setValue(value);
@@ -130,7 +130,8 @@ Debug.println(Level.FINER, bi.desc);
     }
 
     /** Pushing button will show the dialog. */
-    private ActionListener borderButtonListener = new ActionListener() {
+    private final ActionListener borderButtonListener = new ActionListener() {
+        @Override
         public void actionPerformed(ActionEvent ev) {
             if (borderDialog == null) {
                 borderDialog = new BorderDialog(panel, "Border Chooser");
@@ -144,7 +145,7 @@ Debug.println(Level.FINER, bi.desc);
     };
 
     /** */
-    private ActionListener borderComboListener = ev -> {
+    private final ActionListener borderComboListener = ev -> {
         @SuppressWarnings("unchecked")
         JComboBox<SampleBorderInfo> cb = (JComboBox<SampleBorderInfo>) ev.getSource();
         SampleBorderInfo bi = (SampleBorderInfo) cb.getSelectedItem();
@@ -164,28 +165,27 @@ Debug.println(Level.FINER, bi.desc);
     }
 
     /** */
-    private ListCellRenderer<Object> lcr = new DefaultListCellRenderer() {
+    private final ListCellRenderer<Object> lcr = new DefaultListCellRenderer() {
         {
             setOpaque(true);
         }
 
-        Color selectedFG = UIManager.getColor("ComboBox.selectionBackground");
-        Color selectedBG = UIManager.getColor("ComboBox.selectionForeground");
-        Color FG = UIManager.getColor("ComboBox.background");
-        Color BG = UIManager.getColor("ComboBox.foreground");
+        final Color selectedFG = UIManager.getColor("ComboBox.selectionBackground");
+        final Color selectedBG = UIManager.getColor("ComboBox.selectionForeground");
+        final Color FG = UIManager.getColor("ComboBox.background");
+        final Color BG = UIManager.getColor("ComboBox.foreground");
 
+        @Override
         public Component getListCellRendererComponent(JList<?> list,
                                                       Object value,
                                                       int modelIndex,
                                                       boolean isSelected,
                                                       boolean cellHasFocus) {
-            if (!(value instanceof SampleBorderInfo)) {
+            if (!(value instanceof SampleBorderInfo bi)) {
                 setText("");
                 setIcon(null);
                 return this;
             }
-
-            SampleBorderInfo bi = (SampleBorderInfo) value;
 
             setText(bi.desc);
             setIcon(bi.icon);
@@ -207,7 +207,7 @@ Debug.println(Level.FINER, bi.desc);
 
         private int returnValue = CANCEL_OPTION;
 
-        private BorderChooser borderChooser;
+        private final BorderChooser borderChooser;
 
         public BorderDialog(Component c, String title) {
             super(JOptionPane.getFrameForComponent(c), title, true);
@@ -234,13 +234,13 @@ Debug.println(Level.FINER, bi.desc);
             setLocationRelativeTo(SwingUtilities.getRoot(panel));
         }
 
-        private ActionListener okListener = ev -> {
+        private final ActionListener okListener = ev -> {
             returnValue = APPROVE_OPTION;
             setVisible(false);
 //                dispose();
         };
 
-        private ActionListener cancelListener = ev -> {
+        private final ActionListener cancelListener = ev -> {
             returnValue = CANCEL_OPTION;
             setVisible(false);
 //                dispose();
@@ -271,5 +271,3 @@ Debug.println(Level.FINER, bi.desc);
                   LookAndFeel.makeIcon(clazz, "resources/BorderIcon.gif"));
     }
 }
-
-/* */

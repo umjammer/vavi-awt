@@ -29,7 +29,8 @@ public class EtchedBorderCustomizer extends BasicBorderCustomizer {
     }
 
     /** */
-    private PropertyChangeListener pcl = new PropertyChangeListener() {
+    private final PropertyChangeListener pcl = new PropertyChangeListener() {
+        @Override
         public void propertyChange(PropertyChangeEvent ev) {
             int type = ((EtchedBorder) etched).getEtchType();
             Color h  = ((EtchedBorder) etched).getHighlightColor();
@@ -53,7 +54,7 @@ public class EtchedBorderCustomizer extends BasicBorderCustomizer {
         }
     };
 
-    /** */
+    @Override
     public void setObject(Border border) {
         int type = ((EtchedBorder) border).getEtchType();
         Color h  = ((EtchedBorder) border).getHighlightColor();
@@ -65,5 +66,3 @@ public class EtchedBorderCustomizer extends BasicBorderCustomizer {
         super.setObject(border);
     }
 }
-
-/* */

@@ -26,7 +26,7 @@ import javax.swing.event.TableModelListener;
 public class GridLayoutCustomizer extends BasicLayoutManagerCustomizer {
 
     /** */
-    private GridLayout grid;
+    private final GridLayout grid;
 
     /** */
     public GridLayoutCustomizer() {
@@ -45,7 +45,7 @@ public class GridLayoutCustomizer extends BasicLayoutManagerCustomizer {
     }
 
     /** */
-    private TableModelListener tml = ev -> updateLayout();
+    private final TableModelListener tml = ev -> updateLayout();
 
     /** */
     private void updateLayout() {
@@ -57,7 +57,7 @@ public class GridLayoutCustomizer extends BasicLayoutManagerCustomizer {
         grid.layoutContainer(layoutPanel);
     }
 
-    /** */
+    @Override
     public void setObject(LayoutManager layout) {
         updateLayout();
 
@@ -67,7 +67,7 @@ public class GridLayoutCustomizer extends BasicLayoutManagerCustomizer {
         tableModel.fireTableDataChanged();
     }
 
-    /** */
+    @Override
     public void setContainer(Container container) {
         super.setContainer(container);
 
@@ -87,5 +87,3 @@ public class GridLayoutCustomizer extends BasicLayoutManagerCustomizer {
         }
     }
 }
-
-/* */

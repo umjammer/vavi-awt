@@ -56,7 +56,7 @@ public abstract class JFileChooserField extends JComponent {
     private String title;
 
     /** ファイルチューザ起動ボタン */
-    private JButton selectButton;
+    private final JButton selectButton;
 
     /** 入力フィールド */
     protected JComponent pathField;
@@ -105,7 +105,7 @@ public abstract class JFileChooserField extends JComponent {
     protected abstract void addActionListenerImpl();
 
     /** フィールドの処理 TODO text only でいいのか？ */
-    protected ActionListener pathFieldActionListener = ev -> {
+    protected final ActionListener pathFieldActionListener = ev -> {
 Debug.println(Level.FINER, ev.getSource().getClass().getName());
         setText(getText());
     };
@@ -231,6 +231,7 @@ Debug.println(Level.FINER, defaultPath);
     /**
      * すべてのコンポーネントに setEnabled するようにオーバーライドします．
      */
+    @Override
     public void setBackground(Color background) {
         super.setBackground(background);
         pathField.setBackground(background);
@@ -240,6 +241,7 @@ Debug.println(Level.FINER, defaultPath);
     /**
      * すべてのコンポーネントに setEnabled するようにオーバーライドします．
      */
+    @Override
     public void setForeground(Color foreground) {
         super.setForeground(foreground);
         pathField.setForeground(foreground);
@@ -249,6 +251,7 @@ Debug.println(Level.FINER, defaultPath);
     /**
      * すべてのコンポーネントに setEnabled するようにオーバーライドします．
      */
+    @Override
     public void setFont(Font font) {
         super.setFont(font);
         pathField.setFont(font);
@@ -258,6 +261,7 @@ Debug.println(Level.FINER, defaultPath);
     /**
      * すべてのコンポーネントに setEnabled するようにオーバーライドします．
      */
+    @Override
     public void setEnabled(boolean isEnabled) {
         super.setEnabled(isEnabled);
         pathField.setEnabled(isEnabled);
@@ -269,6 +273,7 @@ Debug.println(Level.FINER, defaultPath);
      *
      * @param l マウスリスナ
      */
+    @Override
     public synchronized void addMouseListener(MouseListener l) {
         super.addMouseListener(l);
         pathField.addMouseListener(l);
@@ -280,6 +285,7 @@ Debug.println(Level.FINER, defaultPath);
      *
      * @param l マウスモーションリスナ
      */
+    @Override
     public synchronized void addMouseMotionListener(MouseMotionListener l) {
         super.addMouseMotionListener(l);
         pathField.addMouseMotionListener(l);
@@ -291,6 +297,7 @@ Debug.println(Level.FINER, defaultPath);
      *
      * @param l マウスリスナ
      */
+    @Override
     public synchronized void removeMouseListener(MouseListener l) {
         super.removeMouseListener(l);
         pathField.removeMouseListener(l);
@@ -302,11 +309,10 @@ Debug.println(Level.FINER, defaultPath);
      *
      * @param l マウスモーションリスナ
      */
+    @Override
     public synchronized void removeMouseMotionListener(MouseMotionListener l) {
         super.removeMouseMotionListener(l);
         pathField.removeMouseMotionListener(l);
         selectButton.removeMouseMotionListener(l);
     }
 }
-
-/* */

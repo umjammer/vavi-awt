@@ -17,7 +17,6 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
@@ -58,7 +57,7 @@ import vavi.util.Debug;
 public abstract class ContainerEditor implements Editable {
 
     /** the selection model for components in the container */
-    protected SelectionModel selectionModel;
+    protected final SelectionModel selectionModel;
 
     /** the container to edit. */
     protected Container container;
@@ -89,8 +88,9 @@ public abstract class ContainerEditor implements Editable {
     // ----
 
     /** listener for selection model */
-    private SelectionListener sl = new SelectionListener() {
+    private final SelectionListener sl = new SelectionListener() {
         final List<Component> cs = new ArrayList<>();
+        @Override
         public void valueChanged(SelectionEvent ev) {
             cs.clear();
             @SuppressWarnings("unchecked")
@@ -176,6 +176,7 @@ public abstract class ContainerEditor implements Editable {
     /**
      * Select all components.
      */
+    @Override
     public void selectAll() {
         selected.clear();
         for (int i = 0; i < container.getComponentCount(); i++) {
@@ -208,8 +209,9 @@ public abstract class ContainerEditor implements Editable {
     private Clipboard currentClipboard;
 
     /** */
-    private ClipboardOwner clipboardOwner = new ClipboardOwner() {
+    private final ClipboardOwner clipboardOwner = new ClipboardOwner() {
         /** Called when lost the ownership. */
+        @Override
         public void lostOwnership(Clipboard clipboard, Transferable contents) {
             if (clipboard == systemClipboard) {
 Debug.println(Level.FINE, clipboard.getName());
@@ -228,6 +230,7 @@ Debug.println(Level.INFO, "???: " + clipboard.getName());
     /**
      * Processes "cut".
      */
+    @Override
     public void cut() {
         copy();
         delete();
@@ -236,6 +239,7 @@ Debug.println(Level.INFO, "???: " + clipboard.getName());
     /**
      * Processes "copy".
      */
+    @Override
     public synchronized void copy() {
 
         try {
@@ -256,6 +260,7 @@ Debug.println(Level.SEVERE, e);
     /**
      * Processes "past".
      */
+    @Override
     public synchronized void paste() {
 
         try {
@@ -286,6 +291,7 @@ Debug.printStackTrace(e);
     /**
      * Processes "delete".
      */
+    @Override
     public void delete() {
         List<Selectable> selected = selectionModel.getSelected();
         for (Selectable selectable : selected) {
@@ -556,7 +562,7 @@ Debug.printStackTrace(e);
     // -------------------------------------------------------------------------
 
     /** The editor support */
-    private EditorSupport editorSupport = new EditorSupport();
+    private final EditorSupport editorSupport = new EditorSupport();
 
     /** Adds an editor listener. */
     public void addEditorListener(EditorListener l) {
@@ -573,5 +579,3 @@ Debug.printStackTrace(e);
         editorSupport.fireEditorUpdated(ev);
     }
 }
-
-/* */

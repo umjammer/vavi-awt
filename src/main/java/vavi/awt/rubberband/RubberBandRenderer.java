@@ -64,5 +64,3 @@ public interface RubberBandRenderer {
      */
     Cursor getCursor(int mode);
 }
-
-/* */

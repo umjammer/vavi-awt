@@ -36,11 +36,13 @@ public class JFileChooserHistoryComboBox extends JFileChooserField {
     }
 
     /** ヒストリ付きコンボボックス */
+    @Override
     protected void setPathFieldImpl() {
         pathField = new JHistoryComboBox();
     }
 
     /** コンボボックスのアクションリスナ */
+    @Override
     protected void addActionListenerImpl() {
         ((JHistoryComboBox) pathField).addActionListener(pathFieldActionListener);
     }
@@ -50,6 +52,7 @@ public class JFileChooserHistoryComboBox extends JFileChooserField {
      *
      * @param text 文字列
      */
+    @Override
     protected void setTextImpl(String text) {
         ((JHistoryComboBox) pathField).setSelectedItem(text);
     }
@@ -59,6 +62,7 @@ public class JFileChooserHistoryComboBox extends JFileChooserField {
      *
      * @return 選択されている文字列
      */
+    @Override
     protected String getTextImpl() {
         return (String) ((JHistoryComboBox) pathField).getSelectedItem();
     }
@@ -68,6 +72,7 @@ public class JFileChooserHistoryComboBox extends JFileChooserField {
      *
      * @param file ファイル
      */
+    @Override
     protected void setSelectedFileImpl(File file) {
         setTextImpl(file.toString());
     }
@@ -77,10 +82,9 @@ public class JFileChooserHistoryComboBox extends JFileChooserField {
      *
      * @return 選択されているファイル
      */
+    @Override
     protected File getSelectedFileImpl() {
         String path = getTextImpl();
         return path == null ? null : new File(path);
     }
 }
-
-/* */

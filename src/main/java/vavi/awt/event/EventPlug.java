@@ -21,7 +21,7 @@ import vavi.util.Debug;
  */
 public class EventPlug {
     /** プラグの名前 */
-    private String name;
+    private final String name;
     /** イベントを発行するオブジェクト */
     private Object invoker;
     /** イベントを受け取るリスナ */
@@ -131,5 +131,3 @@ Debug.printStackTrace(e);
         }
     }
 }
-
-/* */

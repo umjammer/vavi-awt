@@ -30,7 +30,7 @@ import vavi.swing.ClockTask.Updatable;
  * @see "http://www.code-life.jp/blog/2009/04/26/java%E3%81%A7%E9%9D%9E%E7%9F%A9%E5%BD%A2%E3%83%BB%E5%8D%8A%E9%80%8F%E6%98%8E%E3%82%A6%E3%82%A3%E3%83%B3%E3%83%89%E3%82%A6swing%E7%89%88/"
  */
 public class TransClock2 implements Updatable {
-    private Preferences prefs;
+    private final Preferences prefs;
     private final static String FAMILY = "family";
     private final static String STYLE = "style";
     private final static String SIZE = "size";
@@ -38,10 +38,10 @@ public class TransClock2 implements Updatable {
     private final static String LOCATION_X = "locationX";
     private final static String LOCATION_Y = "locationY";
 
-    private JFrame frame;
-    private JLabel clockLabel;
-    private DateFormat formatter = DateFormat.getDateTimeInstance();
-    private JPopupMenu popup;
+    private final JFrame frame;
+    private final JLabel clockLabel;
+    private final DateFormat formatter = DateFormat.getDateTimeInstance();
+    private final JPopupMenu popup;
     private JColorChooser colorChooser;
 
     private Color color;
@@ -58,6 +58,7 @@ public class TransClock2 implements Updatable {
         frame.setOpacity(0.2f);
 
         frame.addMouseListener(new MouseAdapter() {
+            @Override
             public void mousePressed(MouseEvent event) {
                 if (event.isPopupTrigger()) {
                     showPopupMenu(event.getComponent(), event.getX(), event.getY());
@@ -72,6 +73,7 @@ public class TransClock2 implements Updatable {
                 }
             }
 
+            @Override
             public void mouseReleased(MouseEvent event) {
                 int x = locationX + event.getX();
                 int y = locationY + event.getY();
@@ -200,6 +202,7 @@ public class TransClock2 implements Updatable {
         popup.show(comp, x, y);
     }
 
+    @Override
     public void update(long time) {
         clockLabel.setText(formatter.format(new Date(time)));
     }

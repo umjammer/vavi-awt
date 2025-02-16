@@ -100,6 +100,7 @@ public class BasicVolumeUI extends VolumeUI {
     public BasicVolumeUI(JVolume b) {
     }
 
+    @Override
     public void installUI(JComponent c) {
         volume = (JVolume) c;
 
@@ -127,6 +128,7 @@ public class BasicVolumeUI extends VolumeUI {
         calculateGeometry(); // This figures out where the labels, ticks, track, and thumb are.
     }
 
+    @Override
     public void uninstallUI(JComponent c) {
         if (c != volume) {
             throw new IllegalComponentStateException(
@@ -228,6 +230,7 @@ public class BasicVolumeUI extends VolumeUI {
                                          null);
     }
 
+    @Override
     public Dimension getPreferredSize(JComponent c) {
         recalculateIfInsetsChanged();
         Dimension d = PREFERRED_SIZE;
@@ -239,6 +242,7 @@ public class BasicVolumeUI extends VolumeUI {
         return d;
     }
 
+    @Override
     public Dimension getMinimumSize(JComponent c) {
         recalculateIfInsetsChanged();
         Dimension d = MINIMUM_SIZE;
@@ -250,6 +254,7 @@ public class BasicVolumeUI extends VolumeUI {
         return d;
     }
 
+    @Override
     public Dimension getMaximumSize(JComponent c) {
         Dimension d = getPreferredSize(c);
         d.width = Short.MAX_VALUE;
@@ -282,6 +287,7 @@ public class BasicVolumeUI extends VolumeUI {
     }
 
     public class PropertyChangeHandler implements PropertyChangeListener {
+        @Override
         public void propertyChange(PropertyChangeEvent e) {
             String propertyName = e.getPropertyName();
             if (propertyName.equals("model")) {
@@ -292,6 +298,7 @@ public class BasicVolumeUI extends VolumeUI {
         }
     }
 
+    @Override
     public void paint(Graphics g, JComponent c) {
         recalculateIfInsetsChanged();
         Rectangle clip = g.getClipBounds();
@@ -350,6 +357,7 @@ public class BasicVolumeUI extends VolumeUI {
      * Instantiate it only within subclasses of <Foo>.
      */
     public class ChangeHandler implements ChangeListener {
+        @Override
         public void stateChanged(ChangeEvent e) {
             if (!isDragging) {
                 volume.repaint();
@@ -372,6 +380,7 @@ public class BasicVolumeUI extends VolumeUI {
         protected transient int offset;
         protected transient int currentMouseX, currentMouseY;
 
+        @Override
         public void mouseReleased(MouseEvent e) {
             if (!volume.isEnabled()) {
                 return;
@@ -398,6 +407,7 @@ public class BasicVolumeUI extends VolumeUI {
          * thumb then page up if the mouse is in the upper half
          * of the track.
          */
+        @Override
         public void mousePressed(MouseEvent e) {
 
             if (!volume.isEnabled()) {
@@ -433,6 +443,7 @@ public class BasicVolumeUI extends VolumeUI {
          * Set the models value to the position of the top/left
          * of the thumb relative to the origin of the track.
          */
+        @Override
         public void mouseDragged(MouseEvent e) {
 //          BasicScrollBarUI ui;
 
@@ -451,6 +462,7 @@ public class BasicVolumeUI extends VolumeUI {
             volume.setValue(currentMouseX);
         }
 
+        @Override
         public void mouseMoved(MouseEvent e) {}
     }
 
@@ -476,6 +488,7 @@ public class BasicVolumeUI extends VolumeUI {
 
         public void setDirection(int direction) { this.direction = direction; }
 
+        @Override
         public void actionPerformed(ActionEvent e) {
             ((Timer) e.getSource()).stop();
         }
@@ -489,6 +502,7 @@ public class BasicVolumeUI extends VolumeUI {
      * Instantiate it only within subclasses of <Foo>.
      */
     public class ComponentHandler extends ComponentAdapter {
+        @Override
         public void componentResized(ComponentEvent e) {
             calculateGeometry();
             volume.repaint();
@@ -503,13 +517,13 @@ public class BasicVolumeUI extends VolumeUI {
      * Instantiate it only within subclasses of <Foo>.
      */
     public class FocusHandler implements FocusListener {
+        @Override
         public void focusGained(FocusEvent e) {
             volume.repaint();
         }
+        @Override
         public void focusLost(FocusEvent e) {
             volume.repaint();
         }
     }
 }
-
-/* */

@@ -28,5 +28,3 @@ public interface BorderInfo extends BeanInfo {
     /** */
     BorderPropertyDescriptor[] getBorderPropertyDescriptors();
 }
-
-/* */

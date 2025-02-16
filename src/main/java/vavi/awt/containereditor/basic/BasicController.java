@@ -43,6 +43,7 @@ public class BasicController extends AbstractController {
 //  };
 
     /** TODO rubberBandRenderer.drawSelected */
+    @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (isSelected()) {
@@ -61,5 +62,3 @@ public class BasicController extends AbstractController {
         }
     }
 }
-
-/* */

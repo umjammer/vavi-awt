@@ -32,7 +32,8 @@ public class BevelBorderCustomizer extends BasicBorderCustomizer {
     }
 
     /** */
-    private PropertyChangeListener pcl = new PropertyChangeListener() {
+    private final PropertyChangeListener pcl = new PropertyChangeListener() {
+        @Override
         public void propertyChange(PropertyChangeEvent ev) {
             int type = ((BevelBorder) bevel).getBevelType();
             Color hi = ((BevelBorder) bevel).getHighlightInnerColor();
@@ -64,7 +65,7 @@ public class BevelBorderCustomizer extends BasicBorderCustomizer {
         }
     };
 
-    /** */
+    @Override
     public void setObject(Border border) {
         int type = ((BevelBorder) border).getBevelType();
         Color hi = ((BevelBorder) border).getHighlightInnerColor();
@@ -78,5 +79,3 @@ public class BevelBorderCustomizer extends BasicBorderCustomizer {
         super.setObject(border);
     }
 }
-
-/* */

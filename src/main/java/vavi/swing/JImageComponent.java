@@ -50,6 +50,3 @@ Debug.println(Level.FINE, "image: " + iw + "x" + ih + ", " + image);
         }
     }
 }
-
-/* */
-

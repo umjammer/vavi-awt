@@ -307,6 +307,3 @@ Debug.printf(Level.FINE, "crop: %d, %d %d, %d", cr.x, cr.y, cr.width, cr.height)
         }
     }
 }
-
-/* */
-

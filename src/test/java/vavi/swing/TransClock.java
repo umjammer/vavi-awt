@@ -25,7 +25,7 @@ import vavi.swing.ClockTask.Updatable;
 
 
 public class TransClock implements Updatable {
-    private Preferences prefs;
+    private final Preferences prefs;
     private final static String FAMILY = "family";
     private final static String STYLE = "style";
     private final static String SIZE = "size";
@@ -33,10 +33,10 @@ public class TransClock implements Updatable {
     private final static String LOCATION_X = "locationX";
     private final static String LOCATION_Y = "locationY";
 
-    private JFrame frame;
-    private JLabel clockLabel;
-    private DateFormat formatter = DateFormat.getDateTimeInstance();
-    private JPopupMenu popup;
+    private final JFrame frame;
+    private final JLabel clockLabel;
+    private final DateFormat formatter = DateFormat.getDateTimeInstance();
+    private final JPopupMenu popup;
     private JColorChooser colorChooser;
 
     private Color color;
@@ -52,6 +52,7 @@ public class TransClock implements Updatable {
         frame.setUndecorated(true);
 
         frame.addMouseListener(new MouseAdapter() {
+            @Override
             public void mousePressed(MouseEvent event) {
                 if (event.isPopupTrigger()) {
                     showPopupMenu(event.getComponent(), event.getX(), event.getY());
@@ -66,6 +67,7 @@ public class TransClock implements Updatable {
                 }
             }
 
+            @Override
             public void mouseReleased(MouseEvent event) {
                 int x = locationX + event.getX();
                 int y = locationY + event.getY();
@@ -193,6 +195,7 @@ public class TransClock implements Updatable {
         popup.show(comp, x, y);
     }
 
+    @Override
     public void update(long time) {
         clockLabel.setText(formatter.format(new Date(time)));
     }

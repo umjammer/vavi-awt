@@ -33,5 +33,3 @@ public abstract class RubberBandAdapter implements RubberBandListener {
     @Override public void resized(RubberBandEvent ev) {
     }
 }
-
-/* */

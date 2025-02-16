@@ -25,15 +25,13 @@ public class BoxLayoutInfo extends SimpleBeanInfo {
     private final Class<?> clazz = BoxLayout.class;
     private final Class<?> customizerClass = BoxLayoutCustomizer.class;
 
-    /** */
+    @Override
     public BeanDescriptor getBeanDescriptor() {
         return new BeanDescriptor(clazz, customizerClass);
     }
 
-    /** */
+    @Override
     public Image getIcon(int iconKind) {
         return loadImage("resources/boxLayout.gif");
     }
 }
-
-/* */

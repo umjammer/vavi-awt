@@ -21,7 +21,7 @@ public class NullBorderCustomizer extends BasicBorderCustomizer {
     public NullBorderCustomizer() {
     }
 
-    /** */
+    @Override
     public void setObject(Border border) {
         borderSample.setBorder(null);
 
@@ -31,5 +31,3 @@ public class NullBorderCustomizer extends BasicBorderCustomizer {
         firePropertyChange("border", oldBorder, border);
     }
 }
-
-/* */

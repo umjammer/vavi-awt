@@ -47,7 +47,7 @@ public class JVolume extends JComponent {
      * @see #addChangeListener
      * @see #createChangeListener
      */
-    protected ChangeListener changeListener = createChangeListener();
+    protected final ChangeListener changeListener = createChangeListener();
 
     /**
      * @see #fireStateChanged
@@ -99,6 +99,7 @@ public class JVolume extends JComponent {
      * volume (instead of the model itself) as the event source.
      */
     private class ModelListener implements ChangeListener, Serializable {
+        @Override
         public void stateChanged(ChangeEvent e) {
             fireStateChanged();
         }
@@ -226,7 +227,7 @@ public class JVolume extends JComponent {
     public void setMinimum(int min) {
         int oldMin = getModel().getMinimum();
         getModel().setMinimum(min);
-        firePropertyChange("minimum", new Integer(oldMin), new Integer(min));
+        firePropertyChange("minimum", Integer.valueOf(oldMin), Integer.valueOf(min));
     }
 
     /** 最大値を取得します． */
@@ -238,7 +239,7 @@ public class JVolume extends JComponent {
     public void setMaximum(int max) {
         int oldMax = getModel().getMaximum();
         getModel().setMaximum(max);
-        firePropertyChange("maximum", new Integer(oldMax), new Integer(max));
+        firePropertyChange("maximum", Integer.valueOf(oldMax), Integer.valueOf(max));
     }
 
     /**
@@ -303,13 +304,15 @@ public class JVolume extends JComponent {
     private transient int y;
 
     /** マウスリスナ */
-    private MouseInputListener mouseListener = new MouseInputAdapter() {
+    private final MouseInputListener mouseListener = new MouseInputAdapter() {
         /** マウスが押されたときに呼ばれます．*/
+        @Override
         public void mousePressed(MouseEvent ev) {
             setValueIsAdjusting(true);
 Debug.println(Level.FINER, ev.getX() + ", " + ev.getY());
         }
         /** マウスがドラッグしたときに呼ばれます． */
+        @Override
         public void mouseDragged(MouseEvent ev) {
             if (getValueIsAdjusting()) {
                 x = ev.getX() - getWidth() / 2;
@@ -319,6 +322,7 @@ Debug.println(Level.FINER, x + ", " + y);
             }
         }
         /** マウスが放されたときに呼ばれます． */
+        @Override
         public void mouseReleased(MouseEvent ev) {
             if (getValueIsAdjusting()) {
                 x = ev.getX() - getWidth() / 2;
@@ -337,9 +341,10 @@ Debug.println(Level.FINER, getValue());
     };
 
     /** ボリュームノブの幅 */
-    private double r = 0.4;
+    private final double r = 0.4;
 
     /** ボリュームを描画します． */
+    @Override
     public void paintComponent(Graphics g) {
 
         super.paintComponent(g);
@@ -451,5 +456,3 @@ Debug.println(Level.FINER, X + ", " + Y);
 //        }
     }
 }
-
-/* */

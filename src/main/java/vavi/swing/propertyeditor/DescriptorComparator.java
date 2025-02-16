@@ -23,9 +23,8 @@ public class DescriptorComparator<T extends FeatureDescriptor> implements Compar
     /**
      * Compares two FeatureDescriptor objects
      */
+    @Override
     public int compare(T o1, T o2) {
         return o1.getDisplayName().compareTo(o2.getDisplayName());
     }
 }
-
-/* */

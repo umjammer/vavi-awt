@@ -28,17 +28,17 @@ public class GridLayoutInfo extends SimpleBeanInfo {
     private final Class<?> clazz = GridLayout.class;
     private final Class<?> customizerClass = GridLayoutCustomizer.class;
 
-    /** */
+    @Override
     public BeanDescriptor getBeanDescriptor() {
         return new BeanDescriptor(clazz, customizerClass);
     }
 
-    /** */
+    @Override
     public Image getIcon(int iconKind) {
         return loadImage("resources/gridLayout.gif");
     }
 
-    /** */
+    @Override
     public PropertyDescriptor[] getPropertyDescriptors() {
         try {
             PropertyDescriptor[] pds = new PropertyDescriptor[4];
@@ -54,5 +54,3 @@ Debug.println(Level.SEVERE, e);
         }
     }
 }
-
-/* */

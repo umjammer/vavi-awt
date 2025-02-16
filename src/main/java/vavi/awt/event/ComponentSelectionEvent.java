@@ -18,7 +18,7 @@ import java.util.EventObject;
 public class ComponentSelectionEvent extends EventObject {
 
     /** */
-    private Object selected;
+    private final Object selected;
 
     /**
      * ComponentSelection イベントを構築します．
@@ -34,5 +34,3 @@ public class ComponentSelectionEvent extends EventObject {
         return selected;
     }
 }
-
-/* */

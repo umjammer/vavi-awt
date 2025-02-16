@@ -34,7 +34,7 @@ public abstract class LayoutConstraints {
     //-------------------------------------------------------------------------
 
     /** PropertyChange イベント機構のユーティリティ */
-    private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     /** PropertyChangeListener を追加します． */
     public void addPropertyChangeListener(PropertyChangeListener l) {
@@ -58,5 +58,3 @@ public abstract class LayoutConstraints {
         pcs.firePropertyChange(name, oldValue, newValue);
     }
 }
-
-/* */

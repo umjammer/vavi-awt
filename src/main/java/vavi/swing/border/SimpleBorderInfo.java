@@ -18,9 +18,8 @@ import java.beans.SimpleBeanInfo;
 public class SimpleBorderInfo extends SimpleBeanInfo
     implements BorderInfo {
 
+    @Override
     public BorderPropertyDescriptor[] getBorderPropertyDescriptors() {
         return null;
     }
 }
-
-/* */

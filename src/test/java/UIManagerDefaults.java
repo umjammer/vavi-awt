@@ -16,6 +16,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -67,13 +68,13 @@ public class UIManagerDefaults implements ActionListener, ItemListener {
     private final static String[] COLUMN_NAMES = {"Key", "Value", "Sample"};
     private static String selectedItem;
 
-    private JComponent contentPane;
+    private final JComponent contentPane;
     private JMenuBar menuBar;
     private JComboBox<String> comboBox;
     private JRadioButton byComponent;
     private JTable table;
-    private TreeMap<String, TreeMap<String, Object>> items;
-    private HashMap<String, DefaultTableModel> models;
+    private final TreeMap<String, TreeMap<String, Object>> items;
+    private final HashMap<String, DefaultTableModel> models;
 
     /*
      * Constructor
@@ -380,6 +381,7 @@ Debug.println("current: " + name);
     /*
      * Implement the ActionListener interface
      */
+    @Override
     public void actionPerformed(ActionEvent e) {
         selectedItem = null;
         resetComponents();
@@ -389,6 +391,7 @@ Debug.println("current: " + name);
     /*
      * Implement the ItemListener interface
      */
+    @Override
     public void itemStateChanged(ItemEvent e) {
         String itemName = (String) e.getItem();
         changeTableModel(itemName);
@@ -478,7 +481,7 @@ Debug.println("current: " + name);
      * In subsequent calls the ImageIcon is used.
      */
     public static class SafeIcon implements Icon {
-        private Icon wrappee;
+        private final Icon wrappee;
         private Icon standIn;
 
         public SafeIcon(Icon wrappee) {
@@ -544,8 +547,8 @@ Debug.println("current: " + name);
             JComponent standInComponent;
 
             try {
-                standInComponent = (JComponent) clazz.newInstance();
-            } catch (InstantiationException e) {
+                standInComponent = (JComponent) clazz.getDeclaredConstructor().newInstance();
+            } catch (InstantiationException | InvocationTargetException | NoSuchMethodException e) {
                 standInComponent = new AbstractButton() {
                 };
                 ((AbstractButton) standInComponent).setModel(new DefaultButtonModel());
@@ -577,6 +580,7 @@ Debug.println("current: " + name);
             setOpaque(true);
         }
 
+        @Override
         public Component getTableCellRendererComponent(
                 JTable table, Object sample, boolean isSelected, boolean hasFocus, int row, int column) {
             setBackground(null);
@@ -603,6 +607,7 @@ Debug.println("current: " + name);
          * shared by other items. This code will catch the
          * ClassCastException that is thrown.
          */
+        @Override
         public void paint(Graphics g) {
             try {
                 super.paint(g);
@@ -618,8 +623,8 @@ Debug.println("current: " + name);
      * of the new LAF are correctly displayed.
      */
     static class ChangeLookAndFeelAction extends AbstractAction {
-        private UIManagerDefaults defaults;
-        private String laf;
+        private final UIManagerDefaults defaults;
+        private final String laf;
 
         protected ChangeLookAndFeelAction(UIManagerDefaults defaults, String laf, String name) {
             this.defaults = defaults;
@@ -628,6 +633,7 @@ Debug.println("current: " + name);
             putValue(Action.SHORT_DESCRIPTION, getValue(Action.NAME));
         }
 
+        @Override
         public void actionPerformed(ActionEvent e) {
             try {
                 UIManager.setLookAndFeel(laf);
@@ -668,6 +674,7 @@ Debug.println("current: " + name);
             putValue(Action.MNEMONIC_KEY, KeyEvent.VK_X);
         }
 
+        @Override
         public void actionPerformed(ActionEvent e) {
             System.exit(0);
         }

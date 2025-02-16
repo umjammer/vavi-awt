@@ -43,10 +43,10 @@ public class RegexTester {
         app.init();
     }
 
-    JHistoryComboBox searcher = new JHistoryComboBox();
-    JTable table = new JTable();
-    JButton executeButton = new JButton("▶ Execute");
-    JButton undoButton = new JButton("⎌ Undo");
+    final JHistoryComboBox searcher = new JHistoryComboBox();
+    final JTable table = new JTable();
+    final JButton executeButton = new JButton("▶ Execute");
+    final JButton undoButton = new JButton("⎌ Undo");
     DefaultTableModel model;
 
     void gui() {
@@ -91,7 +91,7 @@ public class RegexTester {
     }
 
     /** file list in the working directory */
-    private List<String> sources = new ArrayList<>();
+    private final List<String> sources = new ArrayList<>();
 
     /** initialize model */
     private void init() throws IOException {

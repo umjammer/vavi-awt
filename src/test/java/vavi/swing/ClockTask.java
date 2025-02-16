@@ -3,12 +3,13 @@ package vavi.swing;
 import java.util.TimerTask;
 
 public class ClockTask extends TimerTask {
-    private Updatable clock;
+    private final Updatable clock;
 
     public ClockTask(Updatable clock) {
         this.clock = clock;
     }
 
+    @Override
     public void run() {
         clock.update(scheduledExecutionTime());
     }

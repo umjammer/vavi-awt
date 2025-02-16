@@ -20,37 +20,42 @@ public class DefaultEditorManager extends EditorManager {
     /**
      * エディタがオープンされたときに呼ばれる処理の実装です．
      */
+    @Override
     protected void editorOpenedImpl(Editor editor) {}
 
     /**
      * エディタがクローズされたときに呼ばれる処理の実装です．
      */
+    @Override
     protected void editorClosedImpl(Editor editor) {}
 
     /**
      * エディタがアップデートされたときに呼ばれる処理の実装です．
      */
+    @Override
     protected void editorUpdatedImpl(Editor editor) {}
 
     /**
      * エディタマネージャを使ってエディタをオープンした時の処理の実装です．
      */
+    @Override
     public void openEditor(Editor editor) {}
 
     /**
      * エディタマネージャを使ってエディタをクローズした時の処理の実装です．
      */
+    @Override
     public void closeEditor(Editor editor) {}
 
     /**
      * エディタマネージャを使ってエディタをアップデートした時の処理の実装です．
      */
+    @Override
     public void updateEditor(Editor editor) {}
 
     /**
      * エディタマネージャを使って全エディタをクローズした時の処理の実装です．
      */
+    @Override
     protected void closedAllEditorsImpl() {}
 }
-
-/* */

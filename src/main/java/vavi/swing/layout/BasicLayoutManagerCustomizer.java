@@ -45,22 +45,22 @@ public class BasicLayoutManagerCustomizer extends JComponent
     protected Container container;
 
     /** The virtual target panel */
-    protected JPanel layoutPanel;
+    protected final JPanel layoutPanel;
 
     /** The virtual screen */
-    private JPanel screenPanel;
+    private final JPanel screenPanel;
 
     /** Layout properties */
-    protected PropertyDescriptorTableModel tableModel;
+    protected final PropertyDescriptorTableModel tableModel;
 
     /** Layout constraint properties */
-    protected PropertyDescriptorTableModel lcTableModel;
+    protected final PropertyDescriptorTableModel lcTableModel;
 
     /** panel for layout constraint properties */
-    protected JPanel lcPanel;
+    protected final JPanel lcPanel;
 
     /** component/controller pair */
-    protected Map<Object, Component> components = new HashMap<>();
+    protected final Map<Object, Component> components = new HashMap<>();
 
     /** */
     public BasicLayoutManagerCustomizer() {
@@ -102,7 +102,7 @@ public class BasicLayoutManagerCustomizer extends JComponent
         this.add(panel);
     }
 
-    /** */
+    @Override
     public void setObject(LayoutManager layout) {
         LayoutManager oldLayout = this.layout;
         this.layout = layout;
@@ -113,6 +113,7 @@ Debug.println(Level.FINER, "new: " + (layout == null ? null : layout.getClass().
     }
 
     /** TODO */
+    @Override
     public LayoutManager getObject() {
         return layout;
     }
@@ -129,6 +130,7 @@ Debug.println(Level.FINER, "new: " + (layout == null ? null : layout.getClass().
      * must be called <code>super.</code>{@link #setContainer(Container)} at first
      * for setting {@link #ratio}
      */
+    @Override
     public void setContainer(Container container) {
         this.container = container;
 
@@ -149,9 +151,7 @@ Debug.println(Level.FINER, ratio);
         layoutPanel.setLocation(new Point((ss.width - w) / 2, (ss.height - h) / 2));
     }
 
-    /** */
+    @Override
     public void layoutContainer() {
     }
 }
-
-/* */

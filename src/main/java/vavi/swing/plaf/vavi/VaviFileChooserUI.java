@@ -24,7 +24,7 @@ public class VaviFileChooserUI extends MetalFileChooserUI {
         return new VaviFileChooserUI((JFileChooser) c);
     }
 
-    /** */
+    @Override
     public void setFileName(String filename) {
         String oldName;
         File file;
@@ -53,5 +53,3 @@ public class VaviFileChooserUI extends MetalFileChooserUI {
         }
     }
 }
-
-/* */

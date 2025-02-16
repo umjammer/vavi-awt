@@ -23,9 +23,9 @@ import vavi.util.Debug;
  */
 public class BorderPropertyDescriptor extends FeatureDescriptor {
 
-    private String propertyName;
+    private final String propertyName;
 
-    private Class<?> borderClass;
+    private final Class<?> borderClass;
 
     /** */
     public BorderPropertyDescriptor(String propertyName, Class<?> borderClass) {
@@ -62,5 +62,3 @@ Debug.println(Level.FINER, getReadMethod().getReturnType());
         return null;
     }
 }
-
-/* */

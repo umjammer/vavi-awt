@@ -22,10 +22,10 @@ import vavi.text.NumberDocument;
  */
 public class SwingInsetsEditor extends SwingEditorSupport {
 
-    private JTextField topTF;
-    private JTextField leftTF;
-    private JTextField bottomTF;
-    private JTextField rightTF;
+    private final JTextField topTF;
+    private final JTextField leftTF;
+    private final JTextField bottomTF;
+    private final JTextField rightTF;
 
     public SwingInsetsEditor() {
         topTF = new JTextField();
@@ -49,6 +49,7 @@ public class SwingInsetsEditor extends SwingEditorSupport {
         panel.add(rightTF);
     }
 
+    @Override
     public void setValue(Object value)  {
         super.setValue(value);
 
@@ -60,6 +61,7 @@ public class SwingInsetsEditor extends SwingEditorSupport {
         rightTF.setText(Integer.toString(insets.right));
     }
 
+    @Override
     public Object getValue()  {
         int top = Integer.parseInt(topTF.getText());
         int left = Integer.parseInt(leftTF.getText());

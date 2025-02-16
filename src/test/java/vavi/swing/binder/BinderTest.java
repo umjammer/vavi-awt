@@ -75,9 +75,9 @@ Debug.println(Level.FINE, "here: " + bean);
     }
 
     static class SwingBean {
-        JSlider slider = new JSlider();
-        JCheckBox checkBox = new JCheckBox();
-        JTextField textField = new JTextField();
+        final JSlider slider = new JSlider();
+        final JCheckBox checkBox = new JCheckBox();
+        final JTextField textField = new JTextField();
         SwingBean() {
             slider.setMaximum(100);
             slider.setMinimum(0);

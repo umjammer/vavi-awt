@@ -18,7 +18,7 @@ import java.util.EventObject;
 public class SelectionEvent extends EventObject {
 
     /** */
-    private Object selected;
+    private final Object selected;
 
     /**
      * Selection イベントを構築します．
@@ -34,5 +34,3 @@ public class SelectionEvent extends EventObject {
         return selected;
     }
 }
-
-/* */

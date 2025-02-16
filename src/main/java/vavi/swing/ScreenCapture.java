@@ -25,7 +25,7 @@ class ScreenCapture {
 
     private Timer timer;
 
-    private Translucentable parent;
+    private final Translucentable parent;
 
     public ScreenCapture(Translucentable parent) {
         this.parent = parent;
@@ -56,6 +56,7 @@ class ScreenCapture {
 
         timer = new Timer();
         TimerTask task = new TimerTask() {
+                @Override
                 public void run() {
                     if (moveFlag) {
                         moveFlagOld = moveFlag;

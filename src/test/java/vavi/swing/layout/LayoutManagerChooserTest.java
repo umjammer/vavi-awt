@@ -54,5 +54,3 @@ class LayoutManagerChooserTest {
         frame.setVisible(true);
     }
 }
-
-/* */

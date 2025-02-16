@@ -36,7 +36,7 @@ import javax.swing.JOptionPane;
  */
 public class SwingObjectEditor extends SwingEditorSupport {
 
-    private JTextField textfield;
+    private final JTextField textfield;
 
     public SwingObjectEditor() {
         textfield = new JTextField();
@@ -52,6 +52,7 @@ public class SwingObjectEditor extends SwingEditorSupport {
 
         // XXX - Temporary workaround for 1.3 beta
         textfield.addKeyListener(new KeyAdapter()  {
+            @Override
             public void keyPressed(KeyEvent evt)  {
                 if (evt.getKeyCode() == KeyEvent.VK_ENTER)  {
                     handleAction();
@@ -64,6 +65,7 @@ public class SwingObjectEditor extends SwingEditorSupport {
         panel.add(textfield);
     }
 
+    @Override
     public void setValue(Object value)  {
         super.setValue(value);
 
@@ -100,5 +102,3 @@ public class SwingObjectEditor extends SwingEditorSupport {
         }
     }
 }
-
-/* */

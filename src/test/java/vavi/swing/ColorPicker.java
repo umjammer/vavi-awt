@@ -36,6 +36,7 @@ import javax.swing.SwingUtilities;
  */
 public class ColorPicker implements Runnable {
 
+    @Override
     public void run() {
 
         try {
@@ -50,6 +51,7 @@ public class ColorPicker implements Runnable {
             window.getContentPane().setLayout(new BorderLayout());
             JLabel label = new JLabel(new ImageIcon(screenImage));
             label.addMouseListener(new MouseAdapter() {
+                @Override
                 public void mouseClicked(MouseEvent event) {
                     Color color = robot.getPixelColor(event.getX(), event.getY());
                     System.out.printf("#%02X%02X%02X\n", color.getRed(), color.getGreen(), color.getBlue());

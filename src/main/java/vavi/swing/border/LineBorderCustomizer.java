@@ -32,7 +32,8 @@ public class LineBorderCustomizer extends BasicBorderCustomizer {
     }
 
     /** */
-    private PropertyChangeListener pcl = new PropertyChangeListener() {
+    private final PropertyChangeListener pcl = new PropertyChangeListener() {
+        @Override
         public void propertyChange(PropertyChangeEvent ev) {
             Color   c  = line.getLineColor();
             int     t  = line.getThickness();
@@ -54,7 +55,7 @@ public class LineBorderCustomizer extends BasicBorderCustomizer {
         }
     };
 
-    /** */
+    @Override
     public void setObject(Border border) {
         Color   c  = ((LineBorder) border).getLineColor();
         int     t  = ((LineBorder) border).getThickness();
@@ -66,5 +67,3 @@ public class LineBorderCustomizer extends BasicBorderCustomizer {
         super.setObject(border);
     }
 }
-
-/* */

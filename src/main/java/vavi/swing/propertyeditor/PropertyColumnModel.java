@@ -72,12 +72,13 @@ public class PropertyColumnModel extends DefaultTableColumnModel  {
      * Renders the name of the property. Sets the short description of the
      * property as the tooltip text.
      */
-    private TableCellRenderer nameRenderer = new DefaultTableCellRenderer() {
+    private final TableCellRenderer nameRenderer = new DefaultTableCellRenderer() {
 
         /**
          * Get UI for current editor, including custom editor button
          * if applicable.
          */
+        @Override
         public Component getTableCellRendererComponent(JTable jtable,
                                                        Object value,
                                                        boolean isSelected,
@@ -108,9 +109,9 @@ public class PropertyColumnModel extends DefaultTableColumnModel  {
      * Renderer for a value with a property editor or installs the default
      * cell renderer.
      */
-    private TableCellRenderer valueRenderer = new DefaultTableCellRenderer() {
+    private final TableCellRenderer valueRenderer = new DefaultTableCellRenderer() {
 
-        private Map<Class<?>, PropertyEditor> editors = new HashMap<>();
+        private final Map<Class<?>, PropertyEditor> editors = new HashMap<>();
 
         private PropertyEditor editor;
 
@@ -125,6 +126,7 @@ public class PropertyColumnModel extends DefaultTableColumnModel  {
          * if applicable.
          * XXX - yuck! yuck! yuck!!!!
          */
+        @Override
         public Component getTableCellRendererComponent(JTable jtable,
                                                        Object value,
                                                        boolean isSelected,
@@ -182,5 +184,3 @@ public class PropertyColumnModel extends DefaultTableColumnModel  {
 //          }
     };
 }
-
-/* */

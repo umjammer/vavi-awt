@@ -28,9 +28,9 @@ import javax.swing.JTextField;
 public class SwingStringEditor extends SwingEditorSupport {
 
     // Property editor to use if the Integer represents an Enumerated type.
-    private SwingEnumEditor enumEditor = new SwingEnumEditor();
+    private final SwingEnumEditor enumEditor = new SwingEnumEditor();
 
-    private JTextField textfield;
+    private final JTextField textfield;
 
     private boolean isEnumeration = false;
 
@@ -40,6 +40,7 @@ public class SwingStringEditor extends SwingEditorSupport {
             // XXX - JTextfield should send an actionPerformed event.
             // this was broken for 1.3 beta but fixed in 1.3. This
             // is the workaround.
+            @Override
             public void keyPressed(KeyEvent evt)  {
                 if (evt.getKeyCode() == KeyEvent.VK_ENTER)  {
                     setValue(textfield.getText());
@@ -52,6 +53,7 @@ public class SwingStringEditor extends SwingEditorSupport {
         panel.add(textfield);
     }
 
+    @Override
     public void setValue(Object value)  {
         if (isEnumeration)  {
             enumEditor.setValue(value);
@@ -66,6 +68,7 @@ public class SwingStringEditor extends SwingEditorSupport {
         }
     }
 
+    @Override
     public Object getValue() {
         if (isEnumeration)  {
             return enumEditor.getValue();
@@ -78,11 +81,13 @@ public class SwingStringEditor extends SwingEditorSupport {
      * Must overload the PropertyChangeListener registration because
      * this class is the only interface to the SwingEnumEditor.
      */
+    @Override
     public void addPropertyChangeListener(PropertyChangeListener l)  {
         enumEditor.addPropertyChangeListener(l);
         super.addPropertyChangeListener(l);
     }
 
+    @Override
     public void removePropertyChangeListener(PropertyChangeListener l)  {
         enumEditor.removePropertyChangeListener(l);
         super.removePropertyChangeListener(l);
@@ -91,6 +96,7 @@ public class SwingStringEditor extends SwingEditorSupport {
     /**
      * Initializes this property editor with the enumerated items.
      */
+    @Override
     public void init(FeatureDescriptor descriptor) {
         Object[] enumeration = (Object[])descriptor.getValue("enumerationValues");
         if (enumeration != null) {
@@ -107,6 +113,7 @@ public class SwingStringEditor extends SwingEditorSupport {
     /**
      * Return the custom editor for the enumeration or the integer.
      */
+    @Override
     public Component getCustomEditor()  {
         if (isEnumeration)  {
             return enumEditor.getCustomEditor();
@@ -115,5 +122,3 @@ public class SwingStringEditor extends SwingEditorSupport {
         }
     }
 }
-
-/* */

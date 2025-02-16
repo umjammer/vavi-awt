@@ -26,8 +26,8 @@ import javax.swing.JPanel;
 public class NicoPanel {
 
     static class Comment {
-        long time;
-        String comment;
+        final long time;
+        final String comment;
         int y;
         int x;
         boolean on;
@@ -39,10 +39,11 @@ public class NicoPanel {
 
     static class SmilyPanel extends JPanel {
         private long time;
-        List<Comment> comments = new ArrayList<>();
+        final List<Comment> comments = new ArrayList<>();
         public void addComment(long time, String comment) {
             comments.add(new Comment(time, comment));
         }
+        @Override
         public void paint(Graphics g) {
             g.setColor(Color.black);
             g.fillRect(0, 0, getWidth(), getHeight());
@@ -116,5 +117,3 @@ e.printStackTrace(System.err);
         panel.play();
     }
 }
-
-/* */

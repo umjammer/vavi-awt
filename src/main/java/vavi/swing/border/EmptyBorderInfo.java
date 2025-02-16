@@ -23,21 +23,20 @@ public class EmptyBorderInfo extends SimpleBorderInfo {
     private final Class<?> clazz = EmptyBorder.class;
     private final Class<?> customizerClass = EmptyBorderCustomizer.class;
 
-    /** */
+    @Override
     public BeanDescriptor getBeanDescriptor() {
         return new BeanDescriptor(clazz, customizerClass);
     }
 
+    @Override
     public Image getIcon(int iconKind) {
         return loadImage("resources/border.gif");
     }
 
-    /** */
+    @Override
     public BorderPropertyDescriptor[] getBorderPropertyDescriptors() {
         BorderPropertyDescriptor[] bpds = new BorderPropertyDescriptor[1];
         bpds[0] = new BorderPropertyDescriptor("borderInsets", clazz);
         return bpds;
     }
 }
-
-/* */

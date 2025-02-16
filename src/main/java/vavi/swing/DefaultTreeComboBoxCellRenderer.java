@@ -29,11 +29,11 @@ public class DefaultTreeComboBoxCellRenderer<E> extends JLabel implements ListCe
     static final int OFFSET = 16;
 
     /** */
-    static Border emptyBorder = new EmptyBorder(0, 0, 0, 0);
+    static final Border emptyBorder = new EmptyBorder(0, 0, 0, 0);
 
-    Icon leafIcon = UIManager.getIcon("Tree.closedIcon");
+    final Icon leafIcon = UIManager.getIcon("Tree.closedIcon");
 
-    Icon nodeIcon = UIManager.getIcon("Tree.leafIcon");
+    final Icon nodeIcon = UIManager.getIcon("Tree.leafIcon");
 
     // Icon nodeIcon = UIManager.getIcon("Tree.openIcon");
 
@@ -42,7 +42,7 @@ public class DefaultTreeComboBoxCellRenderer<E> extends JLabel implements ListCe
         setOpaque(true);
     }
 
-    /** */
+    @Override
     public Component getListCellRendererComponent(JList<? extends E> listbox, E value, int index, boolean isSelected, boolean cellHasFocus) {
 
         ListEntry listEntry = (ListEntry) value;
@@ -78,5 +78,3 @@ public class DefaultTreeComboBoxCellRenderer<E> extends JLabel implements ListCe
         return this;
     }
 }
-
-/* */

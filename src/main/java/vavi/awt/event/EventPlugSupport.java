@@ -20,7 +20,7 @@ import java.util.Map;
 public class EventPlugSupport {
 
     /** EventPlug 管理用 Hashtable */
-    protected volatile Map<String, EventPlug> eventPlugs = new HashMap<>();
+    protected final Map<String, EventPlug> eventPlugs = new HashMap<>();
 
     /**
      * EventPlug を追加します．
@@ -146,5 +146,3 @@ public class EventPlugSupport {
         }
     }
 }
-
-/* */

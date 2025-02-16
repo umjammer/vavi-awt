@@ -39,10 +39,12 @@ public class SwingEditorSupport extends PropertyEditorSupport {
     /**
      * Returns the panel responsible for rendering the PropertyEditor.
      */
+    @Override
     public Component getCustomEditor() {
         return panel;
     }
 
+    @Override
     public boolean supportsCustomEditor() {
         return true;
     }
@@ -60,5 +62,3 @@ public class SwingEditorSupport extends PropertyEditorSupport {
     public void init(FeatureDescriptor descriptor)  {
     }
 }
-
-/* */

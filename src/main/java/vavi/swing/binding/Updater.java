@@ -18,5 +18,3 @@ public interface Updater<T> {
     /** @param arg bean */
     void update(T arg);
 }
-
-/* */

@@ -67,14 +67,14 @@ public class FileRenamer {
         app.init(dir);
     }
 
-    JHistoryComboBox searcher = new JHistoryComboBox();
-    JHistoryComboBox replacer = new JHistoryComboBox();
-    JTable table = new JTable();
-    JButton executeButton = new JButton("▶ Execute");
-    JButton commitButton = new JButton("✓ Commit");
-    JButton undoButton = new JButton("⎌ Undo");
+    final JHistoryComboBox searcher = new JHistoryComboBox();
+    final JHistoryComboBox replacer = new JHistoryComboBox();
+    final JTable table = new JTable();
+    final JButton executeButton = new JButton("▶ Execute");
+    final JButton commitButton = new JButton("✓ Commit");
+    final JButton undoButton = new JButton("⎌ Undo");
     DefaultTableModel model;
-    JCheckBox normalize = new JCheckBox("Normalize");
+    final JCheckBox normalize = new JCheckBox("Normalize");
 
     void gui() {
         JFrame frame = new JFrame();
@@ -112,17 +112,17 @@ public class FileRenamer {
                         }
                     }
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    Debug.printStackTrace(e);
                 }
             }
         });
         table.addKeyListener(new KeyAdapter() {
             @Override public void keyTyped(KeyEvent event) {
-                if ((event.getModifiers() & KeyEvent.CTRL_MASK) != 0 && event.getKeyChar() == '\u0015') { // ^U
+                if ((event.getModifiersEx() & KeyEvent.CTRL_DOWN_MASK) != 0 && event.getKeyChar() == '\u0015') { // ^U
                     try {
                         init(dir.getParent());
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        Debug.printStackTrace(e);
                     }
                 }
             }
@@ -156,7 +156,7 @@ public class FileRenamer {
     }
 
     /** file list in the working directory */
-    private List<Path> sources = new ArrayList<>();
+    private final List<Path> sources = new ArrayList<>();
 
     /** working directory */
     private Path dir;
@@ -186,7 +186,7 @@ Debug.println(path.getFileName());
     private static class ColorSchema {
         static final Color C0 = Color.black;
         static final Color C1 = Color.red;
-        Color[] colors = new Color[] {Color.cyan, Color.yellow, Color.green};
+        final Color[] colors = new Color[] {Color.cyan, Color.yellow, Color.green};
         int index = 0;
         Color next() {
             Color color = colors[index++];
@@ -199,9 +199,9 @@ Debug.println(path.getFileName());
 
     /** coloerize regex group */
     private static class RegexColorizer {
-        char[] colors;
+        final char[] colors;
         char c;
-        String target;
+        final String target;
         RegexColorizer(String target) {
             this.target = target;
             colors = new char[target.length()];
@@ -232,7 +232,8 @@ Debug.println(path.getFileName());
 
     /** coloerize diff */
     static class DiffColorizer {
-        String a, b;
+        final String a;
+        final String b;
         DiffColorizer(String a, String b) {
             this.a = a;
             this.b = b;

@@ -44,7 +44,7 @@ public class JTreeComboBox extends JComboBox<Object> {
     /** ツリーモデルをリストモデルに変換して扱うクラスです． */
     static class TreeToListModel extends AbstractListModel<Object> implements ComboBoxModel<Object>, TreeModelListener {
 
-        TreeModel source;
+        final TreeModel source;
 
         boolean invalid = true;
 
@@ -60,43 +60,51 @@ public class JTreeComboBox extends JComboBox<Object> {
         }
 
         /** */
+        @Override
         public void setSelectedItem(Object anObject) {
             currentValue = anObject;
             fireContentsChanged(this, -1, -1);
         }
 
         /** */
+        @Override
         public Object getSelectedItem() {
             return currentValue;
         }
 
         /** */
+        @Override
         public int getSize() {
             validate();
             return cache.size();
         }
 
         /** */
+        @Override
         public Object getElementAt(int index) {
             return cache.get(index).object;
         }
 
         /** */
+        @Override
         public void treeNodesChanged(TreeModelEvent ev) {
             invalid = true;
         }
 
         /** */
+        @Override
         public void treeNodesInserted(TreeModelEvent ev) {
             invalid = true;
         }
 
         /** */
+        @Override
         public void treeNodesRemoved(TreeModelEvent ev) {
             invalid = true;
         }
 
         /** */
+        @Override
         public void treeStructureChanged(TreeModelEvent ev) {
             invalid = true;
         }
@@ -106,7 +114,7 @@ public class JTreeComboBox extends JComboBox<Object> {
             if (invalid) {
                 cache = new Vector<>();
                 cacheTree(source.getRoot(), 0);
-                if (cache.size() > 0) {
+                if (!cache.isEmpty()) {
                     currentValue = cache.get(0);
                 }
                 invalid = false;
@@ -148,13 +156,13 @@ public class JTreeComboBox extends JComboBox<Object> {
 class ListEntry {
 
     /** エントリのオブジェクト */
-    Object object;
+    final Object object;
 
     /** ツリーの階層 */
-    int level;
+    final int level;
 
     /** 末葉かどうか */
-    boolean isNode;
+    final boolean isNode;
 
     /** JTreeComboBox の一エントリを構築します． */
     public ListEntry(Object anObject, int aLevel, boolean isNode) {
@@ -178,5 +186,3 @@ class ListEntry {
         return isNode;
     }
 }
-
-/* */

@@ -70,5 +70,3 @@ public class SwingLayoutManagerEditorTest {
         f.setVisible(true);
     }
 }
-
-/* */

@@ -37,6 +37,7 @@ public class BorderPropertyDescriptorTableModel
     /**
      * Set the table model to represents the properties of the object.
      */
+    @Override
     public void setObject(Object border) {
         super.setObject(border);
 
@@ -55,6 +56,7 @@ public class BorderPropertyDescriptorTableModel
      * @param row table row
      * @param col table column
      */
+    @Override
     public boolean isCellEditable(int row, int col) {
         if (col == JPropertyEditorTable.COL_VALUE) {
             return true;
@@ -68,6 +70,7 @@ public class BorderPropertyDescriptorTableModel
      * @param row table row
      * @param col table column
      */
+    @Override
     public Object getValueAt(int row, int col) {
 
         Object value = null;
@@ -85,7 +88,7 @@ public class BorderPropertyDescriptorTableModel
                 try {
                     for (int i = 0; i < paramTypes.length; i++) {
                         // XXX - debug
-                        args[i] = paramTypes[i].newInstance();
+                        args[i] = paramTypes[i].getDeclaredConstructor().newInstance();
                         throw new IllegalStateException("getValueAt getter = " + getter + " parameter = " + paramTypes[i]);
                     }
                 } catch (Exception e) {
@@ -118,6 +121,7 @@ Debug.println(Level.INFO, "Border: " + bean.toString());
      * Set the value of the Values column.
      * TODO oldValue is null
      */
+    @Override
     public void setValueAt(Object value, int row, int column) {
 
         if (column != JPropertyEditorTable.COL_VALUE ||
@@ -139,6 +143,7 @@ Debug.println(Level.INFO, "Border: " + bean.toString());
     /**
      * Returns the Java type info for the property at the given row.
      */
+    @Override
     public Class<?> getPropertyType(int row) {
         return getPropertyDescriptor(row).getPropertyType();
     }
@@ -148,6 +153,7 @@ Debug.println(Level.INFO, "Border: " + bean.toString());
      * editor is not specified in the property descriptor then it is looked up
      * in the PropertyEditorManager.
      */
+    @Override
     public Class<?> getPropertyEditorClass(int row) {
         return getPropertyDescriptor(row).getPropertyEditorClass();
     }
@@ -156,6 +162,7 @@ Debug.println(Level.INFO, "Border: " + bean.toString());
      * Special case for the enumerated properties.
      * Must reinitialize to reset the combo box values. TODO
      */
+    @Override
     public void initPropertyEditor(PropertyEditor editor, int row) {
         if (editor instanceof SwingEditorSupport)  {
             ((SwingEditorSupport) editor).init(getPropertyDescriptor(row));
@@ -170,7 +177,7 @@ Debug.println(Level.INFO, "Border: " + bean.toString());
     //-------------------------------------------------------------------------
 
     /** */
-    private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     /** */
     public void addPropertyChangeListener(PropertyChangeListener l) {
@@ -188,5 +195,3 @@ Debug.println(Level.INFO, "Border: " + bean.toString());
         pcs.firePropertyChange(name, oldValue, newValue);
     }
 }
-
-/* */

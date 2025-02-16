@@ -45,7 +45,8 @@ public class TitledBorderCustomizer extends BasicBorderCustomizer {
     }
 
     /** */
-    private PropertyChangeListener pcl = new PropertyChangeListener() {
+    private final PropertyChangeListener pcl = new PropertyChangeListener() {
+        @Override
         public void propertyChange(PropertyChangeEvent ev) {
 
             String name = ev.getPropertyName();
@@ -71,7 +72,7 @@ public class TitledBorderCustomizer extends BasicBorderCustomizer {
         }
     };
 
-    /** */
+    @Override
     public void setObject(Border border) {
         Border b = ((TitledBorder) border).getBorder();
         String t = ((TitledBorder) border).getTitle();
@@ -86,5 +87,3 @@ public class TitledBorderCustomizer extends BasicBorderCustomizer {
         super.setObject(border);
     }
 }
-
-/* */

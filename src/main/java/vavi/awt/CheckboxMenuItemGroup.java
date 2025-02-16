@@ -28,7 +28,7 @@ import vavi.awt.event.ActionSupport;
 public class CheckboxMenuItemGroup {
 
     /** */
-    private Vector<CheckboxMenuItem> group = new Vector<>();
+    private final Vector<CheckboxMenuItem> group = new Vector<>();
 
     /** */
     public CheckboxMenuItemGroup() {
@@ -61,7 +61,7 @@ public class CheckboxMenuItemGroup {
     }
 
     /** */
-    private ItemListener itemListener = ev -> {
+    private final ItemListener itemListener = ev -> {
         CheckboxMenuItem source = (CheckboxMenuItem) ev.getSource();
         int id = ev.getID();
         String command = source.getActionCommand();
@@ -69,7 +69,7 @@ public class CheckboxMenuItemGroup {
     };
 
     /** */
-    private ActionListener actionListener = ev -> {
+    private final ActionListener actionListener = ev -> {
         int index = group.indexOf(ev.getSource());
         for (int i = 0; i < group.size(); i++) {
             group.elementAt(i).setState(i == index);
@@ -82,7 +82,7 @@ public class CheckboxMenuItemGroup {
     }
 
     /** */
-    private ActionSupport actionSupport = new ActionSupport();
+    private final ActionSupport actionSupport = new ActionSupport();
 
     /** */
     public void addActionListener(ActionListener l) {
@@ -99,5 +99,3 @@ public class CheckboxMenuItemGroup {
         actionSupport.fireActionPerformed(ev);
     }
 }
-
-/* */

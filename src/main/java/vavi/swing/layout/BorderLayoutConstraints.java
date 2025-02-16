@@ -38,6 +38,7 @@ public class BorderLayoutConstraints extends LayoutConstraints {
     /**
      * gets constraints.
      */
+    @Override
     public Object getConstraints() {
         return constraints;
     }
@@ -45,9 +46,8 @@ public class BorderLayoutConstraints extends LayoutConstraints {
     /**
      * gets constraints.
      */
+    @Override
     public void setConstraints(Object constraints) {
         this.constraints = (String) constraints;
     }
 }
-
-/* */

@@ -27,17 +27,17 @@ public class EtchedBorderInfo extends SimpleBorderInfo {
     private final Class<?> clazz = EtchedBorder.class;
     private final Class<?> customizerClass = EtchedBorderCustomizer.class;
 
-    /** */
+    @Override
     public BeanDescriptor getBeanDescriptor() {
         return new BeanDescriptor(clazz, customizerClass);
     }
 
-    /** */
+    @Override
     public Image getIcon(int iconKind) {
         return loadImage("resources/etchedBorder.gif");
     }
 
-    /** */
+    @Override
     public BorderPropertyDescriptor[] getBorderPropertyDescriptors() {
         BorderPropertyDescriptor[] bpds = new BorderPropertyDescriptor[3];
         bpds[0] = new BorderPropertyDescriptor("etchType", clazz);
@@ -52,5 +52,3 @@ public class EtchedBorderInfo extends SimpleBorderInfo {
         return bpds;
     }
 }
-
-/* */

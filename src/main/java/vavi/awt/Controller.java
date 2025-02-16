@@ -24,5 +24,3 @@ public interface Controller extends Selectable {
     /** */
     Component getView();
 }
-
-/* */

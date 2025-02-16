@@ -28,17 +28,17 @@ public class BorderLayoutInfo extends SimpleBeanInfo {
     private final Class<?> clazz = BorderLayout.class;
     private final Class<?> customizerClass = BorderLayoutCustomizer.class;
 
-    /** */
+    @Override
     public BeanDescriptor getBeanDescriptor() {
         return new BeanDescriptor(clazz, customizerClass);
     }
 
-    /** */
+    @Override
     public Image getIcon(int iconKind) {
         return loadImage("resources/borderLayout.gif");
     }
 
-    /** */
+    @Override
     public PropertyDescriptor[] getPropertyDescriptors() {
         try {
             PropertyDescriptor[] pds = new PropertyDescriptor[2];
@@ -52,5 +52,3 @@ Debug.println(Level.SEVERE, e);
         }
     }
 }
-
-/* */

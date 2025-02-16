@@ -48,7 +48,7 @@ public class LayoutManagerInfoFactory {
             name = "vavi.swing.layout." + name + "Info";
             @SuppressWarnings("unchecked")
             Class<BeanInfo> clazz = (Class<BeanInfo>) Class.forName(name);
-            return clazz.newInstance();
+            return clazz.getDeclaredConstructor().newInstance();
         } catch (Exception e) {
 Debug.println(Level.SEVERE, e);
 Debug.printStackTrace(e);
@@ -108,7 +108,7 @@ Debug.printStackTrace(e);
                 } else { // 引数あり
                     @SuppressWarnings("unchecked")
                     Class<LayoutManager> clazz = (Class<LayoutManager>) Class.forName(className);
-                    lmi.layout = clazz.newInstance();
+                    lmi.layout = clazz.getDeclaredConstructor().newInstance();
                 }
 
                 key = "icon";
@@ -142,5 +142,3 @@ Debug.println(Level.SEVERE, e);
         return lmis;
     }
 }
-
-/* */

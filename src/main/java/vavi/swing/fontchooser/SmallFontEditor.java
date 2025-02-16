@@ -55,7 +55,7 @@ public class SmallFontEditor extends JComponent implements FontEditor {
     private static final Dimension buttonSize =
         new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT);
 
-    private String[] fonts;
+    private final String[] fonts;
     private static final int[] pointSizes =
         { 3, 5, 8, 10, 12, 14, 18, 24, 36, 48 };
 
@@ -65,11 +65,15 @@ public class SmallFontEditor extends JComponent implements FontEditor {
     private JComboBox<String> familyNameCombo;
     private JComboBox<String> fontSizeCombo;
 
-    private JToggleButton pButton, iButton, bButton;
-    private FontDisplay iDisplay, pDisplay, bDisplay;
+    private final JToggleButton pButton;
+    private final JToggleButton iButton;
+    private final JToggleButton bButton;
+    private final FontDisplay iDisplay;
+    private final FontDisplay pDisplay;
+    private final FontDisplay bDisplay;
 
     /** */
-    private JLabel labelDisplay;
+    private final JLabel labelDisplay;
 
     /** */
     private Font font;
@@ -188,11 +192,11 @@ public class SmallFontEditor extends JComponent implements FontEditor {
     /**
      * ActionListener handler for all component events.
      */
-    private ActionListener al = new  ActionListener() {
+    private final ActionListener al = new  ActionListener() {
+        @Override
         public void actionPerformed(ActionEvent ev)  {
             Object obj = ev.getSource();
-            if (obj instanceof AbstractButton) {
-                AbstractButton button = (AbstractButton) obj;
+            if (obj instanceof AbstractButton button) {
                 if (button == pButton) {
                     selectedStyle = Font.PLAIN;
                 } else if (button == iButton) {
@@ -227,12 +231,12 @@ public class SmallFontEditor extends JComponent implements FontEditor {
         private Font font;
 
         private int style = Font.PLAIN;
-        private int size = 24;
+        private final int size = 24;
 
-        private String label = "A";
+        private final String label = "A";
 
-        private int iconWidth = 20;
-        private int iconHeight = 30;
+        private final int iconWidth = 20;
+        private final int iconHeight = 30;
 
         public FontDisplay(int style) {
             this.style = style;
@@ -248,13 +252,13 @@ public class SmallFontEditor extends JComponent implements FontEditor {
             this.font = new Font(family, this.style, this.size);
         }
 
+        @Override
         public void paintIcon(Component c, Graphics g, int x, int y) {
             JComponent component = (JComponent) c;
 
             Font oldFont = g.getFont();
             g.setFont(this.font);
-            if (component instanceof JToggleButton) {
-                AbstractButton b= (AbstractButton) component;
+            if (component instanceof JToggleButton b) {
                 ButtonModel model = b.getModel();
                 if (model.isPressed() || model.isSelected()) {
                     g.setColor(Color.black); // xxx: foreground
@@ -266,10 +270,12 @@ public class SmallFontEditor extends JComponent implements FontEditor {
             g.setFont(oldFont);
         }
 
+        @Override
         public int getIconWidth() {
             return iconWidth;
         }
 
+        @Override
         public int getIconHeight() {
             return iconHeight;
         }
@@ -277,7 +283,7 @@ public class SmallFontEditor extends JComponent implements FontEditor {
 
     //-------------------------------------------------------------------------
 
-    /** */
+    @Override
     public Component getFontEditorComponent() {
         return this;
     }
@@ -285,6 +291,7 @@ public class SmallFontEditor extends JComponent implements FontEditor {
     /**
      * Reconfigure the controls to reflect the current font.
      */
+    @Override
     public void setSelectedFont(Font font) {
         this.font = font;
 
@@ -307,21 +314,21 @@ Debug.println(Level.FINER, font);
         }
 
         selectedStyle = font.getStyle();
-        String style = "";
-        switch (selectedStyle) {
-        case Font.PLAIN:
-            pButton.setSelected(true);
-            style = rb.getString("jFontChooser.style.plain");
-            break;
-        case Font.ITALIC:
-            iButton.setSelected(true);
-            style = rb.getString("jFontChooser.style.italic");
-            break;
-        case Font.BOLD:
-            bButton.setSelected(true);
-            style = rb.getString("jFontChooser.style.bold");
-            break;
-        }
+        String style = switch (selectedStyle) {
+            case Font.PLAIN -> {
+                pButton.setSelected(true);
+                yield rb.getString("jFontChooser.style.plain");
+            }
+            case Font.ITALIC -> {
+                iButton.setSelected(true);
+                yield rb.getString("jFontChooser.style.italic");
+            }
+            case Font.BOLD -> {
+                bButton.setSelected(true);
+                yield rb.getString("jFontChooser.style.bold");
+            }
+            default -> "";
+        };
         String family = font.getFamily();
 
         iDisplay.setFamily(family);
@@ -335,10 +342,8 @@ Debug.println(Level.FINER, font);
         repaint();
     }
 
-    /** */
+    @Override
     public Font getSelectedFont() {
         return font;
     }
 }
-
-/* */

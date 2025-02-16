@@ -56,7 +56,7 @@ public class SelectionTransferable extends BasicTransferable {
         model = os.toString(encoding);
     }
 
-    /** */
+    @Override
     public synchronized Object getTransferData(DataFlavor flavor)
             throws UnsupportedFlavorException, IOException {
 
@@ -77,5 +77,3 @@ public class SelectionTransferable extends BasicTransferable {
         }
     }
 }
-
-/* */

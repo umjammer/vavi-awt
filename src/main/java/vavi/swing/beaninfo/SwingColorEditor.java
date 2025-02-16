@@ -56,8 +56,8 @@ import vavi.util.Debug;
  */
 public class SwingColorEditor extends SwingEditorSupport {
 
-    private JTextField rgbValue;
-    private JButton colorChooserButton;
+    private final JTextField rgbValue;
+    private final JButton colorChooserButton;
     private SmallColorChooserButton colorChooserCombo;
 
     /** */
@@ -112,7 +112,7 @@ public class SwingColorEditor extends SwingEditorSupport {
     }
 
     /** for TextField */
-    private ActionListener rgbListener = ev -> {
+    private final ActionListener rgbListener = ev -> {
         try {
             setAsText(getAsText());
         } catch (IllegalArgumentException e) {
@@ -122,7 +122,7 @@ public class SwingColorEditor extends SwingEditorSupport {
     };
 
     /** for SmallColorChooserButton */
-    private PropertyChangeListener pcl = ev -> {
+    private final PropertyChangeListener pcl = ev -> {
         if ("color".equals(ev.getPropertyName())) {
             Color color = (Color) ev.getNewValue();
             setValue(color);
@@ -130,7 +130,7 @@ public class SwingColorEditor extends SwingEditorSupport {
     };
 
     /** for Button */
-    private ActionListener buttonListener = ev -> {
+    private final ActionListener buttonListener = ev -> {
         Color oldColor = (Color) getValue();
         Color color = JColorChooser.showDialog(panel.getParent(),
                                                "Color Chooser",
@@ -143,7 +143,7 @@ public class SwingColorEditor extends SwingEditorSupport {
 
     // PropertyEditorSupport ----
 
-    /** */
+    @Override
     public boolean isPaintable() {
         return true;
     }
@@ -151,6 +151,7 @@ public class SwingColorEditor extends SwingEditorSupport {
     /**
      * Paints a representation of the value into a given area of screen.
      */
+    @Override
     public void paintValue(Graphics g, Rectangle rect) {
         Color oldColor = g.getColor();
         g.setColor(Color.black);
@@ -160,17 +161,17 @@ public class SwingColorEditor extends SwingEditorSupport {
         g.setColor(oldColor);
     }
 
-    /** */
+    @Override
     public String getJavaInitializationString() {
         return "new java.awt.Color(" + getAsText() + ")";
     }
 
-    /** */
+    @Override
     public String getAsText() {
         return rgbValue.getText();
     }
 
-    /** */
+    @Override
     public void setAsText(String s) throws IllegalArgumentException {
         int c1 = s.indexOf(',');
         int c2 = s.indexOf(',', c1 + 1);
@@ -188,7 +189,7 @@ public class SwingColorEditor extends SwingEditorSupport {
         }
     }
 
-    /** */
+    @Override
     public void setValue(Object value) {
         super.setValue(value);
 Debug.println(Level.FINEST, value);
@@ -213,8 +214,8 @@ Debug.printStackTrace(Level.FINEST, new Exception("***DUMMY***"));
 
     /** custom combolike rect button */
     private static class SmallColorChooserButton extends JButton {
-        private SmallColorChooserPopupMenu popup;
-        private Icon comboIcon = new MetalComboBoxIcon();
+        private final SmallColorChooserPopupMenu popup;
+        private final Icon comboIcon = new MetalComboBoxIcon();
 
         /** */
         public SmallColorChooserButton() {
@@ -227,6 +228,7 @@ Debug.printStackTrace(Level.FINEST, new Exception("***DUMMY***"));
         }
 
         /** */
+        @Override
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
             Insets insets = getInsets();
@@ -262,7 +264,8 @@ Debug.printStackTrace(Level.FINEST, new Exception("***DUMMY***"));
         }
 
         /** invoke easy color chooser */
-        private MouseListener popupListener = new MouseAdapter() {
+        private final MouseListener popupListener = new MouseAdapter() {
+            @Override
             public void mouseReleased(MouseEvent ev) {
                 // bring up ChooserComboPopup
                 // bring it up at the component height location!
@@ -272,7 +275,7 @@ Debug.printStackTrace(Level.FINEST, new Exception("***DUMMY***"));
         };
 
         /** */
-        private PropertyChangeListener pcl = ev -> {
+        private final PropertyChangeListener pcl = ev -> {
             if ("color".equals(ev.getPropertyName())) {
                 Color oldColor = (Color) ev.getOldValue();
                 Color color = (Color) ev.getNewValue();
@@ -281,5 +284,3 @@ Debug.printStackTrace(Level.FINEST, new Exception("***DUMMY***"));
         };
     }
 }
-
-/* */

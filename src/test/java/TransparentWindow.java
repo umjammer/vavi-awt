@@ -59,6 +59,7 @@ System.err.println("imageIOSupport:: imageReader: " + ir.getClass());
 
         // TODO move frame instead of image
         JPanel panel = new JPanel() {
+            @Override
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 g.clearRect(0, 0, getWidth(), getHeight());
@@ -97,5 +98,3 @@ e.printStackTrace(System.err);
         frame.setVisible(true);
     }
 }
-
-/* */

@@ -23,7 +23,7 @@ public class JFileChooserHistoryComboBoxBeanInfo extends SimpleBeanInfo {
     /** */
     private static final String path = "/vavi/swing/beaninfo/resources/";
 
-    /** */
+    @Override
     public Image getIcon(int iconKind) {
         if (iconKind == BeanInfo.ICON_MONO_16x16 || iconKind == BeanInfo.ICON_COLOR_16x16) {
             Image image = loadImage(path + "FileChooser16.gif");
@@ -32,5 +32,3 @@ public class JFileChooserHistoryComboBoxBeanInfo extends SimpleBeanInfo {
         return null;
     }
 }
-
-/* */

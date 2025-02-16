@@ -33,7 +33,7 @@ public class CardLayoutConstraintsEditor
     //-------------------------------------------------------------------------
 
     /** for table model setter */
-    private PropertyChangeListener pcl = ev -> {
+    private final PropertyChangeListener pcl = ev -> {
         Component component = container.getComponent(index);
 Debug.println(Level.FINE, index);
         layout.removeLayoutComponent(component);
@@ -43,7 +43,8 @@ Debug.println(Level.FINE, index);
     };
 
     /** sets target constraint */
-    public void setLayoutConstraints(int index,LayoutConstraints constraints) {
+    @Override
+    public void setLayoutConstraints(int index, LayoutConstraints constraints) {
         super.setLayoutConstraints(index, constraints);
         constraints.addPropertyChangeListener(pcl);
     }
@@ -62,5 +63,3 @@ Debug.println(Level.FINE, index);
         }
     }
 }
-
-/* */

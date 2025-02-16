@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
 public class RegexFileFilter extends javax.swing.filechooser.FileFilter implements FileFilter, Predicate<Path> {
 
     /** パターンの配列 */
-    private List<String> regexs = new ArrayList<>(1);
+    private final List<String> regexs = new ArrayList<>(1);
 
     /** フィルタの説明 */
     private String description;
@@ -79,7 +79,7 @@ public class RegexFileFilter extends javax.swing.filechooser.FileFilter implemen
             return true;
         }
 
-        if (regexs.size() == 0) {
+        if (regexs.isEmpty()) {
 Debug.println(Level.FINE, "no pattern");
             return true;
         }
@@ -105,7 +105,7 @@ Debug.println(Level.FINE, e);
             return true;
         }
 
-        if (regexs.size() == 0) {
+        if (regexs.isEmpty()) {
 Debug.println(Level.FINE, "no pattern");
             return true;
         }
@@ -128,7 +128,7 @@ Debug.println(Level.FINE, e);
     @Override
     public String getDescription() {
         if (description == null) {
-            if (regexs.size() == 0) {
+            if (regexs.isEmpty()) {
                 return "all";
             }
             StringBuilder sb = new StringBuilder("Regex: ");
@@ -141,5 +141,3 @@ Debug.println(Level.FINE, e);
         return description;
     }
 }
-
-/* */

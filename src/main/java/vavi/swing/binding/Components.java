@@ -11,6 +11,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -60,11 +61,12 @@ public @interface Components {
                     return (Updater<T>) updaterInstance;
                 } else {
                     @SuppressWarnings("unchecked")
-                    Updater<T> updater = (Updater<T>) components.updater().newInstance();
+                    Updater<T> updater = (Updater<T>) components.updater().getDeclaredConstructor().newInstance();
                     updaterInstance = updater;
                     return updater;
                 }
-            } catch (InstantiationException | IllegalAccessException e) {
+            } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
+                     NoSuchMethodException e) {
                 throw new IllegalStateException(e);
             }
         }
@@ -179,5 +181,3 @@ Debug.println(Level.WARNING, "field: " + swingFieldName + " is not a sub class o
         }
     }
 }
-
-/* */

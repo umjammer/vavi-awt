@@ -24,6 +24,7 @@ import javax.swing.SwingUtilities;
  */
 public class ColorPicker2 implements Runnable {
 
+    @Override
     public void run() {
 
         try {

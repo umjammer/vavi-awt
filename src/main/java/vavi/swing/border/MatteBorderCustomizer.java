@@ -35,7 +35,8 @@ public class MatteBorderCustomizer extends BasicBorderCustomizer {
     }
 
     /** */
-    private PropertyChangeListener pcl = new PropertyChangeListener() {
+    private final PropertyChangeListener pcl = new PropertyChangeListener() {
+        @Override
         public void propertyChange(PropertyChangeEvent ev) {
             Color  color  = matte.getMatteColor();
             Icon   icon   = matte.getTileIcon();
@@ -65,7 +66,7 @@ public class MatteBorderCustomizer extends BasicBorderCustomizer {
         }
     };
 
-    /** */
+    @Override
     public void setObject(Border border) {
         Color  color  = ((MatteBorder) border).getMatteColor();
         Icon   icon   = ((MatteBorder) border).getTileIcon();
@@ -83,5 +84,3 @@ public class MatteBorderCustomizer extends BasicBorderCustomizer {
         super.setObject(border);
     }
 }
-
-/* */

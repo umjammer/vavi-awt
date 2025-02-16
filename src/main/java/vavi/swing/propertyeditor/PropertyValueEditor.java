@@ -34,14 +34,14 @@ public class PropertyValueEditor extends AbstractCellEditor
     implements TableCellEditor {
 
     private PropertyEditor editor;
-    private DefaultCellEditor cellEditor;
+    private final DefaultCellEditor cellEditor;
     private Class<?> type;
 
     private final Border selectedBorder = BorderFactory.createLineBorder(UIManager.getColor("Table.selectionBackground"), 1);
 
     private final Border emptyBorder = BorderFactory.createEmptyBorder(1, 1, 1, 1);
 
-    private Map<Class<?>, PropertyEditor> editors;
+    private final Map<Class<?>, PropertyEditor> editors;
 
     public PropertyValueEditor() {
         editors = new HashMap<>();
@@ -52,6 +52,7 @@ public class PropertyValueEditor extends AbstractCellEditor
      * Get UI for current editor, including custom editor button
      * if applicable.
      */
+    @Override
     public Component getTableCellEditorComponent(JTable jtable,
                                                  Object value,
                                                  boolean isSelected,
@@ -74,7 +75,7 @@ public class PropertyValueEditor extends AbstractCellEditor
                     @SuppressWarnings("unchecked")
                     Class<PropertyEditor> editorClass = (Class<PropertyEditor>) ed.getClass();
                     try {
-                        editor = editorClass.newInstance();
+                        editor = editorClass.getDeclaredConstructor().newInstance();
                         editor.addPropertyChangeListener(pcl);
                         editors.put(type, editor);
                     } catch (Exception e) {
@@ -116,6 +117,7 @@ Debug.println(Level.FINE, "Couldn't instantiate type editor: " + editorClass.get
      * Get cellEditorValue for current editor
      * @see javax.swing.CellEditor
      */
+    @Override
     public Object getCellEditorValue() {
         Object obj = null;
 
@@ -133,7 +135,7 @@ Debug.println(Level.FINE, "Couldn't instantiate type editor: " + editorClass.get
 Debug.println(Level.FINE, "Type mismatch: " + obj.getClass() + " type = " + type);
 
             try {
-                obj = type.newInstance();
+                obj = type.getDeclaredConstructor().newInstance();
             } catch (Exception e) {
 Debug.println(Level.SEVERE, e);
 //e.printStackTrace();
@@ -145,7 +147,5 @@ Debug.println(Level.SEVERE, e);
     //
     // Property Change handler.
     //
-    private PropertyChangeListener pcl = ev -> stopCellEditing();
+    private final PropertyChangeListener pcl = ev -> stopCellEditing();
 }
-
-/* */

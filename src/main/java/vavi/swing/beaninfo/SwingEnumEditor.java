@@ -34,7 +34,7 @@ import vavi.util.Debug;
 public class SwingEnumEditor extends SwingEditorSupport {
 
     /** */
-    private JComboBox<EnumeratedItem> combobox;
+    private final JComboBox<EnumeratedItem> combobox;
 
     public SwingEnumEditor() {
         combobox = new JComboBox<>();
@@ -64,15 +64,14 @@ public class SwingEnumEditor extends SwingEditorSupport {
 //          return null;
 //      }
 
-    /** */
+    @Override
     public void setValue(Object value) {
         super.setValue(value);
 
         // Set combo box if it's a new value. We want to reduce number
         // of extraneous events.
         Object selected = combobox.getSelectedItem();
-        if (selected instanceof EnumeratedItem) {
-            EnumeratedItem item = (EnumeratedItem) selected;
+        if (selected instanceof EnumeratedItem item) {
             if (value != null && !value.equals(item.getValue()))  {
                 for (int i = 0; i < combobox.getItemCount(); ++i) {
                     item = combobox.getItemAt(i);
@@ -105,6 +104,7 @@ public class SwingEnumEditor extends SwingEditorSupport {
      * side effect of firing notification events. Another method would be to
      * recreate the combobox.
      */
+    @Override
     public void init(FeatureDescriptor descriptor) {
         Object[] enumeration = (Object[]) descriptor.getValue("enumerationValues");
 //          if (enum == null) {
@@ -128,11 +128,11 @@ public class SwingEnumEditor extends SwingEditorSupport {
     /**
      * Event is set when a combo selection changes.
      */
-    private ActionListener al = new ActionListener() {
+    private final ActionListener al = new ActionListener() {
+        @Override
         public void actionPerformed(ActionEvent evt)  {
             Object selected = combobox.getSelectedItem();
-            if (selected instanceof EnumeratedItem) {
-                EnumeratedItem item = (EnumeratedItem) selected;
+            if (selected instanceof EnumeratedItem item) {
                 if (item != null && !getValue().equals(item.getValue()))  {
                     setValue(item.getValue());
                 }
@@ -147,8 +147,8 @@ public class SwingEnumEditor extends SwingEditorSupport {
  * Object which holds an enumerated item plus its label.
  */
 class EnumeratedItem  {
-    private String name;
-    private Object value;
+    private final String name;
+    private final Object value;
 
     public EnumeratedItem(String name, Object value) {
         this.name = name;
@@ -168,5 +168,3 @@ Debug.println(Level.FINER, name + ", " + value);
         return name;
     }
 }
-
-/* */

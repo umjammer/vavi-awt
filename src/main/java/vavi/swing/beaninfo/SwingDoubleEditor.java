@@ -24,13 +24,14 @@ import vavi.util.Debug;
  */
 public class SwingDoubleEditor extends SwingEditorSupport {
 
-    private JTextField textfield;
+    private final JTextField textfield;
 
     public SwingDoubleEditor() {
         textfield = new JTextField();
         textfield.setDocument(new NumberDocument());
         // XXX - testing
         textfield.addKeyListener(new KeyAdapter()  {
+            @Override
             public void keyPressed(KeyEvent evt)  {
                 if (evt.getKeyCode() == KeyEvent.VK_ENTER)  {
 Debug.println(Level.FINE, textfield.getText());
@@ -44,6 +45,7 @@ Debug.println(Level.FINE, textfield.getText());
         panel.add(textfield);
     }
 
+    @Override
     public void setValue(Object value)  {
         super.setValue(value);
 
@@ -52,5 +54,3 @@ Debug.println(Level.FINE, textfield.getText());
         }
     }
 }
-
-/* */

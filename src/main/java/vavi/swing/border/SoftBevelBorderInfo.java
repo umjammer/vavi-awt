@@ -29,15 +29,13 @@ public class SoftBevelBorderInfo extends BevelBorderInfo {
     private final Class<?> clazz = SoftBevelBorder.class;
     private final Class<?> customizerClass = SoftBevelBorderCustomizer.class;
 
-    /** */
+    @Override
     public BeanDescriptor getBeanDescriptor() {
         return new BeanDescriptor(clazz, customizerClass);
     }
 
-    /** */
+    @Override
     public Image getIcon(int iconKind) {
         return loadImage("resources/softBevelBorder.gif");
     }
 }
-
-/* */

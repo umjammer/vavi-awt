@@ -46,22 +46,22 @@ import vavi.util.Debug;
 public class BoxLayoutCustomizer extends BasicLayoutManagerCustomizer {
 
     /** */
-    private BoxLayout box;
+    private final BoxLayout box;
 
     /** */
-    private JPanel buttons;
+    private final JPanel buttons;
 
     /** */
-    private DefaultListModel<String> history;
+    private final DefaultListModel<String> history;
 
-    private JCheckBox xAxis;
-    private JCheckBox yAxis;
+    private final JCheckBox xAxis;
+    private final JCheckBox yAxis;
 
-    private JButton glue;
-    private JButton vGlue;
-    private JButton hGlue;
-    private JButton rigid;
-    private JButton filler;
+    private final JButton glue;
+    private final JButton vGlue;
+    private final JButton hGlue;
+    private final JButton rigid;
+    private final JButton filler;
 
     /** */
     public BoxLayoutCustomizer() {
@@ -145,7 +145,7 @@ public class BoxLayoutCustomizer extends BasicLayoutManagerCustomizer {
 //      return new BoxLayout(container, BoxLayout.Y_AXIS);
 //  }
 
-    /** */
+    @Override
     public void setContainer(Container container) {
         super.setContainer(container);
 
@@ -196,14 +196,15 @@ Debug.println(Level.FINER, controller.getMaximumSize().width + ", " + controller
         return size;
     }
 
-    /** */
+    @Override
     public void layoutContainer() {
     }
 
     //-------------------------------------------------------------------------
 
     /** controller button pushed */
-    private ActionListener al = new ActionListener() {
+    private final ActionListener al = new ActionListener() {
+        @Override
         public void actionPerformed(ActionEvent ev) {
             JToggleButton button = (JToggleButton) ev.getSource();
             if (button.isSelected()) {
@@ -221,5 +222,3 @@ Debug.println(Level.FINER, controller.getMaximumSize().width + ", " + controller
         }
     };
 }
-
-/* */

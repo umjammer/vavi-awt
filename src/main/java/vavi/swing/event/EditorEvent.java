@@ -20,10 +20,10 @@ import java.util.EventObject;
 public class EditorEvent extends EventObject {
 
     /** */
-    private String name;
+    private final String name;
 
     /** */
-    private Object[] arguments;
+    private final Object[] arguments;
 
     /**
      * Creates an editor event.
@@ -59,5 +59,3 @@ public class EditorEvent extends EventObject {
         return arguments;
     }
 }
-
-/* */

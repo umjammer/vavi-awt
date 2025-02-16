@@ -27,5 +27,3 @@ public class SampleBorderInfo /* extends SimpleBeanInfo
 //          return null;
 //      }
 }
-
-/* */

@@ -31,7 +31,7 @@ import vavi.util.Debug;
 public class JPropertyEditorTable extends JTable {
 
     /** */
-    private AbstractDescriptorTableModel tableModel;
+    private final AbstractDescriptorTableModel tableModel;
 
     public static final int COL_NAME = 0;
     public static final int COL_VALUE = 1;
@@ -56,8 +56,8 @@ public class JPropertyEditorTable extends JTable {
     /**
      * Table Model Listener methods
      */
-    private TableModelListener tml = new TableModelListener() {
-        public void tableChanged(TableModelEvent evt)  {
+    private final TableModelListener tml = new TableModelListener() {
+        @Override public void tableChanged(TableModelEvent evt)  {
             // Adjust the preferred height of the row to the same as
             // the property editor.
             setRowHeight(ROW_HEIGHT);
@@ -103,7 +103,7 @@ public class JPropertyEditorTable extends JTable {
         tableModel.initPropertyEditor(editor, row);
     }
 
-    //-------------------------------------------------------------------------
+    // ----
 
     /*
      * Method which registers property editors for types.
@@ -125,40 +125,18 @@ Debug.println(Level.FINE, "no property for: clazz." + i);
                     break;
                 }
 
-                Class<?> clazz;
-
-                switch (value) {
-                case "boolean":
-                    clazz = Boolean.TYPE;
-                    break;
-                case "byte":
-                    clazz = Byte.TYPE;
-                    break;
-                case "char":
-                    clazz = Character.TYPE;
-                    break;
-                case "double":
-                    clazz = Double.TYPE;
-                    break;
-                case "float":
-                    clazz = Float.TYPE;
-                    break;
-                case "int":
-                    clazz = Integer.TYPE;
-                    break;
-                case "long":
-                    clazz = Long.TYPE;
-                    break;
-                case "short":
-                    clazz = Short.TYPE;
-                    break;
-                case "void":
-                    clazz = Void.TYPE;
-                    break;
-                default:
-                    clazz = Class.forName(value);
-                    break;
-                }
+                Class<?> clazz = switch (value) {
+                    case "boolean" -> Boolean.TYPE;
+                    case "byte" -> Byte.TYPE;
+                    case "char" -> Character.TYPE;
+                    case "double" -> Double.TYPE;
+                    case "float" -> Float.TYPE;
+                    case "int" -> Integer.TYPE;
+                    case "long" -> Long.TYPE;
+                    case "short" -> Short.TYPE;
+                    case "void" -> Void.TYPE;
+                    default -> Class.forName(value);
+                };
 
                 key = "editor." + i;
                 value = props.getProperty(key);
@@ -176,6 +154,3 @@ Debug.println(Level.SEVERE, e);
         }
     }
 }
-
-/* */
-

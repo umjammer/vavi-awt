@@ -33,17 +33,17 @@ public class TitledBorderInfo extends SimpleBorderInfo {
     private final Class<?> clazz = TitledBorder.class;
     private final Class<?> customizerClass = TitledBorderCustomizer.class;
 
-    /** */
+    @Override
     public BeanDescriptor getBeanDescriptor() {
         return new BeanDescriptor(clazz, customizerClass);
     }
 
-    /** */
+    @Override
     public Image getIcon(int iconKind) {
         return loadImage("resources/titledBorder.gif");
     }
 
-    /** */
+    @Override
     public BorderPropertyDescriptor[] getBorderPropertyDescriptors() {
         BorderPropertyDescriptor[] bpds = new BorderPropertyDescriptor[6];
         bpds[0] = new BorderPropertyDescriptor("border", clazz);
@@ -75,5 +75,3 @@ public class TitledBorderInfo extends SimpleBorderInfo {
         return bpds;
     }
 }
-
-/* */

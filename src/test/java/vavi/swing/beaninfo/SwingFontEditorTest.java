@@ -39,5 +39,3 @@ public class SwingFontEditorTest {
         f.setVisible(true);
     }
 }
-
-/* */

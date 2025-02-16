@@ -42,6 +42,7 @@ public abstract class AbstractController extends JComponent implements Locatable
      *
      * @param view a view component
      */
+    @Override
     public void setView(Component view) {
         this.view = view;
     }
@@ -49,6 +50,7 @@ public abstract class AbstractController extends JComponent implements Locatable
     /**
      * view を取得します．
      */
+    @Override
     public Component getView() {
         return view;
     }
@@ -56,6 +58,7 @@ public abstract class AbstractController extends JComponent implements Locatable
     /**
      * 選択状態を設定します．
      */
+    @Override
     public void setSelected(boolean isSelected) {
         this.isSelected = isSelected;
         repaint();
@@ -64,42 +67,41 @@ public abstract class AbstractController extends JComponent implements Locatable
     /**
      * 選択状態を返します．
      */
+    @Override
     public boolean isSelected() {
         return isSelected;
     }
 
-    /** */
+    @Override
     public void setLocation(Point location) {
         super.setLocation(location);
         view.setLocation(location);
     }
 
-    /** */
+    @Override
     public Point getLocation() {
         return view.getLocation();
     }
 
-    /** */
+    @Override
     public void setSize(Dimension size) {
         super.setSize(size);
         view.setSize(size);
     }
 
-    /** */
+    @Override
     public Dimension getSize() {
         return view.getSize();
     }
 
-    /** */
+    @Override
     public void setBounds(Rectangle bounds) {
         super.setBounds(bounds);
         view.setBounds(bounds);
     }
 
-    /** */
+    @Override
     public Rectangle getBounds() {
         return view.getBounds();
     }
 }
-
-/* */

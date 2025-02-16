@@ -39,5 +39,3 @@ public class MacFrame {
         frame.setVisible(true);
     }
 }
-
-/* */

@@ -21,6 +21,7 @@ import java.awt.image.ImageProducer;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Enumeration;
@@ -185,6 +186,7 @@ public class JAppletFrame extends JFrame implements Runnable, AppletStub, Applet
             // heavy (Applet) 上に light メニュー (JMenu) を表示する方法．
             m.getPopupMenu().setLightWeightPopupEnabled(false);
             m.add(new AbstractAction("Restart") {
+                @Override
                 public void actionPerformed(ActionEvent ev) {
                     JAppletFrame.this.applet.stop();
                     JAppletFrame.this.applet.destroy();
@@ -193,15 +195,17 @@ public class JAppletFrame extends JFrame implements Runnable, AppletStub, Applet
                 }
             });
             m.add(new AbstractAction("Clone") {
+                @Override
                 public void actionPerformed(ActionEvent ev) {
                     try {
-                        build(JAppletFrame.this.applet.getClass().newInstance(), JAppletFrame.this.args, appletSize.width, appletSize.height);
-                    } catch (IllegalAccessException | InstantiationException e) {
+                        build(JAppletFrame.this.applet.getClass().getDeclaredConstructor().newInstance(), JAppletFrame.this.args, appletSize.width, appletSize.height);
+                    } catch (IllegalAccessException | InstantiationException | NoSuchMethodException | RuntimeException | InvocationTargetException e) {
                         showStatus(e.getMessage());
                     }
                 }
             });
             m.add(new AbstractAction("Close") {
+                @Override
                 public void actionPerformed(ActionEvent ev) {
                     setVisible(false);
                     remove(JAppletFrame.this.applet);
@@ -218,6 +222,7 @@ public class JAppletFrame extends JFrame implements Runnable, AppletStub, Applet
                 }
             });
             m.add(new AbstractAction("Quit") {
+                @Override
                 public void actionPerformed(ActionEvent ev) {
                     JAppletFrame.this.dispatchEvent(new WindowEvent(JAppletFrame.this, WindowEvent.WINDOW_CLOSING));
                 }
@@ -275,6 +280,7 @@ Debug.println(Level.FINER, "applet: " + appletSize.width + ", " + appletSize.hei
         }
     }
 
+    @Override
     public void showStatus(String status) {
         if (label != null)
             label.setText(status);
@@ -283,6 +289,7 @@ Debug.println(Level.FINER, "applet: " + appletSize.width + ", " + appletSize.hei
     // Methods from Runnable.
 
     /** Separate thread to call the applet's init() and start() methods. */
+    @Override
     public void run() {
         showStatus(name + " initializing...");
         applet.init();
@@ -296,11 +303,13 @@ Debug.println(Level.FINER, "applet: " + appletSize.width + ", " + appletSize.hei
 
     // Methods from AppletStub.
 
+    @Override
     public boolean isActive() {
         return true;
     }
 
     /** Returns the current directory. */
+    @Override
     public URL getDocumentBase() {
         String dir = System.getProperty("user.dir");
         String urlDir = dir.replace(File.separatorChar, '/');
@@ -315,6 +324,7 @@ Debug.println(Level.FINER, "applet: " + appletSize.width + ", " + appletSize.hei
      * Hack: loop through each item in CLASSPATH, checking if the appropriately named .class file exists there. But this doesn't
      * account for .zip files.
      */
+    @Override
     public URL getCodeBase() {
         String path = System.getProperty("java.class.path");
         Enumeration<?> st = new StringTokenizer(path, ":");
@@ -335,6 +345,7 @@ Debug.println(Level.FINER, "applet: " + appletSize.width + ", " + appletSize.hei
     }
 
     /** Return a parameter via the munged names in the properties list. */
+    @Override
     public String getParameter(String name) {
         return System.getProperty(PARAM_PROP_PREFIX + name.toLowerCase());
     }
@@ -342,6 +353,7 @@ Debug.println(Level.FINER, "applet: " + appletSize.width + ", " + appletSize.hei
     /**
      * Change the frame's size by the same amount that the applet's size is changing.
      */
+    @Override
     public void appletResize(int width, int height) {
 Debug.println(Level.FINER, Debug.getTopCallerMethod("vavi"));
 
@@ -367,6 +379,7 @@ Debug.println(Level.FINER, "frame: " + frameSize.width + ", " + frameSize.height
 Debug.println(Level.FINER, "applet: " + appletSize.width + ", " + appletSize.height);
     }
 
+    @Override
     public AppletContext getAppletContext() {
         return this;
     }
@@ -376,21 +389,21 @@ Debug.println(Level.FINER, "applet: " + appletSize.width + ", " + appletSize.hei
     /**
      * TODO can optimize, see AppletFrame_0.java
      */
+    @Override
     public AudioClip getAudioClip(URL url) {
         return Applet.newAudioClip(url);
     }
 
-    private static Toolkit toolkit = Toolkit.getDefaultToolkit();
+    private static final Toolkit toolkit = Toolkit.getDefaultToolkit();
 
+    @Override
     public Image getImage(URL url) {
         try {
             Object content = url.getContent();
-            if (content instanceof ImageProducer) {
-                ImageProducer ip = (ImageProducer) content;
+            if (content instanceof ImageProducer ip) {
                 return toolkit.createImage(ip);
-            } else if (content instanceof InputStream) { // for ikvm
-                InputStream is = (InputStream) content;
-//int i = 0;
+            } else if (content instanceof InputStream is) { // for ikvm
+                //int i = 0;
 //while (is.available() > 0) {
 // int c = is.read();
 // System.err.printf("%02x ", c);
@@ -411,6 +424,7 @@ System.err.println("unhandled content type: " + content);
     }
 
     /** Returns this Applet or nothing. */
+    @Override
     public Applet getApplet(String name) {
         if (name.equals(this.name)) {
             return applet;
@@ -419,6 +433,7 @@ System.err.println("unhandled content type: " + content);
     }
 
     /** Just yields this applet. */
+    @Override
     public Enumeration<Applet> getApplets() {
         Vector<Applet> v = new Vector<>();
         v.addElement(applet);
@@ -426,26 +441,29 @@ System.err.println("unhandled content type: " + content);
     }
 
     /** Ignore. */
+    @Override
     public void showDocument(URL url) {
     }
 
     /** Ignore. */
+    @Override
     public void showDocument(URL url, String target) {
     }
 
     /** Ignore. */
+    @Override
     public void setStream(String key, InputStream stream) throws IOException {
     }
 
     /** Ignore. */
+    @Override
     public InputStream getStream(String key) {
         return null;
     }
 
     /** Ignore. */
+    @Override
     public Iterator<String> getStreamKeys() {
         return null;
     }
 }
-
-/* */

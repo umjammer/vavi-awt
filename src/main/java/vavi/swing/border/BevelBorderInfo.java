@@ -29,17 +29,17 @@ public class BevelBorderInfo extends SimpleBorderInfo {
     private final Class<?> clazz = BevelBorder.class;
     private final Class<?> customizerClass = BevelBorderCustomizer.class;
 
-    /** */
+    @Override
     public BeanDescriptor getBeanDescriptor() {
         return new BeanDescriptor(clazz, customizerClass);
     }
 
-    /** */
+    @Override
     public Image getIcon(int iconKind) {
         return loadImage("resources/bevelBorder.gif");
     }
 
-    /** */
+    @Override
     public BorderPropertyDescriptor[] getBorderPropertyDescriptors() {
         BorderPropertyDescriptor[] bpds = new BorderPropertyDescriptor[5];
         bpds[0] = new BorderPropertyDescriptor("bevelType", clazz);
@@ -56,5 +56,3 @@ public class BevelBorderInfo extends SimpleBorderInfo {
         return bpds;
     }
 }
-
-/* */
