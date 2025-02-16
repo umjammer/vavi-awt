@@ -1,21 +1,27 @@
 [![Release](https://jitpack.io/v/umjammer/vavi-awt.svg)](https://jitpack.io/#umjammer/vavi-awt)
-[![Java CI](https://github.com/umjammer/vavi-awt/actions/workflows/maven.yml/badge.svg)](https://github.com/umjammer/vavi-awt/actions)
+[![Java CI](https://github.com/umjammer/vavi-awt/actions/workflows/maven.yml/badge.svg)](https://github.com/umjammer/vavi-awt/actions/workflows/maven.yml)
 [![CodeQL](https://github.com/umjammer/vavi-awt/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/umjammer/vavi-awt/actions/workflows/codeql-analysis.yml)
 ![Java](https://img.shields.io/badge/Java-17-b07219)
 
 # vavi-awt
 
-awt, swing helpers
+🖥️ awt, swing helpers
 
-## 🎨 Contents
+## Install
 
-### 🖌️ easy swing binding system
+* [maven](https://jitpack.io/#umjammer/vavi-awt)
+
+## Usage
+
+### 🎨 Contents
+
+#### 🖌️ easy swing binding system
 
 auto wiring between a bean and swing components
 
 [sample](src/test/java/vavi/swing/binder/BinderTest.java)
 
-### 🖌️ easy drag and drop system
+#### 🖌️ easy drag and drop system
 
 make a component droppable by one liner
 
@@ -23,33 +29,31 @@ make a component droppable by one liner
     Droppable.makeComponentSinglePathDroppable(component, p -> { ... });
 ```
 
-### 🖌️ rubber band selection
+#### 🖌️ rubber band selection
 
 an ordinary gui bound selector
 
 [sample](https://github.com/umjammer/vavi-image-sandbox/tree/master/src/test/java/Test32.java)
 
-### 🖌️ JImageComponent
+#### 🖌️ JImageComponent
 
-an image component which has auto size adjustment
+an image component which has auto size adjustment and keeping aspect ratio
 
 [sample](src/test/java/JImageComponentTest.java)
 
-### 🖌 JHistoryComboBox
+#### 🖌 JHistoryComboBox
 
 a text field with history dropdown
 
 [sample](src/test/java/FileRenamer.java)
 
-### 🖌 JFileChooserHistoryComboBox
+#### 🖌 JFileChooserHistoryComboBox
 
 a file name field with history dropdown and the file chooser button
 
 [sample](https://github.com/umjammer/vavi-apps-jwindiff)
 
-## Install
-
- * [maven](https://jitpack.io/#umjammer/vavi-awt)
+## References
 
 ## TODO
 

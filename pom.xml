@@ -129,7 +129,7 @@
       <dependency>
         <groupId>org.junit</groupId>
         <artifactId>junit-bom</artifactId>
-        <version>5.10.1</version>
+        <version>5.10.2</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -140,7 +140,7 @@
     <dependency>
       <groupId>com.github.umjammer</groupId> <!-- vavi / com.github.umjammer -->
       <artifactId>vavi-commons-sandbox</artifactId>
-      <version>0.4.4</version>
+      <version>0.4.5</version>
     </dependency>
 
     <dependency>
@@ -153,7 +153,7 @@
     <dependency>
       <groupId>com.formdev</groupId>
       <artifactId>flatlaf</artifactId>
-      <version>3.3</version>
+      <version>3.5</version>
       <scope>runtime</scope>
     </dependency>
 
