@@ -6,14 +6,17 @@
 
 package vavi.swing.beaninfo;
 
-import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
-import java.util.logging.Level;
+import java.awt.event.KeyEvent;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 import vavi.text.NumberDocument;
-import vavi.util.Debug;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -26,25 +29,27 @@ import vavi.util.Debug;
  */
 public class SwingFloatEditor extends SwingEditorSupport {
 
-    private final JTextField textfield;
+    private static final Logger logger = getLogger(SwingFloatEditor.class.getName());
+
+    private final JTextField textField;
 
     public SwingFloatEditor() {
-        textfield = new JTextField();
-        textfield.setDocument(new NumberDocument());
+        textField = new JTextField();
+        textField.setDocument(new NumberDocument());
         // XXX - testing
-        textfield.addKeyListener(new KeyAdapter()  {
+        textField.addKeyListener(new KeyAdapter()  {
             @Override
             public void keyPressed(KeyEvent evt)  {
                 if (evt.getKeyCode() == KeyEvent.VK_ENTER)  {
-Debug.println(Level.FINER, textfield.getText());
-                    setValue(new Float(textfield.getText()));
+logger.log(Level.TRACE, textField.getText());
+                    setValue(Float.parseFloat(textField.getText()));
                 }
             }
         });
 
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-        panel.add(textfield);
+        panel.add(textField);
     }
 
     @Override
@@ -52,7 +57,7 @@ Debug.println(Level.FINER, textfield.getText());
         super.setValue(value);
 
         if (value != null)  {
-            textfield.setText(value.toString());
+            textField.setText(value.toString());
         }
     }
 }

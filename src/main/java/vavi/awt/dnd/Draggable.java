@@ -23,19 +23,22 @@ import java.awt.dnd.DragSourceDropEvent;
 import java.awt.dnd.DragSourceEvent;
 import java.awt.dnd.DragSourceListener;
 import java.awt.dnd.InvalidDnDOperationException;
-import java.util.logging.Level;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 
-import vavi.util.Debug;
+import static java.lang.System.getLogger;
 
 
 /**
- * ドラッグアンドドロップができるクラス．
+ * Drag and drop class.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010820 nsano initial version <br>
  *          0.10 010910 nsano fix #setDragAction <br>
  */
 public abstract class Draggable {
+
+    private static final Logger logger = getLogger(Draggable.class.getName());
 
     /** The drag source */
     private final DragSource dragSource;
@@ -56,21 +59,21 @@ public abstract class Draggable {
     private static final Point point0 = new Point(0, 0);
 
     /**
-     * ドラッグされる Transferable を返す処理をオーバライドして書いてください．
-     * ドラッグしない場合は null を返すようにしてください．
-     * このメソッドはドラッグ開始の初期処理として使用できます．
-     * TODO ドラッグ開始の初期処理としてはネーミングが悪い
+     * Write an override process that returns the Transferable that will be dragged.
+     * If no dragging is to occur, return null.
+     * This method can be used as the initial step when starting a drag.
+     * TODO Poor naming for the initial process of starting a drag
      * @see #dragDropEnd
      */
     protected abstract Transferable getTransferable(DragGestureEvent ev);
 
     /**
-     * ドラッグアンドドロップの終了処理をオーバライドして書いてください．
+     * Write this by overriding the drag-and-drop termination process.
      */
     protected abstract void dragDropEnd(DragSourceEvent ev);
 
     /**
-     * 受け付けるドラッグアクションをセットします．
+     * Sets the drag actions that will be accepted.
      */
     public void setDragAction(int dragAction) {
 //      this.dragAction = dragAction;
@@ -78,19 +81,18 @@ public abstract class Draggable {
     }
 
     /**
-     * ドラッグ時のイメージをセットします．
+     * Sets the image to be displayed when dragging.
      */
     public void setImage(Image image) {
         this.image = image;
     }
 
     /**
-     * ドラッグされる処理を初期化します．
-     * 一つ一つのコンポーネントに Draggable を設定する際は
-     * data にコンポーネントのデータを指定したほうが楽です．
-     * それ以外 (JTree 等) は data は null にしておきます．
+     * Initializes the dragging process.
+     * When setting Draggable for each component, it is easier to specify the component's data in data.
+     * For other cases (such as JTree), set data to null.
      *
-     * @param source ドラッグされるコンポーネント
+     * @param source The component being dragged
      * @param data the real data
      */
     public Draggable(Component source, Object data) {
@@ -103,7 +105,7 @@ public abstract class Draggable {
         dgListener = new DGListener();
         dsListener = new DSListener();
 
-Debug.println(Level.FINE, "image: " + DragSource.isDragImageSupported());
+logger.log(Level.DEBUG, "image: " + DragSource.isDragImageSupported());
         // component, action, listener
         dsRecognizer = dragSource.createDefaultDragGestureRecognizer(
             source,
@@ -143,12 +145,12 @@ return Toolkit.getDefaultToolkit().createCustomCursor(image, point0, "my cursor"
         @Override
         public void dragGestureRecognized(DragGestureEvent ev) {
 
-Debug.println(Level.FINE, "-------------------------");
-Debug.println(Level.FINE, "accept action: " + dsRecognizer.getSourceActions() + ": " +
+logger.log(Level.DEBUG, "-------------------------");
+logger.log(Level.DEBUG, "accept action: " + dsRecognizer.getSourceActions() + ": " +
 ((dsRecognizer.getSourceActions()&DnDConstants.ACTION_COPY)!=0?"copy":"")+
 ((dsRecognizer.getSourceActions()&DnDConstants.ACTION_MOVE)!=0?", move":"")+
 ((dsRecognizer.getSourceActions()&DnDConstants.ACTION_LINK)!=0?", link":""));
-Debug.println(Level.FINE, "my action: " + ev.getDragAction() + ": " +
+logger.log(Level.DEBUG, "my action: " + ev.getDragAction() + ": " +
 ((ev.getDragAction() & DnDConstants.ACTION_COPY) != 0 ? "copy" : "") +
 ((ev.getDragAction() & DnDConstants.ACTION_MOVE) != 0 ? "move" : "") +
 ((ev.getDragAction() & DnDConstants.ACTION_LINK) != 0 ? "link" : ""));
@@ -177,7 +179,7 @@ Debug.println(Level.FINE, "my action: " + ev.getDragAction() + ": " +
                                  dsListener);
                 }
             } catch (InvalidDnDOperationException e) {
-Debug.printStackTrace(e);
+logger.log(Level.DEBUG, e.getMessage(), e);
             }
         }
     }
@@ -192,9 +194,6 @@ Debug.printStackTrace(e);
      */
     private class DSListener implements DragSourceListener {
 
-        /**
-         * @param ev the event
-         */
         @Override
         public void dragDropEnd(DragSourceDropEvent ev) {
 //            if (ev.getDropSuccess() == false) {
@@ -205,36 +204,29 @@ Debug.printStackTrace(e);
              * the dropAction should be what the drop target specified
              * in acceptDrop
              */
-Debug.println(Level.FINER, "action: " + ev.getDropAction());
+logger.log(Level.TRACE, "action: " + ev.getDropAction());
             Draggable.this.dragDropEnd(ev);
         }
 
-        /**
-         * ドラッグ状態になったときに呼ばれます．
-         * @param ev the event
-         */
         @Override
         public void dragEnter(DragSourceDragEvent ev) {
-Debug.println(Level.FINER, ev);
+logger.log(Level.TRACE, ev);
             DragSourceContext context = ev.getDragSourceContext();
             // intersection of the users selected action,
             // and the source and target actions
-Debug.println(Level.FINE, "my action: " + ev.getDropAction() + ": " +
+logger.log(Level.DEBUG, "my action: " + ev.getDropAction() + ": " +
 ((ev.getDropAction() & DnDConstants.ACTION_COPY) != 0 ? "copy" : "") +
 ((ev.getDropAction() & DnDConstants.ACTION_MOVE) != 0 ? "move" : "") +
 ((ev.getDropAction() & DnDConstants.ACTION_LINK) != 0 ? "link" : ""));
 //            if ((myaction & Draggable.this.dragAction) != 0) {
 //                context.setCursor(DragSource.DefaultCopyDrop);
-                // カーソルを変更します．
+                // Change the cursor.
                 context.setCursor(getCursor(ev.getDropAction()));
 //            } else {
 //                context.setCursor(DragSource.DefaultCopyNoDrop);
 //            }
         }
 
-        /**
-         * @param ev the event
-         */
         @Override
         public void dragOver(DragSourceDragEvent ev) {
             DragSourceContext context = ev.getDragSourceContext();
@@ -242,34 +234,27 @@ Debug.println(Level.FINE, "my action: " + ev.getDropAction() + ": " +
             int ua = ev.getUserAction();
             int da = ev.getDropAction();
             int ta = ev.getTargetActions();
-Debug.println(Level.FINER, "dl dragOver source actions: " + sa);
-Debug.println(Level.FINER, "user action: " + ua);
-Debug.println(Level.FINER, "drop actions: " + da);
-Debug.println(Level.FINER, "target actions: " + ta);
+logger.log(Level.TRACE, "dl dragOver source actions: " + sa);
+logger.log(Level.TRACE, "user action: " + ua);
+logger.log(Level.TRACE, "drop actions: " + da);
+logger.log(Level.TRACE, "target actions: " + ta);
         }
 
-        /**
-         * @param ev the event
-         */
         @Override
         public void dragExit(DragSourceEvent ev) {
-Debug.println(Level.FINER, "exit: " + ev);
+logger.log(Level.TRACE, "exit: " + ev);
             DragSourceContext context = ev.getDragSourceContext();
         }
 
-        /**
-         * ドロップアクションが変更されたときに呼ばれます．
-         * @param ev the event
-         */
         @Override
         public void dropActionChanged(DragSourceDragEvent ev) {
             DragSourceContext context = ev.getDragSourceContext();
-Debug.println(Level.FINE, "my action: " + ev.getUserAction() + ": " +
+logger.log(Level.DEBUG, "my action: " + ev.getUserAction() + ": " +
 ((ev.getUserAction() & DnDConstants.ACTION_COPY) != 0 ? "copy" : "") +
 ((ev.getUserAction() & DnDConstants.ACTION_MOVE) != 0 ? "move" : "") +
 ((ev.getUserAction() & DnDConstants.ACTION_LINK) != 0 ? "link" : ""));
-            // カーソルを変更します．
-            // TODO なんか action = 0 になるぞ？
+            // Change the cursor.
+            // TODO Something like action = 0?
             context.setCursor(getCursor(ev.getUserAction()));
         }
     }

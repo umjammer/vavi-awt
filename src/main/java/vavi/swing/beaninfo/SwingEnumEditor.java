@@ -9,14 +9,15 @@ package vavi.swing.beaninfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.FeatureDescriptor;
-import java.util.logging.Level;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 
 import javax.swing.BoxLayout;
 import javax.swing.ComboBoxEditor;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
-import vavi.util.Debug;
+import static java.lang.System.getLogger;
 
 
 /**
@@ -33,30 +34,32 @@ import vavi.util.Debug;
  */
 public class SwingEnumEditor extends SwingEditorSupport {
 
+    private static final Logger logger = getLogger(SwingEnumEditor.class.getName());
+
     /** */
-    private final JComboBox<EnumeratedItem> combobox;
+    private final JComboBox<EnumeratedItem> comboBox;
 
     public SwingEnumEditor() {
-        combobox = new JComboBox<>();
+        comboBox = new JComboBox<>();
 
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-        panel.add(combobox);
+        panel.add(comboBox);
     }
 
     /** enum plus */
     public void setEditor(ComboBoxEditor editor) {
         if (editor != null) {
-            combobox.setEditable(true);
-            combobox.setEditor(editor);
+            comboBox.setEditable(true);
+            comboBox.setEditor(editor);
         } else {
-            combobox.setEditable(false);
+            comboBox.setEditable(false);
         }
     }
 
 //      public Object getEnumValue(String name) {
-//          for (int i = 0; i < combobox.getItemCount(); ++i) {
-//              EnumeratedItem item = (EnumeratedItem) combobox.getItemAt(i);
+//          for (int i = 0; i < comboBox.getItemCount(); ++i) {
+//              EnumeratedItem item = (EnumeratedItem) comboBox.getItemAt(i);
 //              if (item.getName().equals(name)) {
 //                  return item.getValue();
 //              }
@@ -70,25 +73,25 @@ public class SwingEnumEditor extends SwingEditorSupport {
 
         // Set combo box if it's a new value. We want to reduce number
         // of extraneous events.
-        Object selected = combobox.getSelectedItem();
+        Object selected = comboBox.getSelectedItem();
         if (selected instanceof EnumeratedItem item) {
             if (value != null && !value.equals(item.getValue()))  {
-                for (int i = 0; i < combobox.getItemCount(); ++i) {
-                    item = combobox.getItemAt(i);
+                for (int i = 0; i < comboBox.getItemCount(); ++i) {
+                    item = comboBox.getItemAt(i);
                     if (item.getValue().equals(value)) {
                         // XXX - hack! Combo box shouldn't call action event
                         // for setSelectedItem!!
-                        combobox.removeActionListener(al);
-                        combobox.setSelectedItem(item);
-                        combobox.addActionListener(al);
+                        comboBox.removeActionListener(al);
+                        comboBox.setSelectedItem(item);
+                        comboBox.addActionListener(al);
                         return;
                     }
                 }
             }
         } else {
-            combobox.removeActionListener(al);
-            combobox.setSelectedItem(selected);
-            combobox.addActionListener(al);
+            comboBox.removeActionListener(al);
+            comboBox.setSelectedItem(selected);
+            comboBox.addActionListener(al);
         }
     }
 
@@ -102,7 +105,7 @@ public class SwingEnumEditor extends SwingEditorSupport {
      * <p>
      * One method would be to empty the list of values which would have the
      * side effect of firing notification events. Another method would be to
-     * recreate the combobox.
+     * recreate the comboBox.
      */
     @Override
     public void init(FeatureDescriptor descriptor) {
@@ -113,15 +116,15 @@ public class SwingEnumEditor extends SwingEditorSupport {
 
         if (enumeration != null) {
             // Remove action listener to reduce extra events.
-            combobox.removeActionListener(al);
-            combobox.removeAllItems();
+            comboBox.removeActionListener(al);
+            comboBox.removeAllItems();
 
             for (int i = 0; i < enumeration.length; i += 3) {
-              combobox.addItem(new EnumeratedItem((String) enumeration[i], enumeration[i+1]));
-//Debug.println(Level.FINER, enum[i + 2]); // et. "SwingConstants.LEADING"
+              comboBox.addItem(new EnumeratedItem((String) enumeration[i], enumeration[i+1]));
+//logger.log(Level.TRACE, enum[i + 2]); // et. "SwingConstants.LEADING"
             }
 
-            combobox.addActionListener(al);
+            comboBox.addActionListener(al);
         }
     }
 
@@ -131,7 +134,7 @@ public class SwingEnumEditor extends SwingEditorSupport {
     private final ActionListener al = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent evt)  {
-            Object selected = combobox.getSelectedItem();
+            Object selected = comboBox.getSelectedItem();
             if (selected instanceof EnumeratedItem item) {
                 if (item != null && !getValue().equals(item.getValue()))  {
                     setValue(item.getValue());
@@ -141,30 +144,31 @@ public class SwingEnumEditor extends SwingEditorSupport {
             }
         }
     };
-}
 
-/**
- * Object which holds an enumerated item plus its label.
- */
-class EnumeratedItem  {
-    private final String name;
-    private final Object value;
+    /**
+     * Object which holds an enumerated item plus its label.
+     */
+    private static class EnumeratedItem  {
 
-    public EnumeratedItem(String name, Object value) {
-        this.name = name;
-        this.value = value;
-Debug.println(Level.FINER, name + ", " + value);
-    }
+        private final String name;
+        private final Object value;
 
-    public String getName() {
-        return name;
-    }
+        public EnumeratedItem(String name, Object value) {
+            this.name = name;
+            this.value = value;
+logger.log(Level.TRACE, name + ", " + value);
+        }
 
-    public Object getValue() {
-        return value;
-    }
+        public String getName() {
+            return name;
+        }
 
-    public String toString() {
-        return name;
+        public Object getValue() {
+            return value;
+        }
+
+        public String toString() {
+            return name;
+        }
     }
 }

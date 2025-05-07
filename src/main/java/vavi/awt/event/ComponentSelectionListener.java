@@ -10,7 +10,7 @@ import java.util.EventListener;
 
 
 /**
- * ComponentSelection リスナーインターフェースです．
+ * ComponentSelection listener interface.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020509 nsano initial version <br>
@@ -18,7 +18,7 @@ import java.util.EventListener;
 public interface ComponentSelectionListener extends EventListener {
 
     /**
-     * 属性を変更します．
+     * Change the attributes.
      */
     void valueChanged(ComponentSelectionEvent ev);
 }

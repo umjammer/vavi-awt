@@ -16,10 +16,10 @@ import vavi.awt.event.ActionSupport;
 
 
 /**
- * CheckBoxMenuItem のグループです．
+ * A group of CheckBoxMenuItems.
  *
  * @target 1.1
- * @caution AWT 専用
+ * @caution AWT only
  * @thanks Yuichi Nakajima
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020502 nsano initial version <br>

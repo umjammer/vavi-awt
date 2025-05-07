@@ -22,7 +22,7 @@ import vavi.awt.rubberband.RubberBandRenderer;
 
 
 /**
- * Basic ラバーバンドレンダラです．
+ * Basic rubber band renderer.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010829 nsano initial version <br>
@@ -39,10 +39,10 @@ public class BasicRubberBandRenderer implements RubberBandRenderer {
         this.container = container;
     }
 
-    /** リサイズの幅 */
+    /** Resize Width */
     private final Insets resizingInsets = new Insets(5, 5, 5, 5);
 
-    /** カーソルのテーブル TODO */
+    /** Cursor table TODO */
     private static final Cursor[] cursors = {
         Cursor.getDefaultCursor(),
         Cursor.getPredefinedCursor(Cursor.N_RESIZE_CURSOR),  // 1

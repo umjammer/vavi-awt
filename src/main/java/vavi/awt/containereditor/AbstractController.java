@@ -15,7 +15,7 @@ import javax.swing.JComponent;
 
 
 /**
- * コントローラです．
+ * This is the controller.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020529 nsano initial version <br>
@@ -23,14 +23,14 @@ import javax.swing.JComponent;
  */
 public abstract class AbstractController extends JComponent implements LocatableController {
 
-    /** 選択状態かどうか */
+    /** Whether it is selected */
     private boolean isSelected = false;
 
     /** */
     protected Component view;
 
     /**
-     * コントローラを構築します．
+     * Construct the controller.
      */
     public AbstractController(Component view) {
         this.view = view;
@@ -38,7 +38,7 @@ public abstract class AbstractController extends JComponent implements Locatable
     }
 
     /**
-     * view を設定します．
+     * Set the view.
      *
      * @param view a view component
      */
@@ -48,7 +48,7 @@ public abstract class AbstractController extends JComponent implements Locatable
     }
 
     /**
-     * view を取得します．
+     * Get the view.
      */
     @Override
     public Component getView() {
@@ -56,7 +56,7 @@ public abstract class AbstractController extends JComponent implements Locatable
     }
 
     /**
-     * 選択状態を設定します．
+     * Sets the selection state.
      */
     @Override
     public void setSelected(boolean isSelected) {
@@ -65,7 +65,7 @@ public abstract class AbstractController extends JComponent implements Locatable
     }
 
     /**
-     * 選択状態を返します．
+     * Returns the selection state.
      */
     @Override
     public boolean isSelected() {

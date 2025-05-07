@@ -12,7 +12,7 @@ import javax.swing.JTextField;
 
 
 /**
- * ファイル名を入力するためのコンポーネントです． テキストフィールドに"参照"ボタンがついています．
+ * This is a component for entering a file name. It has a text field and a "Browse" button.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010823 nsano initial version <br>
@@ -27,35 +27,35 @@ import javax.swing.JTextField;
 public class JFileChooserTextField extends JFileChooserField {
 
     /**
-     * テキストフィールド付きファイルチューザを構築します．
+     * Constructs a file chooser with a text field.
      */
     public JFileChooserTextField() {
         super();
     }
 
     /**
-     * テキストフィールド付きファイルチューザを構築します．
+     * Constructs a file chooser with a text field.
      */
     public JFileChooserTextField(File file) {
         super(file);
     }
 
-    /** テキストフィールド */
+    /** Text Field */
     @Override
     protected void setPathFieldImpl() {
         pathField = new JTextField(20);
     }
 
-    /** テキストフィールドのアクションリスナ */
+    /** Text Field Action Listener */
     @Override
     protected void addActionListenerImpl() {
         ((JTextField) pathField).addActionListener(pathFieldActionListener);
     }
 
     /**
-     * 文字列をテキストフィールドに設定します．
+     * Sets the string in the text field.
      *
-     * @param text 文字列
+     * @param text String
      */
     @Override
     protected void setTextImpl(String text) {
@@ -63,9 +63,9 @@ public class JFileChooserTextField extends JFileChooserField {
     }
 
     /**
-     * テキストフィールドに表示されている文字列を返します．
+     * Returns the string displayed in the text field.
      *
-     * @return 表示されている文字列
+     * @return Displayed string
      */
     @Override
     protected String getTextImpl() {
@@ -73,9 +73,9 @@ public class JFileChooserTextField extends JFileChooserField {
     }
 
     /**
-     * ファイルをテキストフィールドに設定します．
+     * Set the file in the text field.
      *
-     * @param file ファイル
+     * @param file file
      */
     @Override
     protected void setSelectedFileImpl(File file) {
@@ -83,9 +83,9 @@ public class JFileChooserTextField extends JFileChooserField {
     }
 
     /**
-     * テキストフィールドに表示されているファイルを返します．
+     * Returns the file displayed in the text field.
      *
-     * @return 表示されているファイル
+     * @return The displayed file
      */
     @Override
     protected File getSelectedFileImpl() {

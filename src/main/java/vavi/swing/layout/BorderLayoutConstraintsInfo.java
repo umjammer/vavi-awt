@@ -11,9 +11,10 @@ import java.beans.BeanDescriptor;
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
 import java.beans.SimpleBeanInfo;
-import java.util.logging.Level;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 
-import vavi.util.Debug;
+import static java.lang.System.getLogger;
 
 
 /**
@@ -23,6 +24,8 @@ import vavi.util.Debug;
  * @version 0.00 020528 nsano initial version <br>
  */
 public class BorderLayoutConstraintsInfo extends SimpleBeanInfo {
+
+    private static final Logger logger = getLogger(BorderLayoutConstraintsInfo.class.getName());
 
     private final Class<?> clazz = BorderLayoutConstraints.class;
 
@@ -50,7 +53,7 @@ public class BorderLayoutConstraintsInfo extends SimpleBeanInfo {
             pds[0].setValue("enumerationValues", value);
             return pds;
         } catch (IntrospectionException e) {
-Debug.println(Level.SEVERE, e);
+logger.log(Level.ERROR, e.getMessage(), e);
             throw new IllegalStateException(e);
         }
     }

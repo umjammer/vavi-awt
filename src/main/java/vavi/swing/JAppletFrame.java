@@ -21,6 +21,8 @@ import java.awt.image.ImageProducer;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -29,7 +31,6 @@ import java.util.Iterator;
 import java.util.Properties;
 import java.util.StringTokenizer;
 import java.util.Vector;
-import java.util.logging.Level;
 import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
 import javax.swing.JFrame;
@@ -39,6 +40,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
 import vavi.util.Debug;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -90,25 +93,27 @@ import vavi.util.Debug;
  */
 public class JAppletFrame extends JFrame implements Runnable, AppletStub, AppletContext {
 
-    // コンテキストのパラメータ
+    private static final Logger logger = getLogger(JAppletFrame.class.getName());
+
+    // Context parameters
     private static final String VERSION = "19-Apr-02";
 
     private static final String VENDOR = "Vavisoft";
 
     private static final String VENDOR_URL = "http://www.vavisoft.com/";
 
-    /** メニューバーとステータスバーを表示しないかどうか */
+    /** Whether to hide the menu bar and status bar */
     private boolean barebones = false;
 
-    /** ステータスバー */
+    /** Status Bar */
     private JLabel label = null;
 
-    /** アプレットのパラメータ */
+    /** Applet parameters */
     private String[] args = null;
 
     private static int instances = 0;
 
-    /** アプレットのクラス名 */
+    /** The applet class name */
     private String name;
 
     private Applet applet;
@@ -183,7 +188,7 @@ public class JAppletFrame extends JFrame implements Runnable, AppletStub, Applet
             // Make menu bar.
             JMenuBar mb = new JMenuBar();
             JMenu m = new JMenu("Applet");
-            // heavy (Applet) 上に light メニュー (JMenu) を表示する方法．
+            // How to display a light menu (JMenu) on a heavy one (Applet).
             m.getPopupMenu().setLightWeightPopupEnabled(false);
             m.add(new AbstractAction("Restart") {
                 @Override
@@ -236,9 +241,9 @@ public class JAppletFrame extends JFrame implements Runnable, AppletStub, Applet
 //                System.exit(0);
 //            }
 //        });
-Debug.println(Level.FINER, width + ", " + height);
+logger.log(Level.TRACE, width + ", " + height);
         appletSize = new Dimension(width, height);
-Debug.println(Level.FINER, "applet: " + appletSize.width + ", " + appletSize.height);
+logger.log(Level.TRACE, "applet: " + appletSize.width + ", " + appletSize.height);
 
         // Layout components.
 
@@ -355,28 +360,28 @@ Debug.println(Level.FINER, "applet: " + appletSize.width + ", " + appletSize.hei
      */
     @Override
     public void appletResize(int width, int height) {
-Debug.println(Level.FINER, Debug.getTopCallerMethod("vavi"));
+logger.log(Level.TRACE, Debug.getTopCallerMethod("vavi"));
 
         appletPanel.setPreferredSize(new Dimension(width, height));
-Debug.println(Level.FINER, "resize: " + width + ", " + height);
+logger.log(Level.TRACE, "resize: " + width + ", " + height);
         Dimension frameSize = getSize();
-Debug.println(Level.FINER, "frame: " + frameSize.width + ", " + frameSize.height);
+logger.log(Level.TRACE, "frame: " + frameSize.width + ", " + frameSize.height);
         Insets insets = getInsets();
 
 //        if (!barebones) {
 //            insets.bottom += label.getHeight();
 //        }
 
-Debug.println(Level.FINER, "insets: " + insets.top + ", " + insets.bottom);
-Debug.println(Level.FINER, "insets: " + insets.left + ", " + insets.right);
+logger.log(Level.TRACE, "insets: " + insets.top + ", " + insets.bottom);
+logger.log(Level.TRACE, "insets: " + insets.left + ", " + insets.right);
 
 //        frameSize.width = width + insets.left + insets.right; frameSize.height = height + insets.top + insets.bottom;
 
-Debug.println(Level.FINER, "frame: " + frameSize.width + ", " + frameSize.height);
+logger.log(Level.TRACE, "frame: " + frameSize.width + ", " + frameSize.height);
 //        setSize(frameSize);
 
         appletSize = applet.getSize();
-Debug.println(Level.FINER, "applet: " + appletSize.width + ", " + appletSize.height);
+logger.log(Level.TRACE, "applet: " + appletSize.width + ", " + appletSize.height);
     }
 
     @Override

@@ -13,29 +13,29 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.io.File;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 
-import vavi.util.Debug;
+import static java.lang.System.getLogger;
 
 
 /**
- * ファイル名を入力するためのコンポーネントの基本クラスです．
- * 入力フィールドに"参照"ボタンがついています．
- * 現在のところファイルチューザとテキストフィールドの拡張とみなしています．
+ * Base class for components that input file names.
+ * The input field has a "Browse" button.
+ * Currently I think of it as an extension of the file chooser and text field.
  *
  * @event PropertyChangeEvent("text",,String)
  * @event PropertyChangeEvent("selectedFile",,File)
  *
  * @depends /vavi/swing/resource${I18N}.properties
  *
- * @done Listener の見直し
+ * @done Revisiting Listener
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020503 nsano initial version <br>
@@ -46,23 +46,25 @@ import vavi.util.Debug;
  */
 public abstract class JFileChooserField extends JComponent {
 
+    private static final Logger logger = getLogger(JFileChooserField.class.getName());
+
     /** */
     private static final ResourceBundle rb = ResourceBundle.getBundle("vavi.swing.resource", Locale.getDefault());
 
-    /** ファイルチューザ */
+    /** File Chooser */
     private JFileChooser chooser;
 
     /** filechooser's approve button title */
     private String title;
 
-    /** ファイルチューザ起動ボタン */
+    /** File Chooser Launch Button */
     private final JButton selectButton;
 
-    /** 入力フィールド */
+    /** Input Field */
     protected JComponent pathField;
 
     /**
-     * 入力フィールド付きファイルチューザのコンポーネントを構築します．
+     * Constructs a file chooser component with an input field.
      */
     public JFileChooserField(File file) {
         this();
@@ -70,7 +72,7 @@ public abstract class JFileChooserField extends JComponent {
     }
 
     /**
-     * 入力フィールド付きファイルチューザのコンポーネントを構築します．
+     * Constructs a file chooser component with an input field.
      */
     public JFileChooserField() {
 
@@ -94,25 +96,24 @@ public abstract class JFileChooserField extends JComponent {
     }
 
     /**
-     * #pathField にコンポーネントのインスタンスを設定して下さい．
+     * Set an instance of the component to #pathField.
      */
     protected abstract void setPathFieldImpl();
 
     /**
-     * #pathField に #pathFieldActionListener を add してください． JComponent には
-     * addActionListener は無い．
+     * Add #pathFieldActionListener to #pathField. JComponent does not have addActionListener.
      */
     protected abstract void addActionListenerImpl();
 
-    /** フィールドの処理 TODO text only でいいのか？ */
+    /** Processing the field TODO Is text only okay? */
     protected final ActionListener pathFieldActionListener = ev -> {
-Debug.println(Level.FINER, ev.getSource().getClass().getName());
+logger.log(Level.TRACE, ev.getSource().getClass().getName());
         setText(getText());
     };
 
-    /** 選択ボタンの処理 */
+    /** Select button handling */
     private final ActionListener selectButtonActionListener = ev -> {
-Debug.println(Level.FINER, ev.getSource().getClass().getName());
+logger.log(Level.TRACE, ev.getSource().getClass().getName());
         int returnValue = chooser.showDialog(getParent(), title);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             setSelectedFile(chooser.getSelectedFile());
@@ -120,37 +121,37 @@ Debug.println(Level.FINER, ev.getSource().getClass().getName());
     };
 
     /**
-     * #pathField に文字列を設定して下さい．
+     * Please set a string to #pathField.
      *
-     * @param text 文字列
+     * @param text String
      */
     protected abstract void setTextImpl(String text);
 
     /**
-     * #pathField から取得した文字列を返して下さい．
+     * Please return the string obtained from #pathField.
      *
-     * @return 表示されている文字列
+     * @return Displayed string
      */
     protected abstract String getTextImpl();
 
     /**
-     * #pathField にファイルを設定して下さい．
+     * Please set the file in #pathField.
      *
-     * @param file ファイル
+     * @param file file
      */
     protected abstract void setSelectedFileImpl(File file);
 
     /**
-     * #pathField から取得したファイルを返して下さい．
+     * #Return the file obtained from pathField.
      *
-     * @return 表示されているファイル
+     * @return The displayed file
      */
     protected abstract File getSelectedFileImpl();
 
-    // Field としての機能 -----------------------------------------------------
+    // Function as a Field ----
 
     /**
-     * 文字列を設定します．
+     * Sets the string.
      */
     public void setText(String text) {
         String oldString = getTextImpl();
@@ -159,18 +160,19 @@ Debug.println(Level.FINER, ev.getSource().getClass().getName());
     }
 
     /**
-     * 文字列を取得します．
+     * Gets the string.
      */
     public String getText() {
         return getTextImpl();
     }
 
-    // FileChooser としての機能 -----------------------------------------------
+    // Functions as a FileChooser ----
 
     /**
-     * 選択されたファイルを設定します． ファイルチューザのカレントディレクトリは指定したファイルの ディレクトリになります．
+     * Sets the selected file. The current directory of the file chooser
+     * will be the directory of the specified file.
      *
-     * @param file ファイル
+     * @param file file
      */
     public void setSelectedFile(File file) {
         File oldFile = getSelectedFileImpl();
@@ -179,15 +181,15 @@ Debug.println(Level.FINER, ev.getSource().getClass().getName());
     }
 
     /**
-     * 選択されたファイルを返します．
+     * Returns the selected file.
      *
-     * @return 表示されているファイル
+     * @return The displayed file
      */
     public File getSelectedFile() {
         return getSelectedFileImpl();
     }
 
-    /** ファイルチューザのカレントディレクトリを設定します． */
+    /** Sets the current directory for the file chooser. */
     public void setCurrentDirectory(File file) {
         File defaultPath = null;
         if (file.exists()) {
@@ -198,19 +200,19 @@ Debug.println(Level.FINER, ev.getSource().getClass().getName());
         } else {
             defaultPath = new File(System.getProperty("user.home"));
         }
-Debug.println(Level.FINER, defaultPath);
+logger.log(Level.TRACE, defaultPath);
         chooser.setCurrentDirectory(defaultPath);
     }
 
-//    /** ファイルチューザのカレントディレクトリを取得します． */
+//    /** Gets the current directory of the file chooser. */
 //    private File getCurrentDirectory() {
 //        return chooser.getCurrentDirectory();
 //    }
 
     /**
-     * ファイルチューザのファイル選択モードを設定します．
+     * Sets the file selection mode of the file chooser.
      *
-     * @param selectionMode ファイル選択タイプ
+     * @param selectionMode File Selection Type
      */
     public void setFileSelectionMode(int selectionMode) {
         chooser.setFileSelectionMode(selectionMode);
@@ -226,10 +228,10 @@ Debug.println(Level.FINER, defaultPath);
         chooser.setFileFilter(filter);
     }
 
-    // -------------------------------------------------------------------------
+    // ----
 
     /**
-     * すべてのコンポーネントに setEnabled するようにオーバーライドします．
+     * Override setEnabled for all components.
      */
     @Override
     public void setBackground(Color background) {
@@ -239,7 +241,7 @@ Debug.println(Level.FINER, defaultPath);
     }
 
     /**
-     * すべてのコンポーネントに setEnabled するようにオーバーライドします．
+     * Override setEnabled for all components.
      */
     @Override
     public void setForeground(Color foreground) {
@@ -249,7 +251,7 @@ Debug.println(Level.FINER, defaultPath);
     }
 
     /**
-     * すべてのコンポーネントに setEnabled するようにオーバーライドします．
+     * Override setEnabled for all components.
      */
     @Override
     public void setFont(Font font) {
@@ -259,7 +261,7 @@ Debug.println(Level.FINER, defaultPath);
     }
 
     /**
-     * すべてのコンポーネントに setEnabled するようにオーバーライドします．
+     * Override setEnabled for all components.
      */
     @Override
     public void setEnabled(boolean isEnabled) {
@@ -269,9 +271,9 @@ Debug.println(Level.FINER, defaultPath);
     }
 
     /**
-     * すべてのコンポーネントに add するようにオーバーライドします．
+     * Override it to add to all components.
      *
-     * @param l マウスリスナ
+     * @param l Mouse Listener
      */
     @Override
     public synchronized void addMouseListener(MouseListener l) {
@@ -281,9 +283,9 @@ Debug.println(Level.FINER, defaultPath);
     }
 
     /**
-     * すべてのコンポーネントに add するようにオーバーライドします．
+     * Override it to add to all components.
      *
-     * @param l マウスモーションリスナ
+     * @param l Mouse Motion Listener
      */
     @Override
     public synchronized void addMouseMotionListener(MouseMotionListener l) {
@@ -293,9 +295,9 @@ Debug.println(Level.FINER, defaultPath);
     }
 
     /**
-     * すべてのコンポーネントに remove するようにオーバーライドします．
+     * Override remove on all components.
      *
-     * @param l マウスリスナ
+     * @param l Mouse Listener
      */
     @Override
     public synchronized void removeMouseListener(MouseListener l) {
@@ -305,9 +307,9 @@ Debug.println(Level.FINER, defaultPath);
     }
 
     /**
-     * すべてのコンポーネントに remove するようにオーバーライドします．
+     * Override remove on all components.
      *
-     * @param l マウスモーションリスナ
+     * @param l Mouse Motion Listener
      */
     @Override
     public synchronized void removeMouseMotionListener(MouseMotionListener l) {

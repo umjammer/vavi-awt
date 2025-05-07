@@ -12,9 +12,10 @@ import java.awt.dnd.DropTargetDragEvent;
 import java.awt.dnd.DropTargetDropEvent;
 import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
-import java.util.logging.Level;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 
-import vavi.util.Debug;
+import static java.lang.System.getLogger;
 
 
 /**
@@ -27,6 +28,8 @@ import vavi.util.Debug;
  * @version 0.00 010820 nsano initial version <br>
  */
 public abstract class BasicDTListener implements DropTargetListener {
+
+    private static final Logger logger = getLogger(BasicDTListener.class.getName());
 
     /** The drag action */
     protected int dragAction = DnDConstants.ACTION_MOVE;
@@ -57,7 +60,7 @@ public abstract class BasicDTListener implements DropTargetListener {
     private boolean isDragOk(DropTargetDragEvent ev) {
 
         if (!isDragFlavorSupported(ev)) {
-Debug.println(Level.WARNING, "no flavors chosen");
+logger.log(Level.WARNING, "no flavors chosen");
             return false;
         }
 
@@ -68,7 +71,7 @@ Debug.println(Level.WARNING, "no flavors chosen");
         // the docs on DropTargetDragEvent rejectDrag says that
         // the dropAction should be examined
         int da = ev.getDropAction();
-Debug.println(Level.FINER, "drop action: " + da + " my acceptable actions " + dragAction);
+logger.log(Level.TRACE, "drop action: " + da + " my acceptable actions " + dragAction);
 
         // we're saying that these actions are necessary
         return (da & dragAction) != 0;
@@ -77,62 +80,62 @@ Debug.println(Level.FINER, "drop action: " + da + " my acceptable actions " + dr
     /**
      * start "drag under" feedback on component invoke acceptDrag or rejectDrag
      * based on isDragOk
-     * オーバーライドするときは <code>super.dragEnter(ev)</code> を忘れずに．
+     * When overriding, don't forget to use <code>super.dragEnter(ev)</code>.
      * @callsuper
      */
     @Override
     public void dragEnter(DropTargetDragEvent ev) {
-Debug.println(Level.FINEST, ev);
+logger.log(Level.TRACE, ev);
         if (!isDragOk(ev)) {
-Debug.println(Level.WARNING, "not ok");
+logger.log(Level.WARNING, "not ok");
             ev.rejectDrag();
             return;
         }
-Debug.println(Level.FINER, "accepting: " + ev.getDropAction());
+logger.log(Level.TRACE, "accepting: " + ev.getDropAction());
         ev.acceptDrag(ev.getDropAction());
     }
 
     /**
      * continue "drag under" feedback on component invoke acceptDrag or
      * rejectDrag based on isDragOk
-     * オーバーライドするときは <code>super.dragOver(ev)</code> を忘れずに．
+     * When overriding, don't forget to use <code>super.dragOver(ev)</code>.
      * @callsuper
      */
     @Override
     public void dragOver(DropTargetDragEvent ev) {
 
         if (!isDragOk(ev)) {
-Debug.println(Level.WARNING, "not ok");
+logger.log(Level.WARNING, "not ok");
             ev.rejectDrag();
             return;
         }
-Debug.println(Level.FINER, "accepting");
+logger.log(Level.TRACE, "accepting");
         ev.acceptDrag(ev.getDropAction());
     }
 
     /**
-     * オーバーライドするときは <code>super.dropActionChanged(ev)</code> を忘れずに．
+     * When overriding, don't forget to include <code>super.dropActionChanged(ev)</code>.
      * @callsuper
      */
     @Override
     public void dropActionChanged(DropTargetDragEvent ev) {
 
         if (!isDragOk(ev)) {
-            Debug.println(Level.WARNING, "not ok");
+            logger.log(Level.WARNING, "not ok");
             ev.rejectDrag();
             return;
         }
-Debug.println(Level.FINER, "accepting: " + ev.getDropAction());
+logger.log(Level.TRACE, "accepting: " + ev.getDropAction());
         ev.acceptDrag(ev.getDropAction());
     }
 
     /**
-     * ドラッグ動作が終了したときに呼ばれます．
-     * オーバーライドするときは <code>super.dragExit(ev)</code> 特にしなくていいです．
+     * Called when the drag action ends.
+     * When overriding, there is no need to call <code>super.dragExit(ev)</code>.
      */
     @Override
     public void dragExit(DropTargetEvent ev) {
-Debug.println(Level.FINEST, ev);
+logger.log(Level.TRACE, ev);
     }
 
     /**
@@ -144,26 +147,26 @@ Debug.println(Level.FINEST, ev);
      */
     @Override
     public void drop(DropTargetDropEvent ev) {
-Debug.println(Level.FINEST, ev);
+logger.log(Level.TRACE, ev);
 
         DataFlavor chosen = chooseDropFlavor(ev);
         if (chosen == null) {
-Debug.println(Level.WARNING, "No flavor match found");
+logger.log(Level.WARNING, "No flavor match found");
             ev.rejectDrop();
             return;
         }
-Debug.println(Level.FINER, "data flavor is " + chosen.getMimeType());
+logger.log(Level.TRACE, "data flavor is " + chosen.getMimeType());
 
         // the actual operation
         // int da = ev.getDropAction();
         // the actions that the source has specified with
         // DragGestureRecognizer
         int sa = ev.getSourceActions();
-Debug.println(Level.FINER, "sourceActions: " + sa);
-Debug.println(Level.FINER, "dropAction: " + ev.getDropAction());
+logger.log(Level.TRACE, "sourceActions: " + sa);
+logger.log(Level.TRACE, "dropAction: " + ev.getDropAction());
 
         if ((sa & dragAction) == 0) {
-Debug.println(Level.WARNING, "No action match found");
+logger.log(Level.WARNING, "No action match found");
             ev.rejectDrop();
             return;
         }
@@ -179,8 +182,7 @@ Debug.println(Level.WARNING, "No action match found");
 
             data = ev.getTransferable().getTransferData(chosen);
         } catch (Throwable e) { // TODO
-Debug.println(Level.SEVERE, e);
-Debug.printStackTrace(e);
+logger.log(Level.ERROR, e.getMessage(), e);
             ev.dropComplete(false);
             return;
         }
@@ -192,8 +194,8 @@ Debug.printStackTrace(e);
      * You need to implement here dropping procedure.
      *
      * @param ev the event object
-     * @param data 便宜的なドロップされたデータです
-     * @return ドロップが成功したかどうか
+     * @param data Opportunistic dropped data
+     * @return Was the drop successful?
      */
     protected abstract boolean dropImpl(DropTargetDropEvent ev, Object data);
 }

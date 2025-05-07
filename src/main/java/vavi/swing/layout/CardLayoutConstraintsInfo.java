@@ -10,9 +10,10 @@ import java.beans.BeanDescriptor;
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
 import java.beans.SimpleBeanInfo;
-import java.util.logging.Level;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 
-import vavi.util.Debug;
+import static java.lang.System.getLogger;
 
 
 /**
@@ -22,6 +23,8 @@ import vavi.util.Debug;
  * @version 0.00 020614 nsano initial version <br>
  */
 public class CardLayoutConstraintsInfo extends SimpleBeanInfo {
+
+    private static final Logger logger = getLogger(CardLayoutConstraintsInfo.class.getName());
 
     private final Class<?> clazz = CardLayoutConstraints.class;
 
@@ -37,7 +40,7 @@ public class CardLayoutConstraintsInfo extends SimpleBeanInfo {
             pds[0] = new PropertyDescriptor("title", clazz);
             return pds;
         } catch (IntrospectionException e) {
-Debug.println(Level.SEVERE, e);
+logger.log(Level.ERROR, e.getMessage(), e);
             throw new IllegalStateException(e);
         }
     }

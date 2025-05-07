@@ -12,7 +12,7 @@ import java.beans.SimpleBeanInfo;
 
 
 /**
- * {@link vavi.swing.JFileChooserHistoryComboBox} の BeanInfo です．
+ * BeanInfo for {@link vavi.swing.JFileChooserHistoryComboBox}.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010917 nsano initial version <br>

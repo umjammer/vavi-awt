@@ -1,5 +1,8 @@
-ラバーバンドフレームワーク関連のクラスを提供します．
+# vavi.awt.rubberband
 
-## これから実装すること
-  * リサイズ時の最小値補正 x, y のアンダーバウンド
-  * RubberBandGesture は将来 InputMap が KeyStroke のみではなくなった場合，それに統合されるべきです
+Provides classes related to the rubber band framework.
+
+## TODO
+
+  * Minimum correction for x, y underbounds when resizing
+  * RubberBandGesture should be integrated into InputMap in the future, if InputMap becomes more than just KeyStroke.

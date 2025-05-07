@@ -12,18 +12,18 @@ import java.util.List;
 
 
 /**
- * Selection リスナーのユーティリティです．
+ * Selection listener utility.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020603 nsano initial version <br>
  */
 public class SelectionSupport implements Serializable {
 
-    /** Selection のリスナー */
+    /** Selection listeners */
     private final List<SelectionListener> listenerList = new ArrayList<>();
 
     /**
-     * Selection リスナーをアタッチします．
+     * Attach a Selection listener.
      *
      * @param l SelectionListener
      */
@@ -32,7 +32,7 @@ public class SelectionSupport implements Serializable {
     }
 
     /**
-     * Selection リスナーをリムーブします．
+     * Removes the Selection listener.
      *
      * @param l SelectionListener
      */
@@ -41,7 +41,7 @@ public class SelectionSupport implements Serializable {
     }
 
     /**
-     * Selection イベントを発行します．
+     * Selection event is issued.
      */
     public void fireValueChanged(SelectionEvent ev) {
         for (SelectionListener listener : listenerList) {

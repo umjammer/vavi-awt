@@ -10,14 +10,14 @@ import java.beans.BeanInfo;
 
 
 /**
- * Border クラスの BeanInfo です．
+ * BeanInfo for Border class.
  * <p>
- * Border は getter メソッドが無いクラスがほとんどなので，getter メソッド のみを扱う
- * PropertyDescriptor として BorderPropertyDescriptor を用意して 使用します．
+ * Since most Border classes do not have a getter method,
+ * we prepare and use a BorderPropertyDescriptor as a PropertyDescriptor that only handles the getter method.
  * </p>
  * <p>
- * Beans の仕様とは違うので，Introspector ではなく BorderInfoFactory を 用いて BorderInfo
- * クラスを取得してください．
+ * Since this differs from the Beans specification,
+ * please obtain the BorderInfo class using BorderInfoFactory instead of Introspector.
  * </p>
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)

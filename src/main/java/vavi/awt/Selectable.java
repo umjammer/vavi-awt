@@ -8,7 +8,7 @@ package vavi.awt;
 
 
 /**
- * 選択可能であるインターフェース．
+ * Selectable interfaces.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020510 nsano initial version <br>
@@ -16,12 +16,12 @@ package vavi.awt;
 public interface Selectable {
 
     /**
-     * 選択状態を設定します．
+     * Sets the selection state.
      */
     void setSelected(boolean isSelected);
 
     /**
-     * 選択状態を返します．
+     * Returns the selection state.
      */
     boolean isSelected();
 }

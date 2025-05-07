@@ -16,11 +16,11 @@ import java.awt.datatransfer.ClipboardOwner;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.io.IOException;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.logging.Level;
-
 import javax.swing.event.MouseInputListener;
 
 import vavi.awt.Controller;
@@ -33,7 +33,8 @@ import vavi.swing.Editable;
 import vavi.swing.event.EditorEvent;
 import vavi.swing.event.EditorListener;
 import vavi.swing.event.EditorSupport;
-import vavi.util.Debug;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -55,6 +56,8 @@ import vavi.util.Debug;
  *          0.15 020611 nsano change package <br>
  */
 public abstract class ContainerEditor implements Editable {
+
+    private static final Logger logger = getLogger(ContainerEditor.class.getName());
 
     /** the selection model for components in the container */
     protected final SelectionModel selectionModel;
@@ -81,7 +84,7 @@ public abstract class ContainerEditor implements Editable {
     // ----
 
     /**
-     * 将来 InputMap が対応してくれんじゃないの？
+     * Will InputMap support this in the future?
      */
     public abstract void setMouseInputAction(MouseInputListener mil);
 
@@ -125,7 +128,7 @@ public abstract class ContainerEditor implements Editable {
     protected abstract Controller getControllerFor(Component component);
 
     /**
-     * 選択されている Component のリストを返します．
+     * Returns a list of selected Components.
      */
     public List<Selectable> getSelected() {
         List<Selectable> selected = selectionModel.getSelected();
@@ -214,11 +217,11 @@ public abstract class ContainerEditor implements Editable {
         @Override
         public void lostOwnership(Clipboard clipboard, Transferable contents) {
             if (clipboard == systemClipboard) {
-Debug.println(Level.FINE, clipboard.getName());
+logger.log(Level.DEBUG, clipboard.getName());
                 localClipboard.setContents(contents, this);
                 currentClipboard = localClipboard;
             } else {
-Debug.println(Level.INFO, "???: " + clipboard.getName());
+logger.log(Level.INFO, "???: " + clipboard.getName());
                 fireEditorUpdated(new EditorEvent(ContainerEditor.this, "lostOwnership"));
             }
         }
@@ -253,7 +256,7 @@ Debug.println(Level.INFO, "???: " + clipboard.getName());
 
             fireEditorUpdated(new EditorEvent(this, "copy", selected));
         } catch (IOException e) {
-Debug.println(Level.SEVERE, e);
+logger.log(Level.ERROR, e.getMessage(), e);
         }
     }
 
@@ -283,8 +286,7 @@ Debug.println(Level.SEVERE, e);
 
             container.repaint();
         } catch (Exception e) {
-Debug.println(Level.SEVERE, e);
-Debug.printStackTrace(e);
+logger.log(Level.ERROR, e.getMessage(), e);
         }
     }
 
@@ -362,7 +364,7 @@ Debug.printStackTrace(e);
     }
 
     /**
-     * "右にそろえる"メニューの処理を行います．
+     * Processes the "Align right" menu.
      */
     public void alignRight() {
 
@@ -382,7 +384,7 @@ Debug.printStackTrace(e);
     }
 
     /**
-     * "下にそろえる"メニューの処理を行います．
+     * Processes the "Align bottom" menu.
      */
     public void alignBottom() {
 
@@ -402,7 +404,7 @@ Debug.printStackTrace(e);
     }
 
     /**
-     * "幅をそろえる"メニューの処理を行います．
+     * Processes the "Make Width Align" menu.
      */
     public void alignWidth() {
 
@@ -422,7 +424,7 @@ Debug.printStackTrace(e);
     }
 
     /**
-     * "高さをそろえる"メニューの処理を行います．
+     * Processes the "Make height even" menu.
      */
     public void alignHeight() {
 
@@ -442,16 +444,16 @@ Debug.printStackTrace(e);
     }
 
     /**
-     * "水平間隔を均等にする"メニューの処理を行います．
+     * Processes the "Enable horizontal spacing" menu.
      */
     public void alignJustifyHorizontalGap() {
 
         List<Selectable> selected = selectionModel.getSelected();
-        // 一つ目の部品
+        // First part
         LocatableController c1 = (LocatableController) selected.get(0);
         Point p1 = c1.getLocation();
         Dimension d1 = c1.getSize();
-        // 二つ目の部品
+        // Second part
         LocatableController c2 = (LocatableController) selected.get(1);
         Point p2 = c2.getLocation();
         // Dimension d2 = c2.getSize();
@@ -459,17 +461,17 @@ Debug.printStackTrace(e);
         int width = p2.x - (p1.x + d1.width);
 
         for (int i = 0; i < selected.size() - 1; i++) {
-            // 一つ目の部品
+            // First part
             c1 = (LocatableController) selected.get(i);
             p1 = c1.getLocation();
             d1 = c1.getSize();
 
-            // 二つ目の部品
+            // Second part
             c2 = (LocatableController) selected.get(i + 1);
             p2 = c2.getLocation();
             // d2 = c2.getSize();
 
-            // 差を計算
+            // Calculate the difference
             int gap = width - (p2.x - (p1.x + d1.width));
 
             p2.x = p2.x + gap;
@@ -481,16 +483,16 @@ Debug.printStackTrace(e);
     }
 
     /**
-     * "垂直間隔を均等にする"メニューの処理を行います．
+     * Processes the "Even Vertical Space" menu.
      */
     public void alignJustifyVerticalGap() {
 
         List<Selectable> selected = selectionModel.getSelected();
-        // 一つ目の部品
+        // First part
         LocatableController c1 = (LocatableController) selected.get(0);
         Point p1 = c1.getLocation();
         Dimension d1 = c1.getSize();
-        // 二つ目の部品
+        // Second part
         LocatableController c2 = (LocatableController) selected.get(1);
         Point p2 = c2.getLocation();
 //      Dimension d2 = c2.getSize();
@@ -498,17 +500,17 @@ Debug.printStackTrace(e);
         int height = p2.y - (p1.y + d1.height);
 
         for (int i = 0; i < selected.size() - 1; i++) {
-            // 一つ目の部品
+            // First part
             c1 = (LocatableController) selected.get(i);
             p1 = c1.getLocation();
             d1 = c1.getSize();
 
-            // 二つ目の部品
+            // Second part
             c2 = (LocatableController) selected.get(i + 1);
             p2 = c2.getLocation();
             // d2 = c2.getSize();
 
-            // 差を計算
+            // Calculate the difference
             int gap = height - (p2.y - (p1.y + d1.height));
 
             p2.y = p2.y + gap;
@@ -520,7 +522,7 @@ Debug.printStackTrace(e);
     }
 
     /**
-     * "最前面に配置"メニューの処理を行います．
+     * Processes the "Bring to front" menu.
      */
     public void toFront() {
 
@@ -541,7 +543,7 @@ Debug.printStackTrace(e);
     }
 
     /**
-     * "最背面に配置"メニューの処理を行います．
+     * Processes the "Send to back" menu.
      */
     public void toBack() {
 
@@ -559,7 +561,7 @@ Debug.printStackTrace(e);
         container.repaint();
     }
 
-    // -------------------------------------------------------------------------
+    // ----
 
     /** The editor support */
     private final EditorSupport editorSupport = new EditorSupport();

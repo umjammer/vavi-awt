@@ -20,33 +20,29 @@ import java.beans.PropertyChangeListener;
 public interface LayoutManagerCustomizer {
 
     /**
-     * PropertyChange イベントのリスナーを登録します。
-     * @param listener PropertyChange イベントがトリガーされたときに
-     *               呼び出されるオブジェクト
+     * PropertyChange Register a listener for an event.
+     * @param listener PropertyChange The object that will be called when the event is triggered.
      */
     void addPropertyChangeListener(PropertyChangeListener listener);
 
     /**
-     * PropertyChange イベントのリスナーを削除します。
-     * @param listener 削除される PropertyChange リスナー
+     * PropertyChange Removes a listener for an event.
+     * @param listener The PropertyChange listener to be removed.
      */
     void removePropertyChangeListener(PropertyChangeListener listener);
 
     /**
-     * カスタマイズする LayoutManager を設定します。
-     * このメソッドは、Customizer を親 AWT コンテナに追加する前に
-     * 1 回だけ呼び出せます。
+     * Set the LayoutManager you want to customize.
+     * This method can only be called once before the Customizer is added to a parent AWT container.
      */
     void setObject(LayoutManager layout);
 
     /** TODO */
     LayoutManager getObject();
 
-    /**
-     */
+    /** */
     void setContainer(Container container);
 
-    /**
-     */
+    /** */
     void layoutContainer();
 }

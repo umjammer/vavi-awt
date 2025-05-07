@@ -12,7 +12,7 @@ import java.util.EventObject;
 
 
 /**
- * RubberBand が変更される時発行するイベントのクラスです．
+ * This is the class for events that are fired when a RubberBand is changed.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010904 nsano initial version <br>
@@ -22,15 +22,15 @@ import java.util.EventObject;
  */
 public class RubberBandEvent extends EventObject {
 
-    /** コンポーネントの相対 location */
+    /** Component relative location */
     private Point location;
-//    /** コンポーネントの相対 size */
+//    /** The relative size of the component */
 //  private Dimension size;
-    /** 選択された領域 */
+    /** Selected Area */
     private Rectangle bounds;
 
     /**
-     * RubberBand イベントを構築します．
+     * Constructs a RubberBand event.
      * @see RubberBandListener#selecting
      * @see RubberBandListener#selected
      */
@@ -40,10 +40,10 @@ public class RubberBandEvent extends EventObject {
     }
 
     /**
-     * RubberBand イベントを構築します．
+     * Constructs a RubberBand event.
      * @see RubberBandListener#moving
      * @see RubberBandListener#moved
-     * @param location コンポーネントの相対 location
+     * @param location Component relative location
      */
     public RubberBandEvent(Object source, Point location) {
         super(source);
@@ -51,27 +51,27 @@ public class RubberBandEvent extends EventObject {
     }
 
 //    /**
-//     * RubberBand イベントを構築します．
+//     * Constructs a RubberBand event.
 //     * @see RubberBandListener#resizing
 //     * @see RubberBandListener#resized
-//     * @param size コンポーネントの相対 size
+//     * @param size The relative size of the component
 //     */
 //  public RubberBandEvent(Object source, Dimension size) {
 //      super(source);
 //      this.size = size;
 //  }
 
-    /** 選択された領域を取得します． */
+    /** Gets the selected region. */
     public Rectangle getBounds() {
         return bounds;
     }
 
-    /** コンポーネントの相対 location を取得します． */
+    /** Gets the relative location of the component. */
     public Point getLocation() {
         return location;
     }
 
-//    /** コンポーネントの相対 size を取得します． */
+//    /** Gets the relative size of the component. */
 //  public Dimension getDimension() {
 //      return size;
 //  }

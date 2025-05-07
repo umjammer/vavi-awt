@@ -8,9 +8,10 @@ package vavi.awt.rubberband;
 
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.util.logging.Level;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 
-import vavi.util.Debug;
+import static java.lang.System.getLogger;
 
 
 /**
@@ -25,6 +26,8 @@ import vavi.util.Debug;
  *          0.21 020605 nsano fix specifications <br>
  */
 public class RubberBand {
+
+    private static final Logger logger = getLogger(RubberBand.class.getName());
 
     /** resizing to north */
     public static final int RESIZE_N  = 1;
@@ -54,25 +57,25 @@ public class RubberBand {
      */
     protected int mode;
 
-    /** リサイズするコンポーネント上におけるマウスが押されたときの座標 */
+    /** The coordinates of the mouse press on the component to be resized */
     protected Point resize;
-    /** 移動するコンポーネント上におけるマウスが押されたときの座標 */
+    /** The mouse press coordinates on the component being moved */
     protected Point move;
-    /** 選択でプレスされたときの座標 */
+    /** Coordinates when pressed in selection */
     protected Point pressed;
-    /** 領域選択でドラッグしている座標 */
+    /** Coordinates being dragged when selecting an area */
     protected Point dragged;
-    /** 領域選択でリリースされたときの座標 */
+    /** Coordinates when released in area selection */
     protected Point released;
 
-    /** 領域選択をしているかどうか (ドラッグ時 true, 離した時 false) */
+    /** Whether the area is selected (true when dragging, false when releasing) */
     private boolean isSelecting;
 
-//    /** RubberBand を扱うコンテナ */
+//    /** Container for RubberBand */
 //  private Container container;
 
     /**
-     * ラバーバンドを構築します．
+     * Construct a rubber band.
      */
     public RubberBand() {
         mode = NORMAL_MODE;
@@ -174,7 +177,7 @@ public class RubberBand {
             w -= dx;
             break;
         default:
-Debug.println(Level.SEVERE, "wrong resize mode: " + mode);
+logger.log(Level.ERROR, "wrong resize mode: " + mode);
             break;
         }
 
@@ -192,7 +195,7 @@ Debug.println(Level.SEVERE, "wrong resize mode: " + mode);
         return new Point(x, y);
     }
 
-    //-------------------------------------------------------------------------
+    // ----
 
     /**
      * Rubber band starts processing.
@@ -205,7 +208,7 @@ Debug.println(Level.SEVERE, "wrong resize mode: " + mode);
             break;
         case MOVE_MODE:
             move = point;
-Debug.println(Level.FINER, move.x + ", " + move.y);
+logger.log(Level.TRACE, move.x + ", " + move.y);
             break;
         default:
             resize = point;
@@ -218,20 +221,20 @@ Debug.println(Level.FINER, move.x + ", " + move.y);
      */
     public void doing(Point point) {
         switch (mode) {
-        case NORMAL_MODE: { // 領域選択
+        case NORMAL_MODE: { // Area Selection
             Rectangle r = getSelectionBounds(point);
             fireSelecting(new RubberBandEvent(this, r));
             break;
         }
-        case MOVE_MODE: { // 移動モード
+        case MOVE_MODE: { // Move modes
             isSelecting = false;
             Point p = getMovedPoint(point);
-Debug.println(Level.FINER, p.x + ", " + p.y);
+logger.log(Level.TRACE, p.x + ", " + p.y);
             fireMoving(new RubberBandEvent(this, p));
             move = point;
             break;
         }
-        default: { // リサイズ
+        default: { // resize
             isSelecting = false;
             Rectangle r = getResizedBounds(point);
             fireResizing(new RubberBandEvent(this, r));
@@ -265,7 +268,7 @@ Debug.println(Level.FINER, p.x + ", " + p.y);
         }}
     }
 
-    //-------------------------------------------------------------------------
+    // ----
 
     /** RubberBand event support */
     private final RubberBandSupport rbs = new RubberBandSupport();

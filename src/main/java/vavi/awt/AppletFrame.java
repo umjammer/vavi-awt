@@ -75,7 +75,7 @@ import java.util.Vector;
  * vavi.awt.AppletFrame.parameter.barebones=true   Leave off the menu bar and status area.
  * </pre>
  *
- * @caution JDK 1.1 用
+ * @caution For JDK 1.1
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010901 nsano port from Acme.MainFrame <br>
@@ -85,25 +85,25 @@ import java.util.Vector;
  */
 public class AppletFrame extends Frame implements Runnable, AppletStub, AppletContext {
 
-    // コンテキストのパラメータ
+    // Context parameters
     private static final String VERSION = "0.01";
 
     private static final String VENDOR = "vavi";
 
     private static final String VENDOR_URL = "https://www.vavi.com/";
 
-    /** メニューバーとステータスバーを表示しないかどうか */
+    /** Whether to hide the menu bar and status bar */
     private boolean barebones = false;
 
-    /** ステータスバー */
+    /** Status Bar */
     private Label label = null;
 
-    /** アプレットのパラメータ */
+    /** Applet parameters */
     private String[] args = null;
 
     private static int instances = 0;
 
-    /** アプレットのクラス名 */
+    /** The applet class name */
     private String name;
 
     private Applet applet;

@@ -14,9 +14,9 @@ import java.beans.BeanDescriptor;
 import java.beans.BeanInfo;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.Properties;
-import java.util.logging.Level;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
@@ -26,7 +26,7 @@ import javax.swing.UIManager;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import vavi.util.Debug;
+import static java.lang.System.getLogger;
 
 
 /**
@@ -39,6 +39,8 @@ import vavi.util.Debug;
  *          0.01 020618 nsano fix null pcl <br>
  */
 public class LayoutManagerChooser extends JTabbedPane {
+
+    private static final Logger logger = getLogger(LayoutManagerChooser.class.getName());
 
     private static final String path = "layoutManager.properties";
 
@@ -65,11 +67,11 @@ public class LayoutManagerChooser extends JTabbedPane {
                 String key = "editor." + i;
                 String value = props.getProperty(key);
                 if (value == null) {
-Debug.println(Level.FINE, "no property for: editor." + i);
+logger.log(Level.DEBUG, "no property for: editor." + i);
                     break;
                 }
 
-Debug.println(Level.FINER, value);
+logger.log(Level.TRACE, value);
                 Class<?> clazz = Class.forName(value);
 
                 BeanInfo bi = LayoutManagerInfoFactory.getBeanInfo(clazz);
@@ -86,8 +88,7 @@ Debug.println(Level.FINER, value);
                 i++;
             }
         } catch (Exception e) {
-Debug.println(Level.SEVERE, e);
-Debug.printStackTrace(e);
+logger.log(Level.ERROR, e.getMessage(), e);
         }
 
         this.setPreferredSize(new Dimension(640, 400));
@@ -99,10 +100,10 @@ Debug.printStackTrace(e);
         @Override
         public void propertyChange(PropertyChangeEvent ev) {
             String name = ev.getPropertyName();
-Debug.println(Level.FINER, name);
+logger.log(Level.TRACE, name);
             if ("layout".equals(name)) {
                 layout = (LayoutManager) ev.getNewValue();
-Debug.println(Level.FINER, layout == null ? null : layout.getClass().getSimpleName());
+logger.log(Level.TRACE, layout == null ? null : layout.getClass().getSimpleName());
 //              firePropertyChange("layout", null, layout);
             }
         }
@@ -116,7 +117,7 @@ Debug.println(Level.FINER, layout == null ? null : layout.getClass().getSimpleNa
             LayoutManagerCustomizer lmc = (LayoutManagerCustomizer) getComponentAt(i);
 //          lmc.setContainer(container);
             layout = lmc.getObject();
-Debug.println(Level.FINER, layout == null ? null : layout.getClass().getSimpleName());
+logger.log(Level.TRACE, layout == null ? null : layout.getClass().getSimpleName());
         }
     };
 

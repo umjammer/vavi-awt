@@ -13,9 +13,9 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.LayoutManager;
 import java.awt.event.ActionListener;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.List;
-import java.util.logging.Level;
-
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListCellRenderer;
@@ -35,7 +35,8 @@ import javax.swing.UIManager;
 import vavi.swing.layout.LayoutManagerChooser;
 import vavi.swing.layout.LayoutManagerInfoFactory;
 import vavi.swing.layout.SampleLayoutManagerInfo;
-import vavi.util.Debug;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -45,6 +46,8 @@ import vavi.util.Debug;
  * @version 0.00 020516 nsano initial version <br>
  */
 public class SwingLayoutManagerEditor extends SwingEditorSupport {
+
+    private static final Logger logger = getLogger(SwingLayoutManagerEditor.class.getName());
 
     private final JComboBox<?> layoutCombo;
     private final JButton layoutButton;
@@ -87,14 +90,14 @@ public class SwingLayoutManagerEditor extends SwingEditorSupport {
         plug();
     }
 
-    /** super.setValue しないと多分 firePropertyChange されない */
+    /** If you don't use super.setValue, the firePropertyChange probably won't work. */
     @Override
     public void setValue(Object value) {
-Debug.println(Level.FINER, value == null ? String.valueOf((Object) null) : String.valueOf(value.hashCode()));
+logger.log(Level.TRACE, value == null ? String.valueOf((Object) null) : String.valueOf(value.hashCode()));
         super.setValue(value);
 
         if (value != null && bean != null) {
-Debug.println(Level.FINER, value);
+logger.log(Level.TRACE, value);
             ((LayoutManager) value).layoutContainer(bean);
             bean.validate();
             bean.repaint();
@@ -111,7 +114,7 @@ Debug.println(Level.FINER, value);
                 SampleLayoutManagerInfo li =
                     (SampleLayoutManagerInfo) layoutCombo.getItemAt(i);
                 LayoutManager layout = li.layout;
-Debug.println(Level.FINER, li.desc);
+logger.log(Level.TRACE, li.desc);
                 if (layout.getClass().isInstance(value)) {
                     layoutCombo.setSelectedIndex(i);
                     plug();
@@ -130,9 +133,9 @@ Debug.println(Level.FINER, li.desc);
     public void setBean(Object bean) {
         if (bean instanceof Container) {
             this.bean = (Container) bean;
-Debug.println(Level.FINER, "bean is Container: " + bean.getClass().getName());
+logger.log(Level.TRACE, "bean is Container: " + bean.getClass().getName());
         } else {
-Debug.println(Level.FINE, "bean is not Container: " + bean);
+logger.log(Level.DEBUG, "bean is not Container: " + bean);
             this.bean = null;
         }
     }
@@ -288,13 +291,12 @@ Debug.println(Level.FINE, "bean is not Container: " + bean);
         }
     }
 
-    //-------------------------------------------------------------------------
+    // ----
 
     /* */
     static {
         Class<?> clazz = SwingLayoutManagerEditor.class;
         UIDefaults table = UIManager.getDefaults();
-        table.put("beaninfo.LayoutIcon",
-                  LookAndFeel.makeIcon(clazz, "resources/LayoutIcon.gif"));
+        table.put("beaninfo.LayoutIcon", LookAndFeel.makeIcon(clazz, "resources/LayoutIcon.gif"));
     }
 }

@@ -18,12 +18,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.logging.Level;
-
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
 
-import vavi.util.Debug;
+import static java.lang.System.getLogger;
 
 
 /**
@@ -35,6 +35,8 @@ import vavi.util.Debug;
  */
 public class GridBagLayoutCustomizer extends BasicLayoutManagerCustomizer {
 
+    private static final Logger logger = getLogger(GridBagLayoutCustomizer.class.getName());
+
     /** layout for virtual screen */
     private final GridBagLayout gridbag;
 
@@ -45,9 +47,9 @@ public class GridBagLayoutCustomizer extends BasicLayoutManagerCustomizer {
     public GridBagLayoutCustomizer() {
         // UI
         Container c1 = (Container) getComponent(1); // right base panel
-Debug.println(Level.FINER, c1.getName());
+logger.log(Level.TRACE, c1.getName());
         Component c2 = c1.getComponent(0); // upper titled border panel
-Debug.println(Level.FINER, c2.getName());
+logger.log(Level.TRACE, c2.getName());
         c1.remove(c2);
         ((GridLayout) c1.getLayout()).setRows(1);
         c1.doLayout();
@@ -85,11 +87,11 @@ Debug.println(Level.FINER, c2.getName());
 
         for (int i = 0; i < container.getComponentCount(); i++) {
             Component component = container.getComponent(i);
-Debug.println(Level.FINER, "---- " + i + " ----");
-Debug.println(Level.FINER, component.getSize().width + ", " + component.getSize().height);
-Debug.println(Level.FINER, component.getMinimumSize().width + ", " + component.getMinimumSize().height);
-Debug.println(Level.FINER, component.getPreferredSize().width + ", " + component.getPreferredSize().height);
-Debug.println(Level.FINER, component.getMaximumSize().width + ", " + component.getMaximumSize().height);
+logger.log(Level.TRACE, "---- " + i + " ----");
+logger.log(Level.TRACE, component.getSize().width + ", " + component.getSize().height);
+logger.log(Level.TRACE, component.getMinimumSize().width + ", " + component.getMinimumSize().height);
+logger.log(Level.TRACE, component.getPreferredSize().width + ", " + component.getPreferredSize().height);
+logger.log(Level.TRACE, component.getMaximumSize().width + ", " + component.getMaximumSize().height);
 
             JButton controller = new JButton(String.valueOf(i));
             controller.setMargin(new Insets(0, 0, 0, 0));
@@ -103,11 +105,11 @@ Debug.println(Level.FINER, component.getMaximumSize().width + ", " + component.g
             GridBagConstraints cs = (GridBagConstraints) lc.getConstraints();
 
             layoutPanel.add(controller, adjustRatio(cs));
-Debug.println(Level.FINER, "----");
-Debug.println(Level.FINER, controller.getSize().width + ", " + controller.getSize().height);
-Debug.println(Level.FINER, controller.getMinimumSize().width + ", " + controller.getMinimumSize().height);
-Debug.println(Level.FINER, controller.getPreferredSize().width + ", " + controller.getPreferredSize().height);
-Debug.println(Level.FINER, controller.getMaximumSize().width + ", " + controller.getMaximumSize().height);
+logger.log(Level.TRACE, "----");
+logger.log(Level.TRACE, controller.getSize().width + ", " + controller.getSize().height);
+logger.log(Level.TRACE, controller.getMinimumSize().width + ", " + controller.getMinimumSize().height);
+logger.log(Level.TRACE, controller.getPreferredSize().width + ", " + controller.getPreferredSize().height);
+logger.log(Level.TRACE, controller.getMaximumSize().width + ", " + controller.getMaximumSize().height);
 
             components.put(controller, component);
         }
@@ -144,7 +146,7 @@ Debug.println(Level.FINER, controller.getMaximumSize().width + ", " + controller
         }
     }
 
-    // constraints editor -----------------------------------------------------
+    // constraints editor ----
 
     /** mouse click on constraint panel means to count up component no. */
     private final MouseListener ml = new MouseAdapter() {
@@ -185,7 +187,7 @@ Debug.println(Level.FINER, controller.getMaximumSize().width + ", " + controller
         lcTableModel.setObject(constraintsEditor.getLayoutConstraints(index));
     }
 
-    //-------------------------------------------------------------------------
+    // ----
 
     /** when constraints updated */
     private final PropertyChangeListener pcl = new PropertyChangeListener() {
@@ -200,7 +202,7 @@ Debug.println(Level.FINER, controller.getMaximumSize().width + ", " + controller
             gridbag.addLayoutComponent(component, adjustRatio(cs));
 
             gridbag.layoutContainer(layoutPanel);
-Debug.println(Level.FINE, index);
+logger.log(Level.DEBUG, index);
         }
     };
 
@@ -222,7 +224,7 @@ Debug.println(Level.FINE, index);
         newGc.weightx       =            gc.weightx;
         newGc.weighty       =            gc.weighty;
 
-Debug.println(Level.FINER, ratio);
+logger.log(Level.TRACE, ratio);
         return newGc;
     }
 }

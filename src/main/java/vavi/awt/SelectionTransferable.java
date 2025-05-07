@@ -28,7 +28,7 @@ import vavi.awt.dnd.BasicTransferable;
  */
 public class SelectionTransferable extends BasicTransferable {
 
-    /** XMLEn(De)coder は　UTF-8 固定らしい． */
+    /** XMLEn(De)coder seems to be fixed to UTF-8. */
     private static final String encoding = "UTF-8";
 
     /** this class's flavor */

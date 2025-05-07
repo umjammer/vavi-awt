@@ -12,18 +12,18 @@ import java.util.Map;
 
 
 /**
- * EventPlug クラスのユーティリティです．
+ * Utility for the EventPlug class.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020511 nsano initial version <br>
  */
 public class EventPlugSupport {
 
-    /** EventPlug 管理用 Hashtable */
+    /** Map for managing EventPlug */
     protected final Map<String, EventPlug> eventPlugs = new HashMap<>();
 
     /**
-     * EventPlug を追加します．
+     * Add EventPlug.
      *
      * @param eventPlug EventPlug
      */
@@ -32,7 +32,7 @@ public class EventPlugSupport {
     }
 
     /**
-     * EventPlug を削除します．
+     * Delete the EventPlug.
      *
      * @param eventPlug EventPlug
      */
@@ -41,28 +41,28 @@ public class EventPlugSupport {
     }
 
     /**
-     * 指定した名前の EventPlug を削除します．
+     * Deletes the EventPlug with the specified name.
      *
-     * @param name EventPlug の名前
+     * @param name EventPlug name
      */
     public void removeEventPlug(String name) {
         eventPlugs.remove(name);
     }
 
     /**
-     * 指定した名前の EventPlug を取得します．
+     * Gets the EventPlug with the specified name.
      *
-     * @param name EventPlug の名前
+     * @param name EventPlug name
      */
     private EventPlug getEventPlug(String name) {
         return eventPlugs.get(name);
     }
 
     /**
-     * 指定した名前の EventPlug にイベントを発行するオブジェクトを設定します．
+     * Sets the object that will emit events to the EventPlug with the specified name.
      *
-     * @param name EventPlug の名前
-     * @param invoker イベントを発行するオブジェクト
+     * @param name EventPlug name
+     * @param invoker The object that emits the event
      */
     public void setInvoker(String name, Object invoker) {
         EventPlug eventPlug = getEventPlug(name);
@@ -70,9 +70,9 @@ public class EventPlugSupport {
     }
 
     /**
-     * 指定した名前の EventPlug のイベントを発行するオブジェクトを取得します．
+     * Gets the object that issues the EventPlug event with the specified name.
      *
-     * @param name EventPlug の名前
+     * @param name EventPlug name
      */
     public Object getInvoker(String name) {
         EventPlug eventPlug = getEventPlug(name);
@@ -80,10 +80,10 @@ public class EventPlugSupport {
     }
 
     /**
-     * 指定した名前の EventPlug にイベントを受け取るリスナを設定します．
+     * Sets a listener to receive events on the EventPlug with the specified name.
      *
-     * @param name EventPlug の名前
-     * @param listener イベントを受け取るリスナ
+     * @param name EventPlug name
+     * @param listener Listener that receives the event
      */
     public void setEventListener(String name, EventListener listener) {
         EventPlug eventPlug = getEventPlug(name);
@@ -91,9 +91,9 @@ public class EventPlugSupport {
     }
 
     /**
-     * 指定した名前の EventPlug のイベントを受け取るリスナを取得します．
+     * Gets a listener that receives events from the EventPlug with the specified name.
      *
-     * @param name EventPlug の名前
+     * @param name EventPlug name
      */
     public EventListener getEventListener(String name) {
         EventPlug eventPlug = getEventPlug(name);
@@ -101,11 +101,11 @@ public class EventPlugSupport {
     }
 
     /**
-     * 指定した名前の EventPlug を複製し イベントを発行するオブジェクトを設定します．
+     * Duplicates the EventPlug with the specified name and sets the object that will issue the event.
      *
-     * @param name EventPlug の名前
-     * @param newName 複製する EventPlug の名前
-     * @param invoker イベントを発行するオブジェクト
+     * @param name EventPlug name
+     * @param newName EventPlug name to duplicate
+     * @param invoker The object that emits the event
      */
     public void addNewEventPlug(String name, String newName, Object invoker) {
         EventListener listener = getEventListener(name);
@@ -113,11 +113,11 @@ public class EventPlugSupport {
     }
 
     /**
-     * 指定した名前の EventPlug を複製し イベントを受け取るリスナを設定します．
+     * Duplicates the EventPlug with the specified name and sets a listener to receive events.
      *
-     * @param name EventPlug の名前
-     * @param newName 複製する EventPlug の名前
-     * @param l イベントを受け取るリスナ
+     * @param name EventPlug name
+     * @param newName EventPlug name to duplicate
+     * @param l Listener that receives the event
      */
     public void addNewEventPlug(String name, String newName, EventListener l) {
         Object invoker = getInvoker(name);
@@ -125,10 +125,10 @@ public class EventPlugSupport {
     }
 
     /**
-     * 指定した名前の EventPlug を結合，分離します．
+     * Attaches or detaches an EventPlug with the specified name.
      *
-     * @param name EventPlug の名前
-     * @param connected 結合するかどうか
+     * @param name EventPlug name
+     * @param connected To combine or not
      */
     public void setConnected(String name, boolean connected) {
         EventPlug eventPlug = getEventPlug(name);
@@ -136,9 +136,9 @@ public class EventPlugSupport {
     }
 
     /**
-     * すべての EventPlug を結合，分離します．
+     * Combines and separates all EventPlugs.
      *
-     * @param connected 結合するかどうか
+     * @param connected To combine or not
      */
     public void setConnected(boolean connected) {
         for (EventPlug eventPlug : eventPlugs.values()) {

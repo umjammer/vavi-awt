@@ -9,20 +9,22 @@ package vavi.swing.layout;
 import java.awt.LayoutManager;
 import java.awt.Toolkit;
 import java.beans.BeanInfo;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import java.util.logging.Level;
-
 import javax.swing.ImageIcon;
 
-import vavix.util.ClassUtil;
 import vavi.util.Debug;
+import vavix.util.ClassUtil;
+
+import static java.lang.System.getLogger;
 
 
 /**
- * LayoutManager クラスは Bean の仕様では扱えませんので Introspector の
- * 替わりにこのクラスを用いて *LayoutManager の BeanInfo を取得します．
+ * Since the LayoutManager class cannot be handled by the Bean specification,
+ * this class is used instead of the Introspector to obtain the BeanInfo of *LayoutManager.
  *
  * @depends layoutManager.properties
  *
@@ -32,11 +34,13 @@ import vavi.util.Debug;
  */
 public class LayoutManagerInfoFactory {
 
+    private static final Logger logger = getLogger(LayoutManagerInfoFactory.class.getName());
+
     /** */
     private LayoutManagerInfoFactory() {}
 
     /**
-     * TODO vavi.swing.layout にあると決め打ち
+     * TODO Assume it is in vavi.swing.layout
      */
     public static BeanInfo getBeanInfo(Class<?> lmClass) {
         try {
@@ -50,13 +54,13 @@ public class LayoutManagerInfoFactory {
             Class<BeanInfo> clazz = (Class<BeanInfo>) Class.forName(name);
             return clazz.getDeclaredConstructor().newInstance();
         } catch (Exception e) {
-Debug.println(Level.SEVERE, e);
+logger.log(Level.ERROR, e.getMessage(), e);
 Debug.printStackTrace(e);
             return null;
         }
     }
 
-    //-------------------------------------------------------------------------
+    // ----
 
     /** */
     private static List<SampleLayoutManagerInfo> lmis;
@@ -99,13 +103,13 @@ Debug.printStackTrace(e);
 
                 key = "argTypes";
                 String argTypes = props.getProperty(i + "." + key);
-                if (argTypes != null) { // 引数なし
+                if (argTypes != null) { // No arguments
                     key = "args";
                     String args = props.getProperty(i + "." + key);
 
                     lmi.layout = (LayoutManager)
                         ClassUtil.newInstance(className, argTypes, args);
-                } else { // 引数あり
+                } else { // With arguments
                     @SuppressWarnings("unchecked")
                     Class<LayoutManager> clazz = (Class<LayoutManager>) Class.forName(className);
                     lmi.layout = clazz.getDeclaredConstructor().newInstance();
@@ -135,7 +139,7 @@ Debug.printStackTrace(e);
             lmi.desc = val;
             lmis.add(lmi);
         } catch (Exception e) {
-Debug.println(Level.SEVERE, e);
+logger.log(Level.ERROR, e.getMessage(), e);
             throw new IllegalStateException(e);
         }
 

@@ -11,10 +11,11 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.beans.PropertyChangeListener;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.Arrays;
-import java.util.logging.Level;
 
-import vavi.util.Debug;
+import static java.lang.System.getLogger;
 
 
 /**
@@ -26,12 +27,14 @@ import vavi.util.Debug;
 public class GridBagLayoutConstraintsEditor
     extends AbstractLayoutConstraintsEditor {
 
+    private static final Logger logger = getLogger(GridBagLayoutConstraintsEditor.class.getName());
+
     /** Creates layout constraints editor */
     public GridBagLayoutConstraintsEditor(GridBagLayout layout) {
         super(layout);
     }
 
-    //-------------------------------------------------------------------------
+    // ----
 
     /** */
     private PropertyChangeListener pcl;
@@ -48,7 +51,7 @@ public class GridBagLayoutConstraintsEditor
         constraints.addPropertyChangeListener(pcl);
     }
 
-    // constraints supports ---------------------------------------------------
+    // constraints supports ----
 
     private static final int X_AXIS = 1;
     private static final int Y_AXIS = 2;
@@ -63,7 +66,7 @@ public class GridBagLayoutConstraintsEditor
 
         Component[] components = container.getComponents();
         if (components.length == 0) {
-Debug.println(Level.FINE, components.length);
+logger.log(Level.DEBUG, components.length);
             return;
         }
 

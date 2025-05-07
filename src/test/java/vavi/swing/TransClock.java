@@ -126,15 +126,15 @@ public class TransClock implements Updatable {
 
     private JPopupMenu initPopupMenu() {
         JPopupMenu menu = new JPopupMenu();
-        JMenuItem item = new JMenuItem("色の変更...");
+        JMenuItem item = new JMenuItem("Change color...");
         item.addActionListener(event -> changeColor());
         menu.add(item);
 
-        item = new JMenuItem("フォントの変更...");
+        item = new JMenuItem("Change font...");
         item.addActionListener(event -> changeFont());
         menu.add(item);
 
-        item = new JMenuItem("終了");
+        item = new JMenuItem("Exit");
         item.addActionListener(event -> System.exit(0));
         menu.add(item);
 
@@ -144,7 +144,7 @@ public class TransClock implements Updatable {
     private void initTimer() {
         Timer timer = new Timer();
 
-        // 2 秒後からスタート
+        // Starts in 2 seconds
         Date start = new Date((System.currentTimeMillis() / 1000L) * 1000L + 500L);
         timer.scheduleAtFixedRate(new ClockTask(this), start, 1000L);
     }

@@ -35,7 +35,7 @@ import vavi.swing.fontchooser.SmallFontEditor;
  */
 public class SwingFontEditor extends SwingEditorSupport {
 
-    /** リソースバンドル */
+    /** Resource Bundles */
     private static final ResourceBundle rb =
     ResourceBundle.getBundle("vavi.swing.resource", Locale.getDefault());
 
@@ -74,7 +74,7 @@ public class SwingFontEditor extends SwingEditorSupport {
         editorComponent.removePropertyChangeListener(pcl);
     }
 
-    /** TODO unplug 要るかどうか要検証 */
+    /** TODO Need to check if unplug is needed */
     @Override
     public void setValue(Object value) {
         super.setValue(value);

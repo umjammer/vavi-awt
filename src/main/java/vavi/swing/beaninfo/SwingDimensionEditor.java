@@ -25,7 +25,7 @@ import javax.swing.JSpinner;
  */
 public class SwingDimensionEditor extends SwingEditorSupport {
 
-    /** リソースバンドル */
+    /** Resource Bundles */
 //    private static final ResourceBundle rb =
 //        ResourceBundle.getBundle("vavi.swing.resource", Locale.getDefault());
 

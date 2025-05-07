@@ -14,7 +14,7 @@ import vavi.swing.event.EditorListener;
 
 
 /**
- * 複数のエディタを管理する基本クラスです．
+ * A base class for managing multiple editors.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010820 nsano initial version <br>
@@ -23,14 +23,14 @@ import vavi.swing.event.EditorListener;
  */
 public abstract class EditorManager implements EditorListener {
 
-    /** 複数のエディタ管理用ベクタ */
+    /** Multiple editor management list */
     protected final List<Editor> editors = new ArrayList<>();
 
-    /** カレントのエディタ */
+    /** The current editor */
     protected Editor current;
 
     /**
-     * エディタがオープンされたときに呼ばれます．
+     * Called when the editor is opened.
      */
     public void editorOpened(EditorEvent ev) {
         Editor editor = (Editor) ev.getSource();
@@ -41,12 +41,12 @@ public abstract class EditorManager implements EditorListener {
     }
 
     /**
-     * エディタがオープンされたときに呼ばれる処理の実装です．
+     * This is the implementation of the process that is called when the editor is opened.
      */
     protected abstract void editorOpenedImpl(Editor editor);
 
     /**
-     * エディタがクローズされたときに呼ばれます．
+     * Called when the editor is closed.
      */
     public void editorClosed(EditorEvent ev) {
         Editor editor = (Editor) ev.getSource();
@@ -63,13 +63,10 @@ public abstract class EditorManager implements EditorListener {
     }
 
     /**
-     * エディタがクローズされたときに呼ばれる処理の実装です．
+     * This is the implementation of the process that is called when the editor is closed.
      */
     protected abstract void editorClosedImpl(Editor editor);
 
-    /**
-     * エディタがアップデートされたときに呼ばれます．
-     */
     @Override
     public void editorUpdated(EditorEvent ev) {
         Editor editor = (Editor) ev.getSource();
@@ -77,33 +74,33 @@ public abstract class EditorManager implements EditorListener {
     }
 
     /**
-     * エディタがアップデートされたときに呼ばれる処理の実装です．
+     * This is the implementation of the process that is called when the editor is updated.
      */
     protected abstract void editorUpdatedImpl(Editor editor);
 
     /**
-     * エディタをオープンします．
+     * Open the editor.
      *
-     * @param editor エディタ
+     * @param editor editor
      */
     public abstract void openEditor(Editor editor);
 
     /**
-     * エディタをクローズします．
+     * Close the editor.
      *
-     * @param editor エディタ
+     * @param editor editor
      */
     public abstract void closeEditor(Editor editor);
 
     /**
-     * エディタをアップデートします．
+     * Update the editor.
      *
-     * @param editor エディタ
+     * @param editor editor
      */
     public abstract void updateEditor(Editor editor);
 
     /**
-     * 全エディタをクローズします．
+     * Close all editors.
      */
     public void closeAllEditors() {
         @SuppressWarnings("unchecked")
@@ -117,21 +114,21 @@ public abstract class EditorManager implements EditorListener {
     }
 
     /**
-     * エディタマネージャを使って全エディタをクローズしたときの処理の実装です．
+     * This is the implementation of the process that occurs when all editors are closed using the editor manager.
      */
     protected abstract void closedAllEditorsImpl();
 
     /**
-     * エディタのリストを取得します．
+     * Gets the list of editors.
      *
-     * @return エディタのリスト
+     * @return List of Editors
      */
     public List<Editor> getEditors() {
         return editors;
     }
 
     /**
-     * カレントのエディタを取得します．
+     * Gets the current editor.
      */
     public Editor getCurrentEditor() {
         return current;

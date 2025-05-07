@@ -13,9 +13,10 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
 import javax.swing.JComponent;
 import javax.swing.event.MouseInputListener;
 
@@ -23,7 +24,8 @@ import vavi.awt.containereditor.LocatableController;
 import vavi.awt.rubberband.RubberBandGesture;
 import vavi.awt.rubberband.RubberBandListener;
 import vavi.swing.event.EditorListener;
-import vavi.util.Debug;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -38,6 +40,8 @@ import vavi.util.Debug;
  */
 public class GlassPane extends JComponent {
 
+    private static final Logger logger = getLogger(GlassPane.class.getName());
+
     /** */
     private final JComponent glassPane = new JComponent() {
         private final ContainerListener cl = new ContainerListener() {
@@ -46,14 +50,14 @@ public class GlassPane extends JComponent {
                 Component component = ev.getChild();
                 component.addMouseListener(rbg);
                 component.addMouseMotionListener(rbg);
-Debug.println(Level.FINER, "add gesture to: " + component.getName());
+logger.log(Level.TRACE, "add gesture to: " + component.getName());
             }
             @Override
             public void componentRemoved(ContainerEvent ev) {
                 Component component = ev.getChild();
                 component.removeMouseListener(rbg);
                 component.removeMouseMotionListener(rbg);
-Debug.println(Level.FINER, "remove gesture to: " + component.getName());
+logger.log(Level.TRACE, "remove gesture to: " + component.getName());
             }
         };
         {
@@ -154,17 +158,17 @@ Debug.println(Level.FINER, "remove gesture to: " + component.getName());
         glassPane.addMouseMotionListener(mil);
     }
 
-    //-------------------------------------------------------------------------
+    // ----
 
-    /** listener for container */
+    /** Adding a component generates a controller for container */
     private final ContainerListener cl1 = new ContainerListener() {
-        /** の追加はコントローラを発生 */
+        /** Adding a component generates a controller */
         @Override
         public void componentAdded(ContainerEvent ev) {
             Component component = ev.getChild();
             addController(component);
         }
-        /** の削除はコントローラを削除 */
+        /** Deleting a component will delete the controller */
         @Override
         public void componentRemoved(ContainerEvent ev) {
             Component component = ev.getChild();
@@ -172,7 +176,7 @@ Debug.println(Level.FINER, "remove gesture to: " + component.getName());
         }
     };
 
-    //-------------------------------------------------------------------------
+    // ----
 
     /** */
     private void addController(Component component) {
@@ -180,7 +184,7 @@ Debug.println(Level.FINER, "remove gesture to: " + component.getName());
         if (controller == null) {
             controller = new BasicController(component);
             glassPane.add(controller, 0);
-Debug.println(Level.FINER, "add controller to: " + component.getName());
+logger.log(Level.TRACE, "add controller to: " + component.getName());
             controllers.put(component, controller);
         }
     }
@@ -190,34 +194,34 @@ Debug.println(Level.FINER, "add controller to: " + component.getName());
         LocatableController controller = (LocatableController) controllers.get(component);
         if (controller != null && controller.getView() == component) {
             glassPane.remove((Component) controller);
-Debug.println(Level.FINER, "remove controller for: " + component.getName());
+logger.log(Level.TRACE, "remove controller for: " + component.getName());
             controllers.remove(component);
         }
     }
 
-    //-------------------------------------------------------------------------
+    // ----
 
-    /** すべてのコンポーネントに Controller を作成 */
+    /** Create a Controller for every component */
     private void addAllControllers() {
-Debug.println(Level.FINER, container.getComponentCount());
+logger.log(Level.TRACE, container.getComponentCount());
         for (int i = 0; i < container.getComponentCount(); i++) {
             Component component = container.getComponent(i);
             addController(component);
         }
     }
 
-    /** すべての Controller を削除 */
+    /** Remove all Controllers */
     private void removeAllControllers() {
         for (int i = 0; i < container.getComponentCount(); i++) {
             Component component = container.getComponent(i);
             removeController(component);
         }
 if (!controllers.isEmpty()) {
- Debug.println(Level.INFO, "TODO " + controllers.size() + "controller(s) still alive");
+ logger.log(Level.INFO, "TODO " + controllers.size() + "controller(s) still alive");
 }
     }
 
-    //-------------------------------------------------------------------------
+    // ----
 
     /** pairs for Component and Controller */
     private final Map<Component, Component> controllers = new HashMap<>();

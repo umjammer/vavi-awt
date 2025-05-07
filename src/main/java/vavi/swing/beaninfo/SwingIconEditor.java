@@ -10,16 +10,17 @@ import java.awt.Image;
 import java.awt.MediaTracker;
 import java.awt.Toolkit;
 import java.beans.PropertyChangeListener;
-import java.util.logging.Level;
-
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 
 import vavi.swing.JFileChooserTextField;
-import vavi.util.Debug;
 import vavi.util.RegexFileFilter;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -29,6 +30,8 @@ import vavi.util.RegexFileFilter;
  * @version 0.00 020527 nsano initial version <br>
  */
 public class SwingIconEditor extends SwingEditorSupport {
+
+    private static final Logger logger = getLogger(SwingIconEditor.class.getName());
 
     /** */
     private JFileChooserTextField chooser;
@@ -63,7 +66,7 @@ public class SwingIconEditor extends SwingEditorSupport {
         }
 
         if (path == null) {
-Debug.println(Level.FINER, "null image");
+logger.log(Level.TRACE, "null image");
             return;
         }
 
@@ -74,8 +77,8 @@ Debug.println(Level.FINER, "null image");
             tracker.waitForAll();
             setValue(new ImageIcon(image));
         } catch (Exception e) {
-Debug.printStackTrace(Level.FINER, e);
-Debug.println(Level.SEVERE, e);
+logger.log(Level.TRACE, e);
+logger.log(Level.ERROR, e.getMessage(), e);
         }
     };
 }

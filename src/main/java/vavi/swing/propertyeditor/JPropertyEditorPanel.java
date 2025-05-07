@@ -20,11 +20,11 @@ import java.beans.BeanInfo;
 import java.beans.Customizer;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Stack;
-import java.util.logging.Level;
-
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
@@ -40,7 +40,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 
-import vavi.util.Debug;
+import static java.lang.System.getLogger;
 
 
 /**
@@ -55,7 +55,9 @@ import vavi.util.Debug;
  */
 public class JPropertyEditorPanel extends JPanel {
 
-    /** リソースバンドル */
+    private static final Logger logger = getLogger(JPropertyEditorPanel.class.getName());
+
+    /** Resource Bundles */
     private static final ResourceBundle rb =
     ResourceBundle.getBundle("vavi.swing.resource", Locale.getDefault());
 
@@ -126,17 +128,17 @@ public class JPropertyEditorPanel extends JPanel {
             VIEW_CHOICES[PropertyDescriptorTableModel.VIEW_STANDARD]);
 
         JToolBar toolbar = new JToolBar();
-    toolbar.setFloatable(false);
+        toolbar.setFloatable(false);
 
         JButton button = toolbar.add(upAction);
-    button.setToolTipText((String) upAction.getValue("Name"));
+        button.setToolTipText((String) upAction.getValue("Name"));
         button = toolbar.add(downAction);
-    button.setToolTipText((String) downAction.getValue("Name"));
+        button.setToolTipText((String) downAction.getValue("Name"));
         toolbar.addSeparator();
         button = toolbar.add(addAction);
-    button.setToolTipText((String) addAction.getValue("Name"));
+        button.setToolTipText((String) addAction.getValue("Name"));
         button = toolbar.add(custAction);
-    button.setToolTipText((String) custAction.getValue("Name"));
+        button.setToolTipText((String) custAction.getValue("Name"));
         toolbar.addSeparator();
         toolbar.add(viewCombo);
 
@@ -331,7 +333,7 @@ public class JPropertyEditorPanel extends JPanel {
 
                 table.setVisible(true);
             } catch (IntrospectionException e) {
-Debug.println(Level.SEVERE, e);
+logger.log(Level.ERROR, e.getMessage(), e);
                 nameLabel.setText(rb.getString("jPropertyEditorPanel.label.1.text"));
                 table.setVisible(false);
             }
@@ -368,7 +370,7 @@ Debug.println(Level.SEVERE, e);
                 try {
                     customizer = (Component) clazz.getDeclaredConstructor().newInstance();
                 } catch (Exception e) {
-Debug.println(Level.FINE, "Instantiation exception creating Customizer: " + e);
+logger.log(Level.DEBUG, "Instantiation exception creating Customizer: " + e);
                 }
             }
         }
@@ -376,7 +378,7 @@ Debug.println(Level.FINE, "Instantiation exception creating Customizer: " + e);
         return customizer;
     }
 
-    //-------------------------------------------------------------------------
+    // ----
 
     static {
         Toolkit t = Toolkit.getDefaultToolkit();

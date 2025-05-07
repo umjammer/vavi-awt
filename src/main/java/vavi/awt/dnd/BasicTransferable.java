@@ -10,22 +10,25 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.List;
-import java.util.logging.Level;
 
-import vavi.util.Debug;
+import static java.lang.System.getLogger;
 
 
 /**
  * The basic transferable object.
  *
- * @done ClipboardOwner いるの？
+ * @done is ClipboardOwner needed?
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010820 nsano initial version <br>
  *          0.01 020507 nsano delete lostOwnership <br>
  *          0.02 020609 nsano refine <br>
  */
 public abstract class BasicTransferable implements Transferable {
+
+    private static final Logger logger = getLogger(BasicTransferable.class.getName());
 
     /** Flavor list */
     protected List<DataFlavor> flavorList;
@@ -38,7 +41,7 @@ public abstract class BasicTransferable implements Transferable {
      */
     public BasicTransferable(Object model) {
         this.model = model;
-Debug.println(Level.FINER, model);
+logger.log(Level.TRACE, model);
     }
 
     /** Dumps flavors. */
@@ -66,14 +69,14 @@ Debug.println(Level.FINER, model);
     /** Tells if the specified flavor is supported or not. */
     @Override
     public boolean isDataFlavorSupported(DataFlavor flavor) {
-Debug.println(Level.FINER, flavorList.contains(flavor));
+logger.log(Level.TRACE, flavorList.contains(flavor));
         return flavorList.contains(flavor);
     }
 
     /** Gets the transferable data. */
     @Override
     public synchronized Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
-Debug.println(Level.FINER, toString());
+logger.log(Level.TRACE, toString());
 //        dumpFlavor(flavor);
 
         if (isDataFlavorSupported(flavor)) {

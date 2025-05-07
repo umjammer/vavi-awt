@@ -23,7 +23,7 @@ import javax.swing.border.*;
  * @beaninfo Font "titleFont"
  * @beaninfo Color "titleColor"
  *
- * TODO たぶん bean として機能する．
+ * TODO It probably functions as a bean.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020524 nsano initial version <br>

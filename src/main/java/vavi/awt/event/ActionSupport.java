@@ -13,21 +13,21 @@ import java.util.Vector;
 
 
 /**
- * Action リスナーのユーティリティです．
+ * Action listener utilities.
  *
  * @target 1.1
- * @caution JDK 1.1 用に書かれているので swing は使っちゃいかん！
+ * @caution Don't use swing because it's written for JDK 1.1!
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020503 nsano initial version <br>
  *          0.01 020914 nsano TODO synchronized <br>
  */
 public class ActionSupport implements Serializable {
 
-    /** Action のリスナー */
+    /** Action listeners */
     private final Vector<ActionListener> listeners = new Vector<>();
 
     /**
-     * Action リスナーをアタッチします．
+     * Attaches an action listener.
      *
      * @param l ActionListener
      */
@@ -36,7 +36,7 @@ public class ActionSupport implements Serializable {
     }
 
     /**
-     * Action リスナーをリムーブします．
+     * Removes an action listener.
      *
      * @param l ActionListener
      */
@@ -45,7 +45,7 @@ public class ActionSupport implements Serializable {
     }
 
     /**
-     * イベントを発行します．
+     * Issues an event.
      */
     public synchronized void fireActionPerformed(ActionEvent ev) {
         for (int i = 0; i < listeners.size(); i++) {

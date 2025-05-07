@@ -11,13 +11,13 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.LayoutManager;
-import java.util.logging.Level;
-
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.event.TableModelListener;
 
-import vavi.util.Debug;
+import static java.lang.System.getLogger;
 
 
 /**
@@ -28,6 +28,8 @@ import vavi.util.Debug;
  *          0.01 020618 nsano refine <br>
  */
 public class FlowLayoutCustomizer extends BasicLayoutManagerCustomizer {
+
+    private static final Logger logger = getLogger(FlowLayoutCustomizer.class.getName());
 
     /** layout for layoutPanel */
     private final FlowLayout flow;
@@ -64,8 +66,8 @@ public class FlowLayoutCustomizer extends BasicLayoutManagerCustomizer {
     public void setObject(LayoutManager layout) {
         updateLayout();
 
-Debug.println(Level.FINER, "flow  : " + flow.hashCode());
-Debug.println(Level.FINER, "layout: " + layout.hashCode());
+logger.log(Level.TRACE, "flow  : " + flow.hashCode());
+logger.log(Level.TRACE, "layout: " + layout.hashCode());
         super.setObject(layout);
 
         tableModel.setObject(layout);
@@ -89,11 +91,11 @@ Debug.println(Level.FINER, "layout: " + layout.hashCode());
 
         for (int i = 0; i < container.getComponentCount(); i++) {
             Component component = container.getComponent(i);
-Debug.println(Level.FINER, "---- " + i + " ----");
-Debug.println(Level.FINER, component.getSize().width + ", " + component.getSize().height);
-Debug.println(Level.FINER, component.getMinimumSize().width + ", " + component.getMinimumSize().height);
-Debug.println(Level.FINER, component.getPreferredSize().width + ", " + component.getPreferredSize().height);
-Debug.println(Level.FINER, component.getMaximumSize().width + ", " + component.getMaximumSize().height);
+logger.log(Level.TRACE, "---- " + i + " ----");
+logger.log(Level.TRACE, component.getSize().width + ", " + component.getSize().height);
+logger.log(Level.TRACE, component.getMinimumSize().width + ", " + component.getMinimumSize().height);
+logger.log(Level.TRACE, component.getPreferredSize().width + ", " + component.getPreferredSize().height);
+logger.log(Level.TRACE, component.getMaximumSize().width + ", " + component.getMaximumSize().height);
 
             JLabel controller = new JLabel(String.valueOf(i));
             controller.setHorizontalAlignment(JLabel.CENTER);
@@ -101,11 +103,11 @@ Debug.println(Level.FINER, component.getMaximumSize().width + ", " + component.g
             controller.setBorder(BorderFactory.createRaisedBevelBorder());
             Dimension size = component.getPreferredSize();
             controller.setPreferredSize(adjustRatio(size));
-Debug.println(Level.FINER, "----");
-Debug.println(Level.FINER, controller.getSize().width + ", " + controller.getSize().height);
-Debug.println(Level.FINER, controller.getMinimumSize().width + ", " + controller.getMinimumSize().height);
-Debug.println(Level.FINER, controller.getPreferredSize().width + ", " + controller.getPreferredSize().height);
-Debug.println(Level.FINER, controller.getMaximumSize().width + ", " + controller.getMaximumSize().height);
+logger.log(Level.TRACE, "----");
+logger.log(Level.TRACE, controller.getSize().width + ", " + controller.getSize().height);
+logger.log(Level.TRACE, controller.getMinimumSize().width + ", " + controller.getMinimumSize().height);
+logger.log(Level.TRACE, controller.getPreferredSize().width + ", " + controller.getPreferredSize().height);
+logger.log(Level.TRACE, controller.getMaximumSize().width + ", " + controller.getMaximumSize().height);
 
             layoutPanel.add(controller);
 

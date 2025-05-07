@@ -12,7 +12,7 @@ import java.beans.SimpleBeanInfo;
 
 
 /**
- * {@link vavi.swing.JVolume} の BeanInfo です．
+ * BeanInfo for {@link vavi.swing.JVolume}.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020516 nsano initial version <br>

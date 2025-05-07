@@ -46,7 +46,7 @@ public class GlassPane extends JComponent {
     }
 
     /**
-     * 将来 InputMap が対応してくれんじゃないの？
+     * Will InputMap support this in the future?
      */
     public void setMouseInputAction(MouseInputListener mil) {
         addMouseListener(mil);

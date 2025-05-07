@@ -25,7 +25,7 @@ import vavi.swing.ClockTask.Updatable;
 
 
 /**
- * TODO 時計自身も薄くなるやんか！
+ * TODO The color of the watch itself will also fade!
  *
  * @see "http://www.code-life.jp/blog/2009/04/26/java%E3%81%A7%E9%9D%9E%E7%9F%A9%E5%BD%A2%E3%83%BB%E5%8D%8A%E9%80%8F%E6%98%8E%E3%82%A6%E3%82%A3%E3%83%B3%E3%83%89%E3%82%A6swing%E7%89%88/"
  */
@@ -133,15 +133,15 @@ public class TransClock2 implements Updatable {
 
     private JPopupMenu initPopupMenu() {
         JPopupMenu menu = new JPopupMenu();
-        JMenuItem item = new JMenuItem("色の変更...");
+        JMenuItem item = new JMenuItem("Change color...");
         item.addActionListener(event -> changeColor());
         menu.add(item);
 
-        item = new JMenuItem("フォントの変更...");
+        item = new JMenuItem("Change font...");
         item.addActionListener(event -> changeFont());
         menu.add(item);
 
-        item = new JMenuItem("終了");
+        item = new JMenuItem("Exit");
         item.addActionListener(event -> System.exit(0));
         menu.add(item);
 
@@ -151,7 +151,7 @@ public class TransClock2 implements Updatable {
     private void initTimer() {
         Timer timer = new Timer();
 
-        // 2 秒後からスタート
+        // Starts in 2 seconds
         Date start = new Date((System.currentTimeMillis() / 1000L) * 1000L + 500L);
         timer.scheduleAtFixedRate(new ClockTask(this), start, 1000L);
     }

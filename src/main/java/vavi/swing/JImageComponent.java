@@ -8,10 +8,12 @@ package vavi.swing;
 
 import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
-import java.util.logging.Level;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 
 import vavi.awt.BaseImageComponent;
-import vavi.util.Debug;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -23,6 +25,8 @@ import vavi.util.Debug;
  * @version 0.00 021109 nsano initial version <br>
  */
 public class JImageComponent extends BaseImageComponent<BufferedImage> {
+
+    private static final Logger logger = getLogger(JImageComponent.class.getName());
 
     /** Creates an image component. */
     public JImageComponent() {
@@ -46,7 +50,7 @@ public class JImageComponent extends BaseImageComponent<BufferedImage> {
         if (image != null) {
             iw = image.getWidth();
             ih = image.getHeight();
-Debug.println(Level.FINE, "image: " + iw + "x" + ih + ", " + image);
+logger.log(Level.DEBUG, "image: " + iw + "x" + ih + ", " + image);
         }
     }
 }

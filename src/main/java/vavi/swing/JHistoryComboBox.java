@@ -9,11 +9,12 @@ package vavi.swing;
 import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Level;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 import javax.swing.AbstractButton;
@@ -24,16 +25,17 @@ import javax.swing.JTextField;
 import vavi.awt.dnd.Droppable;
 import vavi.util.Debug;
 
+import static java.lang.System.getLogger;
+
 
 /**
- * ヒストリ付きコンボボックスです．
- * エクスプローラ等からのファイルの
- * ドラッグアンドドロップをサポートします．
+ * A combo box with history.
+ * Supports drag and drop of files from Explorer etc.
  *
- * TODO ~~ヒストリのクラス化？~~
- *      ~~ヒストリの取り出し~~
- *      ヒストリの削除
- *      ~~DnD って UI で指定するもの？~~
+ * TODO ~~History class?~~
+ *      ~~Retrieving History~~
+ *      Delete History
+ *      ~~Is DnD something specified in the UI?~~
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020503 nsano initial version <br>
@@ -41,6 +43,8 @@ import vavi.util.Debug;
  *          0.02 021223 nsano fix native DnD <br>
  */
 public class JHistoryComboBox extends JComboBox<String> {
+
+    private static final Logger logger = getLogger(JHistoryComboBox.class.getName());
 
     private final JTextField editor;
 
@@ -79,10 +83,10 @@ public class JHistoryComboBox extends JComboBox<String> {
     public void restoreHistory(String applicationId) {
         try {
             Preferences prefs = Preferences.userRoot().node(applicationId);
-Debug.println(Level.FINE, "prefs <<: " + prefs.name());
+logger.log(Level.DEBUG, "prefs <<: " + prefs.name());
             for (int i = 0; i < prefs.keys().length; i++) {
                 String value = prefs.get("item" + i, null);
-Debug.println(Level.FINER, "prefs <<: " + ("item" + i) + ": " + value);
+logger.log(Level.TRACE, "prefs <<: " + ("item" + i) + ": " + value);
                 addItem(value);
             }
             if (prefs.keys().length >0) {
@@ -98,7 +102,7 @@ Debug.println(Level.FINER, "prefs <<: " + ("item" + i) + ": " + value);
      */
     public void saveHistory(String applicationId) {
         Preferences prefs = Preferences.userRoot().node(applicationId);
-Debug.println(Level.FINE, "prefs >>: " + prefs.name());
+logger.log(Level.DEBUG, "prefs >>: " + prefs.name());
         try {
             prefs.clear();
         } catch (BackingStoreException e) {
@@ -118,7 +122,7 @@ Debug.println(Level.FINE, "prefs >>: " + prefs.name());
             }
         }
         for (String s : set) {
-Debug.println(Level.FINE, "prefs >>: item" + c + ": " + s);
+logger.log(Level.DEBUG, "prefs >>: item" + c + ": " + s);
             prefs.put("item" + c, s);
             c++;
         }
@@ -137,7 +141,7 @@ Debug.println(Level.FINE, "prefs >>: item" + c + ": " + s);
             if (item.equals(getItemAt(i)))
                 return;
         }
-Debug.println(Level.FINER, Debug.getCallerMethod() + ": " + item);
+logger.log(Level.TRACE, Debug.getCallerMethod() + ": " + item);
         insertItemAt(item, 0);
     };
 

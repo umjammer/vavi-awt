@@ -10,7 +10,7 @@ import java.util.EventObject;
 
 
 /**
- * Component が選択される時発行するイベントのクラスです．
+ * The class for the event that is fired when a Component is selected.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020509 nsano initial version <br>
@@ -21,7 +21,7 @@ public class ComponentSelectionEvent extends EventObject {
     private final Object selected;
 
     /**
-     * ComponentSelection イベントを構築します．
+     * Constructs a ComponentSelection event.
      */
     public ComponentSelectionEvent(Object source, Object selected) {
         super(source);

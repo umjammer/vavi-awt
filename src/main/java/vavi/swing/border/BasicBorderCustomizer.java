@@ -8,8 +8,8 @@ package vavi.swing.border;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.util.logging.Level;
-
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -20,15 +20,15 @@ import javax.swing.UIManager;
 import javax.swing.border.Border;
 
 import vavi.swing.propertyeditor.JPropertyEditorTable;
-import vavi.util.Debug;
+
+import static java.lang.System.getLogger;
 
 
 /**
- * Border クラスの Customizer の基底クラスです．
- * 左側にボーダーのサンプル，右側にボーダーのプロパティエディタテーブル の UI
- * で編集します．
+ * This is the base class for Customizer of the Border class.
+ * On the left is a border sample, and on the right is the border property editor table, with editing UI.
  *
- * @done Customizer としては，値が変わるたびに firePropertyChange する
+ * @done As a Customizer, firePropertyChange every time the value changes.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020523 nsano initial version <br>
@@ -36,6 +36,8 @@ import vavi.util.Debug;
  */
 public class BasicBorderCustomizer extends JComponent
     implements BorderCustomizer {
+
+    private static final Logger logger = getLogger(BasicBorderCustomizer.class.getName());
 
     /** the border instance which the bean has */
     protected Border border;
@@ -78,13 +80,13 @@ public class BasicBorderCustomizer extends JComponent
         tableModel.fireTableDataChanged();
 
         firePropertyChange("border", oldBorder, border);
-Debug.println(Level.FINER, this.border);
+logger.log(Level.TRACE, this.border);
     }
 
-    /** TODO TabbedPane の ChangeEvent のためだけ */
+    /** TODO Only for TabbedPane's ChangeEvent */
     @Override
     public Border getObject() {
-Debug.println(Level.FINER, border);
+logger.log(Level.TRACE, border);
         return border;
     }
 }

@@ -12,7 +12,7 @@ import java.util.List;
 
 
 /**
- * Editor 機構のの基本実装クラスです．
+ * This is the base implementation class for the Editor mechanism.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010820 nsano initial version <br>
@@ -26,17 +26,17 @@ public class EditorSupport implements Serializable {
     /** The editor listeners */
     private final List<EditorListener> listeners = new ArrayList<>();
 
-    /** EditorListener を追加します． */
+    /** Add an EditorListener. */
     public void addEditorListener(EditorListener l) {
         listeners.add(l);
     }
 
-    /** EditorListener を削除します． */
+    /** Removes an EditorListener. */
     public void removeEditorListener(EditorListener l) {
         listeners.remove(l);
     }
 
-    /** エディタがアップデートされたイベントを発行します． */
+    /** The editor will emit an updated event. */
     @SuppressWarnings("ForLoopReplaceableByForEach")
     public void fireEditorUpdated(EditorEvent ev) {
         // TODO enhanced for causes java.util.ConcurrentModificationException

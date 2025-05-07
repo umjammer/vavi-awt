@@ -6,12 +6,14 @@
 
 package vavi.swing.binding.binder;
 
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.lang.reflect.Field;
-import java.util.logging.Level;
 import javax.swing.JCheckBox;
 
 import vavi.beans.BeanUtil;
-import vavi.util.Debug;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -21,6 +23,8 @@ import vavi.util.Debug;
  * @version 0.00 2022-09-14 nsano initial version <br>
  */
 public class JCheckBoxBinder<T> extends BaseBinder<T> {
+
+    private static final Logger logger = getLogger(JCheckBoxBinder.class.getName());
 
     @Override
     public Class<?> acceptable() {
@@ -37,10 +41,10 @@ public class JCheckBoxBinder<T> extends BaseBinder<T> {
                     return;
                 }
                 BeanUtil.setFieldValue(field, bean, checkBox.isSelected());
-Debug.println(Level.FINE, "fired from: " + field.getName() + ", listener: " + this.hashCode() + ", source: " + e.getSource().hashCode());
+logger.log(Level.DEBUG, "fired from: " + field.getName() + ", listener: " + this.hashCode() + ", source: " + e.getSource().hashCode());
                 updater.update(bean);
             });
-Debug.println(Level.FINE, "swing listener added to: " + field.getName() + ", " + checkBox.hashCode());
+logger.log(Level.DEBUG, "swing listener added to: " + field.getName() + ", " + checkBox.hashCode());
         }
     }
 }
