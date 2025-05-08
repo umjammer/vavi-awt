@@ -7,16 +7,18 @@
 package vavi.swing.border;
 
 import java.awt.Toolkit;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import java.util.logging.Level;
-
 import javax.swing.ImageIcon;
 import javax.swing.border.Border;
 
-import vavix.util.ClassUtil;
 import vavi.util.Debug;
+import vavix.util.ClassUtil;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -30,11 +32,13 @@ import vavi.util.Debug;
  */
 public class BorderInfoFactory {
 
+    private static final Logger logger = getLogger(BorderInfoFactory.class.getName());
+
     /** */
     private BorderInfoFactory() {}
 
     /**
-     * TODO vavi.swing.border にあると決め打ち
+     * TODO Assume it is in vavi.swing.border
      */
     public static BorderInfo getBorderInfo(Class<?> borderClass) {
         try {
@@ -48,13 +52,12 @@ public class BorderInfoFactory {
             Class<BorderInfo> clazz = (Class<BorderInfo>) Class.forName(name);
             return clazz.getDeclaredConstructor().newInstance();
         } catch (Exception e) {
-Debug.println(Level.SEVERE, e);
-Debug.printStackTrace(e);
+logger.log(Level.ERROR, e.getMessage(), e);
             return null;
         }
     }
 
-    //-------------------------------------------------------------------------
+    // ----
 
     /** */
     private static List<SampleBorderInfo> bis;
@@ -101,12 +104,12 @@ Debug.printStackTrace(e);
 
                 key = "argTypes";
                 String argTypes = props.getProperty(i + "." + key);
-                if (argTypes != null) { // 引数なし
+                if (argTypes != null) { // No arguments
                     key = "args";
                     String args = props.getProperty(i + "." + key);
 
                     bi.border = (Border) ClassUtil.newInstance(className, argTypes, args);
-                } else { // 引数あり
+                } else { // With arguments
                     @SuppressWarnings("unchecked")
                     Class<Border> clazz = (Class<Border>) Class.forName(className);
                     bi.border = clazz.getDeclaredConstructor().newInstance();
@@ -136,7 +139,7 @@ Debug.printStackTrace(e);
             bi.desc = val;
             bis.add(bi);
         } catch (Exception e) {
-Debug.println(Level.SEVERE, e);
+logger.log(Level.ERROR, e.getMessage(), e);
 Debug.printStackTrace(e);
             throw new IllegalStateException(e);
         }

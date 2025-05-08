@@ -21,25 +21,23 @@ import javax.swing.border.Border;
 public interface BorderCustomizer /* extends Customizer */ {
 
     /**
-     * PropertyChange イベントのリスナーを登録します。
-     * @param listener PropertyChange イベントがトリガーされたときに
-     *               呼び出されるオブジェクト
+     * Registers a listener for PropertyChange events.
+     * @param listener The object that is called when the PropertyChange event is triggered.
      */
     void addPropertyChangeListener(PropertyChangeListener listener);
 
     /**
-     * PropertyChange イベントのリスナーを削除します。
-     * @param listener 削除される PropertyChange リスナー
+     * Removes a listener for the PropertyChange event.
+     * @param listener The PropertyChange listener to be removed.
      */
     void removePropertyChangeListener(PropertyChangeListener listener);
 
     /**
-     * カスタマイズする Border を設定します。
-     * このメソッドは、Customizer を親 AWT コンテナに追加する前に
-     * 1 回だけ呼び出せます。
+     * Set the Border you want to customize.
+     * This method can only be called once before the Customizer is added to a parent AWT container.
      */
     void setObject(Border border);
 
-    /** TODO TabbedPane の ChangeEvent のためだけ */
+    /** TODO Only for TabbedPane's ChangeEvent */
     Border getObject();
 }

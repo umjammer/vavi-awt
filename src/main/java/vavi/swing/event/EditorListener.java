@@ -10,7 +10,7 @@ import java.util.EventListener;
 
 
 /**
- * エディタのリスナインターフェースです．
+ * The editor listener interface.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010820 nsano initial version <br>
@@ -22,20 +22,20 @@ import java.util.EventListener;
 public interface EditorListener extends EventListener {
 
 //    /**
-//     * エディタがオープンしたとき呼ばれます．
-//     * @param ev エディタイベント
+//     * Called when the editor is opened.
+//     * @param ev Editor Events
 //     */
 //    void editorOpened(EditorEvent ev);
 
     /**
-     * エディタがアップデートされたとき呼ばれます．
-     * @param ev エディタイベント
+     * Called when the editor is updated.
+     * @param ev Editor Events
      */
     void editorUpdated(EditorEvent ev);
 
 //    /**
-//     * エディタが終了したとき呼ばれます．
-//     * @param ev エディタイベント
+//     * Called when the editor has finished.
+//     * @param ev Editor Events
 //     */
 //    void editorClosed(EditorEvent ev);
 }

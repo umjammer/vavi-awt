@@ -9,22 +9,23 @@ package vavi.swing.border;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.beans.PropertyEditor;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.lang.reflect.Method;
 import java.util.NoSuchElementException;
-import java.util.logging.Level;
 
 import vavi.swing.beaninfo.SwingEditorSupport;
 import vavi.swing.propertyeditor.AbstractDescriptorTableModel;
 import vavi.swing.propertyeditor.JPropertyEditorTable;
-import vavi.util.Debug;
+
+import static java.lang.System.getLogger;
 
 
 /**
- * Border クラスのプロパティを扱う TableModel です．
- * getter は BorderPropertyDescriptor から取得します．
- * setter は無いので値を PropertyChangeEvent でユーザに渡します．
- * ユーザは PropertyChangeEvent の引数を用いて Border の新規インスタンスを
- * 作成します．
+ * This is a TableModel that handles properties of the Border class.
+ * The getter is obtained from BorderPropertyDescriptor.
+ * Since there is no setter, the value is passed to the user via PropertyChangeEvent.
+ * The user creates a new instance of Border with the arguments of the PropertyChangeEvent.
  *
  * @event PropertyChangeEvent("propertyName", newValue)
  *
@@ -33,6 +34,8 @@ import vavi.util.Debug;
  */
 public class BorderPropertyDescriptorTableModel
     extends AbstractDescriptorTableModel {
+
+    private static final Logger logger = getLogger(BorderPropertyDescriptorTableModel.class.getName());
 
     /**
      * Set the table model to represents the properties of the object.
@@ -49,7 +52,7 @@ public class BorderPropertyDescriptorTableModel
         }
     }
 
-    //-------------------------------------------------------------------------
+    // ----
 
     /**
      * Check if given cell is editable
@@ -99,18 +102,18 @@ public class BorderPropertyDescriptorTableModel
                     value = getter.invoke(bean, args);
                 } catch (NoSuchMethodError e) {
                     // XXX - handle better
-Debug.println(Level.INFO, e);
-Debug.println(Level.INFO, descriptors[row].getShortDescription());
-Debug.println(Level.INFO, "Border: " + bean.toString());
-Debug.println(Level.INFO, "Getter: " + getter.getName());
-Debug.println(Level.INFO, "Getter args: ");
+logger.log(Level.INFO, e);
+logger.log(Level.INFO, descriptors[row].getShortDescription());
+logger.log(Level.INFO, "Border: " + bean.toString());
+logger.log(Level.INFO, "Getter: " + getter.getName());
+logger.log(Level.INFO, "Getter args: ");
 for (int i = 0; i < args.length; i++) {
-  Debug.println(Level.INFO, "\t" + "type: " + paramTypes[i] + " value: " + args[i]);
+  logger.log(Level.INFO, "\t" + "type: " + paramTypes[i] + " value: " + args[i]);
 }
                 } catch (Exception e) {
-Debug.println(Level.INFO, e);
-Debug.println(Level.INFO, descriptors[row].getShortDescription());
-Debug.println(Level.INFO, "Border: " + bean.toString());
+logger.log(Level.INFO, e);
+logger.log(Level.INFO, descriptors[row].getShortDescription());
+logger.log(Level.INFO, "Border: " + bean.toString());
                 }
             }
         }
@@ -133,7 +136,7 @@ Debug.println(Level.INFO, "Border: " + bean.toString());
         firePropertyChange(descriptors[row].getShortDescription(),null,value);
     }
 
-    //-------------------------------------------------------------------------
+    // ----
 
     /** */
     private BorderPropertyDescriptor getPropertyDescriptor(int row) {
@@ -174,7 +177,7 @@ Debug.println(Level.INFO, "Border: " + bean.toString());
 //      }
     }
 
-    //-------------------------------------------------------------------------
+    // ----
 
     /** */
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
@@ -190,8 +193,7 @@ Debug.println(Level.INFO, "Border: " + bean.toString());
     }
 
     /** */
-    protected void firePropertyChange(String name,
-                                      Object oldValue, Object newValue) {
+    protected void firePropertyChange(String name, Object oldValue, Object newValue) {
         pcs.firePropertyChange(name, oldValue, newValue);
     }
 }

@@ -16,16 +16,17 @@ import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
 import java.io.IOException;
 import java.io.UncheckedIOException;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.Map;
-import java.util.logging.Level;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
 import vavi.awt.dnd.Droppable;
-import vavi.util.Debug;
 
+import static java.lang.System.getLogger;
 import static javax.swing.SwingConstants.BOTTOM;
 import static javax.swing.SwingConstants.CENTER;
 import static javax.swing.SwingConstants.LEFT;
@@ -41,6 +42,8 @@ import static javax.swing.SwingConstants.TOP;
  */
 @SuppressWarnings("unchecked")
 public abstract class BaseImageComponent<T extends Image> extends JComponent {
+
+    private static final Logger logger = getLogger(BaseImageComponent.class.getName());
 
     /** image to render */
     private T image;
@@ -78,14 +81,14 @@ public abstract class BaseImageComponent<T extends Image> extends JComponent {
                 try {
                     @SuppressWarnings("unchecked")
                     T image = (T) ImageIO.read(Files.newInputStream(p));
-Debug.println(Level.FINE, p + ", " + image);
+logger.log(Level.DEBUG, p + ", " + image);
                     if (image != null) {
                         firePropertyChange("droppedImage", this.image, image);
                         setImage(image);
                         repaint();
                         return true;
                     }
-Debug.println(Level.INFO, "unrecognized image: " + p);
+logger.log(Level.INFO, "unrecognized image: " + p);
                 } catch (Throwable e) {
                     e.printStackTrace();
                 }
@@ -231,7 +234,7 @@ Debug.println(Level.INFO, "unrecognized image: " + p);
      */
     public T getSubimage(int sx, int sy, int sw, int sh) {
         if (image == null) {
-Debug.printf(Level.FINE, "image is null");
+logger.log(Level.DEBUG, "image is null");
             return null;
         }
 
@@ -239,9 +242,9 @@ Debug.printf(Level.FINE, "image is null");
         Rectangle sr = new Rectangle(sx, sy, sw, sh);
         Rectangle cr = sr.intersection(ir);
 
-Debug.printf(Level.FINE, "total: %d, %d %d, %d", ir.x, ir.y, ir.width, ir.height);
-Debug.printf(Level.FINE, "sub: %d, %d %d, %d", sr.x, sr.y, sr.width, sr.height);
-Debug.printf(Level.FINE, "crop: %d, %d %d, %d", cr.x, cr.y, cr.width, cr.height);
+logger.log(Level.DEBUG, "total: %d, %d %d, %d", ir.x, ir.y, ir.width, ir.height);
+logger.log(Level.DEBUG, "sub: %d, %d %d, %d", sr.x, sr.y, sr.width, sr.height);
+logger.log(Level.DEBUG, "crop: %d, %d %d, %d", cr.x, cr.y, cr.width, cr.height);
 
         int t = image instanceof BufferedImage ? ((BufferedImage) image).getType() : BufferedImage.TYPE_INT_ARGB;
         BufferedImage total = new BufferedImage(getWidth(), getHeight(), t);

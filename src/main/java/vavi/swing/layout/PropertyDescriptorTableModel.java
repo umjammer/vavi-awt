@@ -9,16 +9,17 @@ package vavi.swing.layout;
 import java.beans.BeanInfo;
 import java.beans.PropertyDescriptor;
 import java.beans.PropertyEditor;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.lang.reflect.Method;
 import java.util.NoSuchElementException;
-import java.util.logging.Level;
-
 import javax.swing.event.TableModelEvent;
 
 import vavi.swing.beaninfo.SwingEditorSupport;
 import vavi.swing.propertyeditor.AbstractDescriptorTableModel;
 import vavi.swing.propertyeditor.JPropertyEditorTable;
-import vavi.util.Debug;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -30,6 +31,8 @@ import vavi.util.Debug;
  */
 public class PropertyDescriptorTableModel
     extends AbstractDescriptorTableModel {
+
+    private static final Logger logger = getLogger(PropertyDescriptorTableModel.class.getName());
 
     /**
      * Set the table model to represents the properties of the object.
@@ -47,7 +50,7 @@ public class PropertyDescriptorTableModel
         }
     }
 
-    //-------------------------------------------------------------------------
+    // ----
 
     /**
      * Check if given cell is editable
@@ -101,18 +104,18 @@ public class PropertyDescriptorTableModel
                     value = getter.invoke(bean, args);
                 } catch (NoSuchMethodError e) {
                     // XXX - handle better
-Debug.println(Level.INFO, e);
-Debug.println(Level.INFO, descriptors[row].getShortDescription());
-Debug.println(Level.INFO, "LayoutManager: " + bean.toString());
-Debug.println(Level.INFO, "Getter: " + getter.getName());
-Debug.println(Level.INFO, "Getter args: ");
+logger.log(Level.INFO, e);
+logger.log(Level.INFO, descriptors[row].getShortDescription());
+logger.log(Level.INFO, "LayoutManager: " + bean.toString());
+logger.log(Level.INFO, "Getter: " + getter.getName());
+logger.log(Level.INFO, "Getter args: ");
 for (int i = 0; i < args.length; i++) {
-  Debug.println(Level.INFO, "\t" + "type: " + paramTypes[i] + " value: " + args[i]);
+  logger.log(Level.INFO, "\t" + "type: " + paramTypes[i] + " value: " + args[i]);
 }
                 } catch (Exception e) {
-Debug.println(Level.INFO, e);
-Debug.println(Level.INFO, descriptors[row].getShortDescription());
-Debug.println(Level.INFO, "LayoutManager: " + bean.toString());
+logger.log(Level.INFO, e);
+logger.log(Level.INFO, descriptors[row].getShortDescription());
+logger.log(Level.INFO, "LayoutManager: " + bean.toString());
                 }
             }
         }
@@ -136,18 +139,18 @@ Debug.println(Level.INFO, "LayoutManager: " + bean.toString());
             try {
                 setter.invoke(bean, value);
             } catch (Exception e) {
-Debug.println(Level.INFO, e);
-Debug.println(Level.INFO, descriptors[row].getShortDescription());
-Debug.println(Level.INFO, "Setter: " + setter);
-Debug.println(Level.INFO, "Argument: " + value.getClass());
-Debug.println(Level.INFO, "Row: " + row + " Column: " + column);
+logger.log(Level.INFO, e);
+logger.log(Level.INFO, descriptors[row].getShortDescription());
+logger.log(Level.INFO, "Setter: " + setter);
+logger.log(Level.INFO, "Argument: " + value.getClass());
+logger.log(Level.INFO, "Row: " + row + " Column: " + column);
             }
         }
 
         fireTableChanged(new TableModelEvent(this, row));
     }
 
-    //-------------------------------------------------------------------------
+    // ----
 
     /** */
     private PropertyDescriptor getPropertyDescriptor(int row) {

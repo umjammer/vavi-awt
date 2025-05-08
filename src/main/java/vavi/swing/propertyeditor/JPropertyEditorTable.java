@@ -10,15 +10,15 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.beans.PropertyEditor;
 import java.beans.PropertyEditorManager;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.Properties;
-import java.util.logging.Level;
-
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
-import vavi.util.Debug;
+import static java.lang.System.getLogger;
 
 
 /**
@@ -29,6 +29,8 @@ import vavi.util.Debug;
  *          0.10 020603 nsano use properties file <br>
  */
 public class JPropertyEditorTable extends JTable {
+
+    private static final Logger logger = getLogger(JPropertyEditorTable.class.getName());
 
     /** */
     private final AbstractDescriptorTableModel tableModel;
@@ -121,7 +123,7 @@ public class JPropertyEditorTable extends JTable {
                 String key = "clazz." + i;
                 String value = props.getProperty(key);
                 if (value == null) {
-Debug.println(Level.FINE, "no property for: clazz." + i);
+logger.log(Level.DEBUG, "no property for: clazz." + i);
                     break;
                 }
 
@@ -143,13 +145,13 @@ Debug.println(Level.FINE, "no property for: clazz." + i);
 
                 Class<?> editorClass = Class.forName(value);
 
-Debug.println(Level.FINER, i + ": " + clazz + ": " + editorClass);
+logger.log(Level.TRACE, i + ": " + clazz + ": " + editorClass);
                 PropertyEditorManager.registerEditor(clazz, editorClass);
 
                 i++;
             }
         } catch (Exception e) {
-Debug.println(Level.SEVERE, e);
+logger.log(Level.ERROR, e.getMessage(), e);
             throw new IllegalStateException(e);
         }
     }

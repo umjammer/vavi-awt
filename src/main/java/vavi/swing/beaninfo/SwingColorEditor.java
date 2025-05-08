@@ -17,8 +17,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.beans.PropertyChangeListener;
-import java.util.logging.Level;
-
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
@@ -34,7 +34,8 @@ import javax.swing.UIManager;
 import javax.swing.plaf.metal.MetalComboBoxIcon;
 
 import vavi.swing.colorchooser.SmallColorChooserPopupMenu;
-import vavi.util.Debug;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -55,6 +56,8 @@ import vavi.util.Debug;
  *          1.30 020518 nsano refine <br>
  */
 public class SwingColorEditor extends SwingEditorSupport {
+
+    private static final Logger logger = getLogger(SwingColorEditor.class.getName());
 
     private final JTextField rgbValue;
     private final JButton colorChooserButton;
@@ -192,8 +195,8 @@ public class SwingColorEditor extends SwingEditorSupport {
     @Override
     public void setValue(Object value) {
         super.setValue(value);
-Debug.println(Level.FINEST, value);
-Debug.printStackTrace(Level.FINEST, new Exception("***DUMMY***"));
+logger.log(Level.TRACE, value);
+logger.log(Level.TRACE, new Exception("***DUMMY***"));
         Color color = (Color) value;
         if (color == null) {
             rgbValue.setText("                  ");
@@ -208,7 +211,7 @@ Debug.printStackTrace(Level.FINEST, new Exception("***DUMMY***"));
         colorChooserCombo.setBackground(color);
     }
 
-    //----
+    // ----
 
     // for testing
 
@@ -227,7 +230,6 @@ Debug.printStackTrace(Level.FINEST, new Exception("***DUMMY***"));
             this.addMouseListener(popupListener);
         }
 
-        /** */
         @Override
         public void paintComponent(Graphics g) {
             super.paintComponent(g);

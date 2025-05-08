@@ -9,10 +9,10 @@ package vavi.swing.propertyeditor;
 import java.awt.Component;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyEditor;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-
 import javax.swing.AbstractCellEditor;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultCellEditor;
@@ -23,7 +23,7 @@ import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.table.TableCellEditor;
 
-import vavi.util.Debug;
+import static java.lang.System.getLogger;
 
 
 /**
@@ -32,6 +32,8 @@ import vavi.util.Debug;
  */
 public class PropertyValueEditor extends AbstractCellEditor
     implements TableCellEditor {
+
+    private static final Logger logger = getLogger(PropertyValueEditor.class.getName());
 
     private PropertyEditor editor;
     private final DefaultCellEditor cellEditor;
@@ -79,7 +81,7 @@ public class PropertyValueEditor extends AbstractCellEditor
                         editor.addPropertyChangeListener(pcl);
                         editors.put(type, editor);
                     } catch (Exception e) {
-Debug.println(Level.FINE, "Couldn't instantiate type editor: " + editorClass.getName());
+logger.log(Level.DEBUG, "Couldn't instantiate type editor: " + editorClass.getName());
                     }
                 }
             }
@@ -132,12 +134,12 @@ Debug.println(Level.FINE, "Couldn't instantiate type editor: " + editorClass.get
             !type.isPrimitive() &&
             !type.isAssignableFrom(obj.getClass())) {
 
-Debug.println(Level.FINE, "Type mismatch: " + obj.getClass() + " type = " + type);
+logger.log(Level.DEBUG, "Type mismatch: " + obj.getClass() + " type = " + type);
 
             try {
                 obj = type.getDeclaredConstructor().newInstance();
             } catch (Exception e) {
-Debug.println(Level.SEVERE, e);
+logger.log(Level.ERROR, e.getMessage(), e);
 //e.printStackTrace();
             }
         }

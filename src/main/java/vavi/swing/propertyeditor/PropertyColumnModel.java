@@ -34,7 +34,7 @@ import javax.swing.table.TableColumn;
  */
 public class PropertyColumnModel extends DefaultTableColumnModel  {
 
-    /** リソースバンドル */
+    /** Resource Bundles */
     private static final ResourceBundle rb =
         ResourceBundle.getBundle("vavi.swing.resource", Locale.getDefault());
 

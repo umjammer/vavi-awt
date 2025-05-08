@@ -13,9 +13,9 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.List;
-import java.util.logging.Level;
-
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListCellRenderer;
@@ -36,7 +36,8 @@ import javax.swing.border.Border;
 import vavi.swing.border.BorderChooser;
 import vavi.swing.border.BorderInfoFactory;
 import vavi.swing.border.SampleBorderInfo;
-import vavi.util.Debug;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -50,6 +51,8 @@ import vavi.util.Debug;
  *          1.30 020518 nsano refine <br>
  */
 public class SwingBorderEditor extends SwingEditorSupport {
+
+    private static final Logger logger = getLogger(SwingBorderEditor.class.getName());
 
     private final JComboBox<?> borderCombo;
     private final JButton borderButton;
@@ -103,7 +106,7 @@ public class SwingBorderEditor extends SwingEditorSupport {
                 SampleBorderInfo bi =
                     (SampleBorderInfo) borderCombo.getItemAt(i);
                 Border border = bi.border;
-Debug.println(Level.FINER, bi.desc);
+logger.log(Level.TRACE, bi.desc);
                 if (value == border) {
                     borderCombo.setSelectedIndex(i);
                     plug();
@@ -261,13 +264,12 @@ Debug.println(Level.FINER, bi.desc);
         }
     }
 
-    //-------------------------------------------------------------------------
+    // ----
 
     /* */
     static {
         Class<?> clazz = SwingBorderEditor.class;
         UIDefaults table = UIManager.getDefaults();
-        table.put("beaninfo.BorderIcon",
-                  LookAndFeel.makeIcon(clazz, "resources/BorderIcon.gif"));
+        table.put("beaninfo.BorderIcon", LookAndFeel.makeIcon(clazz, "resources/BorderIcon.gif"));
     }
 }

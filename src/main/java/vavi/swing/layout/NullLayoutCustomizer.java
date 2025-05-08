@@ -13,8 +13,8 @@ import java.awt.GridLayout;
 import java.awt.Rectangle;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.logging.Level;
-
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.border.TitledBorder;
@@ -23,19 +23,22 @@ import vavi.awt.containereditor.ContainerEditor;
 import vavi.awt.containereditor.basic.BasicContainerEditor;
 import vavi.swing.event.EditorEvent;
 import vavi.swing.event.EditorListener;
-import vavi.util.Debug;
+
+import static java.lang.System.getLogger;
 
 
 /**
  * NullLayoutCustomizer.
  * <p>
  * TODO overlaid
- * DONE GridBagLayout 変換ボタン
+ *      ~~GridBagLayout conversion button~~
  * </p>
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020527 nsano initial version <br>
  */
 public class NullLayoutCustomizer extends BasicLayoutManagerCustomizer {
+
+    private static final Logger logger = getLogger(NullLayoutCustomizer.class.getName());
 
     /** */
     private final ContainerEditor containerEditor;
@@ -71,7 +74,7 @@ public class NullLayoutCustomizer extends BasicLayoutManagerCustomizer {
         @Override
         public void editorUpdated(EditorEvent ev) {
             String name = ev.getName();
-Debug.println(Level.FINER, name);
+logger.log(Level.TRACE, name);
             if ("location".equals(name) || "bounds".equals(name)) {
                 if (converter.isJustifyGrid()) {
                     Component component = (Component) ev.getArguments()[0];
@@ -86,7 +89,7 @@ Debug.println(Level.FINER, name);
         @Override
         public void propertyChange(PropertyChangeEvent ev) {
             String name = ev.getPropertyName();
-Debug.println(Level.FINER, name);
+logger.log(Level.TRACE, name);
             if ("overlaid".equals(name)) {
             }
             else if ("justifyGrid".equals(name)) {
@@ -98,7 +101,7 @@ Debug.println(Level.FINER, name);
 
                 boolean b = (Boolean) ev.getNewValue();
                 ((BasicContainerEditor) containerEditor).setGridEnabled(b);
-Debug.println(Level.FINER, b);
+logger.log(Level.TRACE, b);
                 if (b) {
                     for (int i = 0; i < layoutPanel.getComponentCount(); i++) {
                         Component component = layoutPanel.getComponent(i);
@@ -148,7 +151,7 @@ Debug.println(Level.FINER, b);
         r.y = ty1;
         r.width  = tx1 == tx2 ? W : tx2 - tx1;
         r.height = ty1 == ty2 ? H : ty2 - ty1;
-Debug.println(Level.FINER, r.x + ", " + r.y + ", " + r.width + ", " + r.height);
+logger.log(Level.TRACE, r.x + ", " + r.y + ", " + r.width + ", " + r.height);
         ((BasicContainerEditor) containerEditor).setComponentBounds(component, r);
     }
 
@@ -178,7 +181,7 @@ Debug.println(Level.FINER, r.x + ", " + r.y + ", " + r.width + ", " + r.height);
             int y = Math.round(r.y * ratio);
             int w = Math.round(r.width * ratio);
             int h = Math.round(r.height * ratio);
-Debug.println(Level.FINER, x + ", " + y);
+logger.log(Level.TRACE, x + ", " + y);
             controller.setBounds(new Rectangle(x, y, w, h));
 
             layoutPanel.add(controller);

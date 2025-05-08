@@ -10,8 +10,8 @@ import java.awt.Component;
 import java.awt.Image;
 import java.beans.BeanInfo;
 import java.beans.Introspector;
-import java.util.logging.Level;
-
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import javax.swing.ImageIcon;
 import javax.swing.JTree;
 import javax.swing.LookAndFeel;
@@ -19,11 +19,11 @@ import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
-import vavi.util.Debug;
+import static java.lang.System.getLogger;
 
 
 /**
- * コンテナの JTree
+ * Container JTree
  *
  * @depends ${JDK_HOME}/lib/dt.jar
  *
@@ -32,8 +32,10 @@ import vavi.util.Debug;
  */
 public class JContainerTree extends JTree {
 
+    private static final Logger logger = getLogger(JContainerTree.class.getName());
+
 //    /** */
-//  private Container container;
+//    private Container container;
 
     /** */
     public JContainerTree(/* Container container*/) {
@@ -44,11 +46,11 @@ public class JContainerTree extends JTree {
         setCellRenderer(tcr);
     }
 
-    //-------------------------------------------------------------------------
+    // ----
 
     /**
-     * ツリーのセルレンダラのクラスです．
-     * TODO 非表示のとき薄くする
+     * Container JTree
+     * TODO Make it lighter when hidden
      */
     private final DefaultTreeCellRenderer tcr = new DefaultTreeCellRenderer() {
         /** */
@@ -78,7 +80,7 @@ public class JContainerTree extends JTree {
 
                 try {
                     Class<?> beanClass = component.getClass();
-Debug.println(Level.FINER, beanClass);
+logger.log(Level.TRACE, beanClass);
                     BeanInfo info = Introspector.getBeanInfo(beanClass);
                     /* Set the image. */
                     Image image = info.getIcon(BeanInfo.ICON_COLOR_16x16);
@@ -88,7 +90,7 @@ Debug.println(Level.FINER, beanClass);
                         setIcon(new ImageIcon(image));
                     }
                 } catch (Exception e) {
-Debug.println(Level.SEVERE, e);
+logger.log(Level.ERROR, e.getMessage(), e);
                 }
 
             if (selected)

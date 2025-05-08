@@ -1,51 +1,52 @@
-Basic コンテナエディタ関連のクラスを提供します．
+# vavi.awt.containereditor.basic
 
-## 目的
+Provides Basic container editor related classes.
 
-コンテナ内のコンポーネントを視覚的に操作する．操作の感覚は
-Draw 系のアプリケーションに準ずる．
+## Purpose
 
-## 使用法
+Visually manipulate components within a container.
+The feel of the operation is similar to that of Draw-type applications.
 
-コンテナを指定して `BasicContainerEditor` を作るだけでとりあえずは OK．
+## Usage
+
+For now, all you need to do is specify a container and create a `BasicContainerEditor`.
 
 ```java
     ContainerEditor ce = new BasicContainerEditor(container);
 ```
 
-編集可能にすればコンテナ内のコンポーネントに対して編集操作が可能になる．
+Making a container editable allows you to perform editing operations on the components within the container.
 
 ```java
     ce.setEditable(true);
 ```
 
-以下の操作が可能．
+The following operations are possible:
 
- * 領域を選択して，その領域内のコンポーネントを選択状態にする(赤いラバーバンド)
- * 非選択のコンポーネントをクリックしてそのコンポーネントを選択状態にする(青いラバーバンド)
- * シフト+クリックで複数のコンポーネントを選択状態にする(青いラバーバンド)
- * 複数選択時，選択されたコンポーネントをクリックすればそのコンポーネントは非選択状態になる
- * 選択されたコンポーネントをドラッグして移動する(青いラバーバンド)
- * 選択されたコンポーネントをドラッグしてサイズを変更する(青いラバーバンド)
+* Select an area to select the components in that area (red rubber band)
+* Click an unselected component to select it (blue rubber band)
+* Shift + click to select multiple components (blue rubber band)
+* When multiple components are selected, click a selected component to deselect it
+* Drag a selected component to move it (blue rubber band)
+* Drag a selected component to resize it (blue rubber band)
 
-`BasicContainerEditor` からは，以下のイベントが発生するので
-ユーザはそれを利用してください．
+`The following events occur from BasicContainerEditor`, so users should make use of them.
 
-|イベントタイプ|イベント発生条件|イベントの引数|
-|-----------|--------------|-----------|
-|`EditorEvent("select")`|コンテナ内のコンポーネントが選択されたとき|選択されたコンポーネントのベクタ|
-|`EditorEvent("location")`|コンテナ内のコンポーネントの位置が変わったとき|変更されたコンポーネント|
-|`EditorEvent("bounds")`|コンテナ内のコンポーネントのサイズが変わったとき|変更されたコンポーネント|
+| Event Type                | Event occurrence conditions                                | Event arguments                 |
+|---------------------------|------------------------------------------------------------|---------------------------------|
+| `EditorEvent("select")`   | When a component in the container is selected              | A vector of selected components |
+| `EditorEvent("location")` | When the component's position within the container changes | Modified components             |
+| `EditorEvent("bounds")`   | When a component in a container changes size               | Modified components             |
 
-## 制約
+## Limitation
 
- * 現在のところ対象のコンテナのレイアウトは `null` の場合しか想定していません．
- * 編集対象のコンテナは親となるコンポーネントの存在が必須です．うーん．．．
- * ~~020613 コントローラにコンポーネントを使用しているため，内部処理でのコントローラの追加，削除時に `ContainerEvent` が発生してしまいます．ユーザはこれを無視するプログラムを追加する必要があります． @see `ContainerEditor#processContainerEvent,JEditablePanel#processContainerEvent`~~
+* Currently, the layout of the target container is only assumed to be `null`.
+* The container to be edited must have a parent component. Hmm...
+* ~~020613 Since a component is used for the controller, a `ContainerEvent` is generated when a controller is added or removed in the internal processing. Users must add a program to ignore this. @see `ContainerEditor#processContainerEvent,JEditablePanel#processContainerEvent`~~
 
-## これから実装すること
+## TODO
 
-  * `RubberBandRenderer` 機構の完成
-  * キーボードの操作
-  * 操作法をアクションとして分離する?
-  * ~~020613 container が選ばれたとき glassPane 消去~~
+* Completion of the `RubberBandRenderer` mechanism
+* Keyboard operation
+* Separate operation methods as actions?
+* ~~020613 When container is selected, glassPane is removed~~

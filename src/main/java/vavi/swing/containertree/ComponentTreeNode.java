@@ -12,7 +12,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 
 
 /**
- * コンテナツリー上のノードです．
+ * A node on a container tree.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020510 nsano initial version <br>
@@ -20,7 +20,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 public class ComponentTreeNode extends DefaultMutableTreeNode {
 
     /**
-     * コンポーネントを表すツリーノードを構築します．
+     * Constructs a tree node to represent the component.
      * @param component Component
      */
     public ComponentTreeNode(Component component) {
@@ -28,21 +28,21 @@ public class ComponentTreeNode extends DefaultMutableTreeNode {
     }
 
     /**
-     * このノードを表す文字列を返します．
+     * Returns a string representing this node.
      */
     public String getName() {
         return toString();
     }
 
     /**
-     * このノードを表す文字列を返します．
+     * Returns a string representing this node.
      */
     public String getDescription() {
         return toString();
     }
 
     /**
-     * このノードを表す文字列を返します．
+     * Returns a string representing this node.
      */
     public String toString() {
         return ((Component) userObject).getName();

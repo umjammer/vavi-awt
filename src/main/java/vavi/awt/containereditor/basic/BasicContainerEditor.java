@@ -12,10 +12,10 @@ import java.awt.Dimension;
 import java.awt.HeadlessException;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-
 import javax.swing.event.MouseInputListener;
 
 import vavi.awt.Selectable;
@@ -26,7 +26,8 @@ import vavi.awt.rubberband.RubberBandEvent;
 import vavi.awt.rubberband.RubberBandListener;
 import vavi.swing.event.EditorEvent;
 import vavi.swing.event.EditorListener;
-import vavi.util.Debug;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -44,6 +45,8 @@ import vavi.util.Debug;
  */
 public class BasicContainerEditor extends ContainerEditor {
 
+    private static final Logger logger = getLogger(BasicContainerEditor.class.getName());
+
     /** */
     private final GlassPane glassPane;
 
@@ -57,7 +60,7 @@ public class BasicContainerEditor extends ContainerEditor {
 
         parent = container.getParent();
 
-Debug.println(Level.FINER, container.getSize());
+logger.log(Level.TRACE, container.getSize());
 //      container.setLayout(null);
 //      container.setSize(container.getPreferredSize());
 
@@ -83,7 +86,7 @@ Debug.println(Level.FINER, container.getSize());
 
     @Override
     public void setEditable(boolean isEditable) {
-Debug.println(Level.FINER, isEditable + ": " + container.hashCode());
+logger.log(Level.TRACE, isEditable + ": " + container.hashCode());
         super.setEditable(isEditable);
         if (isEditable) {
             parent.remove(container);
@@ -91,7 +94,7 @@ Debug.println(Level.FINER, isEditable + ": " + container.hashCode());
             parent.add(glassPane);
             glassPane.setBounds(container.getBounds());
             glassPane.doLayout();
-Debug.println(Level.FINER, container.getSize());
+logger.log(Level.TRACE, container.getSize());
         } else {
             parent.remove(glassPane);
             glassPane.disableContainer();
@@ -100,7 +103,7 @@ Debug.println(Level.FINER, container.getSize());
         }
     }
 
-    // ---------------------------------------------------------------------
+    // ----
 
     /** editor listener for rubberband gesture */
     private final EditorListener el = new EditorListener() {
@@ -108,11 +111,11 @@ Debug.println(Level.FINER, container.getSize());
             String name = ev.getName();
             if ("clicked".equals(name)) {
                 if (ev.getArguments() == null) { // Container
-                    // container を選択したことにする．
+                    // Let's say we select container.
                     select(container, false);
                 } else { // BasicController
                     Object[] args = ev.getArguments();
-Debug.println(Level.FINER, args[0]);
+logger.log(Level.TRACE, args[0]);
                     Selectable selectable = (Selectable) args[0];
                     boolean isMultiSelect = (Boolean) args[1];
                     selectionModel.select(selectable, isMultiSelect);
@@ -162,7 +165,6 @@ Debug.println(Level.FINER, args[0]);
             }
         }
 
-        /** リサイズ中 */
         @Override
         public void resized(RubberBandEvent ev) {
             List<Selectable> selected = selectionModel.getSelected();
@@ -216,7 +218,7 @@ Debug.println(Level.FINER, args[0]);
         return tr;
     }
 
-    // -------------------------------------------------------------------------
+    // ----
 
     /**
      * InputMap supports this in the future?

@@ -1,5 +1,7 @@
-エディタマネージャ関連のクラスを提供します．
+# vavix.swing.editormanager 
+
+provides editor manager related classes.
 
 ## TODO
 
- * Editor#getEditor() いるの？
+ * is Editor#getEditor() needed?

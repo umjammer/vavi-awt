@@ -11,11 +11,12 @@ import java.awt.Component;
 import java.awt.Insets;
 import java.awt.Point;
 import java.beans.PropertyChangeListener;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
-import vavi.util.Debug;
+import static java.lang.System.getLogger;
 
 
 /**
@@ -29,17 +30,19 @@ import vavi.util.Debug;
 public class BorderLayoutConstraintsEditor
     extends AbstractLayoutConstraintsEditor {
 
+    private static final Logger logger = getLogger(BorderLayoutConstraintsEditor.class.getName());
+
     /** Creates border constraints editor */
     public BorderLayoutConstraintsEditor(BorderLayout layout) {
         super(layout);
     }
 
-    //-------------------------------------------------------------------------
+    // ----
 
     /** when constraints updated */
     private final PropertyChangeListener pcl = ev -> {
         Component component = container.getComponent(index);
-Debug.println(Level.FINE, index);
+logger.log(Level.DEBUG, index);
         layout.removeLayoutComponent(component);
         layout.addLayoutComponent(component, ev.getNewValue());
 
@@ -53,7 +56,7 @@ Debug.println(Level.FINE, index);
         constraints.addPropertyChangeListener(pcl);
     }
 
-    // constraints supports ---------------------------------------------------
+    // constraints supports ----
 
     /**
      * Associates constraints.

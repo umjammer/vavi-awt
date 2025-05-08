@@ -6,35 +6,39 @@
 
 package vavi.awt.event;
 
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.lang.reflect.Method;
 import java.util.EventListener;
-import java.util.logging.Level;
 
-import vavi.util.Debug;
+import static java.lang.System.getLogger;
 
 
 /**
- * イベントを結合，分離するためのクラスです．
+ * A class for combining and separating events.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020512 nsano initial version <br>
  */
 public class EventPlug {
-    /** プラグの名前 */
+
+    private static final Logger logger = getLogger(EventPlug.class.getName());
+
+    /** Plug Name */
     private final String name;
-    /** イベントを発行するオブジェクト */
+    /** The object that fires the event */
     private Object invoker;
-    /** イベントを受け取るリスナ */
+    /** Listener that receives the event */
     private EventListener listener;
-    /** 接続しているかどうか */
+    /** Connected or not */
     private boolean connected = false;
 
     /**
-     * イベントを結合，分離するプラグを構築します．
+     * Constructs plugs to join and split events.
      *
-     * @param name プラグの名前
-     * @param invoker イベントを発行するオブジェクト
-     * @param listener イベントを受け取るリスナ
+     * @param name Plug Name
+     * @param invoker The object that emits the event
+     * @param listener Listener that receives the event
      */
     public EventPlug(String name, Object invoker, EventListener listener) {
         this.name = name;
@@ -42,37 +46,37 @@ public class EventPlug {
         this.listener = listener;
     }
 
-    /** プラグの名前を取得します． */
+    /** Gets the name of the plug. */
     public String getName() {
         return name;
     }
 
-    /** イベントを発行するオブジェクトを設定します． */
+    /** Sets the object that will issue the event. */
     public void setInvoker(Object invoker) {
         this.invoker = invoker;
     }
 
-    /** イベントを発行するオブジェクトを取得します． */
+    /** Gets the object that issues the event. */
     public Object getInvoker() {
         return invoker;
     }
 
-    /** イベントを受け取るリスナを設定します． */
+    /** Sets a listener to receive events. */
     public void setEventListener(EventListener listener) {
         this.listener = listener;
     }
 
-    /** イベントを受け取るリスナを取得します． */
+    /** Gets the listener that will receive the event. */
     public EventListener getEventListener() {
         return listener;
     }
 
-    /** プラグが接続されているかどうかを返します． */
+    /** Returns whether the plug is connected. */
     public boolean isConnected() {
         return connected;
     }
 
-    /** プラグを接続，分離します． */
+    /** Connect and disconnect the plug. */
     public void setConnected(boolean connected) {
         if (connected) {
             plugImpl("add");
@@ -83,17 +87,17 @@ public class EventPlug {
     }
 
     /**
-     * リスナのクラスを取得します．
-     * リスナは FooListener 形式の命名でなければいけません．
-     * TODO interface が 2 つ以上の場合の処理．
-     * TODO FooListener を探してループすべき？
+     * Gets the listener class.
+     * Listeners must be named in the format FooListener.
+     * TODO Handling cases where there are two or more interfaces.
+     * TODO Should I loop looking for FooListener s?
      */
     private Class<?> getEventListenerClass() {
         Class<?> clazz = listener.getClass();
         String className = clazz.getName();
         if (!className.endsWith("Listener")) {
             Class<?>[] classes = clazz.getInterfaces();
-Debug.println(Level.FINER, classes.length);
+logger.log(Level.TRACE, classes.length);
 //for (int i = 0; i < classes.length; i++) {
 // System.err.println(classes[i]);
 //}
@@ -103,7 +107,7 @@ Debug.println(Level.FINER, classes.length);
     }
 
     /**
-     * リスナの名前を取得します．
+     * Gets the name of the listener.
      */
     private String getEventListenerName() {
         return getClassName(getEventListenerClass().getName());
@@ -115,7 +119,7 @@ Debug.println(Level.FINER, classes.length);
     }
 
     /**
-     * プラグを接続，分離する処理です．
+     * This is the process of connecting and disconnecting plugs.
      *
      * @param type "add" or "remove"
      */
@@ -126,7 +130,7 @@ Debug.println(Level.FINER, classes.length);
             Method method = clazz.getMethod(methodName, getEventListenerClass());
             method.invoke(invoker, listener);
         } catch (Exception e) {
-Debug.printStackTrace(e);
+logger.log(Level.INFO, e.getMessage(), e);
             throw new IllegalStateException(getClassName(invoker.getClass().getName()) + "." + type + getEventListenerName() + "(" + getEventListenerClass() + ")");
         }
     }

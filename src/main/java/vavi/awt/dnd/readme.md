@@ -1,16 +1,18 @@
-ドラッグアンドドロップを実装するための基本クラスを提供します．
+Provides a base class for implementing drag and drop.
 
-結構便利なクラスです．実装の例は，
+This is a pretty useful class. An example of its implementation is:
 
  * {@link vavi.apps.treeView.TreeViewTree}
  * {@link vavi.apps.treeView.TreeViewTreeDTListener}
  * {@link vavi.apps.treeView.TreeViewTreeNodeTransferable}
 
-を参照してください．
+and refer to.
 
-あとは <code>Draggable</code> 中の <code>DragGestureListener</code> と <code>DragSourceListener</code> が外部から変更できるようになれば完璧ですね．
+Now all that's left now is to make it possible to change the <code>DragGestureListener</code> and
+<code>DragSourceListener</code> in <code>Draggable</code> from outside, and it'll be perfect.
 
- * <code>BasicTransferable</code> を継承したクラスを作成し，その中にドラッグアンドドロップされるオブジェクトの判別を記述します．
+ * Create a class that inherits from <code>BasicTransferable</code>
+   and write the code in it to determine the object to be dragged and dropped.
 
 ```java
 
@@ -20,7 +22,8 @@ class FooTransferable extends BasicTransferable {
 
 ```
 
- * <code>BasicDTListener</code> を継承したクラスを作成し，その中にドロップされた場合のアクションを記述します．
+ * Create a class that inherits <code>BasicDTListener</code> 
+   and write the action that will occur when a drop occurs in it.
 
 ```java
 
@@ -33,9 +36,9 @@ class FooDTListener extends BasicDTListener {
 }
 ```
 
- * ドラッグアンドドロップを行いたいコンポーネントに <code>Draggable</code> のインスタンスを作成します．
+ * Create an instance of <code>Draggable</code> on the component you want to be able to drag and drop.
 
-そして以下のように記述すればOKです．あら簡単．
+Then just write it as shown below. Easy.
 
 ```
 
@@ -44,7 +47,7 @@ class Foo /* want to drag and drop */ extends Component {
     Foo(...) {
         ...
 
-        // ドラッグする側
+        // Drag Side
         new Draggable(this, ...) {
             protected Transferable getTransferable(DragGestureEvent ev) {
                 ...
@@ -52,7 +55,7 @@ class Foo /* want to drag and drop */ extends Component {
             }
         }
 
-        // ドロップされる側
+        // The one being dropped
         new DropTarget(this, 
                        DnDConstants.ACTION_COPY_OR_MOVE,
                        new FooDTListener(this),

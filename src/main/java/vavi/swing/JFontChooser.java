@@ -15,11 +15,11 @@ import java.awt.HeadlessException;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
@@ -30,19 +30,20 @@ import javax.swing.plaf.FontUIResource;
 import vavi.swing.fontchooser.DefaultFontEditor;
 import vavi.swing.fontchooser.FontEditor;
 import vavix.util.ClassUtil;
-import vavi.util.Debug;
+
+import static java.lang.System.getLogger;
 
 
 /**
  * JFontChooser
  * <p>
- * JFontChooser.properties にデフォルトのフォントエディタとデフォルトの フォントを指定できます．
+ * You can specify the default font editor and default font in JFontChooser.properties.
  * <p>
  *
  * <pre>
  *
- *   editorClass フォントエディタのクラス
- *   font        フォントのプロパティ
+ *   editorClass Font Editor Class
+ *   font        Font properties
  *
  * </pre>
  *
@@ -57,6 +58,9 @@ import vavi.util.Debug;
  *          0.12 020517 nsano the default font to be specifiable <br>
  */
 public class JFontChooser extends JComponent {
+
+    private static final Logger logger = getLogger(JFontChooser.class.getName());
+
     /** */
     private static final ResourceBundle rb = ResourceBundle.getBundle("vavi.swing.resource", Locale.getDefault());
 
@@ -181,7 +185,7 @@ public class JFontChooser extends JComponent {
         return dialogTitle;
     }
 
-    // -------------------------------------------------------------------------
+    // ----
 
     /* */
     {
@@ -190,7 +194,7 @@ public class JFontChooser extends JComponent {
             Class<FontEditor> clazz = (Class<FontEditor>) Class.forName(props.getProperty("editorClass"));
             fontEditor = clazz.getDeclaredConstructor().newInstance();
         } catch (Exception e) {
-Debug.println(Level.SEVERE, e);
+logger.log(Level.ERROR, e.getMessage(), e);
             fontEditor = new DefaultFontEditor();
         }
     }
@@ -209,9 +213,9 @@ Debug.println(Level.SEVERE, e);
             String args = props.getProperty("font");
             defaultFont = (Font) ClassUtil.newInstance("javax.swing.plaf.FontUIResource",
                                                        "java.lang.String, int, int", args);
-Debug.println(Level.FINER, defaultFont + ", " + args);
+logger.log(Level.TRACE, defaultFont + ", " + args);
         } catch (Exception e) {
-Debug.println(Level.SEVERE, e);
+logger.log(Level.ERROR, e.getMessage(), e);
             defaultFont = new FontUIResource("Dialog", Font.BOLD, 12);
         }
     }

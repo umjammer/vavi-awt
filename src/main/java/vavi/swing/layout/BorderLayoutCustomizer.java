@@ -14,13 +14,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.logging.Level;
-
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.TableModelListener;
 
-import vavi.util.Debug;
+import static java.lang.System.getLogger;
 
 
 /**
@@ -33,6 +33,8 @@ import vavi.util.Debug;
  *          0.01 020618 nsano refine <br>
  */
 public class BorderLayoutCustomizer extends BasicLayoutManagerCustomizer {
+
+    private static final Logger logger = getLogger(BorderLayoutCustomizer.class.getName());
 
     /** layout for virtual screen */
     private final BorderLayout border;
@@ -94,7 +96,7 @@ public class BorderLayoutCustomizer extends BasicLayoutManagerCustomizer {
             controller.addActionListener(al);
 
             Object constraints = constraintsEditor.associateConstraints(i);
-Debug.println(Level.FINER, i + ": " + constraints);
+logger.log(Level.TRACE, i + ": " + constraints);
             LayoutConstraints lc = new BorderLayoutConstraints();
             lc.setConstraints(constraints);
             constraintsEditor.setLayoutConstraints(i, lc);
@@ -123,7 +125,7 @@ Debug.println(Level.FINER, i + ": " + constraints);
         }
     }
 
-    // constraints editor -----------------------------------------------------
+    // constraints editor ----
 
     /** mouse click on constraint panel means to count up component no. */
     private final MouseListener ml = new MouseAdapter() {

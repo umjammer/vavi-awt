@@ -12,18 +12,18 @@ import java.util.List;
 
 
 /**
- * ComponentSelection リスナーのユーティリティです．
+ * ComponentSelection listener utilities.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020509 nsano initial version <br>
  */
 public class ComponentSelectionSupport implements Serializable {
 
-    /** ComponentSelection のリスナー */
+    /** ComponentSelection Listeners */
     private final List<ComponentSelectionListener> listeners = new ArrayList<>();
 
     /**
-     * ComponentSelection リスナーをアタッチします．
+     * Attaches a ComponentSelection listener.
      *
      * @param l ComponentSelectionListener
      */
@@ -32,7 +32,7 @@ public class ComponentSelectionSupport implements Serializable {
     }
 
     /**
-     * ComponentSelection リスナーをリムーブします．
+     * Removes a ComponentSelection listener.
      *
      * @param l ComponentSelectionListener
      */
@@ -41,7 +41,7 @@ public class ComponentSelectionSupport implements Serializable {
     }
 
     /**
-     * ComponentSelection イベントを発行します．
+     * Issues a ComponentSelection event.
      */
     public void fireValueChanged(ComponentSelectionEvent ev) {
         for (ComponentSelectionListener listener : listeners) {

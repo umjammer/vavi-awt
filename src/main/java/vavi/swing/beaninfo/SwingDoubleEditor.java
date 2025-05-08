@@ -6,43 +6,48 @@
 
 package vavi.swing.beaninfo;
 
-import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
-import java.util.logging.Level;
+import java.awt.event.KeyEvent;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 import vavi.text.NumberDocument;
-import vavi.util.Debug;
+
+import static java.lang.System.getLogger;
 
 
 /**
- * An PropertyEdtitor for editing double.
+ * An PropertyEditor for editing double.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020529 nsano initial version <br>
  */
 public class SwingDoubleEditor extends SwingEditorSupport {
 
-    private final JTextField textfield;
+    private static final Logger logger = getLogger(SwingDoubleEditor.class.getName());
+
+    private final JTextField textField;
 
     public SwingDoubleEditor() {
-        textfield = new JTextField();
-        textfield.setDocument(new NumberDocument());
+        textField = new JTextField();
+        textField.setDocument(new NumberDocument());
         // XXX - testing
-        textfield.addKeyListener(new KeyAdapter()  {
+        textField.addKeyListener(new KeyAdapter()  {
             @Override
             public void keyPressed(KeyEvent evt)  {
                 if (evt.getKeyCode() == KeyEvent.VK_ENTER)  {
-Debug.println(Level.FINE, textfield.getText());
-                    setValue(new Double(textfield.getText()));
+logger.log(Level.DEBUG, textField.getText());
+                    setValue(Double.parseDouble(textField.getText()));
                 }
             }
         });
 
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-        panel.add(textfield);
+        panel.add(textField);
     }
 
     @Override
@@ -50,7 +55,7 @@ Debug.println(Level.FINE, textfield.getText());
         super.setValue(value);
 
         if (value != null)  {
-            textfield.setText(value.toString());
+            textField.setText(value.toString());
         }
     }
 }

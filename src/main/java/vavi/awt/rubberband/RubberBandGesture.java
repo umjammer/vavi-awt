@@ -14,7 +14,7 @@ import vavi.swing.event.EditorSupport;
 
 
 /**
- * RubberBand (Model) を操作するコントローラです．
+ * This is a controller that operates the RubberBand (Model).
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020603 nsano initial version <br>
@@ -31,7 +31,7 @@ public class RubberBandGesture extends MouseInputAdapter {
         rubberBand = new RubberBand();
     }
 
-    //-------------------------------------------------------------------------
+    // ----
 
     /** */
     public void addRubberBandListener(RubberBandListener rbl) {
@@ -43,7 +43,7 @@ public class RubberBandGesture extends MouseInputAdapter {
         rubberBand.removeRubberBandListener(rbl);
     }
 
-    //-------------------------------------------------------------------------
+    // ----
 
     /** The editor support */
     private final EditorSupport editorSupport = new EditorSupport();

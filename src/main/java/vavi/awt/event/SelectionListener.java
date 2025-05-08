@@ -10,7 +10,7 @@ import java.util.EventListener;
 
 
 /**
- * Selection リスナーインターフェースです．
+ * Selection listener interface.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020603 nsano initial version <br>
@@ -18,7 +18,7 @@ import java.util.EventListener;
 public interface SelectionListener extends EventListener {
 
     /**
-     * 属性を変更します．
+     * Change the attributes.
      */
     void valueChanged(SelectionEvent ev);
 }

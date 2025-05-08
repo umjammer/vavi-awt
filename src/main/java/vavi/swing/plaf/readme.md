@@ -1,6 +1,8 @@
-プラガブル L&amp;F 関連のクラスを提供します．
+# vavi.swing.plaf
 
-## これから実装すること
+Provides pluggable L&F related classes.
+
+## TODO
 
  * Web look and feel over http
  * SVG look and feel

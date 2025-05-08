@@ -9,13 +9,13 @@ package vavi.swing.propertyeditor;
 import java.beans.FeatureDescriptor;
 import java.beans.PropertyEditor;
 import java.beans.PropertyEditorManager;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-
 import javax.swing.table.AbstractTableModel;
 
-import vavi.util.Debug;
+import static java.lang.System.getLogger;
 
 
 /**
@@ -26,6 +26,8 @@ import vavi.util.Debug;
  * @version 0.00 020525 nsano initial version <br>
  */
 public abstract class AbstractDescriptorTableModel extends AbstractTableModel {
+
+    private static final Logger logger = getLogger(AbstractDescriptorTableModel.class.getName());
 
     protected FeatureDescriptor[] descriptors;
 
@@ -54,7 +56,7 @@ public abstract class AbstractDescriptorTableModel extends AbstractTableModel {
         return bean;
     }
 
-    //-------------------------------------------------------------------------
+    // ----
 
     /**
      * Get row count (total number of properties shown)
@@ -76,7 +78,7 @@ public abstract class AbstractDescriptorTableModel extends AbstractTableModel {
         return NUM_COLUMNS;
     }
 
-    //-------------------------------------------------------------------------
+    // ----
 
     /**
      * Returns the PropertyDescriptor for the row.
@@ -108,7 +110,7 @@ public abstract class AbstractDescriptorTableModel extends AbstractTableModel {
             try {
                 editor = (PropertyEditor) clazz.getDeclaredConstructor().newInstance();
             } catch (Exception e) {
-Debug.println(Level.SEVERE, "creating PropertyEditor: " + e);
+logger.log(Level.ERROR, "creating PropertyEditor: " + e);
             }
         } else {
             // Look for a registered editor for this type.

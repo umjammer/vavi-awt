@@ -11,9 +11,12 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.LayoutManager;
 import java.awt.Point;
-import java.util.logging.Level;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 
 import vavi.util.Debug;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -24,6 +27,8 @@ import vavi.util.Debug;
  */
 public class GlassPaneLayout implements LayoutManager {
 
+    private static final Logger logger = getLogger(GlassPaneLayout.class.getName());
+
     /**
      * this class doesn't use this method.
      */
@@ -32,14 +37,14 @@ public class GlassPaneLayout implements LayoutManager {
     }
 
     /**
-     * 指定されたパネルにコンテナを配置します。
+     * Places the container in the specified panel.
      */
     @Override
     public void layoutContainer(Container parent) {
-Debug.println(Level.FINER, Debug.getCallerMethod());
-Debug.println(Level.FINER, parent.getPreferredSize().width + ", " + parent.getPreferredSize().height);
-Debug.println(Level.FINER, parent);
-Debug.println(Level.FINER, parent.getSize().width + ", " + parent.getSize().height);
+logger.log(Level.TRACE, Debug.getCallerMethod());
+logger.log(Level.TRACE, parent.getPreferredSize().width + ", " + parent.getPreferredSize().height);
+logger.log(Level.TRACE, parent);
+logger.log(Level.TRACE, parent.getSize().width + ", " + parent.getSize().height);
         for (int i = 0; i < parent.getComponentCount(); i++) {
             Component component = parent.getComponent(i);
             component.setLocation(new Point(0, 0));
@@ -48,22 +53,22 @@ Debug.println(Level.FINER, parent.getSize().width + ", " + parent.getSize().heig
     }
 
     /**
-     * 指定された親コンテナにコンポーネントを配置した時の
-     * パネルの最小サイズを計算します。
+     * Calculates the minimum size the panel will have
+     * when the components are placed in the specified parent container.
      */
     @Override
     public Dimension minimumLayoutSize(Container parent) {
-Debug.println(Level.FINE, parent.getSize().width + ", " + parent.getSize().height);
+logger.log(Level.DEBUG, parent.getSize().width + ", " + parent.getSize().height);
         return parent.getSize();
     }
 
     /**
-     * 指定された親コンテナにコンポーネントを配置した時の
-     * パネルの推奨サイズを計算します。
+     * Calculates the preferred size of the panel
+     * when the components are placed in the specified parent container.
      */
     @Override
     public Dimension preferredLayoutSize(Container parent) {
-Debug.println(Level.FINE, parent.getSize().width + ", " + parent.getSize().height);
+logger.log(Level.DEBUG, parent.getSize().width + ", " + parent.getSize().height);
         return parent.getSize();
     }
 

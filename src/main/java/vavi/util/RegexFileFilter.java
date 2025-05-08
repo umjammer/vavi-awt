@@ -8,18 +8,21 @@ package vavi.util;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static java.lang.System.getLogger;
+
 
 /**
- * Regex でフィルタをかけるファイルフィルタです．
+ * Regex file filter.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010910 nsano initial version <br>
@@ -27,31 +30,33 @@ import java.util.regex.Pattern;
  */
 public class RegexFileFilter extends javax.swing.filechooser.FileFilter implements FileFilter, Predicate<Path> {
 
-    /** パターンの配列 */
+    private static final Logger logger = getLogger(RegexFileFilter.class.getName());
+
+    /** Pattern Array */
     private final List<String> regexs = new ArrayList<>(1);
 
-    /** フィルタの説明 */
+    /** Filter Description */
     private String description;
 
     /**
-     * ファイルフィルタを作成します．
+     * Create a file filter.
      */
     public RegexFileFilter() {
     }
 
     /**
-     * 指定したパターンのファイルフィルタを作成します．
+     * Creates a file filter for the specified pattern.
      *
-     * @param regex パターン
+     * @param regex pattern
      */
     public RegexFileFilter(String regex) {
         regexs.add(regex);
     }
 
     /**
-     * 指定したパターンのファイルフィルタを作成します．
+     * Creates a file filter for the specified pattern.
      *
-     * @param regex パターン
+     * @param regex pattern
      */
     public RegexFileFilter(String regex, String description) {
         regexs.add(regex);
@@ -59,14 +64,14 @@ public class RegexFileFilter extends javax.swing.filechooser.FileFilter implemen
     }
 
     /**
-     * フィルタの説明を設定します．
+     * Set the description of the filter.
      */
     public void setDescription(String description) {
         this.description = description;
     }
 
     /**
-     * パターンを追加します．
+     * Add a pattern.
      */
     public void addPattern(String regex) {
         regexs.add(regex);
@@ -80,7 +85,7 @@ public class RegexFileFilter extends javax.swing.filechooser.FileFilter implemen
         }
 
         if (regexs.isEmpty()) {
-Debug.println(Level.FINE, "no pattern");
+logger.log(Level.DEBUG, "no pattern");
             return true;
         }
 
@@ -93,7 +98,7 @@ Debug.println(Level.FINE, "no pattern");
                 }
             }
         } catch (Exception e) {
-Debug.println(Level.FINE, e);
+logger.log(Level.DEBUG, e);
         }
 
         return false;
@@ -106,7 +111,7 @@ Debug.println(Level.FINE, e);
         }
 
         if (regexs.isEmpty()) {
-Debug.println(Level.FINE, "no pattern");
+logger.log(Level.DEBUG, "no pattern");
             return true;
         }
 
@@ -119,7 +124,7 @@ Debug.println(Level.FINE, "no pattern");
                 }
             }
         } catch (Exception e) {
-Debug.println(Level.FINE, e);
+logger.log(Level.DEBUG, e);
         }
 
         return false;

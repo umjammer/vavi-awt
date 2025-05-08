@@ -14,7 +14,7 @@ import vavi.awt.containereditor.AbstractController;
 
 
 /**
- * Basic コントローラです．
+ * This is a Basic controller.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010823 nsano initial version <br>
@@ -25,7 +25,7 @@ import vavi.awt.containereditor.AbstractController;
 public class BasicController extends AbstractController {
 
     /**
-     * Basic コントローラを構築します．
+     * Build a Basic controller.
      */
     public BasicController(Component view) {
         super(view);
@@ -38,7 +38,7 @@ public class BasicController extends AbstractController {
 //  private PropertyChangeListener pcl = new PropertyChangeListener() {
 //      public void propertyChange(PropertyChangeEvent ev) {
 //          String name = ev.getPropertyName();
-//Debug.println(Level.FINER, name);
+//logger.log(Level.TRACE, name);
 //      }
 //  };
 

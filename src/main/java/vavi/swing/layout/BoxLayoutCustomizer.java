@@ -15,8 +15,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
-
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -30,7 +30,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JToggleButton;
 
-import vavi.util.Debug;
+import static java.lang.System.getLogger;
 
 
 /**
@@ -44,6 +44,8 @@ import vavi.util.Debug;
  * @version 0.00 020518 nsano initial version <br>
  */
 public class BoxLayoutCustomizer extends BasicLayoutManagerCustomizer {
+
+    private static final Logger logger = getLogger(BoxLayoutCustomizer.class.getName());
 
     /** */
     private final BoxLayout box;
@@ -140,7 +142,7 @@ public class BoxLayoutCustomizer extends BasicLayoutManagerCustomizer {
         layoutPanel.setLayout(box);
     }
 
-//    /** TODO list から BoxLayout 作成 */
+//    /** TODO Create a BoxLayout from a list */
 //  public LayoutManager getObject() {
 //      return new BoxLayout(container, BoxLayout.Y_AXIS);
 //  }
@@ -162,9 +164,9 @@ public class BoxLayoutCustomizer extends BasicLayoutManagerCustomizer {
 
         for (int i = 0; i < container.getComponentCount(); i++) {
             Component c = container.getComponent(i);
-Debug.println(Level.FINER, c.getMinimumSize().width + ", " + c.getMinimumSize().height);
-Debug.println(Level.FINER, c.getPreferredSize().width + ", " + c.getPreferredSize().height);
-Debug.println(Level.FINER, c.getMaximumSize().width + ", " + c.getMaximumSize().height);
+logger.log(Level.TRACE, c.getMinimumSize().width + ", " + c.getMinimumSize().height);
+logger.log(Level.TRACE, c.getPreferredSize().width + ", " + c.getPreferredSize().height);
+logger.log(Level.TRACE, c.getMaximumSize().width + ", " + c.getMaximumSize().height);
             // controller
             JLabel controller = new JLabel(String.valueOf(i));
             controller.setHorizontalAlignment(JLabel.CENTER);
@@ -173,9 +175,9 @@ Debug.println(Level.FINER, c.getMaximumSize().width + ", " + c.getMaximumSize().
             controller.setMinimumSize(ajustRatio(c.getMinimumSize()));
             controller.setPreferredSize(ajustRatio(c.getPreferredSize()));
             controller.setMaximumSize(ajustRatio(c.getMaximumSize()));
-Debug.println(Level.FINER, controller.getMinimumSize().width + ", " + controller.getMinimumSize().height);
-Debug.println(Level.FINER, controller.getPreferredSize().width + ", " + controller.getPreferredSize().height);
-Debug.println(Level.FINER, controller.getMaximumSize().width + ", " + controller.getMaximumSize().height);
+logger.log(Level.TRACE, controller.getMinimumSize().width + ", " + controller.getMinimumSize().height);
+logger.log(Level.TRACE, controller.getPreferredSize().width + ", " + controller.getPreferredSize().height);
+logger.log(Level.TRACE, controller.getMaximumSize().width + ", " + controller.getMaximumSize().height);
 
             components.put(String.valueOf(i), controller);
 
@@ -200,7 +202,7 @@ Debug.println(Level.FINER, controller.getMaximumSize().width + ", " + controller
     public void layoutContainer() {
     }
 
-    //-------------------------------------------------------------------------
+    // ----
 
     /** controller button pushed */
     private final ActionListener al = new ActionListener() {

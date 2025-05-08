@@ -10,7 +10,7 @@ import vavi.swing.event.EditorListener;
 
 
 /**
- * エディタのインターフェースです．
+ * The editor interface.
  *
  * TODO add close open exit
  *

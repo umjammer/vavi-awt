@@ -6,15 +6,17 @@
 
 package vavi.awt;
 
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
-import java.util.logging.Level;
 
 import vavi.awt.event.SelectionEvent;
 import vavi.awt.event.SelectionListener;
 import vavi.awt.event.SelectionSupport;
-import vavi.util.Debug;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -27,7 +29,9 @@ import vavi.util.Debug;
  */
 public class SelectionModel {
 
-    /** 選択されていてるオブジェクトのリスト */
+    private static final Logger logger = getLogger(SelectionModel.class.getName());
+
+    /** A list of selected objects */
     private List<Selectable> selected;
 
     /** */
@@ -36,24 +40,24 @@ public class SelectionModel {
     }
 
     /**
-     * 選択状態の Selectable のベクタを返します．
+     * Returns a vector of selected Selectables.
      */
     public List<Selectable> getSelected() {
         return selected;
     }
 
     /**
-     * 指定した Selectable のベクタを選択状態にします．
+     * Selects the specified vector of Selectables.
      */
     public void setSelected(List<Selectable> selected) {
-Debug.println(Level.INFO, "Warning: be careful to use this method.");
+logger.log(Level.INFO, "Warning: be careful to use this method.");
         this.selected = selected;
 
         fireValueChanged(new SelectionEvent(this, selected));
     }
 
     /**
-     * すべての Selectable を非選択状態にします．
+     * Deselects all Selectables.
      */
     public void deselectAll() {
         for (Selectable selectable : selected) {
@@ -66,7 +70,7 @@ Debug.println(Level.INFO, "Warning: be careful to use this method.");
     }
 
     /**
-     * Selectable を選択状態にします．
+     * Sets the Selectable to selected state.
      *
      * @param selectables
      */
@@ -80,14 +84,14 @@ Debug.println(Level.INFO, "Warning: be careful to use this method.");
     }
 
     /**
-     * Selectable を選択状態にします．
+     * Sets the Selectable to selected state.
      *
-     * @param selectable 対象となる Object
-     * @param isMultiSelection 複数選択かどうか
+     * @param selectable Target Object
+     * @param isMultiSelection Multiple choice or not
      */
     public void select(Selectable selectable, boolean isMultiSelection) {
 
-Debug.println(Level.FINER, selectable);
+logger.log(Level.TRACE, selectable);
         boolean isOldSelection = false;
 
         Iterator<Selectable> i = selected.iterator();
@@ -95,8 +99,7 @@ Debug.println(Level.FINER, selectable);
             Selectable s = i.next();
             if (selectable == s) {
                 if (isMultiSelection) {
-                    // 新しい選択が，すでに選択済みの場合，
-                    // その選択状態を解除する
+                    // If the new selection is already selected, it will clear the selection.
                     s.setSelected(false);
                     i.remove();
                     isOldSelection = true;
@@ -105,9 +108,9 @@ Debug.println(Level.FINER, selectable);
         }
 
         if (!isOldSelection) {
-            // 新しいものが選択されたとき
+            // When a new one is selected
             if (!isMultiSelection) {
-                // すべてを非選択状態に
+                // Deselect all
                 for (Selectable value : selected) {
                     value.setSelected(false);
                 }
@@ -115,7 +118,7 @@ Debug.println(Level.FINER, selectable);
             }
             selected.add(selectable);
 
-            // 選択されているすべてを選択状態にする
+            // Select all selected
             for (Selectable value : selected) {
                 value.setSelected(true);
             }
@@ -124,17 +127,17 @@ Debug.println(Level.FINER, selectable);
         fireValueChanged(new SelectionEvent(this, selected));
     }
 
-    // -------------------------------------------------------------------------
+    // ----
 
-    /** SelectionEvent 機構のユーティリティ */
+    /** SelectionEvent mechanism utilities */
     private final SelectionSupport ss = new SelectionSupport();
 
-    /** Selection リスナーをアタッチします． */
+    /** Attach a Selection listener. */
     public void addSelectionListener(SelectionListener l) {
         ss.addSelectionListener(l);
     }
 
-    /** Selection リスナーをリムーブします． */
+    /** Removes the Selection listener. */
     public void removeSelectionListener(SelectionListener l) {
         ss.removeSelectionListener(l);
     }

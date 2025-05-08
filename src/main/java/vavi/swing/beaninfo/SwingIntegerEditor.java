@@ -9,13 +9,13 @@ package vavi.swing.beaninfo;
 import java.awt.Component;
 import java.beans.FeatureDescriptor;
 import java.beans.PropertyChangeListener;
-import java.util.logging.Level;
-
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 
-import vavi.util.Debug;
+import static java.lang.System.getLogger;
 
 
 /**
@@ -30,6 +30,8 @@ import vavi.util.Debug;
  *          1.91 020524 nsano be generic <br>
  */
 public class SwingIntegerEditor extends SwingEditorSupport {
+
+    private static final Logger logger = getLogger(SwingIntegerEditor.class.getName());
 
     // Property editor to use if the Integer represents an Enumerated type.
     private final SwingEnumEditor enumEditor = new SwingEnumEditor();
@@ -98,7 +100,7 @@ public class SwingIntegerEditor extends SwingEditorSupport {
 
             enumEditor.init(descriptor);
             enumEditor.setEditor(null);
-Debug.println(Level.FINER, "enum");
+logger.log(Level.TRACE, "enum");
 //        } else if (enumplus != null) {
             // enhanced enum
 
@@ -111,7 +113,7 @@ Debug.println(Level.FINER, "enum");
             // This is an integer item
             isEnumeration = false;
             enumEditor.setEditor(null);
-Debug.println(Level.FINER, "normal");
+logger.log(Level.TRACE, "normal");
         }
     }
 

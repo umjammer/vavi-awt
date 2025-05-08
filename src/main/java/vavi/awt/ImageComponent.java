@@ -8,9 +8,10 @@ package vavi.awt;
 
 import java.awt.Image;
 import java.beans.PropertyChangeEvent;
-import java.util.logging.Level;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 
-import vavi.util.Debug;
+import static java.lang.System.getLogger;
 
 
 /**
@@ -20,6 +21,8 @@ import vavi.util.Debug;
  * @version 0.00 220919 nsano initial version <br>
  */
 public class ImageComponent extends BaseImageComponent<Image> {
+
+    private static final Logger logger = getLogger(ImageComponent.class.getName());
 
     /** Creates an image component. */
     public ImageComponent() {
@@ -43,7 +46,7 @@ public class ImageComponent extends BaseImageComponent<Image> {
         if (image != null) {
             iw = image.getWidth(null);
             ih = image.getHeight(null);
-Debug.println(Level.FINE, "image: " + iw + "x" + ih + ", " + image);
+logger.log(Level.DEBUG, "image: " + iw + "x" + ih + ", " + image);
         }
     }
 }

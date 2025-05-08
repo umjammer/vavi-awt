@@ -1,20 +1,25 @@
-PropertyEditor 関連のクラスを提供します．
+# vavi.swing.propertyeditor
 
-## 使用法
+Provides PropertyEditor related classes.
+
+## Usage
 
 ### JPropertyEditorPanel
 
-   完全な bean のプロパティエディタです．
+A complete bean property editor.
 
-#### 一般的使用
-  * <code>AbstractDescriptorTableModel</code> を継承した <code>TableModel</code> を作成する
-    * see {@link vavi.swing.propertyeditor.PropertyDescriptorTableModel}
-  * そのモデルを <code>JPropertyEditorTable</code> に適用する
-  * 自作プロパティエディタを作成し使用する場合は <code>propertyEditor.properties</code> に追加してください
+#### General Use
 
-   clazz.n クラス プリミティブ型はそのまま指定 (e.g. <code>int, long ...</code>)
-   editor.n プロパティエディタクラス
+* Create a <code>TableModel</code> that inherits from <code>AbstractDescriptorTableModel</code>
+  * see {@link vavi.swing.propertyeditor.PropertyDescriptorTableModel}
+* Apply that model to <code>JPropertyEditorTable</code>
+* If you create and use your own property editor, add it to <code>propertyEditor.properties</code>
 
-## これから実装すること
+```
+clazz.n = Class Primitive types are specified as is (e.g. <code>int, long ...</code>)
+editor.n = Property editor class
+```
 
- * JPropertyEditorPanel，Down 失敗時の Up ボタン処理
+## TODO
+
+* JPropertyEditorPanel, Up button handling when Down fails

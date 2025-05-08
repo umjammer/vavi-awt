@@ -11,9 +11,9 @@ import java.awt.Dimension;
 import java.beans.BeanDescriptor;
 import java.beans.BeanInfo;
 import java.beans.PropertyChangeListener;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.Properties;
-import java.util.logging.Level;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
@@ -23,7 +23,7 @@ import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.event.ChangeListener;
 
-import vavi.util.Debug;
+import static java.lang.System.getLogger;
 
 
 /**
@@ -36,6 +36,8 @@ import vavi.util.Debug;
  *          1.00 020527 nsano complete <br>
  */
 public class BorderChooser extends JTabbedPane {
+
+    private static final Logger logger = getLogger(BorderChooser.class.getName());
 
     /** */
     private static final String path = "border.properties";
@@ -57,11 +59,11 @@ public class BorderChooser extends JTabbedPane {
                 String key = "editor." + i;
                 String value = props.getProperty(key);
                 if (value == null) {
-Debug.println(Level.FINE, "no property for: editor." + i);
+logger.log(Level.DEBUG, "no property for: editor." + i);
                     break;
                 }
 
-Debug.println(Level.FINER, value);
+logger.log(Level.TRACE, value);
                 Class<?> clazz = Class.forName(value);
 
                 BorderInfo bi = BorderInfoFactory.getBorderInfo(clazz);
@@ -78,8 +80,7 @@ Debug.println(Level.FINER, value);
                 i++;
             }
         } catch (Exception e) {
-Debug.println(Level.SEVERE, e);
-Debug.printStackTrace(e);
+logger.log(Level.ERROR, e.getMessage(), e);
         }
 
         this.setPreferredSize(new Dimension(640, 320));
@@ -98,7 +99,7 @@ Debug.printStackTrace(e);
         int i = getSelectedIndex();
         BorderCustomizer bc = (BorderCustomizer) getComponentAt(i);
         border = bc.getObject();
-Debug.println(Level.FINER, border);
+logger.log(Level.TRACE, border);
     };
 
     /** Gets selected border. */
@@ -122,7 +123,7 @@ Debug.println(Level.FINER, border);
         if (p != -1)
             name = name.substring(p + 1);
         for (int i = 1; i < this.getTabCount(); i++) {
-//Debug.println(Level.INFO, name + ", " + this.getTitleAt(i));
+//logger.log(Level.INFO, name + ", " + this.getTitleAt(i));
             if (name.equals(this.getTitleAt(i))) {
                 BorderCustomizer bc = (BorderCustomizer) this.getComponentAt(i);
                 bc.setObject(border);
@@ -132,17 +133,14 @@ Debug.println(Level.FINER, border);
         }
 
         // TODO use user defined border info
-        addTab(name, UIManager.getIcon("borderChooser.unknownBorderIcon"),
-               new NullBorderCustomizer());
+        addTab(name, UIManager.getIcon("borderChooser.unknownBorderIcon"), new NullBorderCustomizer());
     }
 
     /* get icons */
     static {
         Class<?> clazz = BorderChooser.class;
         UIDefaults table = UIManager.getDefaults();
-        table.put("borderChooser.nullBorderIcon",
-                  LookAndFeel.makeIcon(clazz, "resources/nullBorder.gif"));
-        table.put("borderChooser.unknownBorderIcon",
-                  LookAndFeel.makeIcon(clazz, "resources/unknownBorder.gif"));
+        table.put("borderChooser.nullBorderIcon", LookAndFeel.makeIcon(clazz, "resources/nullBorder.gif"));
+        table.put("borderChooser.unknownBorderIcon", LookAndFeel.makeIcon(clazz, "resources/unknownBorder.gif"));
     }
 }

@@ -8,7 +8,7 @@ package vavix.swing.editormanager;
 
 
 /**
- * 複数のエディタを管理するクラスのデフォルトの実装クラスです．
+ * This is the default implementation class for managing multiple editors.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010820 nsano initial version <br>
@@ -18,43 +18,43 @@ package vavix.swing.editormanager;
 public class DefaultEditorManager extends EditorManager {
 
     /**
-     * エディタがオープンされたときに呼ばれる処理の実装です．
+     * This is the implementation of the process that is called when the editor is opened.
      */
     @Override
     protected void editorOpenedImpl(Editor editor) {}
 
     /**
-     * エディタがクローズされたときに呼ばれる処理の実装です．
+     * This is the implementation of the process that is called when the editor is closed.
      */
     @Override
     protected void editorClosedImpl(Editor editor) {}
 
     /**
-     * エディタがアップデートされたときに呼ばれる処理の実装です．
+     * This is the implementation of the process that is called when the editor is updated.
      */
     @Override
     protected void editorUpdatedImpl(Editor editor) {}
 
     /**
-     * エディタマネージャを使ってエディタをオープンした時の処理の実装です．
+     * This is the implementation of the process that occurs when an editor is opened using the editor manager.
      */
     @Override
     public void openEditor(Editor editor) {}
 
     /**
-     * エディタマネージャを使ってエディタをクローズした時の処理の実装です．
+     * This is the implementation of the process that occurs when the editor is closed using the editor manager.
      */
     @Override
     public void closeEditor(Editor editor) {}
 
     /**
-     * エディタマネージャを使ってエディタをアップデートした時の処理の実装です．
+     * This is the implementation of the process that occurs when you update the editor using the editor manager.
      */
     @Override
     public void updateEditor(Editor editor) {}
 
     /**
-     * エディタマネージャを使って全エディタをクローズした時の処理の実装です．
+     * This is the implementation of the process that occurs when all editors are closed using the editor manager.
      */
     @Override
     protected void closedAllEditorsImpl() {}

@@ -10,10 +10,10 @@ import java.beans.*;
 
 
 /**
- * LayoutManager の Constraints クラスを Beans として扱う
- * ラッパークラスを作成するための基底クラスです．
+ * LThis is a base class for creating wrapper classes
+ * that handle the ayoutManager's Constraints class as Beans.
  * <p>
- * setter メソッドでは PropertyChangeEvent を発行してください． // TODO
+ * setter The method should issue a PropertyChangeEvent. // TODO
  * </p>
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
@@ -31,28 +31,28 @@ public abstract class LayoutConstraints {
      */
     public abstract void setConstraints(Object constraints);
 
-    //-------------------------------------------------------------------------
+    // ----
 
-    /** PropertyChange イベント機構のユーティリティ */
+    /** PropertyChange event mechanism utilities */
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
-    /** PropertyChangeListener を追加します． */
+    /** Add a PropertyChangeListener. */
     public void addPropertyChangeListener(PropertyChangeListener l) {
         pcs.addPropertyChangeListener(l);
     }
 
-    /** PropertyChangeListener を削除します． */
+    /** Removes a PropertyChangeListener. */
     public void removePropertyChangeListener(PropertyChangeListener l) {
         pcs.removePropertyChangeListener(l);
     }
 
-    /** PropertyChangeEvent を発行します． */
+    /** Emits a PropertyChangeEvent. */
     protected void firePropertyChange(String name,
                                       int oldValue, int newValue) {
         pcs.firePropertyChange(name, oldValue, newValue);
     }
 
-    /** PropertyChangeEvent を発行します． */
+    /** Emits a PropertyChangeEvent. */
     protected void firePropertyChange(String name,
                                       Object oldValue, Object newValue) {
         pcs.firePropertyChange(name, oldValue, newValue);

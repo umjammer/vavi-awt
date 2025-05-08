@@ -23,7 +23,7 @@ import javax.swing.event.TableModelListener;
 /**
  * CardLayoutCustomizer.
  *
- * TODO CardLayout#show した後，他の setVisible が false になってます．
+ * TODO After CardLayout#show, other setVisible becomes false.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020528 nsano initial version <br>

@@ -1,5 +1,7 @@
-コンテナエディタ関連のクラスを提供します．
+# vavi.awt.containereditor
 
-## これから実装すること
+Provides container editor related classes.
 
-  * 並び替えコマンドのレイアウタ化?
+## TODO
+
+  * Layout sort command?

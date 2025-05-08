@@ -10,8 +10,8 @@ import java.io.File;
 
 
 /**
- * ファイル名を入力するためのコンポーネントです．
- * ヒストリ付きコンボボックスに"参照"ボタンがついています．
+ * A component for inputting a file name.
+ * The combo box with history has a "Browse" button.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020503 nsano initial version <br>
@@ -22,35 +22,35 @@ import java.io.File;
 public class JFileChooserHistoryComboBox extends JFileChooserField {
 
     /**
-     * ヒストリ付きコンボボックス付きファイルチューザを構築します．
+     * Constructs a file chooser with a combo box and history.
      */
     public JFileChooserHistoryComboBox() {
         super();
     }
 
     /**
-     * ヒストリ付きコンボボックス付きファイルチューザを構築します．
+     * Constructs a file chooser with a combo box and history.
      */
     public JFileChooserHistoryComboBox(File file) {
         super(file);
     }
 
-    /** ヒストリ付きコンボボックス */
+    /** Combo Box with History */
     @Override
     protected void setPathFieldImpl() {
         pathField = new JHistoryComboBox();
     }
 
-    /** コンボボックスのアクションリスナ */
+    /** Combobox Action Listener */
     @Override
     protected void addActionListenerImpl() {
         ((JHistoryComboBox) pathField).addActionListener(pathFieldActionListener);
     }
 
     /**
-     * 文字列をコンボボックスに設定します．
+     * Sets the string in the combo box.
      *
-     * @param text 文字列
+     * @param text String
      */
     @Override
     protected void setTextImpl(String text) {
@@ -58,9 +58,9 @@ public class JFileChooserHistoryComboBox extends JFileChooserField {
     }
 
     /**
-     * コンボボックスで選択されている文字列を返します．
+     * Returns the string selected in the combo box.
      *
-     * @return 選択されている文字列
+     * @return The selected string
      */
     @Override
     protected String getTextImpl() {
@@ -68,9 +68,9 @@ public class JFileChooserHistoryComboBox extends JFileChooserField {
     }
 
     /**
-     * ファイルをコンボボックスに設定します．
+     * Set the file in the combo box.
      *
-     * @param file ファイル
+     * @param file file
      */
     @Override
     protected void setSelectedFileImpl(File file) {
@@ -78,9 +78,9 @@ public class JFileChooserHistoryComboBox extends JFileChooserField {
     }
 
     /**
-     * コンボボックスで選択されているファイルを返します．
+     * Returns the file selected in the combo box.
      *
-     * @return 選択されているファイル
+     * @return Selected file
      */
     @Override
     protected File getSelectedFileImpl() {

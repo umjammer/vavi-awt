@@ -16,9 +16,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.BeanInfo;
 import java.beans.Introspector;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.Properties;
-import java.util.logging.Level;
-
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -30,11 +30,12 @@ import javax.swing.UIManager;
 import vavi.awt.event.ComponentSelectionEvent;
 import vavi.awt.event.ComponentSelectionListener;
 import vavi.awt.event.ComponentSelectionSupport;
-import vavi.util.Debug;
+
+import static java.lang.System.getLogger;
 
 
 /**
- * bean を選択する TabbedPane です．
+ * A TabbedPane for selecting a bean.
  * <p>
  * TODO button management
  * DONE load beans
@@ -50,6 +51,8 @@ import vavi.util.Debug;
  *          0.21 020512 nsano use ComponentSelectionEvent <br>
  */
 public class JBeansTabbedPane extends JTabbedPane {
+
+    private static final Logger logger = getLogger(JBeansTabbedPane.class.getName());
 
     /** @see BeanInfo#getIcon param iconKind */
     private int iconKind = BeanInfo.ICON_COLOR_16x16;
@@ -68,7 +71,7 @@ public class JBeansTabbedPane extends JTabbedPane {
     };
 
     /**
-     * bean を選択する TabbedPane を構築します．
+     * Constructs a TabbedPane for selecting a bean.
      */
     public JBeansTabbedPane() {
 
@@ -81,7 +84,7 @@ public class JBeansTabbedPane extends JTabbedPane {
             String key = "tab." + i + ".title";
             String value = props.getProperty(key);
             if (value == null) {
-Debug.println(Level.FINE, "no property for: " + key);
+logger.log(Level.DEBUG, "no property for: " + key);
                 break;
             }
 
@@ -95,7 +98,7 @@ Debug.println(Level.FINE, "no property for: " + key);
                 key = "tab." + i + "." + j;
                 value = props.getProperty(key);
                 if (value == null) {
-Debug.println(Level.FINE, "no property for: " + key);
+logger.log(Level.DEBUG, "no property for: " + key);
                     break;
                 }
 
@@ -112,15 +115,14 @@ Debug.println(Level.FINE, "no property for: " + key);
                         button.setIcon(new ImageIcon(image));
                     }
                     button.setToolTipText(value);
-                    button.setActionCommand(value);    // 仕様
+                    button.setActionCommand(value);    // specification
                     button.setPreferredSize(preferredSizes[iconKind-1]);
                     button.addActionListener(selectAction);
 
                     group.add(button);
                     tab.add(button);
                 } catch (Exception e) {
-Debug.println(Level.FINE, value);
-Debug.printStackTrace(e);
+logger.log(Level.DEBUG, e.getMessage() + ": " + value, e);
                 }
                 j++;
             }
@@ -150,7 +152,7 @@ Debug.printStackTrace(e);
         }
     }
 
-    /** 選択を解除します． TODO 効いてない，なんで？？？ */
+    /** Deselect it. TODO is not working, why??? */
     public void deselectAll() {
         for (int i = 0; i < this.getTabCount(); i++) {
             Container container = (Container) this.getComponentAt(i); // tab
@@ -161,7 +163,7 @@ Debug.printStackTrace(e);
         }
     }
 
-    /** ボタンが選択されたとき． */
+    /** When the button is selected. */
     private final ActionListener selectAction = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent ev) {
@@ -170,9 +172,9 @@ Debug.printStackTrace(e);
         }
     };
 
-    //-------------------------------------------------------------------------
+    // ----
 
-    /** ComponentSelectionEvent 機構のユーティリティ */
+    /** ComponentSelectionEvent Mechanism Utility */
     private final ComponentSelectionSupport css = new ComponentSelectionSupport();
 
     /** Adds a ComponentSelection listener. */
@@ -190,9 +192,9 @@ Debug.printStackTrace(e);
         css.fireValueChanged(ev);
     }
 
-    //-------------------------------------------------------------------------
+    // ----
 
-    /** プロパティ */
+    /** Properties */
     private static final Properties props = new Properties();
 
     /*
@@ -211,7 +213,7 @@ Debug.printStackTrace(e);
         try {
             props.load(clazz.getResourceAsStream(path));
         } catch (Exception e) {
-Debug.println(Level.SEVERE, "no properties file");
+logger.log(Level.ERROR, "no properties file");
             throw new IllegalStateException(e);
         }
     }

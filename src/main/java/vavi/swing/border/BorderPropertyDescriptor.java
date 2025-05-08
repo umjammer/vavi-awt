@@ -7,21 +7,25 @@
 package vavi.swing.border;
 
 import java.beans.FeatureDescriptor;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.lang.reflect.Method;
-import java.util.logging.Level;
 
-import vavi.util.Debug;
+import static java.lang.System.getLogger;
+
 
 /**
  * BorderPropertyDescriptor.
  * <p>
- * Border は getter メソッドが無いクラスがほとんどなので，
- * getter メソッド のみを扱う PropertyDescriptor としてこのクラスがあります．
+ * Since most Border classes do not have getter methods,
+ * this class exists as a PropertyDescriptor that only handles the getter method.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020525 nsano initial version <br>
  */
 public class BorderPropertyDescriptor extends FeatureDescriptor {
+
+    private static final Logger logger = getLogger(BorderPropertyDescriptor.class.getName());
 
     private final String propertyName;
 
@@ -41,19 +45,19 @@ public class BorderPropertyDescriptor extends FeatureDescriptor {
         try {
             char c = Character.toUpperCase(propertyName.charAt(0));
             String name = "get" + c + propertyName.substring(1);
-Debug.println(Level.FINER, name);
+logger.log(Level.TRACE, name);
             Class<?>[] paramTypes = new Class[0];
             Method method = borderClass.getDeclaredMethod(name, paramTypes);
             return method;
         } catch (Exception e) {
-Debug.println(Level.SEVERE, e);
+logger.log(Level.ERROR, e.getMessage(), e);
             return null;
         }
     }
 
     /** */
     public Class<?> getPropertyType() {
-Debug.println(Level.FINER, getReadMethod().getReturnType());
+logger.log(Level.TRACE, getReadMethod().getReturnType());
         return getReadMethod().getReturnType();
     }
 

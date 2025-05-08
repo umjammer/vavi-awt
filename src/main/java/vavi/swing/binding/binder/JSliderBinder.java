@@ -6,12 +6,14 @@
 
 package vavi.swing.binding.binder;
 
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.lang.reflect.Field;
-import java.util.logging.Level;
 import javax.swing.JSlider;
 
 import vavi.beans.BeanUtil;
-import vavi.util.Debug;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -21,6 +23,8 @@ import vavi.util.Debug;
  * @version 0.00 2022-09-14 nsano initial version <br>
  */
 public class JSliderBinder<T> extends BaseBinder<T> {
+
+    private static final Logger logger = getLogger(JSliderBinder.class.getName());
 
     @Override
     public Class<?> acceptable() {
@@ -41,10 +45,10 @@ public class JSliderBinder<T> extends BaseBinder<T> {
                     return;
                 }
                 BeanUtil.setFieldValue(field, bean, slider.getValue());
-Debug.println(Level.FINE, "fired from: " + field.getName() + ", listener: " + this.hashCode() + ", source: " + e.getSource().hashCode());
+logger.log(Level.DEBUG, "fired from: " + field.getName() + ", listener: " + this.hashCode() + ", source: " + e.getSource().hashCode());
                 updater.update(bean);
             });
-Debug.println(Level.FINE, "swing listener added to: " + field.getName() + ", " + slider.hashCode());
+logger.log(Level.DEBUG, "swing listener added to: " + field.getName() + ", " + slider.hashCode());
         }
     }
 }

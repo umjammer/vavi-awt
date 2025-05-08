@@ -27,21 +27,21 @@ import javax.swing.tree.TreeModel;
 
 
 /**
- * ドロップダウンリストがツリー表示のコンボボックスです．
+ * The drop-down list is a combo box that displays a tree.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020330 nsano rename, repackage <br>
  */
 public class JTreeComboBox extends JComboBox<Object> {
 
-    /** ドロップダウンリストがツリー表示のコンボボックスを構築します． */
+    /** Creates a combo box whose drop-down list displays a tree. */
     public JTreeComboBox(TreeModel aTreeModel) {
         super();
         setModel(new TreeToListModel(aTreeModel));
         setRenderer(new DefaultTreeComboBoxCellRenderer<>());
     }
 
-    /** ツリーモデルをリストモデルに変換して扱うクラスです． */
+    /** This class converts a tree model into a list model and handles it. */
     static class TreeToListModel extends AbstractListModel<Object> implements ComboBoxModel<Object>, TreeModelListener {
 
         final TreeModel source;
@@ -59,51 +59,43 @@ public class JTreeComboBox extends JComboBox<Object> {
             // setRenderer(new ListEntryRenderer());
         }
 
-        /** */
         @Override
         public void setSelectedItem(Object anObject) {
             currentValue = anObject;
             fireContentsChanged(this, -1, -1);
         }
 
-        /** */
         @Override
         public Object getSelectedItem() {
             return currentValue;
         }
 
-        /** */
         @Override
         public int getSize() {
             validate();
             return cache.size();
         }
 
-        /** */
         @Override
         public Object getElementAt(int index) {
             return cache.get(index).object;
         }
 
-        /** */
         @Override
         public void treeNodesChanged(TreeModelEvent ev) {
             invalid = true;
         }
 
-        /** */
         @Override
         public void treeNodesInserted(TreeModelEvent ev) {
             invalid = true;
         }
 
-        /** */
         @Override
         public void treeNodesRemoved(TreeModelEvent ev) {
             invalid = true;
         }
 
-        /** */
         @Override
         public void treeStructureChanged(TreeModelEvent ev) {
             invalid = true;
@@ -151,37 +143,37 @@ public class JTreeComboBox extends JComboBox<Object> {
 }
 
 /**
- * JTreeComboBox の一エントリを表すクラスです．
+ * This class represents one entry in a JTreeComboBox.
  */
 class ListEntry {
 
-    /** エントリのオブジェクト */
+    /** Entry object */
     final Object object;
 
-    /** ツリーの階層 */
+    /** Tree Hierarchy */
     final int level;
 
-    /** 末葉かどうか */
+    /** Is it the end of the line? */
     final boolean isNode;
 
-    /** JTreeComboBox の一エントリを構築します． */
+    /** Constructs an entry for a JTreeComboBox. */
     public ListEntry(Object anObject, int aLevel, boolean isNode) {
         object = anObject;
         level = aLevel;
         this.isNode = isNode;
     }
 
-    /** エントリのオブジェクトを返します． */
+    /** Returns the entry object. */
     public Object object() {
         return object;
     }
 
-    /** エントリのツリーの階層を返します． */
+    /** Returns the tree hierarchy of entries. */
     public int level() {
         return level;
     }
 
-    /** 末葉かどうかを返します． */
+    /** Returns whether it is a last leaf. */
     public boolean isNode() {
         return isNode;
     }

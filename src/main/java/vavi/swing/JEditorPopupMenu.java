@@ -22,9 +22,9 @@ import javax.swing.text.JTextComponent;
 
 
 /**
- * フィールド編集用ポップアップメニューです．
+ * This is the popup menu for editing the field.
  *
- * TODO アーキテクチャちゃんと考える
+ * TODO Think carefully about the architecture
  *
  * @depends /vavi/swing/resource${I18N}.properties
  *
@@ -55,7 +55,7 @@ public class JEditorPopupMenu extends JPopupMenu {
     /** */
     private final Editable editor;
 
-    /** TODO ここもいまいち */
+    /** TODO This place is also not so good. */
     static class JEditorComponent implements Editable {
         final JTextComponent tc;
         JEditorComponent(JTextComponent tc) {
@@ -98,7 +98,7 @@ public class JEditorPopupMenu extends JPopupMenu {
         this.add(selectAllAction);
     }
 
-    /** うーん，いまいち．．． */
+    /** Hmm, not so good... */
     private final MouseInputListener mouseListener = new MouseInputAdapter() {
         @Override
         public void mouseClicked(MouseEvent ev) {

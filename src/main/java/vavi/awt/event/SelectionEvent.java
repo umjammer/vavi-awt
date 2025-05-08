@@ -10,7 +10,7 @@ import java.util.EventObject;
 
 
 /**
- * Object が選択される時発行するイベントのクラスです．
+ * The class for events that are fired when an Object is selected.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020603 nsano initial version <br>
@@ -21,7 +21,7 @@ public class SelectionEvent extends EventObject {
     private final Object selected;
 
     /**
-     * Selection イベントを構築します．
+     * Constructs a Selection event.
      */
     public SelectionEvent(Object source, Object selected) {
         super(source);

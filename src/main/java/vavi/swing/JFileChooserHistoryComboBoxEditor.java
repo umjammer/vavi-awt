@@ -11,7 +11,7 @@ import java.beans.PropertyEditorSupport;
 
 
 /**
- * {@link vavi.swing.JFileChooserHistoryComboBox} のプロパティエディタです．
+ * Property editor for {@link vavi.swing.JFileChooserHistoryComboBox}.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010823 nsano initial version <br>
@@ -21,7 +21,7 @@ import java.beans.PropertyEditorSupport;
 public class JFileChooserHistoryComboBoxEditor extends PropertyEditorSupport implements PropertyEditor {
 
     /**
-     * カスタムエディタをサポートします．
+     * Supports custom editors.
      */
     @Override
     public boolean supportsCustomEditor() {

@@ -14,10 +14,10 @@ import java.awt.Graphics;
 import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-
 import javax.swing.AbstractButton;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -30,7 +30,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 
-import vavi.util.Debug;
+import static java.lang.System.getLogger;
 
 
 /**
@@ -45,7 +45,9 @@ import vavi.util.Debug;
  */
 public class SmallFontEditor extends JComponent implements FontEditor {
 
-    /** リソースバンドル */
+    private static final Logger logger = getLogger(SmallFontEditor.class.getName());
+
+    /** Resource Bundles */
     private static final ResourceBundle rb =
         ResourceBundle.getBundle("vavi.swing.resource", Locale.getDefault());
 
@@ -222,7 +224,7 @@ public class SmallFontEditor extends JComponent implements FontEditor {
         }
     };
 
-    //-------------------------------------------------------------------------
+    // ----
 
     /**
      * Implementation of an Icon button.
@@ -281,7 +283,7 @@ public class SmallFontEditor extends JComponent implements FontEditor {
         }
     }
 
-    //-------------------------------------------------------------------------
+    // ----
 
     @Override
     public Component getFontEditorComponent() {
@@ -295,7 +297,7 @@ public class SmallFontEditor extends JComponent implements FontEditor {
     public void setSelectedFont(Font font) {
         this.font = font;
 
-Debug.println(Level.FINER, font);
+logger.log(Level.TRACE, font);
         if (font == null)
             return;
 

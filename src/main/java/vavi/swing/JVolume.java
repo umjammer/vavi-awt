@@ -15,7 +15,8 @@ import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Arc2D;
 import java.io.Serializable;
-import java.util.logging.Level;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import javax.swing.BoundedRangeModel;
 import javax.swing.DefaultBoundedRangeModel;
 import javax.swing.JComponent;
@@ -25,17 +26,19 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.MouseInputAdapter;
 import javax.swing.event.MouseInputListener;
 
-import vavi.util.Debug;
+import static java.lang.System.getLogger;
 
 
 /**
- * ボリューム
+ * Volume UI.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 010919 nsano initial version <br>
  *          0.01 020516 nsano use paintComponent <br>
  */
 public class JVolume extends JComponent {
+
+    private static final Logger logger = getLogger(JVolume.class.getName());
 
     /**
      * The data model that handles the numeric maximum value,
@@ -55,21 +58,21 @@ public class JVolume extends JComponent {
     protected transient ChangeEvent changeEvent = null;
 
     /**
-     * 範囲が 0 〜 100、初期値が 50 のボリュームを作成します。
+     * Create a volume with a range of 0 to 100 and an initial value of 50.
      */
     public JVolume() {
         this(0, 100, 50);
     }
 
     /**
-     * 最小値と最大値を指定して、初期値が 50 のボリュームを作成します。
+     * Create a volume with an initial value of 50, specifying minimum and maximum values.
      */
     public JVolume(int min, int max) {
         this(min, max, (min + max) / 2);
     }
 
     /**
-     * 最小値、最大値、および初期値を指定して、ボリュームを作成します。
+     * Create a volume by specifying the minimum, maximum, and initial values.
      * @see #setMinimum
      * @see #setMaximum
      * @see #setValue
@@ -203,12 +206,12 @@ public class JVolume extends JComponent {
         firePropertyChange("model", oldModel, volumeModel);
     }
 
-    /** 値を取得します． */
+    /** Get the value. */
     public int getValue() {
         return getModel().getValue();
     }
 
-    /** 値を設定します． */
+    /** Set the value. */
     public void setValue(int value) {
         BoundedRangeModel m = getModel();
         int oldValue = m.getValue();
@@ -218,24 +221,24 @@ public class JVolume extends JComponent {
         m.setValue(value);
     }
 
-    /** 最小値を取得します． */
+    /** Gets the minimum value. */
     public int getMinimum() {
         return getModel().getMinimum();
     }
 
-    /** 最小値を設定します． */
+    /** Sets the minimum value. */
     public void setMinimum(int min) {
         int oldMin = getModel().getMinimum();
         getModel().setMinimum(min);
         firePropertyChange("minimum", Integer.valueOf(oldMin), Integer.valueOf(min));
     }
 
-    /** 最大値を取得します． */
+    /** Gets the maximum value. */
     public int getMaximum() {
         return getModel().getMaximum();
     }
 
-    /** 最大値を設定します． */
+    /** Set the maximum value. */
     public void setMaximum(int max) {
         int oldMax = getModel().getMaximum();
         getModel().setMaximum(max);
@@ -296,54 +299,51 @@ public class JVolume extends JComponent {
         getModel().setExtent(extent);
     }
 
-    //---- UI -----------------------------------------------------------------
+    // UI ----
 
-    /** マウスの x 座標 */
+    /** The x coordinate of the mouse */
     private transient int x;
-    /** マウスの y 座標 */
+    /** The y coordinate of the mouse */
     private transient int y;
 
-    /** マウスリスナ */
+    /** Mouse Listener */
     private final MouseInputListener mouseListener = new MouseInputAdapter() {
-        /** マウスが押されたときに呼ばれます．*/
         @Override
         public void mousePressed(MouseEvent ev) {
             setValueIsAdjusting(true);
-Debug.println(Level.FINER, ev.getX() + ", " + ev.getY());
+logger.log(Level.TRACE, ev.getX() + ", " + ev.getY());
         }
-        /** マウスがドラッグしたときに呼ばれます． */
         @Override
         public void mouseDragged(MouseEvent ev) {
             if (getValueIsAdjusting()) {
                 x = ev.getX() - getWidth() / 2;
                 y = getHeight() / 2 - ev.getY();
                 repaint();
-Debug.println(Level.FINER, x + ", " + y);
+logger.log(Level.TRACE, x + ", " + y);
             }
         }
-        /** マウスが放されたときに呼ばれます． */
         @Override
         public void mouseReleased(MouseEvent ev) {
             if (getValueIsAdjusting()) {
                 x = ev.getX() - getWidth() / 2;
                 y = getHeight() / 2 - ev.getY();
                 setValueIsAdjusting(false);
-Debug.println(Level.FINER, x + ", " + y);
+logger.log(Level.TRACE, x + ", " + y);
                 double theta = StrictMath.atan2(x, y);
                 if (theta < 0) theta = 2 * Math.PI + theta;
                 setValue((int) (getMinimum() +
                         theta / (2 * Math.PI) *
                         (getMaximum() - getMinimum())));
-Debug.println(Level.FINER, getValue());
+logger.log(Level.TRACE, getValue());
                 repaint();
             }
         }
     };
 
-    /** ボリュームノブの幅 */
+    /** Volume knob width */
     private final double r = 0.4;
 
-    /** ボリュームを描画します． */
+    /** Draws a volume. */
     @Override
     public void paintComponent(Graphics g) {
 
@@ -382,43 +382,43 @@ Debug.println(Level.FINER, getValue());
 
         double W = w / 2d;
         double H = h / 2d;
-        // ボリュームノブの位置
+        // Volume knob position
         double a = W * (1 - r / 2 * 1.2);
         double b = H * (1 - r / 2 * 1.2);
 
         if (getValueIsAdjusting()) {
-Debug.println(Level.FINER, "(x, y) = (" + x + ", " + y + ")");
-            // X, Y は正規座標
+logger.log(Level.TRACE, "(x, y) = (" + x + ", " + y + ")");
+            // X, Y are normal coordinates
             X = Math.sqrt((a * a * b * b * x * x) / (b * b * x * x + a * a * y * y));
             Y = Math.sqrt((a * a * b * b * y * y) / (b * b * x * x + a * a * y * y));
 
             if (x < 0) X *= -1;
             if (y < 0) Y *= -1;
 
-Debug.println(Level.FINER, "(X, Y) = (" + X + ", " + Y + ")");
-            // Java 座標への変換
+logger.log(Level.TRACE, "(X, Y) = (" + X + ", " + Y + ")");
+            // Converting to Java coordinates
             X = W + X;
             Y = H - Y;
         } else {
-            // TODO theta の座標は正しくない
+            // TODO theta coordinates are incorrect
             double theta = (double) (getValue() - getMinimum()) / (double) (getMaximum() - getMinimum()) * (Math.PI * 2) - Math.PI / 2;
-Debug.println(Level.FINER, getValue());
-Debug.println(Level.FINER, theta);
-            // X, Y は正規座標
+logger.log(Level.TRACE, getValue());
+logger.log(Level.TRACE, theta);
+            // X, Y are normal coordinates
             X = Math.sqrt((a * a * b * b) / (b * b + a * a * Math.pow(Math.tan(theta), 2)));
             Y = Math.sqrt((a * a * b * b) / (b * b / Math.pow(Math.tan(theta), 2) + a * a));
 
-            // TODO 正しくない theta の座標に対しての補正
+            // TODO Correction for incorrect theta coordinates
             if (theta > Math.PI / 2 && theta < Math.PI * 1.5) X *= -1;
             if (theta < Math.PI     && theta > 0)             Y *= -1;
 
-Debug.println(Level.FINER, "(X, Y) = (" + X + ", " + Y + ")");
-            // Java 座標への変換
+logger.log(Level.TRACE, "(X, Y) = (" + X + ", " + Y + ")");
+            // Converting to Java coordinates
             X = W + X;
             Y = H - Y;
         }
 
-        // ノブの半径
+        // Knob Radius
         double R = Math.min(W, H) * r / 2;
 
         int nx = (int) (X - R);
@@ -434,25 +434,6 @@ Debug.println(Level.FINER, "(X, Y) = (" + X + ", " + Y + ")");
         g.setColor(new Color(0x99, 0x99, 0xcc));
 //      g.setColor(Color.pink);
         g.fillOval(nx, ny, nr, nr);
-Debug.println(Level.FINER, X + ", " + Y);
-    }
-
-    //-------------------------------------------------------------------------
-
-    /** このクラスをテストします． */
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("JVolume Demo");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JVolume volume = new JVolume();
-        volume.setPreferredSize(new Dimension(120, 100));
-        frame.getContentPane().add(volume);
-        frame.pack();
-        frame.setVisible(true);
-
-//        Enumeration e = UIManager.getDefaults().keys();
-//        while (e.hasMoreElements()) {
-//            Object o = e.nextElement();
-//            System.err.println(o + "=" + UIManager.getDefaults().get(o));
-//        }
+logger.log(Level.TRACE, X + ", " + Y);
     }
 }

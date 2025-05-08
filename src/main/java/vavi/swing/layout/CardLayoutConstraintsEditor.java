@@ -9,9 +9,10 @@ package vavi.swing.layout;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.beans.PropertyChangeListener;
-import java.util.logging.Level;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 
-import vavi.util.Debug;
+import static java.lang.System.getLogger;
 
 
 /**
@@ -25,17 +26,19 @@ import vavi.util.Debug;
 public class CardLayoutConstraintsEditor
     extends AbstractLayoutConstraintsEditor {
 
+    private static final Logger logger = getLogger(CardLayoutConstraintsEditor.class.getName());
+
     /** Creates card constraints editor */
     public CardLayoutConstraintsEditor(CardLayout layout) {
         super(layout);
     }
 
-    //-------------------------------------------------------------------------
+    // ----
 
     /** for table model setter */
     private final PropertyChangeListener pcl = ev -> {
         Component component = container.getComponent(index);
-Debug.println(Level.FINE, index);
+logger.log(Level.DEBUG, index);
         layout.removeLayoutComponent(component);
         layout.addLayoutComponent(component, ev.getNewValue());
 
@@ -49,7 +52,7 @@ Debug.println(Level.FINE, index);
         constraints.addPropertyChangeListener(pcl);
     }
 
-    // constraints supports ---------------------------------------------------
+    // constraints supports ----
 
     /**
      * Associates constraints'.

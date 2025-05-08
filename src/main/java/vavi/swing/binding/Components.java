@@ -6,6 +6,8 @@
 
 package vavi.swing.binding;
 
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -17,11 +19,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ServiceLoader;
-import java.util.logging.Level;
 import javax.swing.JComponent;
 
 import vavi.beans.BeanUtil;
-import vavi.util.Debug;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -34,11 +36,13 @@ import vavi.util.Debug;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Components {
 
-    /**  */
+    /** */
     Class<? extends Updater<?>> updater();
 
-    /**  */
+    /** */
     class Util {
+
+        private static final Logger logger = getLogger(Util.class.getName());
 
         private Util() {
         }
@@ -158,7 +162,7 @@ public @interface Components {
             //
             for (Field field : getComponentFields(bean.getClass())) {
                 String swingFieldName = Component.Util.getName(field);
-                Debug.println(Level.FINE, "field: " + swingFieldName);
+                logger.log(Level.DEBUG, "field: " + swingFieldName);
                 for (Field swingField : swings.getClass().getDeclaredFields()) {
                     if (swingField.getName().equals(swingFieldName)) {
                         Object swing = BeanUtil.getFieldValue(swingField, swings);
@@ -166,14 +170,14 @@ public @interface Components {
                         if (swing instanceof JComponent) {
                             @SuppressWarnings("unchecked")
                             Binder<T> binder = (Binder<T>) binderMap.get(swing.getClass());
-Debug.println(Level.FINER, "binder: " + swing.getClass().getSimpleName() + ", " + binder.getClass().getSimpleName());
+logger.log(Level.TRACE, "binder: " + swing.getClass().getSimpleName() + ", " + binder.getClass().getSimpleName());
                             if (binder != null) {
                                 binder.bind(bean, field, swing);
                             } else {
-Debug.println(Level.WARNING, "field: " + swingFieldName + " (" + swing.getClass().getName() + ") is not implemented.");
+logger.log(Level.WARNING, "field: " + swingFieldName + " (" + swing.getClass().getName() + ") is not implemented.");
                             }
                         } else {
-Debug.println(Level.WARNING, "field: " + swingFieldName + " is not a sub class of JComponent.");
+logger.log(Level.WARNING, "field: " + swingFieldName + " is not a sub class of JComponent.");
                         }
                     }
                 }

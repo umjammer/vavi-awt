@@ -10,7 +10,7 @@ import java.awt.Component;
 
 
 /**
- * コントローラです。
+ * It's a controller.
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020605 nsano initial version <br>
