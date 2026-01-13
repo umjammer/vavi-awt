@@ -5,6 +5,8 @@
 
 # vavi-awt
 
+<img alt="logo" src="src/test/resources/duke_cyber.png" width="160" />
+
 🖥️ awt, swing helpers
 
 ## Install
@@ -55,6 +57,9 @@ a file name field with history dropdown and the file chooser button
 
 ## References
 
+ * JSR 295
+   * https://news.mynavi.jp/techplus/article/jsr-10/
+
 ## TODO
 
  * renamer
@@ -64,3 +69,7 @@ a file name field with history dropdown and the file chooser button
  * on macos 13.5.2 on `renamer` period '.' is not rendered with Oracle (8) and Open JDK (21).
    * with Jetbrain's JDK (17) is OK
    * [reproducer](src/test/java/IdeTest.java#period) couldn't reproduce now
+
+---
+
+<sub>image designed by @umjammer, drawn by nano banana</sub>
