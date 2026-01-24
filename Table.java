@@ -43,6 +43,7 @@ public @interface Table {
 
         /**
          * @return a {@link Row} annotated class
+         * @throws NoSuchElementException when not found a class.
          */
         public static Class<?> getRowClass(Object bean) {
             //
@@ -51,11 +52,17 @@ public @interface Table {
                 throw new IllegalArgumentException("bean is not annotated with @Table");
             }
 
+            // check self
+            Row row = bean.getClass().getAnnotation(Row.class);
+            if (row != null) {
+                return bean.getClass();
+            }
+
             //
             Class<?> clazz = bean.getClass();
             while (clazz != null) {
                 for (Class<?> c : clazz.getDeclaredClasses()) {
-                    Row row = c.getAnnotation(Row.class);
+                    row = c.getAnnotation(Row.class);
                     if (row != null) {
                         return c;
                     }
@@ -68,6 +75,7 @@ public @interface Table {
 
         /**
          * @see Table#iterable()
+         * @throws NoSuchElementException when not found a method.
          */
         @SuppressWarnings("unchecked")
         public static <T> Iterable<T> getIterable(Object bean) {
