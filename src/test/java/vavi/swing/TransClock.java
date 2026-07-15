@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Timer;
@@ -22,9 +24,13 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
 import vavi.swing.ClockTask.Updatable;
+import vavi.util.Debug;
 
 
 public class TransClock implements Updatable {
+
+    private static final Logger logger = System.getLogger(TransClock.class.getName());
+
     private final Preferences prefs;
     private final static String FAMILY = "family";
     private final static String STYLE = "style";
@@ -77,7 +83,7 @@ public class TransClock implements Updatable {
                 try {
                     prefs.flush();
                 } catch (BackingStoreException ex) {
-                    ex.printStackTrace();
+                    logger.log(Level.ERROR, ex.getMessage(), ex);
                 }
 
                 frame.setLocation(x, y);
@@ -160,7 +166,7 @@ public class TransClock implements Updatable {
             try {
                 prefs.flush();
             } catch (BackingStoreException ex) {
-                ex.printStackTrace();
+                logger.log(Level.ERROR, ex.getMessage(), ex);
             }
 
             clockLabel.setForeground(color);
@@ -181,7 +187,7 @@ public class TransClock implements Updatable {
             try {
                 prefs.flush();
             } catch (BackingStoreException ex) {
-                ex.printStackTrace();
+                logger.log(Level.ERROR, ex.getMessage(), ex);
             }
 
             clockLabel.setFont(font);

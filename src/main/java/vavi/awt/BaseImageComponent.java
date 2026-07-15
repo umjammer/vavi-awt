@@ -90,7 +90,7 @@ logger.log(Level.DEBUG, p + ", " + image);
                     }
 logger.log(Level.INFO, "unrecognized image: " + p);
                 } catch (Throwable e) {
-                    e.printStackTrace();
+                    logger.log(Level.ERROR, e.getMessage(), e);
                 }
                 return false;
             });

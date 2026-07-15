@@ -31,10 +31,10 @@ public class RegexFileFilterTest {
         System.err.println(".*\\.xml");
         Path resources = Paths.get("src/test/resources/vavi/util");
         Files.list(resources).filter(new RegexFileFilter(".*\\.xml")).forEach(System.err::println);
-        assertEquals(Files.list(resources).filter(new RegexFileFilter(".*\\.xml")).count(), 3);
+        assertEquals(3, Files.list(resources).filter(new RegexFileFilter(".*\\.xml")).count());
         System.err.println("regex_file_filter_0[14]\\..+");
         Files.list(resources).filter(new RegexFileFilter("regex_file_filter_0[14]\\..+")).forEach(System.err::println);
-        assertEquals(Files.list(resources).filter(new RegexFileFilter("regex_file_filter_0[14]\\..+")).count(), 2);
+        assertEquals(2, Files.list(resources).filter(new RegexFileFilter("regex_file_filter_0[14]\\..+")).count());
     }
 
     /** Tests this class. */

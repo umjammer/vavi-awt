@@ -8,6 +8,8 @@ package vavi.swing.beaninfo;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 
 import javax.swing.BoxLayout;
 import javax.swing.JCheckBox;
@@ -24,25 +26,19 @@ import javax.swing.JPanel;
  */
 public class SwingBooleanEditor extends SwingEditorSupport {
 
+    private static final Logger logger = System.getLogger(SwingBooleanEditor.class.getName());
+
     private final JCheckBox checkbox;
 
     /** */
     public SwingBooleanEditor() {
         checkbox = new JCheckBox();
+        ItemListener il = ev -> setValue(ev.getStateChange() == ItemEvent.SELECTED);
         checkbox.addItemListener(il);
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
         panel.add(checkbox);
     }
-
-    /** */
-    private final ItemListener il = ev -> {
-        if (ev.getStateChange() == ItemEvent.SELECTED) {
-            setValue(true);
-        } else {
-            setValue(false);
-        }
-    };
 
     @Override
     public void setValue(Object value) {
@@ -56,7 +52,7 @@ public class SwingBooleanEditor extends SwingEditorSupport {
                     checkbox.setSelected((Boolean) value);
                 }
             } catch (Exception e) {
-e.printStackTrace();
+                logger.log(Level.ERROR, e.getMessage(), e);
             }
         }
     }

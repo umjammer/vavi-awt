@@ -44,7 +44,7 @@ try {
 Debug.println("sub: " + sub);
                 assert sub != null : "sub image is null";
 } catch (Throwable t) {
- t.printStackTrace();
+ Debug.printStackTrace(t);
 }
             }
         });
