@@ -8,11 +8,16 @@ import java.awt.AWTException;
 import java.awt.Rectangle;
 import java.awt.Robot;
 import java.awt.image.BufferedImage;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.Timer;
 import java.util.TimerTask;
 
 
 class ScreenCapture {
+
+    private static final Logger logger = System.getLogger(ScreenCapture.class.getName());
+
     private Robot robot;
 
     private Thread thread;
@@ -33,7 +38,7 @@ class ScreenCapture {
         try {
             robot = new Robot();
         } catch (AWTException ex) {
-            ex.printStackTrace();
+            logger.log(Level.ERROR, ex.getMessage(), ex);
         }
     }
 
@@ -100,7 +105,7 @@ class ScreenCapture {
         try {
             Thread.sleep(200L);
         } catch (InterruptedException ex) {
-            ex.printStackTrace();
+            logger.log(Level.ERROR, ex.getMessage(), ex);
         }
 
         synchronized (this) {
@@ -117,7 +122,7 @@ class ScreenCapture {
                         wait();
                     }
                 } catch (InterruptedException ex) {
-//                    ex.printStackTrace();
+//                    logger.log(Level.ERROR, ex.getMessage(), ex);
                     return;
                 }
             } else {

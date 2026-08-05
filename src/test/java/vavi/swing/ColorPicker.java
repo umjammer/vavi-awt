@@ -23,6 +23,8 @@ import javax.swing.JLabel;
 import javax.swing.JWindow;
 import javax.swing.SwingUtilities;
 
+import vavi.util.Debug;
+
 
 /**
  * ColorPicker.
@@ -72,7 +74,7 @@ public class ColorPicker implements Runnable {
             graphicsDevice.setFullScreenWindow(window);
 
         } catch (AWTException e) {
-            e.printStackTrace();
+            Debug.printStackTrace(e);
             System.exit(2);
         }
     }

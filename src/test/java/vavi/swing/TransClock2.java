@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Timer;
@@ -30,6 +32,9 @@ import vavi.swing.ClockTask.Updatable;
  * @see "http://www.code-life.jp/blog/2009/04/26/java%E3%81%A7%E9%9D%9E%E7%9F%A9%E5%BD%A2%E3%83%BB%E5%8D%8A%E9%80%8F%E6%98%8E%E3%82%A6%E3%82%A3%E3%83%B3%E3%83%89%E3%82%A6swing%E7%89%88/"
  */
 public class TransClock2 implements Updatable {
+
+    private static final Logger logger = System.getLogger(TransClock2.class.getName());
+
     private final Preferences prefs;
     private final static String FAMILY = "family";
     private final static String STYLE = "style";
@@ -83,7 +88,7 @@ public class TransClock2 implements Updatable {
                 try {
                     prefs.flush();
                 } catch (BackingStoreException ex) {
-                    ex.printStackTrace();
+                    logger.log(Level.ERROR, ex.getMessage(), ex);
                 }
 
                 frame.setLocation(x, y);
@@ -167,7 +172,7 @@ public class TransClock2 implements Updatable {
             try {
                 prefs.flush();
             } catch (BackingStoreException ex) {
-                ex.printStackTrace();
+                logger.log(Level.ERROR, ex.getMessage(), ex);
             }
 
             clockLabel.setForeground(color);
@@ -188,7 +193,7 @@ public class TransClock2 implements Updatable {
             try {
                 prefs.flush();
             } catch (BackingStoreException ex) {
-                ex.printStackTrace();
+                logger.log(Level.ERROR, ex.getMessage(), ex);
             }
 
             clockLabel.setFont(font);
