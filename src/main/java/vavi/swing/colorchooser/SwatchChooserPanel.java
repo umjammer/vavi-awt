@@ -27,8 +27,6 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.colorchooser.AbstractColorChooserPanel;
 
-import static vavi.swing.colorchooser.MainSwatchPanel.colors;
-
 
 /**
  * Modified from the standard color swatch chooser.
@@ -168,6 +166,9 @@ class SwatchPanel extends JPanel {
 
     protected Dimension gap;
 
+    /** colors of each swatch, row major */
+    protected Color[] colors;
+
     /** */
     public SwatchPanel() {
         initValues();
@@ -230,11 +231,12 @@ class SwatchPanel extends JPanel {
 
     /** */
     private Color getColorForCell(int column, int row) {
-logger.log(Level.DEBUG, "@@@ OVERFLOW: %d, %d", column, row);
-if (colors.length <= (row * numSwatches.width) + column) {
-    return Color.black;
-}
-        return colors[(row * numSwatches.width) + column];
+        int index = (row * numSwatches.width) + column;
+        if (column >= numSwatches.width || index >= colors.length) {
+logger.log(Level.DEBUG, "out of swatches: {0}, {1}", column, row);
+            return getBackground();
+        }
+        return colors[index];
         // (STEVE) - change data orientation here
     }
 }
@@ -243,8 +245,6 @@ if (colors.length <= (row * numSwatches.width) + column) {
  * show recent colors
  */
 class RecentSwatchPanel extends SwatchPanel {
-
-    private static final Logger logger = System.getLogger(SwatchChooserPanel.class.getName());
 
     @Override
     protected void initValues() {
@@ -257,8 +257,10 @@ class RecentSwatchPanel extends SwatchPanel {
     @Override
     protected void initColors() {
         Color defaultRecentColor = UIManager.getColor("ColorChooser.swatchesDefaultRecentColor");
+        if (defaultRecentColor == null) {
+            defaultRecentColor = Color.white;
+        }
         int numColors = numSwatches.width * numSwatches.height;
-logger.log(Level.DEBUG, "@@@ numColors: " + numColors);
         colors = new Color[numColors];
         for (int i = 0; i < numColors; i++) {
             colors[i] = defaultRecentColor;
@@ -267,7 +269,7 @@ logger.log(Level.DEBUG, "@@@ numColors: " + numColors);
 
     /** */
     public void setMostRecentColor(Color c) {
-        if (!colors[0].equals(c)) { // TODO NPE
+        if (c != null && !colors[0].equals(c)) {
             System.arraycopy(colors, 0, colors, 1, colors.length - 1);
             colors[0] = c;
             repaint();
@@ -294,7 +296,7 @@ class MainSwatchPanel extends SwatchPanel {
     }
 
     /** */
-    protected static Color[] colors;
+    private static final Color[] defaultColors;
 
     /** */
     private static final int[] rawValues = {
@@ -309,9 +311,14 @@ class MainSwatchPanel extends SwatchPanel {
     static {
         int numColors = rawValues.length / 3;
 
-        colors = new Color[numColors];
+        defaultColors = new Color[numColors];
         for (int i = 0; i < numColors; i++) {
-            colors[i] = new Color(rawValues[(i * 3)], rawValues[(i * 3) + 1], rawValues[(i * 3) + 2]);
+            defaultColors[i] = new Color(rawValues[(i * 3)], rawValues[(i * 3) + 1], rawValues[(i * 3) + 2]);
         }
+    }
+
+    @Override
+    protected void initColors() {
+        colors = defaultColors;
     }
 }
