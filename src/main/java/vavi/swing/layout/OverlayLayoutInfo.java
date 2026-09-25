@@ -19,7 +19,7 @@ import javax.swing.OverlayLayout;
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020527 nsano initial version <br>
  */
-public class OverlayLayoutInfo extends SimpleBeanInfo {
+public class OverlayLayoutInfo extends SimpleBeanInfo implements LayoutManagerInfo {
 
     private final Class<?> clazz = OverlayLayout.class;
     private final Class<?> customizerClass = OverlayLayoutCustomizer.class;

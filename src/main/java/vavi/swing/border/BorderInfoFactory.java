@@ -6,29 +6,33 @@
 
 package vavi.swing.border;
 
-import java.awt.Toolkit;
+import java.beans.XMLDecoder;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
-import javax.swing.ImageIcon;
-import javax.swing.border.Border;
-
-import vavi.util.Debug;
-import vavix.util.ClassUtil;
+import java.util.Map;
+import java.util.ServiceLoader;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import static java.lang.System.getLogger;
 
 
 /**
  * BorderInfoFactory.
+ * <p>
+ * {@link BorderInfo}s are found by {@link ServiceLoader},
+ * register yours in {@code META-INF/services/vavi.swing.border.BorderInfo}.
+ * </p>
  *
- * @depends border.properties
+ * @depends border.xml
  *
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020518 nsano initial version <br>
  *          1.00 020527 nsano refine <br>
+ *          1.10 260925 nsano use ServiceLoader, XMLDecoder <br>
  */
 public class BorderInfoFactory {
 
@@ -37,113 +41,40 @@ public class BorderInfoFactory {
     /** */
     private BorderInfoFactory() {}
 
+    /** key: border class */
+    private static final Map<Class<?>, ServiceLoader.Provider<BorderInfo>> providers =
+            ServiceLoader.load(BorderInfo.class).stream()
+                    .collect(Collectors.toMap(p -> p.get().getBeanDescriptor().getBeanClass(), Function.identity(), (a, b) -> a));
+
     /**
-     * TODO Assume it is in vavi.swing.border
+     * @return null when not found
      */
     public static BorderInfo getBorderInfo(Class<?> borderClass) {
-        try {
-            String name = borderClass.getName();
-            int p = name.lastIndexOf('.');
-            if (p != -1) {
-                name = name.substring(p + 1);
-            }
-            name = "vavi.swing.border." + name + "Info";
-            @SuppressWarnings("unchecked")
-            Class<BorderInfo> clazz = (Class<BorderInfo>) Class.forName(name);
-            return clazz.getDeclaredConstructor().newInstance();
-        } catch (Exception e) {
-logger.log(Level.ERROR, e.getMessage(), e);
+        ServiceLoader.Provider<BorderInfo> provider = providers.get(borderClass);
+        if (provider == null) {
+logger.log(Level.ERROR, "no BorderInfo for: " + borderClass.getName());
             return null;
         }
+        return provider.get();
     }
 
     // ----
 
-    /** */
-    private static List<SampleBorderInfo> bis;
-
     /**
-     * TODO
-     * 0: null border
-     * last: user defined
+     * returns a new list every time.
+     * <ul>
+     * <li>first: null border</li>
+     * <li>last: user defined</li>
+     * </ul>
      */
-    public static List<?> getSampleBorderInfos() {
-
-        final String path = "border.properties";
-        final Toolkit t = Toolkit.getDefaultToolkit();
-        final Class<?> c = BorderInfoFactory.class;
-
-        Properties props = new Properties();
-
-        bis = new ArrayList<>();
-
-        try {
-            props.load(c.getResourceAsStream(path));
-
-            // none
-            SampleBorderInfo bi = new SampleBorderInfo();
-            bi.border = null;
-            String key = "icon";
-            String val = props.getProperty(0 + "." + key);
-            bi.icon = new ImageIcon(t.getImage(c.getResource(val)));
-            key = "desc";
-            val = props.getProperty(0 + "." + key);
-            bi.desc = val;
-            bis.add(bi);
-
-            // 1 ...
-            int i = 1;
-            while (true) {
-                bi = new SampleBorderInfo();
-
-                key = "className";
-                String className = props.getProperty(i + "." + key);
-                if (className == null) {
-                    break;
-                }
-
-                key = "argTypes";
-                String argTypes = props.getProperty(i + "." + key);
-                if (argTypes != null) { // No arguments
-                    key = "args";
-                    String args = props.getProperty(i + "." + key);
-
-                    bi.border = (Border) ClassUtil.newInstance(className, argTypes, args);
-                } else { // With arguments
-                    @SuppressWarnings("unchecked")
-                    Class<Border> clazz = (Class<Border>) Class.forName(className);
-                    bi.border = clazz.getDeclaredConstructor().newInstance();
-                }
-
-                key = "icon";
-                val = props.getProperty(i + "." + key);
-                bi.icon = new ImageIcon(t.getImage(c.getResource(val)));
-
-                key = "desc";
-                val = props.getProperty(i + "." + key);
-                bi.desc = val;
-
-                bis.add(bi);
-
-                i++;
-            }
-
-            // last
-            bi = new SampleBorderInfo();
-            bi.border = null;
-            key = "icon";
-            val = props.getProperty(i + "." + key);
-            bi.icon = new ImageIcon(t.getImage(c.getResource(val)));
-            key = "desc";
-            val = props.getProperty(i + "." + key);
-            bi.desc = val;
-            bis.add(bi);
-        } catch (Exception e) {
+    @SuppressWarnings("unchecked")
+    public static List<SampleBorderInfo> getSampleBorderInfos() {
+        try (InputStream is = BorderInfoFactory.class.getResourceAsStream("border.xml");
+             XMLDecoder decoder = new XMLDecoder(is, null, e -> { throw new IllegalStateException(e); })) {
+            return (List<SampleBorderInfo>) decoder.readObject();
+        } catch (IOException e) {
 logger.log(Level.ERROR, e.getMessage(), e);
-Debug.printStackTrace(e);
             throw new IllegalStateException(e);
         }
-
-        return bis;
     }
 }
