@@ -7,10 +7,15 @@
 package vavi.swing;
 
 import java.awt.BorderLayout;
+import java.util.prefs.Preferences;
 import javax.swing.JFrame;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 /**
@@ -26,6 +31,37 @@ class JHistoryComboBoxTest {
     public void test() {
         main(new String[] {});
         while (true) Thread.yield();
+    }
+
+    @Test
+    void testSaveRestore() throws Exception {
+        String id = JHistoryComboBoxTest.class.getName() + ".testSaveRestore";
+        try {
+            JHistoryComboBox cb = new JHistoryComboBox(false);
+            cb.addItem("a");
+            cb.addItem("b");
+            cb.addItem("c");
+            cb.addItem("d");
+            cb.addItem("b"); // duplication
+            cb.setSelectedItem("c");
+            assertTrue(cb.removeHistory("d"));
+            assertFalse(cb.removeHistory("x"));
+            cb.saveHistory(id);
+
+            for (int n = 0; n < 2; n++) { // restoring twice doesn't duplicate
+                JHistoryComboBox cb2 = new JHistoryComboBox(false);
+                cb2.restoreHistory(id);
+                cb2.restoreHistory(id);
+                assertEquals(3, cb2.getItemCount());
+                assertEquals("c", cb2.getItemAt(0)); // selected one comes first
+                assertEquals("a", cb2.getItemAt(1));
+                assertEquals("b", cb2.getItemAt(2));
+                assertEquals("c", cb2.getSelectedItem());
+                cb2.saveHistory(id);
+            }
+        } finally {
+            Preferences.userRoot().node(id).removeNode();
+        }
     }
 
     //----
