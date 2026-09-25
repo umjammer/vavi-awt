@@ -14,7 +14,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.Serializable;
-
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
@@ -25,8 +26,6 @@ import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.colorchooser.AbstractColorChooserPanel;
-
-import vavi.util.Debug;
 
 import static vavi.swing.colorchooser.MainSwatchPanel.colors;
 
@@ -160,6 +159,9 @@ public class SwatchChooserPanel extends AbstractColorChooserPanel implements Ser
  * base class
  */
 class SwatchPanel extends JPanel {
+
+    private static final Logger logger = System.getLogger(SwatchChooserPanel.class.getName());
+
     protected Dimension swatchSize = new Dimension(13, 13);
 
     protected Dimension numSwatches;
@@ -228,7 +230,7 @@ class SwatchPanel extends JPanel {
 
     /** */
     private Color getColorForCell(int column, int row) {
-Debug.printf("@@@ OVERFLOW: %d, %d", column, row);
+logger.log(Level.DEBUG, "@@@ OVERFLOW: %d, %d", column, row);
 if (colors.length <= (row * numSwatches.width) + column) {
     return Color.black;
 }
@@ -241,6 +243,9 @@ if (colors.length <= (row * numSwatches.width) + column) {
  * show recent colors
  */
 class RecentSwatchPanel extends SwatchPanel {
+
+    private static final Logger logger = System.getLogger(SwatchChooserPanel.class.getName());
+
     @Override
     protected void initValues() {
         // swatchSize = UIManager.getDimension("ColorChooser.swatchesRecentSwatchSize");
@@ -253,7 +258,7 @@ class RecentSwatchPanel extends SwatchPanel {
     protected void initColors() {
         Color defaultRecentColor = UIManager.getColor("ColorChooser.swatchesDefaultRecentColor");
         int numColors = numSwatches.width * numSwatches.height;
-Debug.println("@@@ numColors: " + numColors);
+logger.log(Level.DEBUG, "@@@ numColors: " + numColors);
         colors = new Color[numColors];
         for (int i = 0; i < numColors; i++) {
             colors[i] = defaultRecentColor;
