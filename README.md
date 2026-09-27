@@ -28,7 +28,8 @@ auto wiring between a bean and swing components
 make a component droppable by one liner
 
 ```java
-    Droppable.makeComponentSinglePathDroppable(component, p -> { ... });
+Droppable.makeComponentSinglePathDroppable(component, p -> { ... });
+Droppable.makeComponentMultiplePathDroppable(component, pp -> { ... });
 ```
 
 #### 🖌️ rubber band selection
