@@ -29,7 +29,7 @@ public class ArchiveModel {
         public void setEntry(Entry entry) { // *7
             this.entry = entry;
         }
-        @Column(sequence = 0, width = 200) // *6
+        @Column(sequence = 0, width = 200) // *6      ⚠️ ZERO ORIGIN
         public String getName() {
             return getFileName(entry.getName());
         }
@@ -68,3 +68,10 @@ public class ArchiveModel {
         model.bind(table);
 
 ```
+
+### Sample
+
+- [vavi-apps-jwinzip](https://github.com/umjammer/vavi-apps-jwinzip)
+  - vavi.util.Archive 
+  - hid4java
+  - epub

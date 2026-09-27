@@ -4,7 +4,7 @@
  * Programmed by Naohide Sano
  */
 
-package vavi.swing.binder;
+package vavi.swing.binding;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.logging.Level;
@@ -13,9 +13,7 @@ import javax.swing.JSlider;
 import javax.swing.JTextField;
 
 import org.junit.jupiter.api.Test;
-import vavi.swing.binding.Component;
-import vavi.swing.binding.Components;
-import vavi.swing.binding.Updater;
+
 import vavi.util.Debug;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

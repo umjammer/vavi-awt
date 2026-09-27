@@ -85,7 +85,7 @@ logger.log(Level.DEBUG, columnGetters);
             if (Row.Util.getEditable(this.rowClass, i)) {
                 Method setter = Row.Util.getColumnSetterMethod(this.rowClass, i);
 logger.log(Level.DEBUG, "setter: " + i + ", " + setter);
-                columnSetters.put(1, setter);
+                columnSetters.put(i, setter);
             }
             int width = Row.Util.getWidth(this.rowClass, i);
             Column.Align align = Row.Util.getAlign(this.rowClass, i);
