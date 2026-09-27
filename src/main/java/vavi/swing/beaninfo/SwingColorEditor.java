@@ -138,7 +138,7 @@ public class SwingColorEditor extends SwingEditorSupport {
         Color color = JColorChooser.showDialog(panel.getParent(),
                                                "Color Chooser",
                                                oldColor);
-        if (oldColor != color) {
+        if (color != null && !color.equals(oldColor)) { // null means cancelled
             setValue(color);
             colorChooserCombo.setMostRecentColor(color);
         }

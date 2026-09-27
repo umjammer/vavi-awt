@@ -1,3 +1,5 @@
+# vavi.swinf.beaninfo
+
 Provides property editor classes for swing components.
 
 ## TODO

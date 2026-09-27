@@ -108,7 +108,7 @@ logger.log(Level.TRACE, "enum");
 
 //            enumEditor.init(descriptor);
 //            enumEditor.setEditor(ce);
-//Debug.println("plus");
+//logger.log(Level.TRACE, "plus");
         } else {
             // This is an integer item
             isEnumeration = false;

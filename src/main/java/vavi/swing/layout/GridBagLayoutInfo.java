@@ -18,7 +18,7 @@ import java.beans.SimpleBeanInfo;
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020527 nsano initial version <br>
  */
-public class GridBagLayoutInfo extends SimpleBeanInfo {
+public class GridBagLayoutInfo extends SimpleBeanInfo implements LayoutManagerInfo {
 
     private final Class<?> clazz = GridBagLayout.class;
     private final Class<?> customizerClass = GridBagLayoutCustomizer.class;

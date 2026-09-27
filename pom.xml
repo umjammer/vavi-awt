@@ -8,7 +8,7 @@
 
   <groupId>vavi</groupId>
   <artifactId>vavi-awt</artifactId>
-  <version>1.0.11</version>
+  <version>1.0.12</version>
 
   <name>Vavi AWT Support API</name>
   <organization>
@@ -128,7 +128,7 @@
       <dependency>
         <groupId>org.junit</groupId>
         <artifactId>junit-bom</artifactId>
-        <version>6.0.3</version>
+        <version>6.1.1</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -138,8 +138,8 @@
   <dependencies>
     <dependency>
       <groupId>com.github.umjammer</groupId> <!-- vavi / com.github.umjammer -->
-      <artifactId>vavi-commons-sandbox</artifactId>
-      <version>0.4.9</version>
+      <artifactId>vavi-commons</artifactId>
+      <version>1.1.24</version>
     </dependency>
 
     <dependency>
@@ -164,6 +164,11 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>

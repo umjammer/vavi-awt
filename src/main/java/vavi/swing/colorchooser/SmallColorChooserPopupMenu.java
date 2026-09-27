@@ -65,8 +65,10 @@ public class SmallColorChooserPopupMenu extends JPopupMenu {
         public void actionPerformed(ActionEvent ev) {
             Color oldColor = swatchPanel.getMostRecentColor();
             Color color = JColorChooser.showDialog(getParent(), "Color Chooser", oldColor);
-            firePropertyChange("color", oldColor, color);
-            // TODO update the recentSwatch
+            if (color != null) { // null means cancelled
+                firePropertyChange("color", null /* oldColor */, color); // always fire, even for the same color
+                swatchPanel.setMostRecentColor(color);
+            }
             setVisible(false);
         }
     };

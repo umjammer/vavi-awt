@@ -29,7 +29,6 @@ import javax.swing.plaf.FontUIResource;
 
 import vavi.swing.fontchooser.DefaultFontEditor;
 import vavi.swing.fontchooser.FontEditor;
-import vavix.util.ClassUtil;
 
 import static java.lang.System.getLogger;
 
@@ -210,10 +209,9 @@ logger.log(Level.ERROR, e.getMessage(), e);
         try {
             props.load(c.getResourceAsStream(path));
 
-            String args = props.getProperty("font");
-            defaultFont = (Font) ClassUtil.newInstance("javax.swing.plaf.FontUIResource",
-                                                       "java.lang.String, int, int", args);
-logger.log(Level.TRACE, defaultFont + ", " + args);
+            String spec = props.getProperty("font");
+            defaultFont = new FontUIResource(Font.decode(spec));
+logger.log(Level.TRACE, defaultFont + ", " + spec);
         } catch (Exception e) {
 logger.log(Level.ERROR, e.getMessage(), e);
             defaultFont = new FontUIResource("Dialog", Font.BOLD, 12);

@@ -14,7 +14,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.Serializable;
-
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
@@ -25,10 +26,6 @@ import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.colorchooser.AbstractColorChooserPanel;
-
-import vavi.util.Debug;
-
-import static vavi.swing.colorchooser.MainSwatchPanel.colors;
 
 
 /**
@@ -160,11 +157,17 @@ public class SwatchChooserPanel extends AbstractColorChooserPanel implements Ser
  * base class
  */
 class SwatchPanel extends JPanel {
+
+    private static final Logger logger = System.getLogger(SwatchChooserPanel.class.getName());
+
     protected Dimension swatchSize = new Dimension(13, 13);
 
     protected Dimension numSwatches;
 
     protected Dimension gap;
+
+    /** colors of each swatch, row major */
+    protected Color[] colors;
 
     /** */
     public SwatchPanel() {
@@ -228,11 +231,12 @@ class SwatchPanel extends JPanel {
 
     /** */
     private Color getColorForCell(int column, int row) {
-Debug.printf("@@@ OVERFLOW: %d, %d", column, row);
-if (colors.length <= (row * numSwatches.width) + column) {
-    return Color.black;
-}
-        return colors[(row * numSwatches.width) + column];
+        int index = (row * numSwatches.width) + column;
+        if (column >= numSwatches.width || index >= colors.length) {
+logger.log(Level.DEBUG, "out of swatches: {0}, {1}", column, row);
+            return getBackground();
+        }
+        return colors[index];
         // (STEVE) - change data orientation here
     }
 }
@@ -241,6 +245,7 @@ if (colors.length <= (row * numSwatches.width) + column) {
  * show recent colors
  */
 class RecentSwatchPanel extends SwatchPanel {
+
     @Override
     protected void initValues() {
         // swatchSize = UIManager.getDimension("ColorChooser.swatchesRecentSwatchSize");
@@ -252,8 +257,10 @@ class RecentSwatchPanel extends SwatchPanel {
     @Override
     protected void initColors() {
         Color defaultRecentColor = UIManager.getColor("ColorChooser.swatchesDefaultRecentColor");
+        if (defaultRecentColor == null) {
+            defaultRecentColor = Color.white;
+        }
         int numColors = numSwatches.width * numSwatches.height;
-Debug.println("@@@ numColors: " + numColors);
         colors = new Color[numColors];
         for (int i = 0; i < numColors; i++) {
             colors[i] = defaultRecentColor;
@@ -262,7 +269,7 @@ Debug.println("@@@ numColors: " + numColors);
 
     /** */
     public void setMostRecentColor(Color c) {
-        if (!colors[0].equals(c)) { // TODO NPE
+        if (c != null && !colors[0].equals(c)) {
             System.arraycopy(colors, 0, colors, 1, colors.length - 1);
             colors[0] = c;
             repaint();
@@ -289,7 +296,7 @@ class MainSwatchPanel extends SwatchPanel {
     }
 
     /** */
-    protected static Color[] colors;
+    private static final Color[] defaultColors;
 
     /** */
     private static final int[] rawValues = {
@@ -304,9 +311,14 @@ class MainSwatchPanel extends SwatchPanel {
     static {
         int numColors = rawValues.length / 3;
 
-        colors = new Color[numColors];
+        defaultColors = new Color[numColors];
         for (int i = 0; i < numColors; i++) {
-            colors[i] = new Color(rawValues[(i * 3)], rawValues[(i * 3) + 1], rawValues[(i * 3) + 2]);
+            defaultColors[i] = new Color(rawValues[(i * 3)], rawValues[(i * 3) + 1], rawValues[(i * 3) + 2]);
         }
+    }
+
+    @Override
+    protected void initColors() {
+        colors = defaultColors;
     }
 }

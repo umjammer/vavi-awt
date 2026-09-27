@@ -20,7 +20,7 @@ import javax.swing.BoxLayout;
  * @version 0.00 020527 nsano initial version <br>
  *          0.01 020617 nsano complete <br>
  */
-public class BoxLayoutInfo extends SimpleBeanInfo {
+public class BoxLayoutInfo extends SimpleBeanInfo implements LayoutManagerInfo {
 
     private final Class<?> clazz = BoxLayout.class;
     private final Class<?> customizerClass = BoxLayoutCustomizer.class;

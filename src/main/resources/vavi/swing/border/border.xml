@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2002 by Naohide Sano, All rights reserved.
+
+ Sample borders for BorderInfoFactory#getSampleBorderInfos(), read by java.beans.XMLDecoder.
+
+ first: null border
+ last: user defined
+-->
+<java class="java.beans.XMLDecoder">
+ <object class="java.util.ArrayList">
+  <void method="add">
+   <object class="vavi.swing.border.SampleBorderInfo">
+    <void property="iconResource"><string>resources/nullBorder.gif</string></void>
+    <void property="desc"><string>None</string></void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="vavi.swing.border.SampleBorderInfo">
+    <void property="border">
+     <object class="javax.swing.border.EtchedBorder"/>
+    </void>
+    <void property="iconResource"><string>resources/etchedBorder.gif</string></void>
+    <void property="desc"><string>Etched</string></void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="vavi.swing.border.SampleBorderInfo">
+    <void property="border">
+     <object class="javax.swing.border.BevelBorder">
+      <object class="javax.swing.border.BevelBorder" field="LOWERED"/>
+     </object>
+    </void>
+    <void property="iconResource"><string>resources/bevelBorderLowered.gif</string></void>
+    <void property="desc"><string>BevelLowered</string></void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="vavi.swing.border.SampleBorderInfo">
+    <void property="border">
+     <object class="javax.swing.border.BevelBorder">
+      <object class="javax.swing.border.BevelBorder" field="RAISED"/>
+     </object>
+    </void>
+    <void property="iconResource"><string>resources/bevelBorder.gif</string></void>
+    <void property="desc"><string>BevelRaised</string></void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="vavi.swing.border.SampleBorderInfo">
+    <void property="border">
+     <object class="javax.swing.border.LineBorder">
+      <object class="java.awt.Color" field="black"/>
+     </object>
+    </void>
+    <void property="iconResource"><string>resources/lineBorder.gif</string></void>
+    <void property="desc"><string>Line</string></void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="vavi.swing.border.SampleBorderInfo">
+    <void property="iconResource"><string>resources/unknownBorder.gif</string></void>
+    <void property="desc"><string>UserDefined</string></void>
+   </object>
+  </void>
+ </object>
+</java>

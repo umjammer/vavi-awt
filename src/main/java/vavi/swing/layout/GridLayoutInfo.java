@@ -24,7 +24,7 @@ import static java.lang.System.getLogger;
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 020527 nsano initial version <br>
  */
-public class GridLayoutInfo extends SimpleBeanInfo {
+public class GridLayoutInfo extends SimpleBeanInfo implements LayoutManagerInfo {
 
     private static final Logger logger = getLogger(GridLayoutInfo.class.getName());
 

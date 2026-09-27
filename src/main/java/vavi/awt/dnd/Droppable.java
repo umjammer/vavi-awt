@@ -14,7 +14,6 @@ import java.awt.dnd.DropTargetDragEvent;
 import java.awt.dnd.DropTargetDropEvent;
 import java.io.File;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.function.Function;
 
@@ -32,6 +31,27 @@ public interface Droppable {
      * @param impl user process after dropped a file
      */
     static void makeComponentSinglePathDroppable(Component component, Function<Path, Boolean> impl) {
+        dropTarget(component, data -> {
+            @SuppressWarnings("unchecked")
+            Path path = Path.of(((List<File>) data).get(0).getPath());
+            return impl.apply(path);
+        });
+    }
+
+    /**
+     * make a component droppable.
+     * @param impl user process after dropped a file
+     */
+    static void makeComponentMultiplePathDroppable(Component component, Function<List<Path>, Boolean> impl) {
+        dropTarget(component, data -> {
+            @SuppressWarnings("unchecked")
+            List<Path> paths = ((List<File>) data).stream().map(File::toPath).toList();
+            return impl.apply(paths);
+        });
+    }
+
+    /** */
+    private static void dropTarget(Component component, Function<Object, Boolean> impl) {
         new DropTarget(
                 component,
                 DnDConstants.ACTION_COPY_OR_MOVE,
@@ -54,11 +74,9 @@ public interface Droppable {
                         return chosen;
                     }
 
-                    @SuppressWarnings("unchecked")
                     @Override
                     protected boolean dropImpl(DropTargetDropEvent ev, Object data) {
-                        Path path = Paths.get(((List<File>) data).get(0).getPath());
-                        return impl.apply(path);
+                        return impl.apply(data);
                     }
                 },
                 true);

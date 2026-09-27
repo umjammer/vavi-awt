@@ -28,7 +28,8 @@ auto wiring between a bean and swing components
 make a component droppable by one liner
 
 ```java
-    Droppable.makeComponentSinglePathDroppable(component, p -> { ... });
+Droppable.makeComponentSinglePathDroppable(component, p -> { ... });
+Droppable.makeComponentMultiplePathDroppable(component, pp -> { ... });
 ```
 
 #### 🖌️ rubber band selection
@@ -45,7 +46,7 @@ an image component which has auto size adjustment and keeping aspect ratio
 
 #### 🖌 JHistoryComboBox
 
-a text field with history dropdown
+a text field with history dropdown (`ctrl + DELETE` (mac: `ctrl + fn + delete`) on the dropdown list removes the item)
 
 [sample](src/test/java/FileRenamer.java)
 
@@ -64,8 +65,8 @@ a file name field with history dropdown and the file chooser button
 
  * renamer
    * regex match global
-   * history saving is not stable
-   * history duplication
+   * ~~history saving is not stable~~
+   * ~~history duplication~~
  * on macos 13.5.2 on `renamer` period '.' is not rendered with Oracle (8) and Open JDK (21).
    * with Jetbrain's JDK (17) is OK
    * [reproducer](src/test/java/IdeTest.java#period) couldn't reproduce now

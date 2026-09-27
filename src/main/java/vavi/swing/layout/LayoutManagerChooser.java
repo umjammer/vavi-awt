@@ -145,7 +145,7 @@ logger.log(Level.TRACE, layout == null ? null : layout.getClass().getSimpleName(
             name = name.substring(p + 1);
         }
         for (int i = 1; i < this.getTabCount(); i++) {
-// Debug.println(name + ", " + this.getTitleAt(i));
+//logger.log(Level.TRACE, name + ", " + this.getTitleAt(i));
             if (name.equals(this.getTitleAt(i))) {
                 LayoutManagerCustomizer lmc = (LayoutManagerCustomizer) this.getComponentAt(i);
                 lmc.setObject(layout);
@@ -162,7 +162,7 @@ logger.log(Level.TRACE, layout == null ? null : layout.getClass().getSimpleName(
 
     /** TODO must be called before setValue */
     public void setSelectedContainer(Container container) {
-//      this.container = container;
+//        this.container = container;
         for (int i = 0; i < this.getTabCount(); i++) {
             LayoutManagerCustomizer lmc = (LayoutManagerCustomizer) this.getComponentAt(i);
             lmc.setContainer(container);

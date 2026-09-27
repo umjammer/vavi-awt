@@ -10,16 +10,17 @@ A complete bean property editor.
 
 #### General Use
 
-* Create a <code>TableModel</code> that inherits from <code>AbstractDescriptorTableModel</code>
-  * see {@link vavi.swing.propertyeditor.PropertyDescriptorTableModel}
-* Apply that model to <code>JPropertyEditorTable</code>
-* If you create and use your own property editor, add it to <code>propertyEditor.properties</code>
+* Create a `TableModel` that inherits from `AbstractDescriptorTableModel`
+  * see `vavi.swing.propertyeditor.PropertyDescriptorTableModel`
+* Apply that model to `JPropertyEditorTable`
+* If you create and use your own property editor, add it to `propertyEditor.properties`
 
-```
-clazz.n = Class Primitive types are specified as is (e.g. <code>int, long ...</code>)
+```properties
+clazz.n = Class Primitive types are specified as is (e.g. `int, long ...`)
 editor.n = Property editor class
 ```
 
 ## TODO
 
-* JPropertyEditorPanel, Up button handling when Down fails
+* `JPropertyEditorPanel`, Up button handling when Down fails
+* i eliminated `ClassUtil`, is this still needed?

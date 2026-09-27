@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2002 by Naohide Sano, All rights reserved.
+
+ Sample layout managers for LayoutManagerInfoFactory#getSampleLayoutManagerInfos(),
+ read by java.beans.XMLDecoder.
+
+ first: null layout
+ last: user defined
+-->
+<java class="java.beans.XMLDecoder">
+ <object class="java.util.ArrayList">
+  <void method="add">
+   <object class="vavi.swing.layout.SampleLayoutManagerInfo">
+    <void property="iconResource"><string>resources/NullLayout.gif</string></void>
+    <void property="desc"><string>None</string></void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="vavi.swing.layout.SampleLayoutManagerInfo">
+    <void property="layout">
+     <object class="java.awt.GridLayout"/>
+    </void>
+    <void property="iconResource"><string>resources/gridLayout.gif</string></void>
+    <void property="desc"><string>Grid</string></void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="vavi.swing.layout.SampleLayoutManagerInfo">
+    <void property="layout">
+     <object class="java.awt.FlowLayout"/>
+    </void>
+    <void property="iconResource"><string>resources/flowLayout.gif</string></void>
+    <void property="desc"><string>Flow</string></void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="vavi.swing.layout.SampleLayoutManagerInfo">
+    <void property="layout">
+     <object class="java.awt.CardLayout"/>
+    </void>
+    <void property="iconResource"><string>resources/cardLayout.gif</string></void>
+    <void property="desc"><string>Card</string></void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="vavi.swing.layout.SampleLayoutManagerInfo">
+    <void property="layout">
+     <object class="java.awt.BorderLayout"/>
+    </void>
+    <void property="iconResource"><string>resources/borderLayout.gif</string></void>
+    <void property="desc"><string>Border</string></void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="vavi.swing.layout.SampleLayoutManagerInfo">
+    <void property="layout">
+     <object class="java.awt.GridBagLayout"/>
+    </void>
+    <void property="iconResource"><string>resources/gridBagLayout.gif</string></void>
+    <void property="desc"><string>GridBag</string></void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="vavi.swing.layout.SampleLayoutManagerInfo">
+    <void property="iconResource"><string>resources/AbstractLayout.gif</string></void>
+    <void property="desc"><string>UserDefined</string></void>
+   </object>
+  </void>
+ </object>
+</java>
