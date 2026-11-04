@@ -67,9 +67,9 @@ a file name field with history dropdown and the file chooser button
    * regex match global
    * ~~history saving is not stable~~
    * ~~history duplication~~
- * on macos 13.5.2 on `renamer` period '.' is not rendered with Oracle (8) and Open JDK (21).
-   * with Jetbrain's JDK (17) is OK
-   * [reproducer](src/test/java/IdeTest.java#period) couldn't reproduce now
+ * ~~on macos 13.5.2 on `renamer` period '.' is not rendered with Oracle (8) and Open JDK (21).~~
+   * ~~with Jetbrain's JDK (17) is OK~~
+   * ~~[reproducer](src/test/java/IdeTest.java#period)~~ couldn't reproduce now
 
 ---
 

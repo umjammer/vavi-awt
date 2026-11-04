@@ -6,24 +6,18 @@
 
 package vavi.swing;
 
-import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseListener;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
-import java.util.ArrayList;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
-import javax.swing.AbstractButton;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
 import javax.swing.JList;
 import javax.swing.JTextField;
 import javax.swing.plaf.basic.ComboPopup;
@@ -224,46 +218,18 @@ logger.log(Level.TRACE, Debug.getCallerMethod() + ": " + item);
         insertItemAt(item, 0);
     };
 
-    /** backup for this combo */
-    private final List<MouseListener> myMouseListeners = new ArrayList<>();
-    /** backup for editor */
-    private final List<MouseListener> editorMouseListeners = new ArrayList<>();
-    /** backup for drop-down button */
-    private final List<MouseListener> buttonMouseListeners = new ArrayList<>();
-
     /**
-     * TODO still drop-down works...
-     * @see "https://stackoverflow.com/a/62161500"
+     * The ui (basic, aqua, ...) ignores mouse events on the combo, the editor and the drop-down button
+     * while disabled, so mouse listeners must not be removed here. (removing them, calling this method
+     * repeatedly or {@link #setEditable(boolean)} while disabled lost or duplicated them.)
+     * The editor is also disabled for the case the ui doesn't follow the "enabled" property.
      */
     @Override
     public void setEnabled(boolean isEnabled) {
         super.setEnabled(isEnabled);
-        setEnabledMouseListeners(this, isEnabled, myMouseListeners);
-
         editor.setEnabled(isEnabled);
-        setEnabledMouseListeners(editor, isEnabled, editorMouseListeners);
-
-        for (Component c : getComponents()) {
-            if (c instanceof AbstractButton ab) {
-                ab.setEnabled(isEnabled);
-                setEnabledMouseListeners(ab, isEnabled, buttonMouseListeners);
-            }
-        }
-    }
-
-    /** */
-    private static void setEnabledMouseListeners(JComponent component, boolean isEnabled, List<MouseListener> backup) {
-        if (isEnabled) {
-            for (MouseListener listener : backup) {
-                component.addMouseListener(listener);
-            }
-            backup.clear();
-        } else {
-            backup.clear();
-            for (MouseListener listener : component.getMouseListeners()) {
-                backup.add(listener);
-                component.removeMouseListener(listener);
-            }
+        if (!isEnabled) {
+            hidePopup();
         }
     }
 }
