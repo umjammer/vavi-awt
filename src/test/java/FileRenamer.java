@@ -165,6 +165,12 @@ public class FileRenamer {
             }
         });
 
+        // on macOS, quit (⌘Q) calls System.exit() directly by default and windowClosing is not called,
+        // so make quitting close windows to save histories
+        if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.APP_QUIT_STRATEGY)) {
+            Desktop.getDesktop().setQuitStrategy(QuitStrategy.CLOSE_ALL_WINDOWS);
+        }
+
         frame.setContentPane(panel);
         frame.setTitle("File Renamer");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
