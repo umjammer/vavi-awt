@@ -17,13 +17,16 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.io.UncheckedIOException;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.Normalizer;
+import java.text.Normalizer.Form;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JButton;
@@ -37,9 +40,9 @@ import javax.swing.JToolBar;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
+import vavi.awt.dnd.Droppable;
 import vavi.swing.JHistoryComboBox;
 import vavi.util.CharNormalizerJa;
-import vavi.util.Debug;
 import vavi.util.DiffMatchPatch;
 
 
@@ -59,6 +62,8 @@ import vavi.util.DiffMatchPatch;
  * @version 0.00 2022-08-09 nsano initial version <br>
  */
 public class FileRenamer {
+
+    private static final Logger logger = System.getLogger(FileRenamer.class.getName());
 
     public static void main(String[] args) throws Exception {
         Path dir = Paths.get(args[0]);
@@ -112,7 +117,7 @@ public class FileRenamer {
                         }
                     }
                 } catch (IOException e) {
-                    Debug.printStackTrace(e);
+                    logger.log(Level.ERROR, e.getMessage(), e);
                 }
             }
         });
@@ -122,10 +127,22 @@ public class FileRenamer {
                     try {
                         init(dir.getParent());
                     } catch (IOException e) {
-                        Debug.printStackTrace(e);
+                        logger.log(Level.ERROR, e.getMessage(), e);
                     }
                 }
             }
+        });
+        Droppable.makeComponentSinglePathDroppable(table, path -> {
+            try {
+                if (Files.isDirectory(path) && Files.exists(path)) {
+                    dir = path;
+                    init(dir);
+                    return true;
+                }
+            } catch (IOException e) {
+                logger.log(Level.ERROR, e.getMessage(), e);
+            }
+            return false;
         });
 
         panel.add(tool, BorderLayout.NORTH);
@@ -165,7 +182,7 @@ public class FileRenamer {
     private void init(Path dir) throws IOException {
         this.dir = dir;
         sources.clear();
-Debug.println(dir + ": " + Files.exists(dir));
+logger.log(Level.DEBUG, dir + ": " + Files.exists(dir));
         model = new DefaultTableModel(new String[] {"Before", "After"}, 0) {
             @Override public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return columnIndex == 1;
@@ -175,7 +192,7 @@ Debug.println(dir + ": " + Files.exists(dir));
                 .sorted()
                 .filter(p -> !p.getFileName().toString().equals(".DS_Store"))
                 .forEach(path -> {
-Debug.println(path.getFileName());
+logger.log(Level.DEBUG, path.getFileName());
             sources.add(path);
             model.addRow(new Object[] { path.getFileName().toString(), path.getFileName().toString() });
         });
@@ -197,7 +214,7 @@ Debug.println(path.getFileName());
         }
     }
 
-    /** coloerize regex group */
+    /** colorize regex group */
     private static class RegexColorizer {
         final char[] colors;
         char c;
@@ -230,7 +247,7 @@ Debug.println(path.getFileName());
         }
     }
 
-    /** coloerize diff */
+    /** colorize diff */
     static class DiffColorizer {
         final String a;
         final String b;
@@ -277,7 +294,7 @@ Debug.println(path.getFileName());
 
     /** rename by regex */
     private void rename(Pattern searcher, String replacer) {
-Debug.println("rename: " + searcher.pattern() + ", " + replacer);
+logger.log(Level.DEBUG, "rename: " + searcher.pattern() + ", " + replacer);
 
         for (int i = 0; i < sources.size(); i++) {
             String filename = sources.get(i).getFileName().toString();
@@ -286,13 +303,13 @@ Debug.println("rename: " + searcher.pattern() + ", " + replacer);
 
             while (matcher.find()) {
                 String replacing = replacer;
-Debug.println(filename + ": found: " + matcher.groupCount() + ", " + matcher.start() + ", " + matcher.end());
+logger.log(Level.DEBUG, filename + ": found: " + matcher.groupCount() + ", " + matcher.start() + ", " + matcher.end());
                 String p1 = filename.substring(0, matcher.start());
                 String p2 = filename.substring(matcher.start(), matcher.end());
                 String p3 = filename.substring(matcher.end());
                 colorizer.update(matcher.start(), matcher.end());
                 for (int j = 0; j < matcher.groupCount(); j++) {
-Debug.println("group: " + replacing + ", " + matcher.group(j + 1) + ", " + matcher.start(j + 1) + ", " + matcher.end(j + 1));
+logger.log(Level.DEBUG, "group: " + replacing + ", " + matcher.group(j + 1) + ", " + matcher.start(j + 1) + ", " + matcher.end(j + 1));
                     replacing = replacing.replaceFirst("\\$" + (j + 1), matcher.group(j + 1));
                     colorizer.update(matcher.start(j + 1), matcher.end(j + 1));
                 }
@@ -304,12 +321,13 @@ Debug.println("group: " + replacing + ", " + matcher.group(j + 1) + ", " + match
 
     /** normalize, 0 padding single digit */
     private void normalize() {
-Debug.println("normalize: " + sources.size());
+logger.log(Level.DEBUG, "normalize: " + sources.size());
 
         for (int i = 0; i < sources.size(); i++) {
             // to half
             String filename = sources.get(i).getFileName().toString();
             String replaced = CharNormalizerJa.ToHalfAns2.normalize(filename);
+            replaced = Normalizer.normalize(replaced, Form.NFC);
 
             // 0 padding single digit
             Pattern singleNumber = Pattern.compile("([\\D])(\\d)([\\D]|$)");
@@ -323,7 +341,7 @@ Debug.println("normalize: " + sources.size());
                 if (matcher.groupCount() == 3) {
                     replaced = p1 + matcher.group(1) + 0 + matcher.group(2) + matcher.group(3) + p3;
                 } else {
-Debug.println("groups: " + matcher.groupCount());
+logger.log(Level.DEBUG, "groups: " + matcher.groupCount());
                 }
             }
 
@@ -344,11 +362,22 @@ Debug.println("groups: " + matcher.groupCount());
             String replaceWith = (String) model.getValueAt(i, 1);
 
             if (!filename.equals(replaceWith)) {
-Debug.println("rename: " + filename + " -> " + replaceWith);
+logger.log(Level.DEBUG, "rename: " + filename + " -> " + replaceWith);
                 try {
-                    Files.move(sources.get(i), sources.get(i).getParent().resolve(replaceWith));
+                    Path source = sources.get(i);
+                    Path target = source.resolveSibling(replaceWith);
+                    if (Files.exists(target) && Files.isSameFile(source, target)) {
+                        // the file system is normalization (or case) insensitive, e.g. APFS, so
+                        // the target resolves to the source itself and Files.move does nothing.
+                        // rename via a temporary name.
+                        Path temp = source.resolveSibling(filename + ".renaming." + System.nanoTime());
+                        Files.move(source, temp);
+                        Files.move(temp, target);
+                    } else {
+                        Files.move(source, target);
+                    }
                 } catch (IOException e) {
-                    Debug.println(Level.WARNING, e);
+                    logger.log(Level.WARNING, e);
                 }
             }
         }
