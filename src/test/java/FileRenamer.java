@@ -6,8 +6,10 @@
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.desktop.QuitStrategy;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -153,7 +155,11 @@ public class FileRenamer {
         commitButton.addActionListener(this::commitAction);
         executeButton.addActionListener(this::executeAction);
         undoButton.addActionListener(this::undoAction);
-        normalize.addChangeListener(ev -> replacer.setEditable(!normalize.isSelected()));
+        normalize.addChangeListener(ev -> {
+            searcher.setEnabled(!normalize.isSelected());
+            replacer.setEnabled(!normalize.isSelected());
+            replacer.setEditable(!normalize.isSelected());
+        });
 
         searcher.restoreHistory(FileRenamer.class.getName() + ".searcher");
         replacer.restoreHistory(FileRenamer.class.getName() + ".replacer");
